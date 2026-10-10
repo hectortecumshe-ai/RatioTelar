@@ -1,0 +1,18 @@
+{
+  "title": "Ratio Telar: el conocimiento agrícola local como sistema complejo adaptativo",
+  "upload_type": "software",
+  "version": "0.1.0",
+  "license": "mit",
+  "language": "spa",
+  "creators": [
+    {"name": "Mojica-Zárate, Héctor Tecumshé", "orcid": "0000-0002-9067-3983"},
+    {"name": "Díaz-José, Óscar"},
+    {"name": "Barrera-Guzmán, Luis Ángel"},
+    {"name": "Velázquez-Vázquez, Guadalupe"}
+  ],
+  "description": "Aplicación web bilingüe (español/inglés) de un solo archivo, primera de la línea Ratio Complexus. Integra el Stack de Conocimiento Local del maíz criollo de Calpan, Puebla (5 reglas, 38 pasos, 83 actividades; Díaz-José et al. 2026), la red de actores clave, el modelo y procedimiento de Gestión Estratégica Integrada de los recursos naturales (Mojica Zárate 2017: 10 preceptos, nivel de conocimiento ambiental, gráfica de espejo), análisis estructural MICMAC, juego de actores MACTOR, escenarios no lineales, ahorro de recursos y un tablero con los 17 ODS, regionalizado con el catálogo municipal del INEGI. Vistas para productores y científicos.",
+  "keywords": ["sistemas complejos adaptativos", "conocimiento local", "maíz criollo", "stack de conocimiento", "MICMAC", "MACTOR", "análisis de redes", "sostenibilidad", "México"],
+  "related_identifiers": [
+    {"identifier": "10.22231/asyd.v23i3.1822", "relation": "isDerivedFrom", "scheme": "doi"}
+  ]
+}

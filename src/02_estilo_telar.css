@@ -1,0 +1,112 @@
+/* ===== Ratio Telar — estilo propio (se suma a 01_estilo_base.css) ===== */
+:root{ --tierra:#9a6a3a; --semilla:#d9a441; --siembra:#5f8f3e; --alim:#2f7d8a; --vigil:#7a4f9a; --cosecha:#8a8f86;
+  --hilo:rgba(var(--primary-rgb),.16); }
+.brand-name b{color:var(--accent)}
+.hero-telar{position:relative;overflow:hidden;border-radius:var(--r-lg);padding:38px 34px;margin-bottom:22px;
+  background:linear-gradient(135deg,color-mix(in srgb,var(--primary) 16%,var(--card)),var(--card) 60%);border:1px solid var(--border)}
+.hero-telar .trama{position:absolute;inset:0;opacity:.55;pointer-events:none}
+.hero-telar>*:not(.trama){position:relative}
+.hero-telar h1{font-size:clamp(30px,5vw,48px);margin:.1em 0 .25em;letter-spacing:-.015em}
+.hero-telar h1 em{color:var(--accent);font-style:italic}
+.hero-telar p.big{font-size:19px;max-width:760px;margin:0 0 18px}
+.hero-telar .ctas{display:flex;gap:10px;flex-wrap:wrap}
+.cifras{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:22px 0 4px}
+.cifra{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 14px}
+.cifra b{display:block;font-size:28px;color:var(--primary-dark);line-height:1.1}
+.cifra span{font-size:13.5px;color:var(--muted)}
+.fuente{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:6px}
+.fuente a{color:inherit}
+.interp{display:inline-flex;gap:5px;align-items:center;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--warn-text);background:var(--warn-soft);border-radius:var(--r-pill);padding:2px 9px}
+.dato{display:inline-flex;gap:5px;align-items:center;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--ok-text);background:var(--ok-soft);border-radius:var(--r-pill);padding:2px 9px}
+.sindato{color:var(--muted);font-style:italic}
+/* selector territorial */
+.zoom{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media(max-width:820px){.zoom{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.zoom label{font-size:13px;font-weight:700;color:var(--muted);display:block;margin-bottom:4px}
+.zoom select{width:100%}
+.ruta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:12px 0 0;font-size:14.5px}
+.ruta span{background:var(--primary-soft);border-radius:var(--r-pill);padding:3px 11px}
+.ruta i{color:var(--muted);font-style:normal}
+/* tarjetas de dimensión */
+.dims{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.dim{border:1px solid var(--border);border-top:4px solid var(--dc,var(--primary));border-radius:var(--r-md);background:var(--card);padding:14px 16px;cursor:pointer;transition:transform .2s var(--ease),box-shadow .2s}
+.dim:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.dim h3{margin:0 0 4px;font-size:18px}
+.dim p{margin:0;font-size:14.5px;color:var(--muted)}
+.dim .odsr{display:flex;gap:4px;margin-top:10px;flex-wrap:wrap}
+.odsb{display:inline-grid;place-items:center;min-width:26px;height:26px;padding:0 5px;border-radius:5px;color:#fff;font-size:12.5px;font-weight:700;font-family:var(--font)}
+.dim.on{box-shadow:0 0 0 2px var(--dc)}
+.ficha{margin-top:16px}
+.ficha ul{margin:.3em 0 .6em 1.1em;padding:0}
+.ficha li{margin:.25em 0}
+/* stack */
+.cinco{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+@media(max-width:900px){.cinco{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.regla{border-radius:var(--r-md);padding:10px 12px;color:#fff;cursor:pointer;min-height:92px;display:flex;flex-direction:column;justify-content:space-between;border:2px solid transparent}
+.regla b{font-size:16px;line-height:1.15}
+.regla small{opacity:.92;font-size:12.5px}
+.regla.on{border-color:var(--text);box-shadow:var(--shadow)}
+.pasos{display:grid;gap:8px;margin-top:12px}
+.paso{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:start;border:1px solid var(--border);border-left:5px solid var(--pc);border-radius:var(--r-md);padding:9px 12px;background:var(--card)}
+.paso .num{font-weight:700;font-size:19px;color:var(--pc)}
+.paso h4{margin:0;font-size:15.5px}
+.paso .acts{margin:4px 0 0;font-size:13.8px;color:var(--muted)}
+.paso .acts code{font-size:11.5px;background:var(--bg-soft);padding:0 4px;border-radius:4px;margin-right:3px;color:var(--text)}
+.paso .meta{text-align:right;font-size:12.5px;color:var(--muted);white-space:nowrap}
+.iicb{display:inline-block;font-weight:700;color:var(--primary-dark)}
+/* svg */
+svg.chart{width:100%;height:auto;display:block;overflow:visible}
+svg.chart text{font-family:var(--font);fill:var(--text)}
+svg.chart text.m{fill:var(--muted)}
+svg.chart .ax{stroke:var(--border-strong);stroke-width:1}
+svg.chart .grid{stroke:var(--border);stroke-width:1}
+.tip{position:fixed;z-index:90;pointer-events:none;background:var(--card);border:1px solid var(--border-strong);border-radius:var(--r-sm);padding:7px 10px;font-size:13.5px;box-shadow:var(--shadow);max-width:300px;opacity:0;transition:opacity .12s}
+.tip.on{opacity:1}
+/* matrices */
+.mtx{border-collapse:collapse;font-size:13px}
+.mtx th,.mtx td{border:1px solid var(--border);padding:2px;text-align:center}
+.mtx th{background:var(--bg-soft);font-weight:700;padding:3px 6px;white-space:nowrap}
+.mtx th.rot{writing-mode:vertical-rl;transform:rotate(180deg);height:120px;white-space:nowrap}
+.mtx select,.mtx input{width:46px;padding:2px;font-size:13px;border-radius:4px;text-align:center}
+.mtx td.dg{background:var(--bg-soft)}
+.mtxw{overflow:auto;max-width:100%}
+/* preceptos */
+.prec{display:grid;grid-template-columns:30px 1fr 90px 70px;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)}
+.prec:last-child{border-bottom:0}
+.prec .pn{font-weight:700;color:var(--primary-dark)}
+.prec small{display:block;color:var(--muted)}
+.prec input{width:100%}
+.prec .pv{font-weight:700;text-align:right}
+.barra{height:8px;border-radius:4px;background:var(--bg-soft);overflow:hidden;margin-top:4px}
+.barra i{display:block;height:100%;border-radius:4px}
+/* tablero */
+.tablero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px}
+.tablero>.card{margin:0}
+.t4{grid-column:span 4}.t6{grid-column:span 6}.t8{grid-column:span 8}.t12{grid-column:span 12}
+@media(max-width:900px){.t4,.t6,.t8{grid-column:span 12}}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media(max-width:820px){.fases{grid-template-columns:1fr 1fr}}
+.fase{border:1px solid var(--border);border-radius:var(--r-md);padding:12px;background:var(--card)}
+.fase .fn{font-size:26px;font-weight:700;color:var(--accent)}
+.fase ol{margin:.4em 0 0 1.1em;padding:0;font-size:14px}
+.ods-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:6px}
+.ods-c{border-radius:6px;color:#fff;padding:7px 8px;font-size:12.5px;line-height:1.2;min-height:62px;opacity:.28;transition:opacity .2s}
+.ods-c b{display:block;font-size:17px}
+.ods-c.on{opacity:1}
+.nota{font-size:13px;color:var(--muted)}
+.formula{font-family:var(--font);font-style:italic;background:var(--bg-soft);border-radius:var(--r-sm);padding:8px 12px;margin:8px 0;overflow-x:auto}
+.leyenda{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted);margin-top:6px}
+.leyenda span{display:inline-flex;align-items:center;gap:6px}
+.leyenda i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.sec{display:none}
+.sec.on{display:block;animation:entra .35s var(--ease)}
+@keyframes entra{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media print{.bar,.no-print{display:none!important}.sec{display:block!important}}
+.bhead{display:block}
+.bhead .lead{max-width:820px}
+.howto{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.howto .k{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--primary);color:var(--on-primary)}
+table.tbl{display:block;overflow-x:auto;max-width:100%}
+@media(max-width:600px){ .brand-sub{display:none} #bModo{font-size:12.5px;padding:0 9px} .bar-top{gap:6px;padding:8px 12px 4px} .ibtn.round{width:32px;min-width:32px;height:32px} main{padding:18px 16px 30px} .hero-telar{padding:26px 18px} .card{padding:16px} }
