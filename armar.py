@@ -24,6 +24,7 @@ modesw = open(os.path.join(os.path.join(R,'herramientas'), 'modesw.html'), encod
 css = leer('01_estilo_base.css') + '\n' + leer('02_estilo_bos.css') + '\n' + leer('03_estilo_telar.css')
 js = ['10_datos.js', '11_territorio.js', '12_mapa.js', '13_stack.js', '14_gei.js', '15_elementos.js', '16_calendario.js', '20_ayuda.js',
       '30_motor.js', '32_sistema.js', '45_graficos.js', '46_graficos2.js', '40_bloques_a.js', '50_bloques_b.js', '55_tablero.js', '57_sostenible.js', '60_final.js']
+familia = leer('90_familia.html')  # enlaces a las demás apps de la familia Ratio
 cuerpo = '\n'.join('<script>\n' + leer(n) + '\n</script>' for n in js)
 html = f'''<!DOCTYPE html>
 <html lang="es">
@@ -63,7 +64,7 @@ html = f'''<!DOCTYPE html>
   <div class="progress no-print"><span id="progTxt"></span><div class="track"><div class="fill" id="progFill"></div></div></div>
 </header>
 <main id="main"></main>
-<footer class="pie" id="pie"></footer>
+{familia}<footer class="pie" id="pie"></footer>
 <div class="toast" id="toast"></div>
 <dialog id="dlgAyuda"></dialog>
 {cuerpo}
