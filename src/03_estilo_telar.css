@@ -173,3 +173,15 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
 
 .razas{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;margin-top:10px}
 .razas>div{background:var(--bg-soft);border-radius:var(--r-sm);padding:8px 10px}
+
+/* Ventana «Así se hizo con el maíz criollo de Calpan» (bloques sin Stack documentado) */
+.ejemplo-calpan{display:flex;gap:14px;align-items:center;margin:0 0 18px;padding:14px 18px;border-radius:var(--r-lg);border:1px dashed #d9a441;background:linear-gradient(135deg,color-mix(in srgb,#d9a441 14%,var(--card)),var(--card))}
+.ejemplo-calpan .ej-ico{flex:0 0 46px;width:46px;height:56px}
+.ejemplo-calpan .ej-ico svg{width:100%;height:100%}
+.ejemplo-calpan .ej-k{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#a87612}
+.ejemplo-calpan p{margin:4px 0 8px}
+.ej-dlg h3{font-size:16.5px;margin:16px 0 6px}
+.ej-dlg ul,.ej-dlg ol{padding-left:20px;margin:6px 0}
+.ej-dlg li{margin:4px 0}
+#dlgEjemplo{max-width:760px}
+@media (max-width:560px){.ejemplo-calpan{flex-direction:column;align-items:flex-start}}

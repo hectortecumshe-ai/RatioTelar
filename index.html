@@ -652,6 +652,18 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
 .razas{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;margin-top:10px}
 .razas>div{background:var(--bg-soft);border-radius:var(--r-sm);padding:8px 10px}
 
+/* Ventana «Así se hizo con el maíz criollo de Calpan» (bloques sin Stack documentado) */
+.ejemplo-calpan{display:flex;gap:14px;align-items:center;margin:0 0 18px;padding:14px 18px;border-radius:var(--r-lg);border:1px dashed #d9a441;background:linear-gradient(135deg,color-mix(in srgb,#d9a441 14%,var(--card)),var(--card))}
+.ejemplo-calpan .ej-ico{flex:0 0 46px;width:46px;height:56px}
+.ejemplo-calpan .ej-ico svg{width:100%;height:100%}
+.ejemplo-calpan .ej-k{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#a87612}
+.ejemplo-calpan p{margin:4px 0 8px}
+.ej-dlg h3{font-size:16.5px;margin:16px 0 6px}
+.ej-dlg ul,.ej-dlg ol{padding-left:20px;margin:6px 0}
+.ej-dlg li{margin:4px 0}
+#dlgEjemplo{max-width:760px}
+@media (max-width:560px){.ejemplo-calpan{flex-direction:column;align-items:flex-start}}
+
 </style>
 </head>
 <body>
@@ -1741,6 +1753,157 @@ function leyendaEventos(filtro){ const tipos=[...new Set(calendarioPasos().map(x
   return `<div class="legend-cat">${tipos.map(t=>`<span data-evf="${t}" class="${filtro===t?'on':''}" style="${filtro===t?'border-color:'+EVENTOS[t].col:''}"><i style="background:${EVENTOS[t].col}"></i>${esc(tx(EVENTOS[t].n))}${EV_PRINCIPALES.includes(t)?' ★':''}</span>`).join('')}${filtro?`<span data-evf="">✕ ${T('todos','all')}</span>`:''}</div>`; }
 function tablaFechas(){ const l=calendarioPasos().filter(x=>EV_PRINCIPALES.includes(x.ev)).sort((a,b)=>a.ini-b.ini);
   return l.length?`<table class="tbl"><thead><tr><th>${T('Actividad principal','Main activity')}</th><th>${T('Paso','Step')}</th><th>${T('Desde','From')}</th><th>${T('Hasta','To')}</th></tr></thead><tbody>${l.map(x=>`<tr><td><i style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${EVENTOS[x.ev].col}"></i> ${esc(tx(EVENTOS[x.ev].n))}</td><td>${x.n}. ${esc(tx(x.nombre))}</td><td>${diaFecha(x.ini)}</td><td>${diaFecha(x.fin)}</td></tr>`).join('')}</tbody></table>`:`<p class="sindato">${T('Sin fechas de actividades principales.','No main-activity dates.')}</p>`; }
+
+</script>
+<script>
+"use strict";
+/* =====================================================================
+   Ventana «Así se hizo con el maíz criollo de Calpan, Puebla».
+   Aparece en cada bloque cuando el cultivo o la especie elegida no tiene
+   Stack documentado: muestra cómo se llenó ese bloque en el caso de referencia
+   (Díaz-José et al., 2026) y los pasos para llenarlo con el cultivo propio.
+   Todo dato sale de 13_stack.js y 15_elementos.js; lo que es lectura de
+   Ratio Telar se marca como tal.
+   ===================================================================== */
+const _li = a => '<ul>'+a.map(x=>`<li>${x}</li>`).join('')+'</ul>';
+const _ol = a => '<ol>'+a.map(x=>`<li>${x}</li>`).join('')+'</ol>';
+const _mes = m => new Date(2026, m-1, 1).toLocaleDateString(LOC(), {month:'long'});
+const EJEMPLO = {
+  cultivo: ()=>({
+    corto: T('Se eligió el maíz criollo (<i>Zea mays</i> L.), cultivado en milpa y en MIAF, en unidades de producción de menos de 5 ha.','Landrace maize (<i>Zea mays</i> L.) was chosen, grown in milpa and MIAF, on farms under 5 ha.'),
+    hecho: _li([
+      T('Cultivo: <b>maíz criollo</b>; el artículo no especifica la raza (en Puebla se reportan cerca de '+CONTEXTO.razasPuebla+').','Crop: <b>landrace maize</b>; the paper does not name the race (about '+CONTEXTO.razasPuebla+' are reported in Puebla).'),
+      T('Sistemas: ','Systems: ')+CALPAN.sistemas.map(s=>T(s[0],s[1])).join(T(' y ',' and '))+'.',
+      T('Frutales del MIAF: ','MIAF fruit trees: ')+CALPAN.frutales.map(f=>`${f[0]} (<i>${f[1]}</i>)`).join(', ')+'.',
+      T('Unidad de producción: ','Farm size: ')+CALPAN.up+T('; rendimiento de ',' ; yield ')+CALPAN.rend.join('–')+' t/ha.',
+      T('Parcelas de seguimiento: ','Monitored plots: ')+CALPAN.parcelas.map(p=>p[0]+(p[1]?` (${p[1]} ha)`:'')).join(', ')+'.'
+    ]),
+    pasos: _ol([
+      T('Elige tu cultivo o especie en el catálogo (si es maíz o bovino, precisa raza o tipo).','Choose your crop or species in the catalogue (for maize or cattle, set race or type).'),
+      T('Marca el sistema de producción tal como lo practicas (milpa, monocultivo, traspatio, apiario…).','Mark the production system as you practise it (milpa, monoculture, backyard, apiary…).'),
+      T('Indica el tipo de unidad y la superficie en hectáreas; ponle nombre a la parcela y al productor.','Set the unit type and area in hectares; name the plot and the farmer.')
+    ])}),
+  region: ()=>({
+    corto: T('Se ubicó en Puebla → Calpan (clave INEGI 21026) → localidad de la cabecera municipal.','It was located in Puebla → Calpan (INEGI code 21026) → municipal seat.'),
+    hecho: _li([
+      T('Estado: Puebla; región Centro.','State: Puebla; Central region.'),
+      T('Municipio: San Andrés Calpan, clave ','Municipality: San Andrés Calpan, code ')+CALPAN.cve+'; '+CALPAN.coord+'.',
+      T('Colinda con ','Borders ')+[...CALPAN.limites.N,...CALPAN.limites.S,...CALPAN.limites.E,...CALPAN.limites.O].join(', ')+'.',
+      T('Comunidades estudiadas: ','Communities studied: ')+CALPAN.comunidades.map(c=>c[0]).join('; ')+'.',
+      T('Población según el artículo: cerca de ','Population per the paper: about ')+fmt(CALPAN.pobArt,0)+T(' habitantes; PEA de ',' inhabitants; labour force ')+fmt(CALPAN.pea,0)+T(' personas, '+CALPAN.peaPrim+' % en el sector primario.',' people, '+CALPAN.peaPrim+' % in the primary sector.')
+    ]),
+    pasos: _ol([
+      T('Elige el estado; la región se asigna sola.','Choose the state; the region is set automatically.'),
+      T('Elige el municipio y luego la localidad: verás su altitud y su punto en el mapa.','Choose the municipality, then the locality: you will see its altitude and map point.'),
+      T('Si tu localidad no aparece, elige la más cercana y anótalo en las notas del proyecto.','If your locality is missing, pick the nearest one and note it in the project notes.')
+    ])}),
+  requerimientos: ()=>({
+    corto: T('Los productores resumieron su saber en cinco reglas básicas, las 5B: buena tierra, buena semilla, buena siembra, buena alimentación y buena vigilancia.','Farmers summed up their knowledge in five basic rules, the 5B: good soil, seed, sowing, nutrition and watchfulness.'),
+    hecho: _li(B5.filter(b=>!b.interp).map(b=>`<b style="color:${b.col}">${esc(tx(b))}</b>: ${esc(T(b.d[0],b.d[1]))}`))
+      + `<p class="nota">${T(`Se obtuvieron de ${ART.informantes} informantes entre ${ART.periodo}.`,`Drawn from ${ART.informantes} informants in ${ART.periodo}.`)}</p>`,
+    pasos: _ol([
+      T('Pregunta a los productores: «¿qué se necesita para que este cultivo salga bien?». Agrupa las respuestas en pocas reglas, como las 5B.','Ask farmers: “what does this crop need to do well?”. Group the answers into a few rules, like the 5B.'),
+      T('Escribe cada requerimiento tradicional con una descripción corta y su fuente (quién lo dijo o dónde se publicó).','Write each traditional requirement with a short description and its source (who said it or where it was published).'),
+      T('Agrega aparte los requerimientos <b>innovados</b>: lo que la localidad ha incorporado (análisis de suelo, bioinsumos, nuevas variedades…).','Add the <b>innovated</b> requirements separately: what the locality has adopted (soil tests, bio-inputs, new varieties…).')
+    ])}),
+  manejo: ()=>({
+    corto: T(`Se documentaron ${ART.pasos} pasos y ${ART.actividades} actividades, del trabajo del suelo en diciembre a la cosecha y el balance económico.`,`${ART.pasos} steps and ${ART.actividades} activities were documented, from tillage in December to harvest and economic balance.`),
+    hecho: `<p>${T('Los primeros pasos, tal como aparecen en la Figura 4 del artículo:','The first steps, as in Figure 4 of the paper:')}</p>`
+      + _li(PASOS.slice(0,6).map(p=>`<b>${T('Paso','Step')} ${p.n}. ${esc(T(p.es,p.en))}</b> <span class="muted">(${p.v.map(_mes).join('–')})</span>: ${p.a.map(a=>`${a[0]}) ${esc(T(a[1],a[2]))}`).join('; ')}`))
+      + `<p class="nota">${T('… y así hasta el paso 38. Cada actividad lleva una letra (A, B, C…) y cada paso su ventana de fechas en el calendario.','… and so on to step 38. Each activity has a letter (A, B, C…) and each step its date window in the calendar.')}</p>`,
+    pasos: _ol([
+      T('Lista los pasos en el orden en que se hacen durante el ciclo (preparar el suelo, sembrar, cuidar, cosechar, vender).','List the steps in the order they happen in the season (prepare soil, sow, tend, harvest, sell).'),
+      T('Dentro de cada paso, anota sus actividades concretas y quiénes intervienen.','Within each step, note its concrete activities and who takes part.'),
+      T('Pon las fechas de las actividades principales (siembra, deshierbe, poda, corte): alimentan el calendario circular del Tablero y del Informe.','Enter the dates of the main activities (sowing, weeding, pruning, harvest): they feed the circular calendar in the Dashboard and Report.'),
+      T('Marca cuáles son tradicionales y cuáles innovadas.','Mark which are traditional and which are innovated.')
+    ])}),
+  elementos: ()=>{ const porCat=Object.keys(CATS).map(k=>[k,ELEM.filter(e=>e.cat===k).length]).filter(x=>x[1]);
+    return {
+    corto: T(`Se identificaron ${ELEM.length} elementos en ${porCat.length} categorías; los actores clave fueron productores, proveedores de insumos, asesores técnicos, investigadores y la academia local (CBTA 255).`,`${ELEM.length} elements in ${porCat.length} categories were identified; key actors were farmers, input suppliers, technical advisers, researchers and local academia (CBTA 255).`),
+    hecho: _li(porCat.map(([k,n])=>`<b style="color:${CATS[k].col}">${CATS[k].sym} ${esc(tx(CATS[k].n))}</b>: ${n} — ${ELEM.filter(e=>e.cat===k).slice(0,3).map(e=>esc(tx(e.n))).join(', ')}${n>3?'…':''}`))
+      + `<p class="nota">${T('Participantes por ciclo (Cuadro 1): ','Participants per cycle (Table 1): ')}${CUADRO1.map(c=>`${c.ciclo}: ${c.PM+c.PI+c.IAC+c.AT}`).join(' · ')}.</p>`,
+    pasos: _ol([
+      T('Recorre cada paso de manejo y pregunta: ¿quién lo hace?, ¿qué se usa?, ¿de dónde sale el dinero?, ¿qué recurso natural interviene?','Go through each management step and ask: who does it? what is used? where does the money come from? which natural resource is involved?'),
+      T('Ubica cada respuesta en su categoría: actores, instituciones, insumos, equipo, recursos naturales y financieros, conocimientos, políticas, perturbaciones y productos.','Place each answer in its category: actors, institutions, inputs, equipment, natural and financial resources, knowledge, policies, disturbances and products.'),
+      T('Liga cada elemento a las actividades donde participa: así se teje la red.','Link each element to the activities it takes part in: that is how the network is woven.')
+    ])}; },
+  precios: ()=>({
+    corto: T('El artículo de Calpan no publica precios: este bloque se llena con los datos de cada productor. Aquí se distingue lo que cuesta un elemento de lo que vale para el sistema.','The Calpan paper publishes no prices: this block is filled with each farmer’s data. It separates what an element costs from what it is worth to the system.'),
+    hecho: _li([
+      T('<b>Precio</b>: lo que se paga en el mercado por unidad (kg, L, jornal, ha) y la cantidad usada por hectárea.','<b>Price</b>: what the market charges per unit (kg, L, day’s labour, ha) and the amount used per hectare.'),
+      T('<b>Valor</b>: importancia de 0 a 5 en cuatro dimensiones: económica, de uso, cultural y ecológica.','<b>Value</b>: importance from 0 to 5 in four dimensions: economic, use, cultural and ecological.'),
+      T('Ejemplo de lectura: la semilla criolla seleccionada en casa (paso 6) casi no tiene precio de mercado, pero su valor cultural y ecológico es alto; un herbicida puede costar más y valer menos para el sistema.','Example reading: home-selected landrace seed (step 6) has almost no market price, yet high cultural and ecological value; a herbicide may cost more and be worth less to the system.')+' '+marcaInterp()
+    ]),
+    pasos: _ol([
+      T('Elige una categoría (insumos, equipo, actores…).','Pick a category (inputs, equipment, actors…).'),
+      T('Anota precio, unidad y cantidad por hectárea de lo que compras o pagas.','Enter price, unit and amount per hectare of what you buy or pay for.'),
+      T('Califica el valor de 0 a 5 en cada dimensión, aunque el elemento no tenga precio.','Rate value from 0 to 5 in each dimension, even if the element has no price.'),
+      T('Si te falta algún elemento, agrégalo al catálogo: queda disponible para todo el proyecto.','If an element is missing, add it to the catalogue: it becomes available for the whole project.')
+    ])}),
+  formulacion: ()=>({
+    corto: T(`Con los ${ART.pasos} pasos, sus actividades y los elementos ligados, Ratio Telar tejió la red del sistema del maíz de Calpan.`,`From the ${ART.pasos} steps, their activities and linked elements, Ratio Telar wove the Calpan maize network.`),
+    hecho: _li([
+      T(`Nodos: los elementos del Bloque 5; aristas: compartir una actividad (${LAZOS.length} lazos adicionales entre actores e instituciones descritos en el artículo).`,`Nodes: the Block 5 elements; edges: sharing an activity (${LAZOS.length} extra ties among actors and institutions described in the paper).`),
+      T('Peso de cada vínculo: la raíz del producto de los valores de los dos elementos (Bloque 6).','Each tie’s weight: the square root of the product of the two elements’ values (Block 6).'),
+      T('Seguimiento en tres ciclos: ','Monitoring over three cycles: ')+CUADRO1.map(c=>c.ciclo).join(', ')+'.'
+    ]),
+    pasos: _ol([
+      T('Revisa que los bloques 3 a 6 tengan datos: sin pasos ni elementos no hay red.','Check that Blocks 3–6 have data: without steps or elements there is no network.'),
+      T('Formula el sistema: la app calcula la red y sus indicadores.','Formulate the system: the app computes the network and its indicators.'),
+      T('Si algo se ve raro, vuelve al bloque correspondiente y corrige.','If something looks odd, go back to the relevant block and fix it.')
+    ])}),
+  tablero: ()=>{ const ii=PASOS.filter(p=>p.iic).sort((a,b)=>b.iic-a.iic).slice(0,3);
+    return {
+    corto: T('En Calpan, la academia local (CBTA 255) resultó el puente principal de la red de actores, y el conocimiento se agrupó en cinco clústeres.','In Calpan, local academia (CBTA 255) was the main bridge of the actor network, and knowledge clustered into five groups.'),
+    hecho: _li([
+      T('Intermediación publicada: academia local ','Published betweenness: local academia ')+ACTORES.find(a=>a.id==='AL').inter+T('; asesores técnicos ','; technical advisers ')+ACTORES.find(a=>a.id==='AT').inter+'.',
+      T('Cercanía entre ','Closeness between ')+RED_PUB.cercania.join(T(' y ',' and '))+'.',
+      T('Pasos con mayor intensidad de conocimiento: ','Steps with highest knowledge intensity: ')+ii.map(p=>`${esc(T(p.es,p.en))} (${p.iic})`).join('; ')+'.',
+      T(`${CLUSTERS.length} clústeres en el dendrograma (Figura 3).`,`${CLUSTERS.length} clusters in the dendrogram (Figure 3).`)
+    ]),
+    pasos: _ol([
+      T('Mira primero qué nodos tienen más grado e intermediación: son los que sostienen tu sistema.','First look at which nodes have the highest degree and betweenness: they hold your system together.'),
+      T('Revisa las comunidades: muestran qué actividades y elementos trabajan juntos.','Check the communities: they show which activities and elements work together.'),
+      T('Usa el calendario circular para ver si las fechas que capturaste se enciman o dejan huecos.','Use the circular calendar to see whether your dates overlap or leave gaps.')
+    ])}; },
+  sostenible: ()=>({
+    corto: T('El artículo vincula el saber local del maíz con los ODS 2 (hambre cero) y 15 (vida de ecosistemas terrestres); Ratio Telar lo evalúa por compartimento y con el índice general de sostenibilidad de Sarandón (2002).','The paper links local maize knowledge to SDG 2 (zero hunger) and 15 (life on land); Ratio Telar assesses it by compartment and with Sarandón’s (2002) general sustainability index.'),
+    hecho: _li([
+      T('ODS citados en el artículo: ','SDGs cited in the paper: ')+CONTEXTO.ods.join(T(' y ',' and '))+'.',
+      T('Compartimentos evaluados: ','Compartments assessed: ')+COMP.map(c=>tx(c)).join(', ')+'.',
+      T('La huella de carbono usa diésel, nitrógeno y urea por hectárea con factores del IPCC.','The carbon footprint uses diesel, nitrogen and urea per hectare with IPCC factors.')
+    ]),
+    pasos: _ol([
+      T('Revisa el efecto de cada actividad sobre suelo, agua, atmósfera, vegetación y fauna.','Review each activity’s effect on soil, water, atmosphere, vegetation and fauna.'),
+      T('Captura litros de diésel, kg de nitrógeno y de urea, y el rendimiento: con eso se calcula la huella.','Enter litres of diesel, kg of nitrogen and urea, and yield: the footprint is computed from them.'),
+      T('Completa precios y valores del Bloque 6: el índice de Sarandón necesita la dimensión económica.','Complete the Block 6 prices and values: Sarandón’s index needs the economic dimension.')
+    ])}),
+  informe: ()=>({
+    corto: T('El caso de Calpan se presenta como informe con calendario, red, sostenibilidad y fuentes; tu cultivo genera el mismo informe con tus datos.','The Calpan case is presented as a report with calendar, network, sustainability and sources; your crop produces the same report with your data.'),
+    hecho: _li([
+      T('Fuente del caso: ','Case source: ')+esc(ART.cita)+` <a href="https://doi.org/${ART.doi}" target="_blank" rel="noopener">doi:${ART.doi}</a>`
+    ]),
+    pasos: _ol([
+      T('Revisa que cada bloque tenga sus datos; lo que falte aparece como «sin dato».','Check every block has its data; anything missing shows as “no data”.'),
+      T('Imprime o guarda en PDF, y exporta en JSON o CSV para compartirlo sin conexión.','Print or save as PDF, and export JSON or CSV to share offline.')
+    ])})
+};
+function ejemploCalpan(id){
+  if(conStack() || !EJEMPLO[id]) return '';
+  const e=EJEMPLO[id]();
+  return `<div class="ejemplo-calpan aparece no-print"><span class="ej-ico">${ill('c-maiz')}</span><div class="ej-txt">
+    <div class="ej-k">${T('Así se hizo con el maíz criollo de Calpan, Puebla','How it was done with landrace maize in Calpan, Puebla')}</div>
+    <p>${e.corto}</p>
+    <button class="btn ghost sm" data-ejemplo="${id}">${T('Abrir el ejemplo y los pasos para llenarlo','Open the example and how to fill it in')} →</button></div></div>`; }
+function abrirEjemplo(id){ const e=EJEMPLO[id](); let d=$('#dlgEjemplo');
+  if(!d){ d=document.createElement('dialog'); d.id='dlgEjemplo'; document.body.appendChild(d); d.addEventListener('click',ev=>{ if(ev.target===d) d.close(); }); }
+  d.innerHTML=`<div class="dh"><h2>${ill('c-maiz','','width:30px;height:36px;vertical-align:middle;margin-right:6px')}${T('Ejemplo: maíz criollo, Calpan','Example: landrace maize, Calpan')} · ${esc(tx(B(id).corto))}</h2><button class="ibtn round" onclick="this.closest('dialog').close()" aria-label="×">✕</button></div>
+   <div class="db ej-dlg"><h3>${T('Lo que se registró en Calpan','What was recorded in Calpan')} ${marcaDato()}</h3>${e.hecho}
+   <h3>${T('Cómo llenarlo para','How to fill it in for')} ${esc(tx(cultivoSel().n))}</h3>${e.pasos}
+   ${fuenteArt()}</div>`;
+  d.showModal(); }
+document.addEventListener('click',ev=>{ const t=ev.target.closest('[data-ejemplo]'); if(t) abrirEjemplo(t.dataset.ejemplo); });
+function ponerEjemplo(id, el){ const h=ejemploCalpan(id); if(!h) return; const cab=$('.bhead',el); if(cab) cab.insertAdjacentHTML('afterend',h); else el.insertAdjacentHTML('afterbegin',h); }
 
 </script>
 <script>
@@ -2986,7 +3149,7 @@ function renderAyuda(){ $('#dlgAyuda').innerHTML=`<div class="dh"><h2>${T('Cómo
 function render(){ document.documentElement.lang=LANG; $$('.langsw button[data-lang]').forEach(b=>b.classList.toggle('on',b.dataset.lang===LANG));
   document.documentElement.setAttribute('data-modo',MODO); $$('.modesw button').forEach(b=>{ const on=b.dataset.vista===MODO; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); });
   $('#lblProd').textContent=T('Productor','Producer'); $('#lblCien').textContent=T('Científico','Scientist'); $('#brandSub').textContent=T('· lo que está tejido junto','· what is woven together');
-  const b=B(S.bloque)||BLOQUES[0]; b.render()($('#main')); enlazarTips($('#main'));
+  const b=B(S.bloque)||BLOQUES[0]; b.render()($('#main')); ponerEjemplo(b.id, $('#main')); enlazarTips($('#main'));
   $('#pie').innerHTML=`<svg style="width:26px;height:26px;vertical-align:middle;margin-right:6px"><use href="#i-logo"/></svg><b>Ratio Telar</b> ${CONFIG.version} · Ratio Complexus · ${esc(CONFIG.autores)} · ${CONFIG.anio}<br><span class="tiny">${T('Herramienta de apoyo a la decisión: los resultados dependen de los datos capturados. Licencia MIT.','Decision-support tool: results depend on the data entered. MIT licence.')} · <a href="https://hectortecumshe-ai.github.io/">hectortecumshe-ai.github.io</a></span>`;
   renderNav(); actualizarPill(); renderAyuda(); }
 function irA(id){ S.visitados[S.bloque]=true; S.bloque=id; guardar(); render(); scrollTo({top:0,behavior:'smooth'}); }
