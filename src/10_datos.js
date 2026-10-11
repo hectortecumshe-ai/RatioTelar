@@ -115,6 +115,8 @@ function estadoInicial(){ return {
   granja:[],                       // especies de la granja de traspatio
   maizTipo:'nativo', maizRaza:'', maizVar:'',   // subcategoría del maíz
   bovProp:'carne', bovSis:'vacabecerro', bovRaza:'',   // subcategoría de bovinos
+  catExtra:[],                     // cultivos y especies agregados por el usuario {id, tipo, n, sci, col}
+  variedad:{},                     // cultivo -> variedad, tipo o raza elegida o escrita
   sisExtra:[],                     // sistemas de producción agregados por el usuario {id, n, d}
   upOtro:'',                       // tipo de unidad escrito por el usuario (tipoUP = -1)
   prosp:null,                      // supuestos editados de la prospectiva (null = valores iniciales)
@@ -134,7 +136,7 @@ function cargar(){ try{ const g=JSON.parse(localStorage.getItem('telar_v2')||'nu
 const sistemasTodos = ()=> SISTEMAS.concat((S.sisExtra||[]).map(x=>({id:x.id, n:x.n, d:x.d, doc:false, usuario:true})));
 const sistemaSel = ()=> sistemasTodos().find(s=>s.id===S.sistema) || SISTEMAS[0];
 const tipoUPTexto = ()=> +S.tipoUP===-1 ? (S.upOtro||T('Otro','Other')) : tx(TIPOS_UP[S.tipoUP]||TIPOS_UP[0]);
-const cultivoSel = ()=> CATALOGO.find(c=>c.id===S.cultivo) || CATALOGO[0];
+const cultivoSel = ()=> catalogoTodos().find(c=>c.id===S.cultivo) || CATALOGO[0];
 const conStack = ()=> cultivoSel().doc==='stack';
 /* Lugares de trabajo del autor (accesos directos del Bloque 2) */
 const LUGARES = [

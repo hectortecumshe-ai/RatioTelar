@@ -246,3 +246,7 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
 .sis-quitar{position:absolute;top:6px;right:8px;border:0;background:none;color:var(--muted);cursor:pointer;font-size:14px}
 .sis-quitar:hover{color:var(--bad-text,#c43a2f)}
 @media print{.sis-nuevo,.sis-quitar{display:none!important}}
+.cat-card.cat-usuario{position:relative;border-style:dashed}
+.cat-card .sis-quitar{z-index:2}
+.cat-nuevo{margin-top:14px}
+@media print{.cat-nuevo{display:none!important}}

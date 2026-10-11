@@ -724,6 +724,10 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
 .sis-quitar{position:absolute;top:6px;right:8px;border:0;background:none;color:var(--muted);cursor:pointer;font-size:14px}
 .sis-quitar:hover{color:var(--bad-text,#c43a2f)}
 @media print{.sis-nuevo,.sis-quitar{display:none!important}}
+.cat-card.cat-usuario{position:relative;border-style:dashed}
+.cat-card .sis-quitar{z-index:2}
+.cat-nuevo{margin-top:14px}
+@media print{.cat-nuevo{display:none!important}}
 
 </style>
 </head>
@@ -1255,6 +1259,8 @@ function estadoInicial(){ return {
   granja:[],                       // especies de la granja de traspatio
   maizTipo:'nativo', maizRaza:'', maizVar:'',   // subcategoría del maíz
   bovProp:'carne', bovSis:'vacabecerro', bovRaza:'',   // subcategoría de bovinos
+  catExtra:[],                     // cultivos y especies agregados por el usuario {id, tipo, n, sci, col}
+  variedad:{},                     // cultivo -> variedad, tipo o raza elegida o escrita
   sisExtra:[],                     // sistemas de producción agregados por el usuario {id, n, d}
   upOtro:'',                       // tipo de unidad escrito por el usuario (tipoUP = -1)
   prosp:null,                      // supuestos editados de la prospectiva (null = valores iniciales)
@@ -1274,7 +1280,7 @@ function cargar(){ try{ const g=JSON.parse(localStorage.getItem('telar_v2')||'nu
 const sistemasTodos = ()=> SISTEMAS.concat((S.sisExtra||[]).map(x=>({id:x.id, n:x.n, d:x.d, doc:false, usuario:true})));
 const sistemaSel = ()=> sistemasTodos().find(s=>s.id===S.sistema) || SISTEMAS[0];
 const tipoUPTexto = ()=> +S.tipoUP===-1 ? (S.upOtro||T('Otro','Other')) : tx(TIPOS_UP[S.tipoUP]||TIPOS_UP[0]);
-const cultivoSel = ()=> CATALOGO.find(c=>c.id===S.cultivo) || CATALOGO[0];
+const cultivoSel = ()=> catalogoTodos().find(c=>c.id===S.cultivo) || CATALOGO[0];
 const conStack = ()=> cultivoSel().doc==='stack';
 /* Lugares de trabajo del autor (accesos directos del Bloque 2) */
 const LUGARES = [
@@ -1820,6 +1826,106 @@ function leyendaEventos(filtro){ const tipos=[...new Set(calendarioPasos().map(x
   return `<div class="legend-cat">${tipos.map(t=>`<span data-evf="${t}" class="${filtro===t?'on':''}" style="${filtro===t?'border-color:'+EVENTOS[t].col:''}"><i style="background:${EVENTOS[t].col}"></i>${esc(tx(EVENTOS[t].n))}${EV_PRINCIPALES.includes(t)?' ★':''}</span>`).join('')}${filtro?`<span data-evf="">✕ ${T('todos','all')}</span>`:''}</div>`; }
 function tablaFechas(){ const l=calendarioPasos().filter(x=>EV_PRINCIPALES.includes(x.ev)).sort((a,b)=>a.ini-b.ini);
   return l.length?`<table class="tbl"><thead><tr><th>${T('Actividad principal','Main activity')}</th><th>${T('Paso','Step')}</th><th>${T('Desde','From')}</th><th>${T('Hasta','To')}</th></tr></thead><tbody>${l.map(x=>`<tr><td><i style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${EVENTOS[x.ev].col}"></i> ${esc(tx(EVENTOS[x.ev].n))}</td><td>${x.n}. ${esc(tx(x.nombre))}</td><td>${diaFecha(x.ini)}</td><td>${diaFecha(x.fin)}</td></tr>`).join('')}</tbody></table>`:`<p class="sindato">${T('Sin fechas de actividades principales.','No main-activity dates.')}</p>`; }
+
+</script>
+<script>
+"use strict";
+/* =====================================================================
+   Variedades, tipos y razas por cultivo o especie (Bloque 1).
+   El maíz (64 razas, CONABIO) y los bovinos (propósito → sistema → razas)
+   tienen su propia tarjeta. Para los demás, esta es una lista orientativa
+   de variedades, tipos o razas que se cultivan o crían en México:
+   «Lectura de Ratio Telar». Siempre puede escribirse una variedad propia.
+   Para variedades registradas, el referente oficial es el Catálogo Nacional
+   de Variedades Vegetales del SNICS; para razas, las asociaciones de criadores.
+   ===================================================================== */
+const VARIEDADES = {
+  uva:{e:E('Variedad','Variety'), g:[
+    [E('De mesa','Table'),['Flame Seedless','Perlette','Superior Seedless (Sugraone)','Red Globe','Thompson Seedless']],
+    [E('Para vino (tintas)','Wine (red)'),['Cabernet Sauvignon','Merlot','Tempranillo','Nebbiolo','Syrah','Garnacha (Grenache)','Zinfandel']],
+    [E('Para vino (blancas)','Wine (white)'),['Chardonnay','Chenin Blanc','Sauvignon Blanc']]]},
+  chayote:{e:E('Tipo','Type'), g:[
+    [E('Grupos varietales','Varietal groups'),['Virens levis (verde liso)','Nigrum spinosum (verde oscuro con espinas)','Nigrum xalapensis','Albus levis (blanco liso)','Albus dulcis','Albus minor','Nigrum maxima']]]},
+  frijol:{e:E('Variedad','Variety'), g:[
+    [E('Negros','Black'),['Negro Jamapa','Negro San Luis']],
+    [E('Pintos y bayos','Pinto and bayo'),['Pinto Saltillo','Bayo']],
+    [E('Flor de mayo y de junio','Flor de mayo and junio'),['Flor de Mayo','Flor de Junio']],
+    [E('Amarillos','Yellow'),['Azufrado','Peruano (Mayocoba)']],
+    [E('Otras especies','Other species'),['Ayocote (Phaseolus coccineus)','Criollo local']]]},
+  calabaza:{e:E('Especie o tipo','Species or type'), g:[
+    [E('Especies cultivadas en México','Species grown in Mexico'),['Calabacita (Cucurbita pepo)','Calabaza de Castilla (C. moschata)','Calabaza pipiana (C. argyrosperma)','Chilacayote (C. ficifolia)','Calabaza (C. maxima)']]]},
+  chile:{e:E('Tipo','Type'), g:[
+    [E('Frescos','Fresh'),['Jalapeño','Serrano','Poblano','Habanero','De árbol','Manzano (C. pubescens)','Piquín','Chilaca']],
+    [E('Secos (nombre del fruto seco)','Dried (name of dried fruit)'),['Ancho (poblano seco)','Pasilla (chilaca seca)','Guajillo (mirasol seco)','Chipotle o morita (jalapeño ahumado)','Costeño','Chilhuacle']]]},
+  cafe:{e:E('Variedad','Variety'), g:[
+    [E('Arábigos tradicionales','Traditional arabica'),['Typica','Bourbon','Caturra','Catuaí','Mundo Novo','Garnica','Geisha']],
+    [E('Tolerantes a roya','Rust-tolerant'),['Oro Azteca','Costa Rica 95','Marsellesa','Sarchimor']],
+    [E('Robusta','Robusta'),['Robusta (Coffea canephora)']]]},
+  cacao:{e:E('Grupo genético','Genetic group'), g:[
+    [E('Grupos','Groups'),['Criollo','Forastero','Trinitario']]]},
+  aguacate:{e:E('Variedad','Variety'), g:[
+    [E('Comerciales','Commercial'),['Hass','Méndez','Fuerte','Bacon','Reed','Pinkerton']],
+    [E('Criollos','Landrace'),['Criollo (raza mexicana, var. drymifolia)']]]},
+  maguey:{e:E('Especie','Species'), g:[
+    [E('Mezcaleros y tequileros','Mezcal and tequila'),['Espadín (Agave angustifolia)','Azul (A. tequilana Weber var. azul)','Tobalá (A. potatorum)','Cuishe (A. karwinskii)','Papalote (A. cupreata)','Cenizo (A. durangensis)','Tepeztate (A. marmorata)']],
+    [E('Pulqueros y otros','Pulque and others'),['Pulquero (A. salmiana)','Americano (A. americana)']]]},
+  nopal:{e:E('Variedad o tipo','Variety or type'), g:[
+    [E('Nopal verdura','Vegetable pads'),['Milpa Alta','Atlixco','Copena V1']],
+    [E('Tuna','Prickly pear fruit'),['Cristalina','Burrona','Alfajayucan','Rojo pelón']],
+    [E('Forrajero y otros','Forage and others'),['Nopal forrajero','Xoconostle']]]},
+  jitomate:{e:E('Tipo','Type'), g:[
+    [E('Tipos','Types'),['Saladette (Roma)','Bola','Cherry (cereza)','Uva','Riñón (criollo)']]]},
+  trigo:{e:E('Tipo','Type'), g:[
+    [E('Tipos','Types'),['Harinero suave (Triticum aestivum)','Harinero fuerte (T. aestivum)','Cristalino o duro (T. durum)']]]},
+  cana:{e:E('Variedad','Variety'), g:[
+    [E('Comerciales','Commercial'),['CP 72-2086','Mex 69-290','Mex 79-431','ATEMEX 96-40','CO 997']]]},
+  jamaica:{e:E('Variedad o tipo','Variety or type'), g:[
+    [E('Tipos','Types'),['Criolla (Guerrero, Oaxaca)','Sudán','China','Tecoanapa','Colima']]]},
+  maracuya:{e:E('Tipo','Type'), g:[
+    [E('Formas','Forms'),['Amarillo (P. edulis f. flavicarpa)','Morado (P. edulis f. edulis)']]]},
+  guanabana:{e:E('Tipo','Type'), g:[
+    [E('Tipos','Types'),['Criolla (selección local)']]]},
+  mango:{e:E('Variedad','Variety'), g:[
+    [E('Mexicanas','Mexican'),['Ataulfo','Manila','Criollo o petacón']],
+    [E('De Florida','Florida'),['Tommy Atkins','Kent','Keitt','Haden']]]},
+  porcino:{e:E('Raza','Breed'), g:[
+    [E('Comerciales','Commercial'),['Yorkshire (Large White)','Landrace','Duroc','Hampshire','Pietrain','Berkshire','Cruza comercial']],
+    [E('Criollas','Landrace'),['Pelón mexicano','Cuino','Criollo']]]},
+  ovino:{e:E('Raza','Breed'), g:[
+    [E('De pelo','Hair'),['Pelibuey','Blackbelly (Barbados)','Katahdin','Dorper']],
+    [E('De lana','Wool'),['Suffolk','Hampshire','Rambouillet','Criollo de lana']]]},
+  caprino:{e:E('Raza','Breed'), g:[
+    [E('Lecheras','Dairy'),['Alpina','Saanen','Nubia','Toggenburg','La Mancha']],
+    [E('De carne y criollas','Meat and landrace'),['Boer','Criolla']]]},
+  ave:{e:E('Raza o tipo','Breed or type'), g:[
+    [E('Gallinas','Hens'),['Criolla (de rancho)','Cuello desnudo','Rhode Island Red','Plymouth Rock (barrada)','Leghorn']],
+    [E('Otras aves','Other birds'),['Guajolote nativo (Meleagris gallopavo)','Pato','Codorniz']]]},
+  abeja:{e:E('Tipo de abeja','Bee type'), g:[
+    [E('Abeja melífera','Honeybee'),['Africanizada','Italiana (A. m. ligustica)','Carniola (A. m. carnica)','Europea (sin especificar)']],
+    [E('Nativas sin aguijón','Native stingless'),['Melipona beecheii (xunáan kab)','Scaptotrigona mexicana']]]},
+  conejo:{e:E('Raza','Breed'), g:[
+    [E('Razas','Breeds'),['Nueva Zelanda blanco','California','Chinchilla','Rex','Mariposa','Gigante de Flandes']]]},
+  gallo:{e:E('Línea','Line'), g:[
+    [E('Líneas de gallo de pelea','Gamefowl lines'),['Kelso','Hatch','Sweater','Albany','Asil','Criollo']]]}
+};
+const ICO_NUEVO = {cultivo:'i-semilla', especie:'a-granja'};
+const COL_NUEVO = ['#7a9a3a','#b0703e','#2f7d8a','#a87612','#7a4f9a','#c2185b','#3f6b2a','#8a5a2c'];
+const catalogoTodos = ()=> CATALOGO.concat((S.catExtra||[]).map(x=>({...x, ico:ICO_NUEVO[x.tipo], doc:'base', usuario:true})));
+const variedadTexto = ()=>{ const v=(S.variedad||{})[S.cultivo]; return v||''; };
+function tarjetaVariedad(c){
+  if(c.id==='maiz'||c.id==='bovino'||c.especial) return '';
+  const V=VARIEDADES[c.id]||null, val=(S.variedad||{})[c.id]||'', et=V?tx(V.e):T('Variedad, tipo o raza','Variety, type or breed');
+  return `<div class="card aparece" style="border-top:4px solid ${c.col}"><div class="row between"><h3 style="margin:0">${ill(c.ico,'','width:34px;height:40px;vertical-align:middle;margin-right:6px')}${esc(et)} · ${esc(tx(c.n))}</h3>${V?marcaInterp(T('Lista orientativa de lo que se cultiva o cría en México','Indicative list of what is grown or raised in Mexico')):''}</div>
+    <label class="f" style="margin-top:8px"><span>${esc(et)}</span><input id="varIn" list="varLista" value="${esc(val)}" placeholder="${T('elige abajo o escribe la tuya, tal como la nombras en tu localidad','pick below or type your own, as it is named locally')}"><datalist id="varLista">${V?V.g.flatMap(g=>g[1]).map(r=>`<option value="${esc(r)}">`).join(''):''}</datalist></label>
+    ${V?`<div class="razas">${V.g.map(g=>`<div><b>${esc(tx(g[0]))}</b> <span class="muted">(${g[1].length})</span><div class="elchips">${g[1].map(r=>`<button type="button" class="elchip ${val===r?'on':''}" style="--ec:${c.col}" data-var="${esc(r)}">${esc(r)}</button>`).join('')}</div></div>`).join('')}</div>
+    <div class="fuente">${T('Lista orientativa, no exhaustiva: «Lectura de Ratio Telar». Para variedades registradas consulta el Catálogo Nacional de Variedades Vegetales (SNICS); para razas, la asociación de criadores. Si la tuya no está, escríbela arriba.','Indicative, non-exhaustive list: «Ratio Telar reading». For registered varieties see the National Catalogue of Plant Varieties (SNICS); for breeds, the breeders’ association. If yours is missing, type it above.')}</div>`
+    :`<p class="nota">${T('Para este cultivo o especie no hay lista precargada: escribe su variedad, tipo o raza.','There is no preset list for this crop or species: type its variety, type or breed.')}</p>`}</div>`; }
+function tarjetaNuevoCultivo(tipo){
+  return `<details class="sis-nuevo cat-nuevo"><summary>＋ ${tipo==='especie'?T('¿No está tu especie? Agrégala al catálogo','Your species is missing? Add it to the catalogue'):T('¿No está tu cultivo? Agrégalo al catálogo','Your crop is missing? Add it to the catalogue')}</summary>
+    <div class="grid g2"><label class="f"><span>${T('Nombre común','Common name')}</span><input id="catN" maxlength="60" placeholder="${tipo==='especie'?T('p. ej., Codorniz, Tilapia, Borrego cimarrón','e.g., Quail, Tilapia, Bighorn sheep'):T('p. ej., Pitahaya, Vainilla, Amaranto','e.g., Dragon fruit, Vanilla, Amaranth')}"></label>
+    <label class="f"><span>${T('Nombre científico (opcional)','Scientific name (optional)')}</span><input id="catS" maxlength="80" placeholder="${tipo==='especie'?'Oreochromis niloticus':'Vanilla planifolia'}"></label></div>
+    <button type="button" class="btn sm" id="catAdd" data-tipo-nuevo="${tipo}">${T('Agregar y elegir','Add and select')}</button>
+    <p class="nota">${T('Quedará como «Por documentar»: el manejo, los elementos y los precios se capturan desde cero, con la ventana de ejemplo de Calpan como guía.','It will be marked “To document”: management, elements and prices are entered from scratch, with the Calpan example window as a guide.')}</p></details>`; }
 
 </script>
 <script>
@@ -2939,9 +3045,11 @@ function renderCultivo(el){ const tipo=renderCultivo.tipo||cultivoSel().tipo; co
   ${consejo(T('Si es tu primera vez, deja el maíz criollo: verás el sistema completo de Calpan y luego podrás adaptarlo a tu parcela.','If this is your first time, keep landrace maize: you will see the full Calpan system and can then adapt it to your plot.'),T('El catálogo separa lo documentado (Stack publicado) de lo que está por documentar; en estos últimos el manejo se captura desde cero.','The catalogue separates documented (published Stack) from to-be-documented; for the latter, management is entered from scratch.'))}
   <div class="card"><div class="row between"><h3 style="margin:0">${T('Catálogo','Catalogue')}${ayuda('cultivo')}</h3>
     <div class="tipo-tabs"><button data-tipo="cultivo" class="${tipo==='cultivo'?'on':''}">${T('Cultivos','Crops')}</button><button data-tipo="especie" class="${tipo==='especie'?'on':''}">${T('Especies animales','Livestock species')}</button></div></div>
-    <div class="cat-grid">${CATALOGO.filter(x=>x.tipo===tipo).map((x,i)=>`<div class="cat-card aparece ${x.id===S.cultivo?'sel':''}" data-cult="${x.id}" style="--cc:${x.col};animation-delay:${i*40}ms" tabindex="0" role="button">
+    <div class="cat-grid">${catalogoTodos().filter(x=>x.tipo===tipo).map((x,i)=>`<div class="cat-card aparece ${x.id===S.cultivo?'sel':''} ${x.usuario?'cat-usuario':''}" data-cult="${x.id}" style="--cc:${x.col};animation-delay:${i*40}ms" tabindex="0" role="button">
       <span class="est ${x.doc==='stack'?'doc':''}">${x.doc==='stack'?T('Stack documentado','Documented Stack'):T('Por documentar','To document')}</span>
-      <svg viewBox="${x.ico==='i-steer'?'0 0 170 120':x.ico.startsWith('a-')||x.ico==='i-chicken'?'0 0 120 100':'0 0 100 120'}"><use href="#${x.ico}"/></svg><b>${esc(tx(x.n))}</b><i>${esc(tx(x.sci))}</i></div>`).join('')}</div></div>
+      <svg viewBox="${x.ico==='i-steer'?'0 0 170 120':x.ico.startsWith('a-')||x.ico==='i-chicken'?'0 0 120 100':'0 0 100 120'}"><use href="#${x.ico}"/></svg><b>${esc(tx(x.n))}</b><i>${esc(tx(x.sci))}</i>${x.usuario?`<button type="button" class="sis-quitar" data-catq="${esc(x.id)}" aria-label="${T('Quitar','Remove')}" title="${T('Quitar del catálogo','Remove from catalogue')}">✕</button>`:''}</div>`).join('')}</div>
+    ${tarjetaNuevoCultivo(tipo)}</div>
+  ${tarjetaVariedad(c)}
   ${S.cultivo==='maiz'?`<div class="card aparece" style="border-top:4px solid #d9a441"><div class="row between"><h3 style="margin:0">${ill('c-maiz','','width:34px;height:40px;vertical-align:middle;margin-right:6px')}${T('Tipo de maíz','Maize type')}</h3>
      <div class="tipo-tabs" style="margin:0"><button data-mtipo="nativo" class="${S.maizTipo==='nativo'?'on':''}">${T('Nativo o criollo (raza)','Native landrace (race)')}</button><button data-mtipo="mejorado" class="${S.maizTipo==='mejorado'?'on':''}">${T('Mejorado o híbrido','Improved or hybrid')}</button></div></div>
     ${S.maizTipo==='nativo'?`<p class="nota">${T('Las 64 razas de maíz reportadas para México, en sus siete grupos raciales. 59 son nativas; las marcadas con ° se describieron primero en el Caribe o Guatemala y también se han colectado en México.','The 64 maize races reported for Mexico in their seven racial groups. 59 are native; those marked ° were first described in the Caribbean or Guatemala and have also been collected in Mexico.')}</p>
@@ -2958,8 +3066,8 @@ function renderCultivo(el){ const tipo=renderCultivo.tipo||cultivoSel().tipo; co
     <div class="fuente">${T('Tipología usual de la ganadería bovina en México y lista orientativa de razas que se crían en el país: «Lectura de Ratio Telar»; verifícalas con la asociación de criadores de tu región.','Usual typology of Mexican cattle farming and an indicative list of breeds raised in the country: «Ratio Telar reading»; check them with your regional breeders’ association.')}</div></div>`; })():''}
   ${S.cultivo==='abeja'?`<div class="card aparece" style="border-top:4px solid #f4c242"><div class="row" style="gap:14px;align-items:center">${ill('a-apiario','','width:120px;height:100px;flex:0 0 auto')}<div><h3 style="margin:0 0 4px">${T('Unidad de producción: apiario','Production unit: apiary')}</h3><p class="nota" style="margin:0">${T('El apiario es el conjunto de colmenas que maneja el apicultor en un sitio, fijo o trashumante (que se mueve siguiendo las floraciones). Al elegir la abeja, el sistema y el tipo de unidad quedan como apiario; puedes cambiarlos abajo.','The apiary is the set of hives a beekeeper manages at one site, fixed or migratory (moving with the blooms). Choosing the honeybee sets the system and unit type to apiary; you can change them below.')}</p></div></div></div>`:''}
   ${S.cultivo==='granja'?`<div class="card granja aparece"><h3>${ill('a-granja','','width:46px;height:38px;vertical-align:middle;margin-right:8px')}${T('Especies de tu granja de traspatio','Species in your backyard farm')}</h3><p class="nota">${T('Marca las especies que conviven en la granja; cada una aporta sus propios pasos de manejo, insumos y productos.','Tick the species living together on the farm; each brings its own management steps, inputs and products.')}</p>
-    <div class="cat-grid mini">${CATALOGO.filter(x=>x.tipo==='especie'&&!x.especial).map(x=>`<div class="cat-card ${S.granja.includes(x.id)?'sel':''}" data-gesp="${x.id}" style="--cc:${x.col}" tabindex="0" role="button"><svg viewBox="${x.ico==='i-steer'?'0 0 170 120':'0 0 120 100'}"><use href="#${x.ico}"/></svg><b>${esc(tx(x.n))}</b></div>`).join('')}</div>
-    <p><b>${S.granja.length}</b> ${T('especies seleccionadas','species selected')}${S.granja.length?': '+S.granja.map(id=>esc(tx(CATALOGO.find(c=>c.id===id).n))).join(', '):''}</p></div>`:''}
+    <div class="cat-grid mini">${catalogoTodos().filter(x=>x.tipo==='especie'&&!x.especial).map(x=>`<div class="cat-card ${S.granja.includes(x.id)?'sel':''}" data-gesp="${x.id}" style="--cc:${x.col}" tabindex="0" role="button"><svg viewBox="${x.ico==='i-steer'?'0 0 170 120':'0 0 120 100'}"><use href="#${x.ico}"/></svg><b>${esc(tx(x.n))}</b></div>`).join('')}</div>
+    <p><b>${S.granja.length}</b> ${T('especies seleccionadas','species selected')}${S.granja.length?': '+S.granja.map(id=>esc(tx((catalogoTodos().find(c=>c.id===id)||{n:id}).n))).join(', '):''}</p></div>`:''}
   <div class="grid g2"><div class="card"><h3>${T('Sistema de producción','Production system')}${ayuda('sistema')}</h3>
     <div class="opts">${sistemasTodos().map(s=>`<label class="opt ${S.sistema===s.id?'sel':''} ${s.usuario?'sis-usuario':''}"><input type="radio" name="sis" value="${esc(s.id)}" ${S.sistema===s.id?'checked':''}><b>${esc(tx(s.n))}</b><small>${s.usuario?(s.d?esc(s.d):T('agregado por ti','added by you')):s.doc?T('documentado en Calpan','documented in Calpan'):T('captura tu propia descripción','enter your own description')}</small>${s.usuario?`<button type="button" class="sis-quitar" data-sisq="${esc(s.id)}" title="${T('Quitar este sistema','Remove this system')}" aria-label="${T('Quitar','Remove')}">✕</button>`:''}</label>`).join('')}</div>
     <details class="sis-nuevo" ${(S.sisExtra||[]).length?'':''}><summary>＋ ${T('¿No está tu sistema? Agrégalo','Your system is missing? Add it')}</summary>
@@ -2982,6 +3090,14 @@ function renderCultivo(el){ const tipo=renderCultivo.tipo||cultivoSel().tipo; co
   $$('input[name=bsis]',el).forEach(x=>x.onchange=()=>{ S.bovSis=x.value; S.bovRaza=''; bovAplica(); toast(tx(bovSisSel().n)); });
   $$('[data-braza]',el).forEach(x=>x.onclick=()=>{ S.bovRaza = S.bovRaza===x.dataset.braza ? '' : x.dataset.braza; guardar(); render(); });
   if($('#bRaza',el)) $('#bRaza',el).onchange=e=>{ S.bovRaza=e.target.value.trim(); guardar(); render(); };
+  const catAdd=$('#catAdd',el); if(catAdd) catAdd.onclick=()=>{ const n=$('#catN',el).value.trim(), sci=$('#catS',el).value.trim(), tp=catAdd.dataset.tipoNuevo; if(!n){ toast(T('Escribe el nombre','Type the name')); $('#catN',el).focus(); return; }
+    if(catalogoTodos().some(x=>tx(x.n).toLowerCase()===n.toLowerCase())){ toast(T('Ya está en el catálogo','Already in the catalogue')); return; }
+    S.catExtra=S.catExtra||[]; const id='c'+Date.now().toString(36); S.catExtra.push({id, tipo:tp, n, sci:sci||T('sin nombre científico','no scientific name'), col:COL_NUEVO[S.catExtra.length%COL_NUEVO.length]});
+    S.cultivo=id; S.formulado=false; guardar(); render(); toast(T('Agregado al catálogo: ','Added to the catalogue: ')+n); };
+  $$('[data-catq]',el).forEach(b=>b.onclick=e=>{ e.preventDefault(); e.stopPropagation(); const x=(S.catExtra||[]).find(y=>y.id===b.dataset.catq); if(!x||!confirm(T(`¿Quitar «${x.n}» del catálogo?`,`Remove “${x.n}” from the catalogue?`))) return;
+    S.catExtra=S.catExtra.filter(y=>y.id!==x.id); S.granja=S.granja.filter(g=>g!==x.id); if(S.variedad) delete S.variedad[x.id]; if(S.cultivo===x.id) S.cultivo='maiz'; guardar(); render(); });
+  $$('[data-var]',el).forEach(b=>b.onclick=()=>{ S.variedad=S.variedad||{}; S.variedad[S.cultivo] = S.variedad[S.cultivo]===b.dataset.var ? '' : b.dataset.var; guardar(); render(); });
+  if($('#varIn',el)) $('#varIn',el).onchange=e=>{ S.variedad=S.variedad||{}; S.variedad[S.cultivo]=e.target.value.trim(); guardar(); render(); };
   $$('[data-mtipo]',el).forEach(b=>b.onclick=()=>{ S.maizTipo=b.dataset.mtipo; guardar(); render(); });
   $$('[data-raza]',el).forEach(b=>b.onclick=()=>{ S.maizRaza = S.maizRaza===b.dataset.raza ? '' : b.dataset.raza; guardar(); render(); toast(S.maizRaza||T('Raza sin especificar','Race not specified')); });
   const mr=$('#mRaza',el); if(mr) mr.onchange=()=>{ S.maizRaza=mr.value; guardar(); render(); };
@@ -3370,7 +3486,7 @@ function renderInforme(el){ const R=construirRed(), st=estadisticaRed(R), sos=so
      <p class="muted" style="margin:0">${esc(S.proyecto.productor||'')}</p></div><div class="bill" style="--anim:running;width:90px;height:90px">${ill(c.ico)}</div></div>
    <p style="font-size:17px">${esc(resumenTexto(R,st,sos,cum))}</p>
    <div class="grid g2"><table class="tbl"><tbody>
-     <tr><td>${T('Cultivo o especie','Crop or species')}</td><td><b>${esc(tx(c.n))}</b> <i>${esc(tx(c.sci))}</i>${S.cultivo==='maiz'?' · '+(S.maizTipo==='nativo'?(S.maizRaza?T('raza ','race ')+esc(S.maizRaza):T('nativo, raza sin especificar','native, race not specified')):esc(S.maizVar||T('mejorado','improved'))):''}${S.cultivo==='bovino'?' · '+esc(bovTexto()):''}${S.cultivo==='granja'&&S.granja.length?' · '+S.granja.map(id=>esc(tx(CATALOGO.find(x=>x.id===id).n))).join(', '):''}</td></tr><tr><td>${T('Sistema','System')}</td><td>${esc(tx(sistemaSel().n))}</td></tr><tr><td>${T('Tipo de unidad','Unit type')}</td><td>${esc(tipoUPTexto())}</td></tr>
+     <tr><td>${T('Cultivo o especie','Crop or species')}</td><td><b>${esc(tx(c.n))}</b> <i>${esc(tx(c.sci))}</i>${S.cultivo==='maiz'?' · '+(S.maizTipo==='nativo'?(S.maizRaza?T('raza ','race ')+esc(S.maizRaza):T('nativo, raza sin especificar','native, race not specified')):esc(S.maizVar||T('mejorado','improved'))):''}${S.cultivo==='bovino'?' · '+esc(bovTexto()):''}${variedadTexto()?' · '+esc(variedadTexto()):''}${S.cultivo==='granja'&&S.granja.length?' · '+S.granja.map(id=>esc(tx(CATALOGO.find(x=>x.id===id).n))).join(', '):''}</td></tr><tr><td>${T('Sistema','System')}</td><td>${esc(tx(sistemaSel().n))}</td></tr><tr><td>${T('Tipo de unidad','Unit type')}</td><td>${esc(tipoUPTexto())}</td></tr>
      <tr><td>${T('Superficie','Area')}</td><td>${fmt(S.superficie,1)} ha</td></tr><tr><td>${T('Región','Region')}</td><td>${esc(tx(REG_BX[e[3]].n))}</td></tr>
      <tr><td>${T('Estado · municipio','State · municipality')}</td><td>${esc(e[1])} · ${esc(m?m[1]:'')}</td></tr><tr><td>${T('Localidad','Locality')}</td><td>${esc(l?l[1]:'')}${l&&l[3]!=null?' · '+fmt(l[3],0)+' m':''}</td></tr></tbody></table>
     <div class="kpis" style="margin:0"><div class="kpi"><div class="l">${T('Actividades','Activities')}</div><div class="v">${R.acts.length}</div></div><div class="kpi"><div class="l">${T('Elementos · vínculos','Elements · links')}</div><div class="v">${st.n} · ${st.m}</div></div>
@@ -3501,7 +3617,7 @@ function renderNav(){ $('#nav').innerHTML = BLOQUES.map(b=>`<button class="${S.b
   const a=$('#nav .act'); if(a&&a.scrollIntoView) a.scrollIntoView({block:'nearest',inline:'center'});
   const hechos=BLOQUES.filter(b=>/^\d+$/.test(b.n)&&(S.visitados[b.id]||S.bloque===b.id)).length;
   $('#progTxt').textContent=T(`Avance: ${hechos} de ${NUMERADOS} bloques`,`Progress: ${hechos} of ${NUMERADOS} blocks`); $('#progFill').style.width=(100*hechos/NUMERADOS)+'%'; }
-function actualizarPill(){ const l=locSel(); $('#pillTxt').textContent=`${tx(cultivoSel().n)}${S.cultivo==='maiz'&&(S.maizTipo==='nativo'?S.maizRaza:S.maizVar)?' '+(S.maizTipo==='nativo'?S.maizRaza:S.maizVar):''}${S.cultivo==='bovino'?' '+(S.bovRaza||tx(bovSisSel().n)):''}${S.cultivo==='granja'&&S.granja.length?' ('+S.granja.length+')':''} · ${l?l[1]:''}`; }
+function actualizarPill(){ const l=locSel(); $('#pillTxt').textContent=`${tx(cultivoSel().n)}${S.cultivo==='maiz'&&(S.maizTipo==='nativo'?S.maizRaza:S.maizVar)?' '+(S.maizTipo==='nativo'?S.maizRaza:S.maizVar):''}${S.cultivo==='bovino'?' '+(S.bovRaza||tx(bovSisSel().n)):''}${variedadTexto()?' '+variedadTexto():''}${S.cultivo==='granja'&&S.granja.length?' ('+S.granja.length+')':''} · ${l?l[1]:''}`; }
 function renderAyuda(){ $('#dlgAyuda').innerHTML=`<div class="dh"><h2>${T('Cómo usar Ratio Telar','How to use Ratio Telar')}</h2><button class="ibtn round" onclick="this.closest('dialog').close()" aria-label="×">✕</button></div>
   <div class="db"><ol><li>${T('<b>Avanza en orden</b>: cultivo, región, requerimientos, manejo, elementos y precio-valor.','<b>Move in order</b>: crop, region, requirements, management, elements and price-value.')}</li>
   <li>${T('En <b>Formulación</b> presiona <i>Tejer el sistema</i>; en <b>Tablero</b> ves la red y su estadística; en <b>Sostenibilidad</b>, los ODS y la huella.','In <b>Formulation</b> press <i>Weave the system</i>; <b>Dashboard</b> shows the network and its statistics; <b>Sustainability</b> shows SDGs and footprint.')}</li>
