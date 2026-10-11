@@ -75,6 +75,36 @@ const SISTEMAS = [
 ];
 const TIPOS_UP = [E('Milpa','Milpa'),E('Parcela','Plot'),E('Unidad de producción agrícola','Farm (crops)'),E('Unidad de producción pecuaria','Farm (livestock)'),E('Unidad mixta agrícola–pecuaria','Mixed crop–livestock farm'),E('Rancho cinegético (UMA de aprovechamiento cinegético)','Game ranch (UMA for hunting use)'),E('Apiario (unidad de producción apícola)','Apiary (beekeeping unit)')];
 
+/* Subcategoría de bovinos: propósito → sistema de producción (régimen) → razas.
+   Tipología usual de la ganadería bovina en México (carne: vaca–becerro, desarrollo en pastoreo y engorda en corral;
+   leche: familiar o de traspatio, semiespecializado y especializado o intensivo; doble propósito en el trópico).
+   Las razas son una lista orientativa de las que se crían en el país: «Lectura de Ratio Telar»; verifícalas con la asociación de criadores. */
+const REGIMEN = {ext:E('Extensivo','Extensive'), semi:E('Semiintensivo','Semi-intensive'), int:E('Intensivo','Intensive'), tras:E('Traspatio (pequeña escala)','Backyard (small scale)')};
+const REG_SIS = {ext:'pastoreo', semi:'pastoreo', int:'confinado', tras:'traspatio'};
+const BOV_CEBU = ['Brahman','Indobrasil','Gyr','Nelore','Guzerat','Sardo Negro'];
+const BOV_EUR_C = ['Angus','Hereford','Charolais','Simmental','Limousin','Beefmaster','Brangus','Santa Gertrudis','Simbrah','Charbray'];
+const BOV = [
+  {id:'carne', n:E('Ganado productor de carne','Beef cattle'), col:'#8a4b2e', sis:[
+    {id:'vacabecerro', reg:'ext', n:E('Sistema vaca–becerro','Cow–calf system'), d:E('Hato de vientres en pastoreo o agostadero que pare y cría becerros hasta el destete, para venta o para engorda.','Breeding herd on pasture or rangeland raising calves to weaning, for sale or finishing.'),
+      r:[[E('Cebuinas','Zebu'),BOV_CEBU],[E('Europeas y sintéticas','European and composite'),BOV_EUR_C],[E('Cruzas y criollas','Crosses and criollo'),['Cruza cebú × europeo','Criollo']]]},
+    {id:'repasto', reg:'ext', n:E('Desarrollo y engorda en pastoreo (repasto)','Stocker and grass finishing'), d:E('Becerros destetados que ganan peso en praderas o agostadero antes de venderse o de entrar al corral.','Weaned calves gaining weight on pasture before sale or feedlot entry.'),
+      r:[[E('Cebuinas','Zebu'),BOV_CEBU],[E('Europeas y sintéticas','European and composite'),BOV_EUR_C],[E('Cruzas','Crosses'),['Cruza cebú × europeo']]]},
+    {id:'corral', reg:'int', n:E('Engorda en corral (finalización intensiva)','Feedlot finishing'), d:E('Toretes y novillos en corral con dieta de alta energía hasta el peso de mercado (el caso que formula RatioBos).','Bulls and steers in pens on high-energy diets to market weight (the case RatioBos formulates).'),
+      r:[[E('Europeas y sintéticas','European and composite'),['Charolais','Angus','Hereford','Simmental','Limousin','Beefmaster','Brangus','Charbray','Simbrah']],[E('Cebuinas','Zebu'),['Brahman','Indobrasil','Nelore']],[E('Cruzas y otras','Crosses and others'),['Cruza cebú × europeo','Holstein (machos)']]]}]},
+  {id:'leche', n:E('Ganado productor de leche','Dairy cattle'), col:'#2f6b8a', sis:[
+    {id:'lechetras', reg:'tras', n:E('Lechería familiar o de traspatio','Family or backyard dairy'), d:E('Pocas vacas en el solar o junto a la casa, ordeña manual o con equipo sencillo; leche para la familia, el queso o la venta local.','A few cows by the house, hand or simple machine milking; milk for the family, cheese or local sale.'),
+      r:[[E('Lecheras','Dairy'),['Holstein','Jersey','Pardo Suizo']],[E('Cruzas y criollas','Crosses and criollo'),['Cruza Holstein × cebú','Cruza Pardo Suizo × cebú','Criollo Lechero Tropical','Criollo']]]},
+    {id:'lechesemi', reg:'semi', n:E('Lechería semiespecializada','Semi-specialised dairy'), d:E('Hatos medianos con pastoreo y suplemento en pesebre, ordeña mecánica y venta a acopiadores.','Medium herds grazing with manger supplement, machine milking and sale to collectors.'),
+      r:[[E('Lecheras','Dairy'),['Holstein','Jersey','Pardo Suizo']],[E('Cruzas','Crosses'),['Cruza Holstein × Jersey','Cruza Holstein × cebú']]]},
+    {id:'lecheint', reg:'int', n:E('Lechería especializada o intensiva (estabulada)','Specialised intensive dairy (housed)'), d:E('Vacas estabuladas con ración total mezclada, ordeña mecanizada dos o tres veces al día y alta producción por vaca.','Housed cows on total mixed ration, machine milked two or three times a day, high yield per cow.'),
+      r:[[E('Lecheras','Dairy'),['Holstein','Jersey','Pardo Suizo']],[E('Cruzas','Crosses'),['Cruza Holstein × Jersey']]]}]},
+  {id:'doble', n:E('Doble propósito (carne y leche)','Dual purpose (beef and milk)'), col:'#6b8f3e', sis:[
+    {id:'dobletrop', reg:'ext', n:E('Doble propósito tropical','Tropical dual purpose'), d:E('Vacas cruzadas en pastoreo que se ordeñan con el becerro al pie; se vende leche y becerro destetado.','Crossbred grazing cows milked with the calf at foot; milk and weaned calves are sold.'),
+      r:[[E('Cruzas','Crosses'),['Cruza cebú × Pardo Suizo','Cruza cebú × Holstein','Cruza cebú × Simmental','Gyrolando']],[E('Razas','Breeds'),['Pardo Suizo','Simmental','Gyr','Sardo Negro','Criollo Lechero Tropical']]]}]}
+];
+const bovSisSel = ()=>{ const p=BOV.find(b=>b.id===S.bovProp)||BOV[0]; return p.sis.find(s=>s.id===S.bovSis)||p.sis[0]; };
+const bovTexto = ()=>{ const p=BOV.find(b=>b.id===S.bovProp)||BOV[0], s=bovSisSel(); return tx(p.n)+' · '+tx(s.n)+' ('+tx(REGIMEN[s.reg]).toLowerCase()+')'+(S.bovRaza?' · '+S.bovRaza:''); };
+
 /* ---------- Estado / state ---------- */
 let S;
 function estadoInicial(){ return {
@@ -84,6 +114,7 @@ function estadoInicial(){ return {
   edo:'21', mun:'026', loc:'0001',
   granja:[],                       // especies de la granja de traspatio
   maizTipo:'nativo', maizRaza:'', maizVar:'',   // subcategoría del maíz
+  bovProp:'carne', bovSis:'vacabecerro', bovRaza:'',   // subcategoría de bovinos
   reqInn:[],                       // [{t, b, d, fuente}]
   manejo:{},                       // n paso -> {off:{codigo:true}, inn:[{t, el:[ids], imp:[5], nota}], imp:{codigo:[5]}}
   elemExtra:[],                    // elementos agregados por el usuario {id,cat,n}

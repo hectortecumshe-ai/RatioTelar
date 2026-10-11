@@ -1142,6 +1142,36 @@ const SISTEMAS = [
 ];
 const TIPOS_UP = [E('Milpa','Milpa'),E('Parcela','Plot'),E('Unidad de producción agrícola','Farm (crops)'),E('Unidad de producción pecuaria','Farm (livestock)'),E('Unidad mixta agrícola–pecuaria','Mixed crop–livestock farm'),E('Rancho cinegético (UMA de aprovechamiento cinegético)','Game ranch (UMA for hunting use)'),E('Apiario (unidad de producción apícola)','Apiary (beekeeping unit)')];
 
+/* Subcategoría de bovinos: propósito → sistema de producción (régimen) → razas.
+   Tipología usual de la ganadería bovina en México (carne: vaca–becerro, desarrollo en pastoreo y engorda en corral;
+   leche: familiar o de traspatio, semiespecializado y especializado o intensivo; doble propósito en el trópico).
+   Las razas son una lista orientativa de las que se crían en el país: «Lectura de Ratio Telar»; verifícalas con la asociación de criadores. */
+const REGIMEN = {ext:E('Extensivo','Extensive'), semi:E('Semiintensivo','Semi-intensive'), int:E('Intensivo','Intensive'), tras:E('Traspatio (pequeña escala)','Backyard (small scale)')};
+const REG_SIS = {ext:'pastoreo', semi:'pastoreo', int:'confinado', tras:'traspatio'};
+const BOV_CEBU = ['Brahman','Indobrasil','Gyr','Nelore','Guzerat','Sardo Negro'];
+const BOV_EUR_C = ['Angus','Hereford','Charolais','Simmental','Limousin','Beefmaster','Brangus','Santa Gertrudis','Simbrah','Charbray'];
+const BOV = [
+  {id:'carne', n:E('Ganado productor de carne','Beef cattle'), col:'#8a4b2e', sis:[
+    {id:'vacabecerro', reg:'ext', n:E('Sistema vaca–becerro','Cow–calf system'), d:E('Hato de vientres en pastoreo o agostadero que pare y cría becerros hasta el destete, para venta o para engorda.','Breeding herd on pasture or rangeland raising calves to weaning, for sale or finishing.'),
+      r:[[E('Cebuinas','Zebu'),BOV_CEBU],[E('Europeas y sintéticas','European and composite'),BOV_EUR_C],[E('Cruzas y criollas','Crosses and criollo'),['Cruza cebú × europeo','Criollo']]]},
+    {id:'repasto', reg:'ext', n:E('Desarrollo y engorda en pastoreo (repasto)','Stocker and grass finishing'), d:E('Becerros destetados que ganan peso en praderas o agostadero antes de venderse o de entrar al corral.','Weaned calves gaining weight on pasture before sale or feedlot entry.'),
+      r:[[E('Cebuinas','Zebu'),BOV_CEBU],[E('Europeas y sintéticas','European and composite'),BOV_EUR_C],[E('Cruzas','Crosses'),['Cruza cebú × europeo']]]},
+    {id:'corral', reg:'int', n:E('Engorda en corral (finalización intensiva)','Feedlot finishing'), d:E('Toretes y novillos en corral con dieta de alta energía hasta el peso de mercado (el caso que formula RatioBos).','Bulls and steers in pens on high-energy diets to market weight (the case RatioBos formulates).'),
+      r:[[E('Europeas y sintéticas','European and composite'),['Charolais','Angus','Hereford','Simmental','Limousin','Beefmaster','Brangus','Charbray','Simbrah']],[E('Cebuinas','Zebu'),['Brahman','Indobrasil','Nelore']],[E('Cruzas y otras','Crosses and others'),['Cruza cebú × europeo','Holstein (machos)']]]}]},
+  {id:'leche', n:E('Ganado productor de leche','Dairy cattle'), col:'#2f6b8a', sis:[
+    {id:'lechetras', reg:'tras', n:E('Lechería familiar o de traspatio','Family or backyard dairy'), d:E('Pocas vacas en el solar o junto a la casa, ordeña manual o con equipo sencillo; leche para la familia, el queso o la venta local.','A few cows by the house, hand or simple machine milking; milk for the family, cheese or local sale.'),
+      r:[[E('Lecheras','Dairy'),['Holstein','Jersey','Pardo Suizo']],[E('Cruzas y criollas','Crosses and criollo'),['Cruza Holstein × cebú','Cruza Pardo Suizo × cebú','Criollo Lechero Tropical','Criollo']]]},
+    {id:'lechesemi', reg:'semi', n:E('Lechería semiespecializada','Semi-specialised dairy'), d:E('Hatos medianos con pastoreo y suplemento en pesebre, ordeña mecánica y venta a acopiadores.','Medium herds grazing with manger supplement, machine milking and sale to collectors.'),
+      r:[[E('Lecheras','Dairy'),['Holstein','Jersey','Pardo Suizo']],[E('Cruzas','Crosses'),['Cruza Holstein × Jersey','Cruza Holstein × cebú']]]},
+    {id:'lecheint', reg:'int', n:E('Lechería especializada o intensiva (estabulada)','Specialised intensive dairy (housed)'), d:E('Vacas estabuladas con ración total mezclada, ordeña mecanizada dos o tres veces al día y alta producción por vaca.','Housed cows on total mixed ration, machine milked two or three times a day, high yield per cow.'),
+      r:[[E('Lecheras','Dairy'),['Holstein','Jersey','Pardo Suizo']],[E('Cruzas','Crosses'),['Cruza Holstein × Jersey']]]}]},
+  {id:'doble', n:E('Doble propósito (carne y leche)','Dual purpose (beef and milk)'), col:'#6b8f3e', sis:[
+    {id:'dobletrop', reg:'ext', n:E('Doble propósito tropical','Tropical dual purpose'), d:E('Vacas cruzadas en pastoreo que se ordeñan con el becerro al pie; se vende leche y becerro destetado.','Crossbred grazing cows milked with the calf at foot; milk and weaned calves are sold.'),
+      r:[[E('Cruzas','Crosses'),['Cruza cebú × Pardo Suizo','Cruza cebú × Holstein','Cruza cebú × Simmental','Gyrolando']],[E('Razas','Breeds'),['Pardo Suizo','Simmental','Gyr','Sardo Negro','Criollo Lechero Tropical']]]}]}
+];
+const bovSisSel = ()=>{ const p=BOV.find(b=>b.id===S.bovProp)||BOV[0]; return p.sis.find(s=>s.id===S.bovSis)||p.sis[0]; };
+const bovTexto = ()=>{ const p=BOV.find(b=>b.id===S.bovProp)||BOV[0], s=bovSisSel(); return tx(p.n)+' · '+tx(s.n)+' ('+tx(REGIMEN[s.reg]).toLowerCase()+')'+(S.bovRaza?' · '+S.bovRaza:''); };
+
 /* ---------- Estado / state ---------- */
 let S;
 function estadoInicial(){ return {
@@ -1151,6 +1181,7 @@ function estadoInicial(){ return {
   edo:'21', mun:'026', loc:'0001',
   granja:[],                       // especies de la granja de traspatio
   maizTipo:'nativo', maizRaza:'', maizVar:'',   // subcategoría del maíz
+  bovProp:'carne', bovSis:'vacabecerro', bovRaza:'',   // subcategoría de bovinos
   reqInn:[],                       // [{t, b, d, fuente}]
   manejo:{},                       // n paso -> {off:{codigo:true}, inn:[{t, el:[ids], imp:[5], nota}], imp:{codigo:[5]}}
   elemExtra:[],                    // elementos agregados por el usuario {id,cat,n}
@@ -2052,7 +2083,7 @@ function sarandon(sos){ const acts=sos.acts; if(!acts.length) return null;
     {k:'C', n:E('Integración institucional','Institutional integration'), v: inst.length ? 4*inst.filter(e=>instV.has(e.id)).length/inst.length : null, f:T('4 · instituciones vinculadas / instituciones','4 · linked institutions / institutions')}];
   const IK=media(IKs), ISC=media(ISCs), IE=IEv; const dims=[IK,IE,ISC];
   const ISGen = dims.every(x=>x!=null) ? (IK+IE+ISC)/3 : null;
-  return {IK, IE, ISC, ISGen, IKs, ISCs, sustentable: ISGen!=null && ISGen>2 && dims.every(x=>x>=2)}; }
+  return {IK, IE, ISC, ISGen, IKs, ISCs, sostenible: ISGen!=null && ISGen>2 && dims.every(x=>x>=2)}; }
 
 </script>
 <script>
@@ -2422,6 +2453,13 @@ function renderCultivo(el){ const tipo=renderCultivo.tipo||cultivoSel().tipo; co
      <div class="razas">${RAZAS_MAIZ.map(g=>`<div><b>${esc(tx(g.g))}</b> <span class="muted">(${g.r.length})</span><div class="elchips">${g.r.map(r=>`<button type="button" class="elchip ${S.maizRaza===r?'on':''}" style="--ec:#c98b21" data-raza="${esc(r)}">${esc(r)}${RAZAS_EXT.includes(r)?' °':''}</button>`).join('')}</div></div>`).join('')}</div>
      <div class="fuente">${T('Fuente','Source')}: CONABIO (2020), ${T('Razas de maíz de México; clasificación de Sánchez et al. (2000)','Maize races of Mexico; classification by Sánchez et al. (2000)')}. ${T('El artículo de Calpan trata maíces criollos sin especificar raza; en Puebla se reportan cerca de 22.','The Calpan paper covers landraces without specifying race; about 22 are reported in Puebla.')}</div>`
     :`<label class="f"><span>${T('Nombre de la variedad o del híbrido','Variety or hybrid name')}</span><input id="mVar" value="${esc(S.maizVar)}" placeholder="${T('escríbelo tal como lo compras o lo nombra la institución','as you buy it or as the institution names it')}"></label>`}</div>`:''}
+  ${S.cultivo==='bovino'?(()=>{ const P=BOV.find(x=>x.id===S.bovProp)||BOV[0], s=bovSisSel(); return `<div class="card aparece" style="border-top:4px solid ${P.col}"><div class="row between"><h3 style="margin:0">${ill('i-steer','','width:52px;height:38px;vertical-align:middle;margin-right:6px')}${T('Tipo de ganado bovino','Cattle type')}</h3>
+     <div class="tipo-tabs" style="margin:0">${BOV.map(p=>`<button data-bprop="${p.id}" class="${p.id===P.id?'on':''}">${esc(tx(p.n))}</button>`).join('')}</div></div>
+    <p class="nota">${T('Elige el propósito y el sistema de producción; cada sistema indica si es extensivo, semiintensivo, intensivo o de traspatio, y ajusta el sistema y el tipo de unidad de abajo.','Choose the purpose and production system; each states whether it is extensive, semi-intensive, intensive or backyard, and sets the system and unit type below.')}</p>
+    <div class="opts">${P.sis.map(x=>`<label class="opt ${x.id===s.id?'sel':''}"><input type="radio" name="bsis" value="${x.id}" ${x.id===s.id?'checked':''}><b>${esc(tx(x.n))}</b><small><span class="badge ${x.reg==='int'?'warn':x.reg==='tras'?'info':'ok'}">${esc(tx(REGIMEN[x.reg]))}</span> ${esc(tx(x.d))}</small></label>`).join('')}</div>
+    <label class="f" style="margin-top:12px"><span>${T('Raza o cruza','Breed or cross')}</span><input id="bRaza" list="bRazas" value="${esc(S.bovRaza)}" placeholder="${T('elige abajo o escribe la tuya','pick below or type your own')}"><datalist id="bRazas">${s.r.flatMap(g=>g[1]).map(r=>`<option value="${esc(r)}">`).join('')}</datalist></label>
+    <div class="razas">${s.r.map(g=>`<div><b>${esc(tx(g[0]))}</b> <span class="muted">(${g[1].length})</span><div class="elchips">${g[1].map(r=>`<button type="button" class="elchip ${S.bovRaza===r?'on':''}" style="--ec:${P.col}" data-braza="${esc(r)}">${esc(r)}</button>`).join('')}</div></div>`).join('')}</div>
+    <div class="fuente">${T('Tipología usual de la ganadería bovina en México y lista orientativa de razas que se crían en el país: «Lectura de Ratio Telar»; verifícalas con la asociación de criadores de tu región.','Usual typology of Mexican cattle farming and an indicative list of breeds raised in the country: «Ratio Telar reading»; check them with your regional breeders’ association.')}</div></div>`; })():''}
   ${S.cultivo==='abeja'?`<div class="card aparece" style="border-top:4px solid #f4c242"><div class="row" style="gap:14px;align-items:center">${ill('a-apiario','','width:120px;height:100px;flex:0 0 auto')}<div><h3 style="margin:0 0 4px">${T('Unidad de producción: apiario','Production unit: apiary')}</h3><p class="nota" style="margin:0">${T('El apiario es el conjunto de colmenas que maneja el apicultor en un sitio, fijo o trashumante (que se mueve siguiendo las floraciones). Al elegir la abeja, el sistema y el tipo de unidad quedan como apiario; puedes cambiarlos abajo.','The apiary is the set of hives a beekeeper manages at one site, fixed or migratory (moving with the blooms). Choosing the honeybee sets the system and unit type to apiary; you can change them below.')}</p></div></div></div>`:''}
   ${S.cultivo==='granja'?`<div class="card granja aparece"><h3>${ill('a-granja','','width:46px;height:38px;vertical-align:middle;margin-right:8px')}${T('Especies de tu granja de traspatio','Species in your backyard farm')}</h3><p class="nota">${T('Marca las especies que conviven en la granja; cada una aporta sus propios pasos de manejo, insumos y productos.','Tick the species living together on the farm; each brings its own management steps, inputs and products.')}</p>
     <div class="cat-grid mini">${CATALOGO.filter(x=>x.tipo==='especie'&&!x.especial).map(x=>`<div class="cat-card ${S.granja.includes(x.id)?'sel':''}" data-gesp="${x.id}" style="--cc:${x.col}" tabindex="0" role="button"><svg viewBox="${x.ico==='i-steer'?'0 0 170 120':'0 0 120 100'}"><use href="#${x.ico}"/></svg><b>${esc(tx(x.n))}</b></div>`).join('')}</div>
@@ -2437,7 +2475,12 @@ function renderCultivo(el){ const tipo=renderCultivo.tipo||cultivoSel().tipo; co
     <div class="kpi"><div class="l">${T('Pasos de manejo','Management steps')}</div><div class="v">${c.doc==='stack'?38:Object.keys(S.manejo).length}</div><div class="s">${c.doc==='stack'?T('83 actividades publicadas','83 published activities'):T('captúralos en el Bloque 4','enter them in Block 4')}</div></div></div></div></div>
   ${siguiente('cultivo')}`;
   $$('[data-tipo]',el).forEach(b=>b.onclick=()=>{ renderCultivo.tipo=b.dataset.tipo; render(); });
-  $$('[data-cult]',el).forEach(c=>c.onclick=()=>{ S.cultivo=c.dataset.cult; S.formulado=false; if(S.cultivo==='granja') S.sistema='traspatio'; if(S.cultivo==='uva'&&S.sistema==='milpa') S.sistema='vinedo'; if(S.cultivo==='abeja'){ S.sistema='apiario'; S.tipoUP=TIPOS_UP.length-1; } guardar(); render(); toast(tx(cultivoSel().n)); });
+  $$('[data-cult]',el).forEach(c=>c.onclick=()=>{ S.cultivo=c.dataset.cult; S.formulado=false; if(S.cultivo==='granja') S.sistema='traspatio'; if(S.cultivo==='uva'&&S.sistema==='milpa') S.sistema='vinedo'; if(S.cultivo==='abeja'){ S.sistema='apiario'; S.tipoUP=TIPOS_UP.length-1; } if(S.cultivo==='bovino'){ S.sistema=REG_SIS[bovSisSel().reg]; S.tipoUP=3; } guardar(); render(); toast(tx(cultivoSel().n)); });
+  const bovAplica=()=>{ S.bovRaza=S.bovRaza||''; S.sistema=REG_SIS[bovSisSel().reg]; S.tipoUP=3; guardar(); render(); };
+  $$('[data-bprop]',el).forEach(x=>x.onclick=()=>{ S.bovProp=x.dataset.bprop; S.bovSis=(BOV.find(p=>p.id===S.bovProp)||BOV[0]).sis[0].id; S.bovRaza=''; bovAplica(); });
+  $$('input[name=bsis]',el).forEach(x=>x.onchange=()=>{ S.bovSis=x.value; S.bovRaza=''; bovAplica(); toast(tx(bovSisSel().n)); });
+  $$('[data-braza]',el).forEach(x=>x.onclick=()=>{ S.bovRaza = S.bovRaza===x.dataset.braza ? '' : x.dataset.braza; guardar(); render(); });
+  if($('#bRaza',el)) $('#bRaza',el).onchange=e=>{ S.bovRaza=e.target.value.trim(); guardar(); render(); };
   $$('[data-mtipo]',el).forEach(b=>b.onclick=()=>{ S.maizTipo=b.dataset.mtipo; guardar(); render(); });
   $$('[data-raza]',el).forEach(b=>b.onclick=()=>{ S.maizRaza = S.maizRaza===b.dataset.raza ? '' : b.dataset.raza; guardar(); render(); toast(S.maizRaza||T('Raza sin especificar','Race not specified')); });
   const mr=$('#mRaza',el); if(mr) mr.onchange=()=>{ S.maizRaza=mr.value; guardar(); render(); };
@@ -2764,7 +2807,7 @@ function renderSostenible(el){ const R=construirRed(), sos=sostenibilidad(), cum
    <div class="kpi"><div class="l">${T('Innovadas','Innovated')}</div><div class="v" style="color:var(--accent-text)">${sos.inn!=null?fmt(sos.inn,2):'—'}</div><div class="s">${sos.inn!=null&&sos.trad!=null?(sos.inn>=sos.trad?'▲ ':'▼ ')+fmt(sos.inn-sos.trad,2)+' '+T('frente a lo tradicional','vs traditional'):T('agrega innovaciones en el Bloque 4','add innovations in Block 4')}</div></div>
    <div class="kpi"><div class="l">${T('Huella de carbono','Carbon footprint')}${ayuda('huella')}</div><div class="v">${hc?fmt(hc.tot,0):'—'}</div><div class="s">kg CO₂e/ha${hc&&hc.porT?' · '+fmt(hc.porT,0)+' kg/t':''}</div></div></div>
   ${sar?`<div class="card"><div class="row between"><h3 style="margin:0">${T('Índice general de sostenibilidad','General sustainability index')} (Sarandón, 2002)${ayuda('sarandon')}</h3>
-     <span class="badge ${sar.ISGen==null?'info':sar.sustentable?'ok':'bad'}" style="font-size:14px">${sar.ISGen==null?T('faltan datos económicos','economic data missing'):sar.sustentable?T('Sostenible','Sustainable'):T('No sostenible aún','Not yet sustainable')}</span></div>
+     <span class="badge ${sar.ISGen==null?'info':sar.sostenible?'ok':'bad'}" style="font-size:14px">${sar.ISGen==null?T('faltan datos económicos','economic data missing'):sar.sostenible?T('Sostenible','Sustainable'):T('No sostenible aún','Not yet sustainable')}</span></div>
     <div class="grid g4" style="margin-top:12px">${[['IK',T('Económica','Economic'),sar.IK,'#c27c0e'],['IE',T('Ecológica','Ecological'),sar.IE,'#2f7d4a'],['ISC',T('Sociocultural','Socio-cultural'),sar.ISC,'#7a4f9a'],['ISGen',T('General','General'),sar.ISGen,'#2f5d50']].map(([k,n,v,c])=>medidor(k,n,v,c)).join('')}</div>
     <div class="formula">ISGen = (IK + IE + ISC) / 3 ; ${T('sostenible si','sustainable if')} ISGen &gt; 2 ${T('y ninguna dimensión','and no dimension')} &lt; 2 ${T('(escala 0–4)','(0–4 scale)')}</div>
     <div class="grid g2"><table class="tbl"><thead><tr><th colspan="3">IK · ${T('subindicadores económicos','economic sub-indicators')}</th></tr></thead><tbody>${sar.IKs.map(x=>`<tr><td>${x.k}. ${esc(tx(x.n))}<div class="tiny muted">${esc(x.f)}</div></td><td class="r"><b>${x.v!=null?fmt(x.v,2):'—'}</b></td></tr>`).join('')}</tbody></table>
@@ -2816,7 +2859,7 @@ function renderInforme(el){ const R=construirRed(), st=estadisticaRed(R), sos=so
      <p class="muted" style="margin:0">${esc(S.proyecto.productor||'')}</p></div><div class="bill" style="--anim:running;width:90px;height:90px">${ill(c.ico)}</div></div>
    <p style="font-size:17px">${esc(resumenTexto(R,st,sos,cum))}</p>
    <div class="grid g2"><table class="tbl"><tbody>
-     <tr><td>${T('Cultivo o especie','Crop or species')}</td><td><b>${esc(tx(c.n))}</b> <i>${esc(tx(c.sci))}</i>${S.cultivo==='maiz'?' · '+(S.maizTipo==='nativo'?(S.maizRaza?T('raza ','race ')+esc(S.maizRaza):T('nativo, raza sin especificar','native, race not specified')):esc(S.maizVar||T('mejorado','improved'))):''}${S.cultivo==='granja'&&S.granja.length?' · '+S.granja.map(id=>esc(tx(CATALOGO.find(x=>x.id===id).n))).join(', '):''}</td></tr><tr><td>${T('Sistema','System')}</td><td>${esc(tx(SISTEMAS.find(s=>s.id===S.sistema).n))}</td></tr>
+     <tr><td>${T('Cultivo o especie','Crop or species')}</td><td><b>${esc(tx(c.n))}</b> <i>${esc(tx(c.sci))}</i>${S.cultivo==='maiz'?' · '+(S.maizTipo==='nativo'?(S.maizRaza?T('raza ','race ')+esc(S.maizRaza):T('nativo, raza sin especificar','native, race not specified')):esc(S.maizVar||T('mejorado','improved'))):''}${S.cultivo==='bovino'?' · '+esc(bovTexto()):''}${S.cultivo==='granja'&&S.granja.length?' · '+S.granja.map(id=>esc(tx(CATALOGO.find(x=>x.id===id).n))).join(', '):''}</td></tr><tr><td>${T('Sistema','System')}</td><td>${esc(tx(SISTEMAS.find(s=>s.id===S.sistema).n))}</td></tr>
      <tr><td>${T('Superficie','Area')}</td><td>${fmt(S.superficie,1)} ha</td></tr><tr><td>${T('Región','Region')}</td><td>${esc(tx(REG_BX[e[3]].n))}</td></tr>
      <tr><td>${T('Estado · municipio','State · municipality')}</td><td>${esc(e[1])} · ${esc(m?m[1]:'')}</td></tr><tr><td>${T('Localidad','Locality')}</td><td>${esc(l?l[1]:'')}${l&&l[3]!=null?' · '+fmt(l[3],0)+' m':''}</td></tr></tbody></table>
     <div class="kpis" style="margin:0"><div class="kpi"><div class="l">${T('Actividades','Activities')}</div><div class="v">${R.acts.length}</div></div><div class="kpi"><div class="l">${T('Elementos · vínculos','Elements · links')}</div><div class="v">${st.n} · ${st.m}</div></div>
@@ -2933,7 +2976,7 @@ function renderNav(){ $('#nav').innerHTML = BLOQUES.map(b=>`<button class="${S.b
   const a=$('#nav .act'); if(a&&a.scrollIntoView) a.scrollIntoView({block:'nearest',inline:'center'});
   const hechos=BLOQUES.filter(b=>/^\d+$/.test(b.n)&&(S.visitados[b.id]||S.bloque===b.id)).length;
   $('#progTxt').textContent=T(`Avance: ${hechos} de ${NUMERADOS} bloques`,`Progress: ${hechos} of ${NUMERADOS} blocks`); $('#progFill').style.width=(100*hechos/NUMERADOS)+'%'; }
-function actualizarPill(){ const l=locSel(); $('#pillTxt').textContent=`${tx(cultivoSel().n)}${S.cultivo==='maiz'&&(S.maizTipo==='nativo'?S.maizRaza:S.maizVar)?' '+(S.maizTipo==='nativo'?S.maizRaza:S.maizVar):''}${S.cultivo==='granja'&&S.granja.length?' ('+S.granja.length+')':''} · ${l?l[1]:''}`; }
+function actualizarPill(){ const l=locSel(); $('#pillTxt').textContent=`${tx(cultivoSel().n)}${S.cultivo==='maiz'&&(S.maizTipo==='nativo'?S.maizRaza:S.maizVar)?' '+(S.maizTipo==='nativo'?S.maizRaza:S.maizVar):''}${S.cultivo==='bovino'?' '+(S.bovRaza||tx(bovSisSel().n)):''}${S.cultivo==='granja'&&S.granja.length?' ('+S.granja.length+')':''} · ${l?l[1]:''}`; }
 function renderAyuda(){ $('#dlgAyuda').innerHTML=`<div class="dh"><h2>${T('Cómo usar Ratio Telar','How to use Ratio Telar')}</h2><button class="ibtn round" onclick="this.closest('dialog').close()" aria-label="×">✕</button></div>
   <div class="db"><ol><li>${T('<b>Avanza en orden</b>: cultivo, región, requerimientos, manejo, elementos y precio-valor.','<b>Move in order</b>: crop, region, requirements, management, elements and price-value.')}</li>
   <li>${T('En <b>Formulación</b> presiona <i>Tejer el sistema</i>; en <b>Tablero</b> ves la red y su estadística; en <b>Sostenibilidad</b>, los ODS y la huella.','In <b>Formulation</b> press <i>Weave the system</i>; <b>Dashboard</b> shows the network and its statistics; <b>Sustainability</b> shows SDGs and footprint.')}</li>

@@ -140,4 +140,4 @@ function sarandon(sos){ const acts=sos.acts; if(!acts.length) return null;
     {k:'C', n:E('Integración institucional','Institutional integration'), v: inst.length ? 4*inst.filter(e=>instV.has(e.id)).length/inst.length : null, f:T('4 · instituciones vinculadas / instituciones','4 · linked institutions / institutions')}];
   const IK=media(IKs), ISC=media(ISCs), IE=IEv; const dims=[IK,IE,ISC];
   const ISGen = dims.every(x=>x!=null) ? (IK+IE+ISC)/3 : null;
-  return {IK, IE, ISC, ISGen, IKs, ISCs, sustentable: ISGen!=null && ISGen>2 && dims.every(x=>x>=2)}; }
+  return {IK, IE, ISC, ISGen, IKs, ISCs, sostenible: ISGen!=null && ISGen>2 && dims.every(x=>x>=2)}; }
