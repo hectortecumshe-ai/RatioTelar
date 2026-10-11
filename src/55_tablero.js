@@ -42,7 +42,9 @@ function renderTablero(el){ const R=construirRed(renderTablero.sinPM), st=estadi
      <p class="nota">${T('Cada anillo es un tipo de actividad; ★ actividades principales. La aguja marca hoy y el centro anuncia la siguiente actividad. Haz clic en un arco para abrir su paso; en la leyenda, para filtrar.','Each ring is an activity type; ★ main activities. The needle marks today and the centre announces the next activity. Click an arc to open its step; the legend to filter.')}</p></div>
    <div class="card t5"><h3>${T('Fechas de las actividades principales','Main-activity dates')}</h3>${tablaFechas()}</div>
    <div class="card t6"><h3>${T('Intensidad de conocimiento publicada','Published knowledge intensity')}${ayuda('iic')}</h3>${conStack()?barrasH(PASOS.filter(p=>p.iic).sort((a,b)=>b.iic-a.iic).map(p=>({l:p.n+'. '+T(p.es,p.en).slice(0,30), v:p.iic, c:colB(p.b), vl:fmt(p.iic,1)})),{max:100,izq:250,w:600,fila:24})+fuenteArt():`<p class="sindato">—</p>`}</div>
+   ${tarjetaCladograma(R)}
   </div>${siguiente('tablero')}`;
+  $$('[data-clado]',el).forEach(b=>b.onclick=()=>{ renderTablero.clado=b.dataset.clado; render(); });
   $$('[data-clave]',el).forEach(b=>b.onclick=()=>{ renderTablero.clave=b.dataset.clave; render(); });
   $('#sinPM',el).onchange=e=>{ renderTablero.sinPM=e.target.checked; render(); };
   $$('[data-evf]',el).forEach(b=>b.onclick=()=>{ renderTablero.ev=b.dataset.evf||null; render(); });

@@ -111,6 +111,10 @@ const REF_EXTRA = [
  'Wackernagel M, Rees W. 1996. Our ecological footprint: reducing human impact on the Earth. New Society Publishers, Gabriola Island.',
  'CONABIO. 2020. Razas de maíz de México. Comisión Nacional para el Conocimiento y Uso de la Biodiversidad, Ciudad de México. https://www.biodiversidad.gob.mx/diversidad/alimentos/maices/razas-de-maiz',
  'Sánchez JJ, Goodman MM, Stuber CW. 2000. Isozymatic and morphological diversity in the races of maize of Mexico. Economic Botany 54(1): 43–59.',
+ 'Sneath PHA. 1957. The application of computers to taxonomy. Journal of General Microbiology 17(1): 201–226.',
+ 'Sokal RR, Sneath PHA. 1963. Principles of numerical taxonomy. W. H. Freeman, San Francisco.',
+ 'Sokal RR, Rohlf FJ. 1962. The comparison of dendrograms by objective methods. Taxon 11(2): 33–40.',
+ 'Virtanen P, Gommers R, Oliphant TE, et al. 2020. SciPy 1.0: fundamental algorithms for scientific computing in Python. Nature Methods 17: 261–272.',
  'Watts DJ, Strogatz SH. 1998. Collective dynamics of ‘small-world’ networks. Nature 393: 440–442.',
  'Naciones Unidas. 2015. Transformar nuestro mundo: la Agenda 2030 para el Desarrollo Sostenible. A/RES/70/1.',
  'INEGI. 2020. Censo de Población y Vivienda 2020; Catálogo Único de Claves Geoestadísticas.'];

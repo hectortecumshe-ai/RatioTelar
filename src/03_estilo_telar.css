@@ -185,3 +185,11 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
 .ej-dlg li{margin:4px 0}
 #dlgEjemplo{max-width:760px}
 @media (max-width:560px){.ejemplo-calpan{flex-direction:column;align-items:flex-start}}
+
+/* Cladograma del vecino más cercano (Bloque 8) */
+.clado-c{overflow-x:auto}
+.clado{width:100%;min-width:560px;height:auto;font-family:var(--font)}
+.clado .rama{stroke-dasharray:3000;stroke-dashoffset:3000;animation:tejer 1.2s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes tejer{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.clado .rama{animation:none;stroke-dashoffset:0}}
+@media print{.clado .rama{animation:none;stroke-dashoffset:0}}
