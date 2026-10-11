@@ -2,6 +2,10 @@
 
 # Ratio Telar
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23290104.svg)](https://doi.org/10.5281/zenodo.23290104)
+
+👉 **https://hectortecumshe-ai.github.io/RatioTelar/**
+
 **El conocimiento agrícola local como sistema complejo adaptativo.** Primera aplicación de **Ratio Complexus**, el ala de la suite [Ratio](https://hectortecumshe-ai.github.io/) dedicada a los sistemas complejos adaptativos: *lo que está tejido junto*.
 
 Ratio Telar teje en un solo tablero el territorio, los pasos y actividades del cultivo, los actores que sostienen el conocimiento, los recursos naturales y la sostenibilidad. Está hecha para productores y para científicos, en español y en inglés.
@@ -40,6 +44,10 @@ python herramientas/proyeccion.py        # ajusta la proyección lon/lat → map
 python herramientas/territorio.py        # regenera src/11_territorio.js
 python pruebas/verificar_red.py          # verifica la red con NetworkX
 ```
+
+## Cómo citar
+
+Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. A., y Velázquez-Vázquez, G. (2026). *Ratio Telar: el conocimiento agrícola local como sistema complejo adaptativo* (Versión 0.2.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.23290104
 
 ## Autores
 

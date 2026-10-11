@@ -34,7 +34,7 @@ function renderInforme(el){ const R=construirRed(), st=estadisticaRed(R), sos=so
   <div class="card sci"><h3>${T('Estadística de la red','Network statistics')}</h3><table class="tbl"><tbody>
    <tr><td>${T('Densidad','Density')}</td><td class="r">${fmt(st.densidad,4)}</td></tr><tr><td>${T('Grado medio','Mean degree')}</td><td class="r">${fmt(st.gradoMedio,2)}</td></tr><tr><td>${T('Agrupamiento medio','Mean clustering')}</td><td class="r">${fmt(st.clusMedio,3)}</td></tr>
    <tr><td>${T('Camino medio · diámetro','Mean path · diameter')}</td><td class="r">${fmt(st.caminoMedio,3)} · ${st.diametro}</td></tr><tr><td>${T('Modularidad Q · comunidades','Modularity Q · communities')}</td><td class="r">${fmt(st.Q,4)} · ${st.com.length}</td></tr></tbody></table></div>
-  <div class="card"><h3>${T('Cómo citar','How to cite')}</h3><p>${esc(tx(CONFIG.citaAutores))} (${CONFIG.anio}). <i>${CONFIG.app}: ${esc(tx(CONFIG.titulo))}</i> (${T('Versión','Version')} ${CONFIG.version}) [Software]. ${esc(CONFIG.repo)}</p>
+  <div class="card"><h3>${T('Cómo citar','How to cite')}</h3><p>${esc(tx(CONFIG.citaAutores))} (${CONFIG.anio}). <i>${CONFIG.app}: ${esc(tx(CONFIG.titulo))}</i> (${T('Versión','Version')} ${CONFIG.version}) [Software]. Zenodo. ${CONFIG.doi?`<a href="https://doi.org/${CONFIG.doi}">https://doi.org/${CONFIG.doi}</a>`:esc(CONFIG.repo)}</p>
    <p class="nota">${T('Fuentes del caso','Case sources')}: ${esc(ART.cita)} https://doi.org/${ART.doi} · ${esc(TESIS.cita)}</p></div>
   ${siguiente('informe')}`;
   $('#iImp',el).onclick=()=>print();
