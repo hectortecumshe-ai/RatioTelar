@@ -686,6 +686,36 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
 .prosp-grid.inf .pg{border:1px solid var(--border);border-radius:var(--r-lg);padding:10px 12px;background:var(--bg)}
 @media print{.prosp-grid.inf{grid-template-columns:repeat(2,minmax(0,1fr))}.prosp-grid.inf .pg{break-inside:avoid}}
 
+/* Impresión general de Ratio Telar */
+@media print{
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .dibuja,.clado .rama,.prosp-g .linea-p{stroke-dashoffset:0!important}
+  .tip,.toast{display:none!important}
+  .teoria{display:block!important}
+  .teoria details>summary{list-style:none;font-weight:700;font-size:15pt;margin:12pt 0 4pt}
+  .teoria details{break-inside:avoid}
+  .tbl-c,.clado-c{max-height:none!important;overflow:visible!important}
+  table.tbl{display:table!important;overflow:visible!important;width:100%!important;max-width:100%!important;table-layout:auto}
+  .tbl,.formula,.modelo{overflow:visible!important}
+  .formula{white-space:normal}
+  .prosp-sup input,.tbl input{width:58px!important;padding:2px 4px!important;font-size:10pt!important}
+  .card .bill,#sinPM,label:has(#sinPM){display:none!important}
+  .tbl td,.tbl th{padding:4px 6px!important}
+  .tbl{font-size:10pt}
+  .chart,.clado,.prosp-g{max-width:100%;height:auto}
+  .clado{min-width:0!important}
+  main>*{animation:none!important;opacity:1!important;transform:none!important}
+  .aparece{animation:none!important;opacity:1!important}
+  .ejemplo-calpan,#dlgEjemplo{display:none!important}
+  .kpis{break-inside:avoid}
+  h1,h2,h3{break-after:avoid}
+  .tablero{display:block}
+  .tablero>.card{margin-bottom:12pt}
+  .prosp-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .prosp-grid .card,.prosp-grid .pg{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+
 </style>
 </head>
 <body>
@@ -1766,7 +1796,7 @@ function calendarioCircular(opt={}){ const W=opt.w||620, C=W/2, R1=W/2-58; const
     s+=`<path class="evarco ${princ?'princ':''}" d="${arco(x.ini,x.fin,r0,r1)}" fill="${col}" fill-opacity="${princ?.95:.6}" stroke="${x.inn?'var(--accent)':'var(--card)'}" stroke-width="${x.inn?2.5:1}" data-tip="${esc(t)}" data-evpaso="${x.n}" style="animation-delay:${i*25}ms"/>`; });
   // hoy
   const hoy=Math.round((Date.now()-new Date(new Date().getFullYear(),0,1))/864e5); const [hx,hy]=p(hoy,R1+8);
-  s+=`<line x1="${C}" y1="${C}" x2="${hx}" y2="${hy}" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="4 4" class="aguja"/><circle cx="${hx}" cy="${hy}" r="6" fill="var(--accent)"/>`;
+  const [ax,ay]=p(hoy,88); s+=`<line x1="${ax}" y1="${ay}" x2="${hx}" y2="${hy}" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="4 4" class="aguja"/><circle cx="${hx}" cy="${hy}" r="6" fill="var(--accent)"/>`;
   const sig=eventos.filter(x=>x.ev!=='planeacion').map(x=>({...x, falta:((x.ini-hoy)%365+365)%365})).sort((a,b)=>a.falta-b.falta)[0];
   s+=`<text x="${C}" y="${C-22}" text-anchor="middle" font-size="12.5" class="m">${T('Hoy','Today')} · ${diaFecha(hoy)}</text>`;
   if(sig) s+=`<text x="${C}" y="${C+2}" text-anchor="middle" font-size="14" font-weight="700" style="fill:${EVENTOS[sig.ev].col}">${esc(tx(EVENTOS[sig.ev].n))}</text><text x="${C}" y="${C+22}" text-anchor="middle" font-size="12.5">${T('en','in')} ${sig.falta} ${T('días','days')}</text>`;
@@ -3412,6 +3442,7 @@ const REF_EXTRA = [
  'Sánchez JJ, Goodman MM, Stuber CW. 2000. Isozymatic and morphological diversity in the races of maize of Mexico. Economic Botany 54(1): 43–59.',
  'Godet M, Durance P. 2007. Prospectiva estratégica: problemas y métodos. Cuadernos de LIPSOR 20. LIPSOR, París.',
  'IPCC. 2018. Summary for Policymakers. En: Global Warming of 1.5 °C. An IPCC Special Report. Cambridge University Press.',
+ 'Jouvenel B de. 1964. L’art de la conjecture. Éditions du Rocher, Mónaco.',
  'Rogers EM. 2003. Diffusion of innovations, 5.ª ed. Free Press, Nueva York.',
  'Zhao C, Liu B, Piao S, et al. 2017. Temperature increase reduces global yields of major crops in four independent estimates. Proceedings of the National Academy of Sciences 114(35): 9326–9331.',
  'Sneath PHA. 1957. The application of computers to taxonomy. Journal of General Microbiology 17(1): 201–226.',
@@ -3427,10 +3458,11 @@ function renderTeoria(el){
    [T('Orden, caos y resiliencia','Order, chaos and resilience'),T('En la tesis, los fundamentos del modelo interactúan de manera caórdica, entre el orden y el caos (Prigogine, 1983; Hock, 1999). Holling (2001) y Gunderson y Holling (2002) describen los ciclos adaptativos y la panarquía: crecimiento, conservación, liberación y reorganización a varias escalas. Las perturbaciones climáticas que mueven la fecha de siembra son ejemplos de ese entorno.','In the thesis, the model’s foundations interact chaordically, between order and chaos (Prigogine, 1983; Hock, 1999). Holling (2001) and Gunderson and Holling (2002) describe adaptive cycles and panarchy: growth, conservation, release and reorganisation across scales. The climate disturbances shifting the sowing date are examples of that environment.')],
    [T('El Stack de conocimiento local','The local knowledge stack'),T('El Stack organiza el conocimiento agrícola en capas interdependientes con cuatro rasgos: multidimensionalidad, jerarquización, interdisciplinariedad y aplicabilidad (Díaz-José et al., 2026). Combina conocimiento tácito y explícito, que se convierten uno en otro en la creación de conocimiento (Nonaka y Takeuchi, 1995), y la memoria biocultural de las comunidades (Toledo y Barrera-Bassols, 2008).','The Stack organises farming knowledge in interdependent layers with four traits: multidimensionality, hierarchy, interdisciplinarity and applicability (Díaz-José et al., 2026). It combines tacit and explicit knowledge, which convert into each other as knowledge is created (Nonaka & Takeuchi, 1995), and communities’ biocultural memory (Toledo & Barrera-Bassols, 2008).')],
    [T('Gestión Estratégica Integrada y racionalidad ambiental','Integrated Strategic Management and environmental rationality'),T('El modelo de la tesis integra fundamentos socioeconómicos, ambientales y turístico-ecotecnológicos con enfoques participativo, sostenible y de sistemas complejos, en cuatro fases y nueve pasos (Mojica Zárate, 2017). Se apoya en la racionalidad ambiental de Leff (1994, 2004), que pide reconocer los saberes locales frente a la racionalidad económica dominante, y en el marco de sistemas socioecológicos de Ostrom (2009).','The thesis model integrates socio-economic, environmental and tourism–eco-technological foundations with participatory, sustainable and complex-systems approaches, in four phases and nine steps (Mojica Zárate, 2017). It draws on Leff’s (1994, 2004) environmental rationality, which calls for recognising local knowledge against dominant economic rationality, and on Ostrom’s (2009) social-ecological systems framework.')],
-   [T('Redes y estadística','Networks and statistics'),T('La centralidad de grado, cercanía e intermediación (Freeman, 1978; algoritmo de Brandes, 2001) identifica a quién articula el sistema; el agrupamiento y el camino medio caracterizan los «mundos pequeños» (Watts y Strogatz, 1998); la modularidad mide la estructura de comunidades (Newman y Girvan, 2004; Newman, 2006), que aquí se detectan con el método de Louvain (Blondel et al., 2008). La correlación φ entre elementos es la de Pearson sobre su incidencia en las actividades.','Degree, closeness and betweenness centrality (Freeman, 1978; Brandes’ algorithm, 2001) identify who holds the system together; clustering and mean path characterise “small worlds” (Watts & Strogatz, 1998); modularity measures community structure (Newman & Girvan, 2004; Newman, 2006), detected here with the Louvain method (Blondel et al., 2008). The φ correlation between elements is Pearson’s on their incidence across activities.')],
+   [T('Redes y estadística','Networks and statistics'),T('La centralidad de grado, cercanía e intermediación (Freeman, 1978; algoritmo de Brandes, 2001) identifica a quién articula el sistema; el agrupamiento y el camino medio caracterizan los «mundos pequeños» (Watts y Strogatz, 1998); la modularidad mide la estructura de comunidades (Newman y Girvan, 2004; Newman, 2006), que aquí se detectan con el método de Louvain (Blondel et al., 2008). La correlación φ entre elementos es la de Pearson sobre su incidencia en las actividades. El cladograma agrupa a los elementos por su distancia en la red (camino más corto con longitud 1/peso) con el enlace simple o del vecino más cercano (Sneath, 1957; Sokal y Sneath, 1963); la correlación cofenética indica qué tan fiel es el árbol a esas distancias (Sokal y Rohlf, 1962).','Degree, closeness and betweenness centrality (Freeman, 1978; Brandes’ algorithm, 2001) identify who holds the system together; clustering and mean path characterise “small worlds” (Watts & Strogatz, 1998); modularity measures community structure (Newman & Girvan, 2004; Newman, 2006), detected here with the Louvain method (Blondel et al., 2008). The φ correlation between elements is Pearson’s on their incidence across activities. The cladogram groups elements by network distance (shortest path with length 1/weight) using single or nearest-neighbour linkage (Sneath, 1957; Sokal & Sneath, 1963); the cophenetic correlation shows how faithfully the tree keeps those distances (Sokal & Rohlf, 1962).')],
+   [T('Prospectiva y futuribles','Foresight and futuribles'),T('La prospectiva parte de que el futuro no está escrito: es múltiple e incierto, y se construye con las decisiones de hoy. De Jouvenel (1964) llamó «futuribles» a los futuros posibles, y Godet (2007; Godet y Durance, 2011) sistematizó la prospectiva estratégica con el análisis estructural (MICMAC), el juego de actores (MACTOR) y los escenarios. En la tesis, la prospectiva es uno de los siete principios del procedimiento: el estado deseado se fija con una línea base y un horizonte futurible, el plan estratégico distingue desafíos, riesgos, potencialidades y limitaciones, y la ejecución se sigue con una línea prospectiva y escenarios de los indicadores estratégicos (Mojica Zárate, 2017). Ratio Telar lleva esta idea a la unidad productiva con tres escenarios exploratorios a 2, 5 y 10 años: deseable, tendencial y no deseado. No son pronósticos, sino futuros posibles construidos con supuestos explícitos. El clima entra con la tasa de calentamiento del IPCC (2018) y la pérdida de rendimiento por grado de Zhao et al. (2017); la adopción de las innovaciones del Stack sigue la curva en S de la difusión (Rogers, 2003); los precios, los costos y la pérdida de mano de obra en el campo son supuestos editables. En un sistema complejo adaptativo el futuro emerge de las interacciones y puede cambiar de rumbo tras una perturbación (Holling, 2001): por eso los escenarios sirven para conversar y decidir, no para predecir.','Foresight starts from the idea that the future is not written: it is multiple and uncertain, and is built by today’s decisions. De Jouvenel (1964) called possible futures “futuribles”, and Godet (2007; Godet & Durance, 2011) systematised strategic foresight with structural analysis (MICMAC), actor analysis (MACTOR) and scenarios. In the thesis, foresight is one of the seven principles of the procedure: the desired state is set with a baseline and a futurible horizon, the strategic plan distinguishes challenges, risks, potentials and limitations, and implementation is followed with a foresight line and scenarios of the strategic indicators (Mojica Zárate, 2017). Ratio Telar brings this idea to the farm with three exploratory scenarios at 2, 5 and 10 years: desirable, trend and undesired. They are not forecasts but possible futures built on explicit assumptions. Climate enters with the IPCC (2018) warming rate and the yield loss per degree of Zhao et al. (2017); adoption of the Stack’s innovations follows the S-shaped diffusion curve (Rogers, 2003); prices, costs and the loss of farm labour are editable assumptions. In a complex adaptive system the future emerges from interactions and can change course after a disturbance (Holling, 2001): scenarios are for discussing and deciding, not for predicting.')],
    [T('Sostenibilidad, ODS y huella','Sustainability, SDGs and footprint'),T('La sostenibilidad se evalúa con indicadores por compartimento, en la tradición del marco MESMIS (Masera et al., 1999), y con el índice general de sostenibilidad de Sarandón (2002), que promedia las dimensiones económica, ecológica y sociocultural en escala de 0 a 4; y se relaciona con los 17 Objetivos de la Agenda 2030 (Naciones Unidas, 2015). La huella de carbono usa los factores por defecto del IPCC (2006, 2019) y los potenciales de calentamiento del AR6 (Forster et al., 2021). La huella ecológica en hectáreas globales (Wackernagel y Rees, 1996) requiere factores nacionales que no se incluyen.','Sustainability is assessed with compartment indicators in the tradition of the MESMIS framework (Masera et al., 1999) and with Sarandón’s (2002) general sustainability index, averaging economic, ecological and socio-cultural dimensions on a 0–4 scale; and related to the 17 Goals of the 2030 Agenda (United Nations, 2015). The carbon footprint uses IPCC default factors (2006, 2019) and AR6 warming potentials (Forster et al., 2021). The ecological footprint in global hectares (Wackernagel & Rees, 1996) needs national factors not included here.')]];
   const refs=[ART.cita+' https://doi.org/'+ART.doi, TESIS.cita].concat(TEORIA.map(t=>t.c)).concat(REF_EXTRA).sort((a,b)=>a.localeCompare(b,'es'));
-  el.innerHTML = `${cabecera('teoria',T('Las ideas que sostienen a Ratio Telar: sistemas complejos adaptativos, saber local, gestión estratégica integrada, redes y sostenibilidad.','The ideas behind Ratio Telar: complex adaptive systems, local knowledge, integrated strategic management, networks and sustainability.'))}
+  el.innerHTML = `${cabecera('teoria',T('Las ideas que sostienen a Ratio Telar: sistemas complejos adaptativos, saber local, gestión estratégica integrada, redes, prospectiva y sostenibilidad.','The ideas behind Ratio Telar: complex adaptive systems, local knowledge, integrated strategic management, networks, foresight and sustainability.'))}
   <div class="teoria">${sec.map((s,i)=>`<details ${i===0?'open':''}><summary>${s[0]}</summary><div class="tb"><p>${s[1]}</p></div></details>`).join('')}</div>
   <div class="card"><h2>${T('Referencias','References')}</h2><ol>${refs.map(r=>`<li>${esc(r)}</li>`).join('')}</ol></div>
   <div class="card"><h3>${T('Alcances y límites','Scope and limits')}</h3><ul>
@@ -3471,6 +3503,13 @@ try{ aplicarTema(localStorage.getItem('telar_tema')); }catch(e){ aplicarTema(nul
 (function(){ const sp=document.querySelector('svg defs'); if(!sp) return; const sym=document.createElementNS('http://www.w3.org/2000/svg','symbol'); sym.setAttribute('id','i-mapa'); sym.setAttribute('viewBox',`0 0 ${MAPA_MX.w} ${MAPA_MX.h}`);
   const regDe=Object.fromEntries(TERR.estados.map(e=>[e[5],e[3]])); sym.innerHTML=Object.entries(MAPA_MX.edo).map(([k,d])=>`<path d="${d}" fill="${(REG_BX[regDe[k]]||{col:'#9cbf5a'}).col}" stroke="#fffaf0" stroke-width="3"/>`).join(''); sp.parentNode.appendChild(sym); })();
 S = cargar();
+/* Enlace directo a un bloque: #informe, #prospectiva/cien, #tablero/prod/en */
+(function(){ const h=decodeURIComponent(location.hash.slice(1)).split('/'); if(h[0]&&BLOQUES.some(b=>b.id===h[0])) S.bloque=h[0]; if(h[1]==='cien'||h[1]==='prod') MODO=h[1]; if(h[2]==='en'||h[2]==='es') LANG=h[2]; })();
+/* Impresión: siempre en tema claro y con el marco teórico desplegado */
+let _temaPrevio=null, _cerrados=[];
+addEventListener('beforeprint',()=>{ _temaPrevio=document.documentElement.getAttribute('data-theme'); document.documentElement.setAttribute('data-theme','light');
+  _cerrados=$$('.teoria details:not([open])'); _cerrados.forEach(d=>d.open=true); });
+addEventListener('afterprint',()=>{ if(_temaPrevio) document.documentElement.setAttribute('data-theme',_temaPrevio); else document.documentElement.removeAttribute('data-theme'); _cerrados.forEach(d=>d.open=false); _cerrados=[]; });
 render();
 
 </script>

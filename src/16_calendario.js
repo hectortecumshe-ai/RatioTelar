@@ -64,7 +64,7 @@ function calendarioCircular(opt={}){ const W=opt.w||620, C=W/2, R1=W/2-58; const
     s+=`<path class="evarco ${princ?'princ':''}" d="${arco(x.ini,x.fin,r0,r1)}" fill="${col}" fill-opacity="${princ?.95:.6}" stroke="${x.inn?'var(--accent)':'var(--card)'}" stroke-width="${x.inn?2.5:1}" data-tip="${esc(t)}" data-evpaso="${x.n}" style="animation-delay:${i*25}ms"/>`; });
   // hoy
   const hoy=Math.round((Date.now()-new Date(new Date().getFullYear(),0,1))/864e5); const [hx,hy]=p(hoy,R1+8);
-  s+=`<line x1="${C}" y1="${C}" x2="${hx}" y2="${hy}" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="4 4" class="aguja"/><circle cx="${hx}" cy="${hy}" r="6" fill="var(--accent)"/>`;
+  const [ax,ay]=p(hoy,88); s+=`<line x1="${ax}" y1="${ay}" x2="${hx}" y2="${hy}" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="4 4" class="aguja"/><circle cx="${hx}" cy="${hy}" r="6" fill="var(--accent)"/>`;
   const sig=eventos.filter(x=>x.ev!=='planeacion').map(x=>({...x, falta:((x.ini-hoy)%365+365)%365})).sort((a,b)=>a.falta-b.falta)[0];
   s+=`<text x="${C}" y="${C-22}" text-anchor="middle" font-size="12.5" class="m">${T('Hoy','Today')} · ${diaFecha(hoy)}</text>`;
   if(sig) s+=`<text x="${C}" y="${C+2}" text-anchor="middle" font-size="14" font-weight="700" style="fill:${EVENTOS[sig.ev].col}">${esc(tx(EVENTOS[sig.ev].n))}</text><text x="${C}" y="${C+22}" text-anchor="middle" font-size="12.5">${T('en','in')} ${sig.falta} ${T('días','days')}</text>`;

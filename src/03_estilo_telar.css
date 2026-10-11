@@ -207,3 +207,33 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
 @media print{.prosp-g .linea-p{animation:none;stroke-dashoffset:0}}
 .prosp-grid.inf .pg{border:1px solid var(--border);border-radius:var(--r-lg);padding:10px 12px;background:var(--bg)}
 @media print{.prosp-grid.inf{grid-template-columns:repeat(2,minmax(0,1fr))}.prosp-grid.inf .pg{break-inside:avoid}}
+
+/* Impresión general de Ratio Telar */
+@media print{
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .dibuja,.clado .rama,.prosp-g .linea-p{stroke-dashoffset:0!important}
+  .tip,.toast{display:none!important}
+  .teoria{display:block!important}
+  .teoria details>summary{list-style:none;font-weight:700;font-size:15pt;margin:12pt 0 4pt}
+  .teoria details{break-inside:avoid}
+  .tbl-c,.clado-c{max-height:none!important;overflow:visible!important}
+  table.tbl{display:table!important;overflow:visible!important;width:100%!important;max-width:100%!important;table-layout:auto}
+  .tbl,.formula,.modelo{overflow:visible!important}
+  .formula{white-space:normal}
+  .prosp-sup input,.tbl input{width:58px!important;padding:2px 4px!important;font-size:10pt!important}
+  .card .bill,#sinPM,label:has(#sinPM){display:none!important}
+  .tbl td,.tbl th{padding:4px 6px!important}
+  .tbl{font-size:10pt}
+  .chart,.clado,.prosp-g{max-width:100%;height:auto}
+  .clado{min-width:0!important}
+  main>*{animation:none!important;opacity:1!important;transform:none!important}
+  .aparece{animation:none!important;opacity:1!important}
+  .ejemplo-calpan,#dlgEjemplo{display:none!important}
+  .kpis{break-inside:avoid}
+  h1,h2,h3{break-after:avoid}
+  .tablero{display:block}
+  .tablero>.card{margin-bottom:12pt}
+  .prosp-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .prosp-grid .card,.prosp-grid .pg{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
