@@ -7,8 +7,6 @@
 // Todo valor numérico de aquí está publicado en el artículo (se indica la página).
 // Lo que es lectura o agrupación de Ratio Telar se marca con  interp:true.
 // =====================================================================
-let LANG = 'es';
-const T = (es, en) => LANG === 'en' ? en : es;
 
 const ART = {
   doi: '10.22231/asyd.v23i3.1822',

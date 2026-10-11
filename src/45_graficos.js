@@ -2,8 +2,7 @@
 // 45_graficos.js — gráficas propias en SVG (sin bibliotecas)
 // =====================================================================
 const NS = 'http://www.w3.org/2000/svg';
-const esc = (s)=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const f1 = (x,d=1)=> x==null||!isFinite(x) ? '—' : (+x).toLocaleString(LANG==='en'?'en-US':'es-MX',{minimumFractionDigits:d,maximumFractionDigits:d});
+const f1 = (x,d=1)=> x==null||!isFinite(x) ? '—' : (+x).toLocaleString(LOC(),{minimumFractionDigits:d,maximumFractionDigits:d});
 const f0 = (x)=> f1(x,0);
 const colB = (id)=> (B5.find(b=>b.id===id)||{}).col || '#888';
 const MESES = ()=> T('Ene Feb Mar Abr May Jun Jul Ago Sep Oct Nov Dic','Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec').split(' ');
@@ -132,15 +131,3 @@ function lineas(series, opt={}){ const W=620,H=330,L=56,B=40,R=110,Tp=16; const 
     `<text x="${X(H0)+6}" y="${Y(se.v[H0])+4}" font-size="12" style="fill:${se.c}" font-weight="700">${esc(se.l)}</text>`; });
   return s+'</svg>'; }
 
-// ---------- Cartograma esquemático de México (mosaico; posiciones aproximadas, no es un mapa) ----------
-const MOSAICO = {'02':[0,0],'26':[1,0],'08':[2,0],'05':[3,0],'19':[4,0],'03':[0,1],'25':[1,1],'10':[2,1],'32':[3,1],'24':[4,1],'28':[5,1],
-  '18':[1,2],'01':[2,2],'11':[3,2],'22':[4,2],'13':[5,2],'30':[6,2],'14':[1,3],'16':[2,3],'15':[3,3],'09':[4,3],'29':[5,3],'21':[6,3],'31':[8,3],
-  '06':[1,4],'12':[3,4],'17':[4,4],'20':[5,4],'27':[6,4],'04':[7,4],'23':[8,4],'07':[6,5]};
-function mosaico(sel, valor, colReg){ const S=58, W=9*S+20, H=6*S+20; let s=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img">`;
-  TERR.estados.forEach(e=>{ const [c,r]=MOSAICO[e[0]]; const x=10+c*S, y=10+r*S; const on=sel===e[0];
-    s+=`<g data-estado="${e[0]}" style="cursor:pointer" data-tip="${esc('<b>'+e[1]+'</b><br>'+T('Región','Region')+': '+nomReg(e[3])+'<br>'+T('Población 2020','Population 2020')+': '+f0(e[4]))}">`+
-       `<rect x="${x}" y="${y}" width="${S-4}" height="${S-4}" rx="7" fill="${colReg(e[3])}" fill-opacity="${on?1:.55}" stroke="${on?'var(--text)':'var(--card)'}" stroke-width="${on?3:1.5}"/>`+
-       `<text x="${x+(S-4)/2}" y="${y+(S-4)/2+1}" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="700" style="fill:#fff">${esc(e[2].replace('.',''))}</text></g>`; });
-  return s+'</svg>'; }
-const REGIONES = {N:['Norte','North','#b05434'], CN:['Centro norte','Centre-north','#c27c0e'], C:['Centro','Centre','#2f7d8a'], S:['Sur','South','#5f8f3e']};
-const nomReg = (k)=> T(REGIONES[k][0], REGIONES[k][1]);

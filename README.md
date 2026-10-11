@@ -6,18 +6,24 @@
 
 Ratio Telar teje en un solo tablero el territorio, los pasos y actividades del cultivo, los actores que sostienen el conocimiento, los recursos naturales y la sostenibilidad. Está hecha para productores y para científicos, en español y en inglés.
 
-## Qué contiene (versión 0.1.0)
+## Qué contiene (versión 0.2.0)
 
-| Sección | Contenido | Fuente |
-|---|---|---|
-| Territorio | Región → estado → municipio → comunidad; 2,478 municipios con población y viviendas del Censo 2020 | INEGI; regiones del Banco de México |
-| Stack | Las 5B, los 38 pasos y las actividades del maíz criollo de Calpan, Puebla, en un calendario que se ajusta a la fecha de siembra; IIC publicado; clústeres del dendrograma; cinco grupos de conocimiento | Díaz-José et al. (2026) |
-| Red de actores | Red de los cinco grupos de actores con sus métricas publicadas; editor para tejer la red propia con centralidad, intermediación (Brandes) y cercanía | Díaz-José et al. (2026); Freeman (1978); Brandes (2001) |
-| Dimensiones | Social, económica, agrícola, pecuaria, ambiental, ecológica, emergencia ambiental, recursos naturales y sostenibilidad, con los ODS relacionados | Artículo, INEGI; relación con ODS propuesta |
-| Gestión integrada | Las 4 fases y 9 pasos; los 10 preceptos de desarrollo local y conservación ambiental con su escala; NCA; gráfica de espejo | Mojica Zárate (2017), tesis doctoral |
-| Prospectiva | MICMAC (directo e indirecto), MACTOR (relaciones de fuerza, movilización) y escenarios logísticos no lineales | Godet (2007); tesis |
-| Ahorro de recursos | Comparación por hectárea entre la forma local y una referencia convencional | Datos del usuario |
-| Tablero | Vista de conjunto, telar del sistema y los 17 ODS | — |
+Diez bloques que se alimentan con los datos de la localidad, como en RatioBos:
+
+| Bloque | Contenido |
+|---|---|
+| 1 · Cultivo | Catálogo ilustrado de 12 cultivos y 6 especies domésticas; sistema (milpa, MIAF, traspatio…) y unidad de producción |
+| 2 · Región | Mapa real de México; estado, municipio y localidad (2,478 municipios y 54,357 localidades del INEGI con altitud y coordenadas) |
+| 3 · Requerimientos | Requerimientos técnicos tradicionales (las 5B) y los innovados en la localidad |
+| 4 · Manejo | 38 pasos con sus actividades tradicionales, impacto editable, actividades innovadoras y fechas de las actividades principales |
+| 5 · Elementos | 66 elementos en 10 categorías: actores, instituciones, insumos, equipo, recursos naturales y financieros, conocimientos, políticas, perturbaciones y productos |
+| 6 · Precio y valor | Precio por unidad y por hectárea; valor económico, de uso, cultural y ecológico con pesos ajustables |
+| 7 · Formulación | Modelo del sistema complejo adaptativo, propiedades emergentes y formulación matemática |
+| 8 · Tablero | Red ponderada interactiva, nodos y vínculos clave, comunidades (Louvain), distribución de grados, correlaciones φ, matriz entre categorías y calendario circular |
+| 9 · Sostenibilidad | Suma y resta por compartimento (suelo, agua, atmósfera, vegetación, fauna), índice por paso, índice de Sarandón (2002), 17 ODS y huella de carbono (IPCC) |
+| 10 · Informe | Resumen redactado, calendario, tablas, CSV, impresión o PDF y proyecto completo |
+
+Además: **Validación** (caso publicado, motor de redes frente a NetworkX en la red de Krackhardt y en la red real del maíz, cálculo de control de la huella) y **Teoría**.
 
 ## Rigor
 
@@ -29,7 +35,10 @@ Abre `index.html` en cualquier navegador; funciona sin conexión. No usa cookies
 
 ```bash
 python armar.py                    # arma index.html a partir de src/
-python herramientas/territorio.py  # regenera src/11_territorio.js desde fuentes/datos (INEGI)
+python herramientas/bajar_localidades.py  # descarga las localidades del INEGI (fuentes/datos/loc, no se versiona)
+python herramientas/proyeccion.py        # ajusta la proyección lon/lat → mapa
+python herramientas/territorio.py        # regenera src/11_territorio.js
+python pruebas/verificar_red.py          # verifica la red con NetworkX
 ```
 
 ## Autores
