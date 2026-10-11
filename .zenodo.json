@@ -1,18 +1,43 @@
 {
   "title": "Ratio Telar: el conocimiento agrícola local como sistema complejo adaptativo",
   "upload_type": "software",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "mit",
   "language": "spa",
   "creators": [
-    {"name": "Mojica-Zárate, Héctor Tecumshé", "orcid": "0000-0002-9067-3983"},
-    {"name": "Díaz-José, Óscar"},
-    {"name": "Barrera-Guzmán, Luis Ángel"},
-    {"name": "Velázquez-Vázquez, Guadalupe"}
+    {
+      "name": "Mojica-Zárate, Héctor Tecumshé",
+      "orcid": "0000-0002-9067-3983"
+    },
+    {
+      "name": "Díaz-José, Óscar"
+    },
+    {
+      "name": "Barrera-Guzmán, Luis Ángel"
+    },
+    {
+      "name": "Velázquez-Vázquez, Guadalupe"
+    }
   ],
-  "description": "Aplicación web bilingüe (español/inglés) de un solo archivo, primera de la línea Ratio Complexus. Integra el Stack de Conocimiento Local del maíz criollo de Calpan, Puebla (5 reglas, 38 pasos, 83 actividades; Díaz-José et al. 2026), la red de actores clave, el modelo y procedimiento de Gestión Estratégica Integrada de los recursos naturales (Mojica Zárate 2017: 10 preceptos, nivel de conocimiento ambiental, gráfica de espejo), análisis estructural MICMAC, juego de actores MACTOR, escenarios no lineales, ahorro de recursos y un tablero con los 17 ODS, regionalizado con el catálogo municipal del INEGI. Vistas para productores y científicos.",
-  "keywords": ["sistemas complejos adaptativos", "conocimiento local", "maíz criollo", "stack de conocimiento", "MICMAC", "MACTOR", "análisis de redes", "sostenibilidad", "México"],
+  "description": "Aplicación web libre, bilingüe (español/inglés) y de un solo archivo, primera de la línea Ratio Complexus. Representa una milpa, parcela o unidad de producción agrícola o pecuaria de México como un sistema complejo adaptativo, en 11 bloques: cultivo o especie con variedades y razas (18 cultivos, 9 especies, granja de traspatio, apiario, catálogo ampliable), región hasta la localidad (INEGI), requerimientos, manejo con calendario circular, elementos, precio y valor, formulación, tablero de redes (centralidades, Louvain, correlaciones φ por elemento, cladograma del vecino más cercano), sostenibilidad (compartimentos, índice de Sarandón, 17 ODS, huella de carbono IPCC), prospectiva a 2, 5 y 10 años con tres escenarios e informe imprimible. Integra el Stack de Conocimiento Local del maíz criollo de Calpan, Puebla (Díaz-José et al. 2026) como caso de referencia, con una ventana guía en cada bloque para cultivos aún por documentar. Motor de redes validado contra NetworkX y cladograma validado contra SciPy. Vistas para productores y científicos.\n\nNovedades de la versión 0.3.0: jamaica, maracuyá, guanábana y mango; apiario; bovinos por propósito, sistema y raza; variedades, tipos o razas para todos los cultivos y especies; cultivos, especies y sistemas de producción propios; ventana «Así se hizo con el maíz de Calpan»; correlaciones por elemento; cladograma del vecino más cercano; bloque de prospectiva; marco teórico de prospectiva; impresión revisada; enlaces entre las aplicaciones de la familia Ratio.",
+  "keywords": [
+    "sistemas complejos adaptativos",
+    "conocimiento local",
+    "maíz criollo",
+    "stack de conocimiento",
+    "análisis de redes",
+    "cladograma",
+    "prospectiva",
+    "escenarios",
+    "sostenibilidad",
+    "ODS",
+    "México"
+  ],
   "related_identifiers": [
-    {"identifier": "10.22231/asyd.v23i3.1822", "relation": "isDerivedFrom", "scheme": "doi"}
+    {
+      "identifier": "10.22231/asyd.v23i3.1822",
+      "relation": "isDerivedFrom",
+      "scheme": "doi"
+    }
   ]
 }
