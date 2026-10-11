@@ -205,3 +205,5 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
 .prosp-t td{vertical-align:middle}
 @media (prefers-reduced-motion:reduce){.prosp-g .linea-p{animation:none;stroke-dashoffset:0}}
 @media print{.prosp-g .linea-p{animation:none;stroke-dashoffset:0}}
+.prosp-grid.inf .pg{border:1px solid var(--border);border-radius:var(--r-lg);padding:10px 12px;background:var(--bg)}
+@media print{.prosp-grid.inf{grid-template-columns:repeat(2,minmax(0,1fr))}.prosp-grid.inf .pg{break-inside:avoid}}

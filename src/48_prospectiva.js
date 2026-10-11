@@ -149,8 +149,8 @@ function renderProspectiva(el){ const sim=simularProspectiva(), P=sim.P, lec=lec
   enlazarTips(el); }
 function informeProspectiva(){ const sim=simularProspectiva(), lec=lecturaProsp(sim);
   return `<div class="card"><h3>${T('Prospectiva a 2, 5 y 10 años','Outlook at 2, 5 and 10 years')}</h3>
-   <div class="grid g2"><div>${graficaProsp(sim,'rel')}<p class="nota">${T('Ingreso bruto ÷ costo (hoy = 100).','Gross income ÷ cost (now = 100).')}</p></div><div>${graficaProsp(sim,'Y')}<p class="nota">${T('Rendimiento (hoy = 100).','Yield (now = 100).')}</p></div></div>
+   <div class="prosp-grid inf">${IND_PROSP.map(ind=>`<div class="pg"><b>${esc(tx(ind.n))}</b><p class="nota" style="margin:0 0 4px">${esc(tx(ind.u))}</p>${graficaProsp(sim, ind.k)}</div>`).join('')}</div>
    <div class="leyenda-esc">${sim.res.map(r=>`<span><i style="background:${r.col}"></i>${esc(tx(r.n))}</span>`).join('')}</div>
-   ${tablaHorizontes(sim, ['Y','rel','neto','Ld','IS'])}
+   ${tablaHorizontes(sim, ['Y','rel','neto','Ld','A','IS'])}
    <div class="grid g2"><div><b>${T('Potencialidades','Potentials')}</b><ul>${lec.pot.map(x=>`<li>${x}</li>`).join('')}</ul></div><div><b>${T('Perspectivas no deseadas','Undesired prospects')}</b><ul>${lec.rie.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>
    <p class="nota">${T('Escenarios exploratorios con supuestos explícitos (ver el bloque Prospectiva); no son pronósticos.','Exploratory scenarios with explicit assumptions (see the Outlook block); not forecasts.')}</p></div>`; }
