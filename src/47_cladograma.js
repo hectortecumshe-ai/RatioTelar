@@ -76,3 +76,21 @@ function tarjetaCladograma(R){
       </tbody></table></div>
       <p class="nota">↔ ${T('vecinos mutuos: cada uno es el más cercano del otro.','mutual neighbours: each is the other’s nearest.')}${C.U.some(u=>u[2]>=19.99)?' '+T('Las uniones a distancia 20 son elementos que no participan en ninguna actividad capturada ni tienen valor asignado en el Bloque 6: los liga solo un vínculo estructural, con el peso mínimo (0.05).','Joins at distance 20 are elements that take part in no recorded activity and have no value set in Block 6: only a structural tie with the minimum weight (0.05) links them.'):''}${C.desconectados?' '+T('Hay elementos sin camino entre sí; se les asignó una distancia de '+fmt(C.tope,2)+' (115 % de la mayor observada).','Some elements have no path between them; they were given a distance of '+fmt(C.tope,2)+' (115 % of the largest observed).'):''}</p>
       <p class="nota sci">${T('Enlace simple sobre distancias de camino más corto (1/peso). Correlación cofenética','Single linkage on shortest-path distances (1/weight). Cophenetic correlation')}: <b>${C.r==null?'—':fmt(C.r,3)}</b> (Sokal y Rohlf, 1962) · n = ${C.nodos.length}.</p></div></div></div>`; }
+
+/* Versión para el Informe (Bloque 10): cladograma, vecinos más cercanos y CSV de uniones; se imprime completo. */
+function informeCladograma(R){
+  const sub=renderInforme.clado||renderTablero.clado||'actinst', C=datosCladograma(R, sub);
+  const opc={actores:T('Actores','Actors'), actinst:T('Actores e instituciones','Actors and institutions'), todos:T('Todos los elementos','All elements')};
+  const vn=[...C.vecino].filter(v=>v.j>=0).sort((a,b)=>a.d-b.d);
+  const fila=v=>{ const a=C.nodos[v.i], b=C.nodos[v.j]; return `<tr><td><span style="color:${a.col}">${CATS[a.cat].sym}</span> ${esc(a.nombre)}</td><td><span style="color:${b.col}">${CATS[b.cat].sym}</span> ${esc(b.nombre)}${v.mutuo?' ↔':''}</td><td class="r">${fmt(v.d,3)}</td></tr>`; };
+  const tabla=l=>`<table class="tbl"><thead><tr><th>${T('Elemento','Element')}</th><th>${T('Vecino más cercano','Nearest neighbour')}</th><th class="r">${T('Distancia','Distance')}</th></tr></thead><tbody>${l.map(fila).join('')}</tbody></table>`;
+  return `<div class="card clado-inf"><div class="row between"><h3 style="margin:0">${T('Cladograma del vecino más cercano','Nearest-neighbour cladogram')} · ${opc[sub]}</h3>
+     <div class="basesw no-print">${Object.entries(opc).map(([k,v])=>`<button data-icla="${k}" class="${k===sub?'on':''}">${v}</button>`).join('')}</div></div>
+    <p class="nota">${T('Agrupa a los elementos según su cercanía en la red: cada uno se une primero con su vecino más cercano; las ramas cortas son elementos muy ligados.','Groups elements by their closeness in the network: each first joins its nearest neighbour; short branches are tightly linked elements.')}</p>
+    <div class="clado-c">${svgCladograma(C)}</div>
+    ${vn.length?`<div style="margin-top:10px">${tabla(vn)}</div>`:''}
+    <p class="nota">↔ ${T('vecinos mutuos.','mutual neighbours.')} ${T('Distancia: camino más corto en la red sumando 1/peso de cada vínculo; enlace simple (Sneath, 1957).','Distance: shortest network path summing 1/weight per link; single linkage (Sneath, 1957).')}${C.U.some(u=>u[2]>=19.99)?' '+T('Las uniones a distancia 20 son elementos sin actividades capturadas ni valor asignado: los liga solo un vínculo estructural.','Joins at distance 20 are elements with no recorded activities or value: only a structural tie links them.'):''}</p>
+    <p class="nota sci">${T('Correlación cofenética','Cophenetic correlation')}: <b>${C.r==null?'—':fmt(C.r,3)}</b> (Sokal y Rohlf, 1962) · n = ${C.nodos.length}. ${T('Validado contra SciPy (pruebas/verificar_clado.py).','Validated against SciPy (pruebas/verificar_clado.py).')}</p></div>`; }
+function csvCladograma(R){ const sub=renderInforme.clado||renderTablero.clado||'actinst', C=datosCladograma(R, sub), n=C.nodos.length, nom=k=>k<n?C.nodos[k].id:'G'+(k-n+1);
+  return csv([['union','grupo_a','grupo_b','distancia','tamano']].concat(C.U.map((u,k)=>['G'+(k+1),nom(u[0]),nom(u[1]),u[2].toFixed(6),u[3]]))
+    .concat([[],['elemento','vecino_mas_cercano','distancia','mutuo']]).concat(C.vecino.filter(v=>v.j>=0).map(v=>[C.nodos[v.i].id,C.nodos[v.j].id,v.d.toFixed(6),v.mutuo?'si':'no']))); }

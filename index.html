@@ -671,6 +671,7 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
 @keyframes tejer{to{stroke-dashoffset:0}}
 @media (prefers-reduced-motion:reduce){.clado .rama{animation:none;stroke-dashoffset:0}}
 @media print{.clado .rama{animation:none;stroke-dashoffset:0}}
+@media print{.clado-inf{break-inside:auto}.clado-inf .clado{min-width:0}.clado-inf .clado-c{overflow:visible}}
 
 </style>
 </head>
@@ -2592,6 +2593,24 @@ function tarjetaCladograma(R){
       <p class="nota">↔ ${T('vecinos mutuos: cada uno es el más cercano del otro.','mutual neighbours: each is the other’s nearest.')}${C.U.some(u=>u[2]>=19.99)?' '+T('Las uniones a distancia 20 son elementos que no participan en ninguna actividad capturada ni tienen valor asignado en el Bloque 6: los liga solo un vínculo estructural, con el peso mínimo (0.05).','Joins at distance 20 are elements that take part in no recorded activity and have no value set in Block 6: only a structural tie with the minimum weight (0.05) links them.'):''}${C.desconectados?' '+T('Hay elementos sin camino entre sí; se les asignó una distancia de '+fmt(C.tope,2)+' (115 % de la mayor observada).','Some elements have no path between them; they were given a distance of '+fmt(C.tope,2)+' (115 % of the largest observed).'):''}</p>
       <p class="nota sci">${T('Enlace simple sobre distancias de camino más corto (1/peso). Correlación cofenética','Single linkage on shortest-path distances (1/weight). Cophenetic correlation')}: <b>${C.r==null?'—':fmt(C.r,3)}</b> (Sokal y Rohlf, 1962) · n = ${C.nodos.length}.</p></div></div></div>`; }
 
+/* Versión para el Informe (Bloque 10): cladograma, vecinos más cercanos y CSV de uniones; se imprime completo. */
+function informeCladograma(R){
+  const sub=renderInforme.clado||renderTablero.clado||'actinst', C=datosCladograma(R, sub);
+  const opc={actores:T('Actores','Actors'), actinst:T('Actores e instituciones','Actors and institutions'), todos:T('Todos los elementos','All elements')};
+  const vn=[...C.vecino].filter(v=>v.j>=0).sort((a,b)=>a.d-b.d);
+  const fila=v=>{ const a=C.nodos[v.i], b=C.nodos[v.j]; return `<tr><td><span style="color:${a.col}">${CATS[a.cat].sym}</span> ${esc(a.nombre)}</td><td><span style="color:${b.col}">${CATS[b.cat].sym}</span> ${esc(b.nombre)}${v.mutuo?' ↔':''}</td><td class="r">${fmt(v.d,3)}</td></tr>`; };
+  const tabla=l=>`<table class="tbl"><thead><tr><th>${T('Elemento','Element')}</th><th>${T('Vecino más cercano','Nearest neighbour')}</th><th class="r">${T('Distancia','Distance')}</th></tr></thead><tbody>${l.map(fila).join('')}</tbody></table>`;
+  return `<div class="card clado-inf"><div class="row between"><h3 style="margin:0">${T('Cladograma del vecino más cercano','Nearest-neighbour cladogram')} · ${opc[sub]}</h3>
+     <div class="basesw no-print">${Object.entries(opc).map(([k,v])=>`<button data-icla="${k}" class="${k===sub?'on':''}">${v}</button>`).join('')}</div></div>
+    <p class="nota">${T('Agrupa a los elementos según su cercanía en la red: cada uno se une primero con su vecino más cercano; las ramas cortas son elementos muy ligados.','Groups elements by their closeness in the network: each first joins its nearest neighbour; short branches are tightly linked elements.')}</p>
+    <div class="clado-c">${svgCladograma(C)}</div>
+    ${vn.length?`<div style="margin-top:10px">${tabla(vn)}</div>`:''}
+    <p class="nota">↔ ${T('vecinos mutuos.','mutual neighbours.')} ${T('Distancia: camino más corto en la red sumando 1/peso de cada vínculo; enlace simple (Sneath, 1957).','Distance: shortest network path summing 1/weight per link; single linkage (Sneath, 1957).')}${C.U.some(u=>u[2]>=19.99)?' '+T('Las uniones a distancia 20 son elementos sin actividades capturadas ni valor asignado: los liga solo un vínculo estructural.','Joins at distance 20 are elements with no recorded activities or value: only a structural tie links them.'):''}</p>
+    <p class="nota sci">${T('Correlación cofenética','Cophenetic correlation')}: <b>${C.r==null?'—':fmt(C.r,3)}</b> (Sokal y Rohlf, 1962) · n = ${C.nodos.length}. ${T('Validado contra SciPy (pruebas/verificar_clado.py).','Validated against SciPy (pruebas/verificar_clado.py).')}</p></div>`; }
+function csvCladograma(R){ const sub=renderInforme.clado||renderTablero.clado||'actinst', C=datosCladograma(R, sub), n=C.nodos.length, nom=k=>k<n?C.nodos[k].id:'G'+(k-n+1);
+  return csv([['union','grupo_a','grupo_b','distancia','tamano']].concat(C.U.map((u,k)=>['G'+(k+1),nom(u[0]),nom(u[1]),u[2].toFixed(6),u[3]]))
+    .concat([[],['elemento','vecino_mas_cercano','distancia','mutuo']]).concat(C.vecino.filter(v=>v.j>=0).map(v=>[C.nodos[v.i].id,C.nodos[v.j].id,v.d.toFixed(6),v.mutuo?'si':'no']))); }
+
 </script>
 <script>
 "use strict";
@@ -3107,7 +3126,7 @@ function renderInforme(el){ const R=construirRed(), st=estadisticaRed(R), sos=so
   el.innerHTML = `${cabecera('informe',T('Todo tu sistema en un documento: resumen redactado, territorio, elementos clave, sostenibilidad y ODS. Imprímelo o guárdalo en PDF, descarga las tablas en CSV o guarda el proyecto para seguir después.','Your whole system in one document: written summary, territory, key elements, sustainability and SDGs. Print or save as PDF, download the tables as CSV or save the project to continue later.'))}
   <div class="card no-print"><div class="row" style="gap:8px;flex-wrap:wrap">
    <button class="btn" id="iImp">⎙ ${T('Imprimir o guardar PDF','Print or save PDF')}</button>
-   <button class="btn ghost" id="iAct">${T('CSV de actividades','Activities CSV')}</button><button class="btn ghost" id="iNod">${T('CSV de nodos','Nodes CSV')}</button><button class="btn ghost" id="iAri">${T('CSV de vínculos','Links CSV')}</button><button class="btn ghost" id="iCal">${T('CSV del calendario','Calendar CSV')}</button><button class="btn ghost" id="iOds">${T('CSV de ODS','SDG CSV')}</button>
+   <button class="btn ghost" id="iAct">${T('CSV de actividades','Activities CSV')}</button><button class="btn ghost" id="iCla">${T('CSV del cladograma','Cladogram CSV')}</button><button class="btn ghost" id="iNod">${T('CSV de nodos','Nodes CSV')}</button><button class="btn ghost" id="iAri">${T('CSV de vínculos','Links CSV')}</button><button class="btn ghost" id="iCal">${T('CSV del calendario','Calendar CSV')}</button><button class="btn ghost" id="iOds">${T('CSV de ODS','SDG CSV')}</button>
    <button class="btn ghost" id="iGuar">⤓ ${T('Guardar proyecto','Save project')}</button><button class="btn ghost" id="iCarg">⤒ ${T('Abrir proyecto','Open project')}</button><input type="file" id="fProy" accept="application/json" hidden>
    <button class="btn ghost danger" id="iReset">${T('Empezar de nuevo','Start over')}</button></div>
    <p class="nota">${T('La impresión sigue la vista activa: Productor (resumen) o Científico (con estadística completa).','Printing follows the active view: Producer (summary) or Scientist (with full statistics).')}</p></div>
@@ -3123,6 +3142,7 @@ function renderInforme(el){ const R=construirRed(), st=estadisticaRed(R), sos=so
   <div class="card"><h3>${T('Calendario de actividades','Activity calendar')}</h3><div class="grid g2"><div>${calendarioPasos().length?calendarioCircular({w:560})+leyendaEventos(null):`<p class="sindato">—</p>`}</div><div>${tablaFechas()}<p class="nota">${T('Fecha de siembra','Sowing date')}: <b>${diaFecha(S.siembraDia)}</b></p></div></div></div>
   <div class="grid g2"><div class="card"><h3>${T('Diez elementos más relacionados','Ten most related elements')}</h3><table class="tbl"><tbody>${top.map((d,i)=>`<tr><td>${i+1}</td><td><span style="color:${d.col}">${CATS[d.cat].sym}</span> ${esc(d.nombre)}</td><td class="r">${fmt(d.grado,2)}</td></tr>`).join('')}</tbody></table></div>
    <div class="card"><h3>${T('ODS','SDGs')}</h3><div class="ods-grid">${ODS.map(([o,es,en,col])=>`<div class="ods-c ${cum[o].v==null?'sd':''}" style="background:${col};min-height:60px"><b>${o}</b><span class="pc">${cum[o].v!=null?fmt(cum[o].v,0)+' %':'—'}</span></div>`).join('')}</div></div></div>
+  ${informeCladograma(R)}
   <div class="card"><h3>${T('Requerimientos e innovaciones de la localidad','Locality requirements and innovations')}</h3>
    ${S.reqInn.length?`<ul>${S.reqInn.map(r=>`<li><b>${esc(r.t)}</b>${r.fuente?' · '+esc(r.fuente):''}</li>`).join('')}</ul>`:`<p class="sindato">${T('Sin requerimientos innovados registrados.','No innovated requirements recorded.')}</p>`}
    ${R.acts.filter(a=>a.tipo==='inn').length?`<ul>${R.acts.filter(a=>a.tipo==='inn').map(a=>`<li>${T('Paso','Step')} ${a.paso}: ${esc(tx(a.n))} · IS ${fmt(IS(impactoAct(a)),2)}</li>`).join('')}</ul>`:`<p class="sindato">${T('Sin actividades innovadas registradas.','No innovated activities recorded.')}</p>`}</div>
@@ -3133,6 +3153,8 @@ function renderInforme(el){ const R=construirRed(), st=estadisticaRed(R), sos=so
    <p class="nota">${T('Fuentes del caso','Case sources')}: ${esc(ART.cita)} https://doi.org/${ART.doi} · ${esc(TESIS.cita)}</p></div>
   ${siguiente('informe')}`;
   $('#iImp',el).onclick=()=>print();
+  $('#iCla',el).onclick=()=>descargar(slug()+'_cladograma.csv', csvCladograma(R), 'text/csv');
+  $$('[data-icla]',el).forEach(b=>b.onclick=()=>{ renderInforme.clado=b.dataset.icla; render(); });
   $('#iAct',el).onclick=()=>descargar(slug()+'_actividades.csv', csv([['paso','codigo','tipo','actividad','elementos','suelo','agua','atmosfera','vegetacion','fauna','IS']].concat(sos.acts.map(a=>[a.paso,a.cod,a.tipo,tx(a.n),a.el.join(' '),...a.v,a.is.toFixed(3)]))), 'text/csv');
   $('#iNod',el).onclick=()=>descargar(slug()+'_nodos.csv', csv([['id','elemento','categoria','valor','participacion','vecinos','grado_ponderado','intermediacion','cercania','vector_propio','agrupamiento','comunidad']].concat(st.nodos.map(d=>[d.id,d.nombre,d.cat,d.val.toFixed(3),d.part,d.vecinos,d.grado.toFixed(3),d.inter.toFixed(3),d.cerc.toFixed(4),d.eig.toFixed(4),d.clus.toFixed(3),d.com+1]))), 'text/csv');
   $('#iAri',el).onclick=()=>descargar(slug()+'_vinculos.csv', csv([['a','b','peso','actividades']].concat(st.aristas.map(x=>[x.a,x.b,x.w.toFixed(4),x.n]))), 'text/csv');
