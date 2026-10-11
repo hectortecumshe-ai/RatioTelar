@@ -10,7 +10,7 @@
    ===================================================================== */
 const VARIEDADES = {
   uva:{e:E('Variedad','Variety'), g:[
-    [E('De mesa','Table'),['Flame Seedless','Perlette','Superior Seedless (Sugraone)','Red Globe','Thompson Seedless']],
+    [E('De mesa','Table'),['Flame Seedless','Perlette','Superior Seedless (Sugraone)','Summer Royal','Red Globe','Thompson Seedless']],
     [E('Para vino (tintas)','Wine (red)'),['Cabernet Sauvignon','Merlot','Tempranillo','Nebbiolo','Syrah','Garnacha (Grenache)','Zinfandel']],
     [E('Para vino (blancas)','Wine (white)'),['Chardonnay','Chenin Blanc','Sauvignon Blanc']]]},
   chayote:{e:E('Tipo','Type'), g:[
