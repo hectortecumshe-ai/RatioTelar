@@ -125,9 +125,14 @@ function renderCultivo(el){ const tipo=renderCultivo.tipo||cultivoSel().tipo; co
     <div class="cat-grid mini">${CATALOGO.filter(x=>x.tipo==='especie'&&!x.especial).map(x=>`<div class="cat-card ${S.granja.includes(x.id)?'sel':''}" data-gesp="${x.id}" style="--cc:${x.col}" tabindex="0" role="button"><svg viewBox="${x.ico==='i-steer'?'0 0 170 120':'0 0 120 100'}"><use href="#${x.ico}"/></svg><b>${esc(tx(x.n))}</b></div>`).join('')}</div>
     <p><b>${S.granja.length}</b> ${T('especies seleccionadas','species selected')}${S.granja.length?': '+S.granja.map(id=>esc(tx(CATALOGO.find(c=>c.id===id).n))).join(', '):''}</p></div>`:''}
   <div class="grid g2"><div class="card"><h3>${T('Sistema de producción','Production system')}${ayuda('sistema')}</h3>
-    <div class="opts">${SISTEMAS.map(s=>`<label class="opt ${S.sistema===s.id?'sel':''}"><input type="radio" name="sis" value="${s.id}" ${S.sistema===s.id?'checked':''}><b>${esc(tx(s.n))}</b><small>${s.doc?T('documentado en Calpan','documented in Calpan'):T('captura tu propia descripción','enter your own description')}</small></label>`).join('')}</div></div>
+    <div class="opts">${sistemasTodos().map(s=>`<label class="opt ${S.sistema===s.id?'sel':''} ${s.usuario?'sis-usuario':''}"><input type="radio" name="sis" value="${esc(s.id)}" ${S.sistema===s.id?'checked':''}><b>${esc(tx(s.n))}</b><small>${s.usuario?(s.d?esc(s.d):T('agregado por ti','added by you')):s.doc?T('documentado en Calpan','documented in Calpan'):T('captura tu propia descripción','enter your own description')}</small>${s.usuario?`<button type="button" class="sis-quitar" data-sisq="${esc(s.id)}" title="${T('Quitar este sistema','Remove this system')}" aria-label="${T('Quitar','Remove')}">✕</button>`:''}</label>`).join('')}</div>
+    <details class="sis-nuevo" ${(S.sisExtra||[]).length?'':''}><summary>＋ ${T('¿No está tu sistema? Agrégalo','Your system is missing? Add it')}</summary>
+     <label class="f"><span>${T('Nombre del sistema de producción','Production system name')}</span><input id="sisN" maxlength="90" placeholder="${T('p. ej., Huerto familiar, Acuaponia, Silvopastoril, Cafetal bajo sombra','e.g., Home garden, Aquaponics, Silvopastoral, Shade coffee')}"></label>
+     <label class="f"><span>${T('Descripción breve (opcional)','Short description (optional)')}</span><input id="sisD" maxlength="160" placeholder="${T('cómo se organiza, qué se combina','how it is organised, what is combined')}"></label>
+     <button type="button" class="btn sm" id="sisAdd">${T('Agregar y elegir','Add and select')}</button></details></div>
    <div class="card"><h3>${T('Unidad de producción','Production unit')}</h3>
-    <label class="f"><span>${T('Tipo de unidad','Unit type')}</span><select id="tUP">${TIPOS_UP.map((t,i)=>`<option value="${i}" ${+S.tipoUP===i?'selected':''}>${esc(tx(t))}</option>`).join('')}</select></label>
+    <label class="f"><span>${T('Tipo de unidad','Unit type')}</span><select id="tUP">${TIPOS_UP.map((t,i)=>`<option value="${i}" ${+S.tipoUP===i?'selected':''}>${esc(tx(t))}</option>`).join('')}<option value="-1" ${+S.tipoUP===-1?'selected':''}>${T('Otro (escríbelo)…','Other (type it)…')}</option></select></label>
+    ${+S.tipoUP===-1?`<label class="f"><span>${T('¿Qué tipo de unidad es?','What kind of unit is it?')}</span><input id="upOtro" maxlength="90" value="${esc(S.upOtro||'')}" placeholder="${T('p. ej., ejido, cooperativa, huerto escolar, rancho ganadero','e.g., ejido, cooperative, school garden, cattle ranch')}"></label>`:''}
     <label class="f"><span>${T('Superficie (ha)','Area (ha)')}${ayuda('superficie')}</span><input type="number" id="sup" min="0" step="0.1" value="${S.superficie}"></label>
     <label class="f"><span>${T('Nombre del proyecto o de la parcela','Project or plot name')}</span><input id="pNom" value="${esc(S.proyecto.nombre)}" placeholder="${T('p. ej., Parcela El Llano','e.g., El Llano plot')}"></label>
     <label class="f"><span>${T('Productor o productora','Farmer')}</span><input id="pProd" value="${esc(S.proyecto.productor)}"></label>
@@ -147,7 +152,13 @@ function renderCultivo(el){ const tipo=renderCultivo.tipo||cultivoSel().tipo; co
   const mv=$('#mVar',el); if(mv) mv.onchange=()=>{ S.maizVar=mv.value.trim(); guardar(); actualizarPill(); };
   $$('[data-gesp]',el).forEach(c=>c.onclick=()=>{ const id=c.dataset.gesp; S.granja = S.granja.includes(id) ? S.granja.filter(x=>x!==id) : S.granja.concat(id); guardar(); render(); });
   $$('input[name=sis]',el).forEach(r=>r.onchange=()=>{ S.sistema=r.value; guardar(); render(); });
-  $('#tUP',el).onchange=e=>{ S.tipoUP=+e.target.value; guardar(); };
+  const sisAdd=$('#sisAdd',el); if(sisAdd) sisAdd.onclick=()=>{ const n=$('#sisN',el).value.trim(), d=$('#sisD',el).value.trim(); if(!n){ toast(T('Escribe el nombre del sistema','Type the system name')); $('#sisN',el).focus(); return; }
+    S.sisExtra=S.sisExtra||[]; if(sistemasTodos().some(s=>tx(s.n).toLowerCase()===n.toLowerCase())){ toast(T('Ese sistema ya está en la lista','That system is already listed')); return; }
+    const id='u'+Date.now().toString(36); S.sisExtra.push({id, n, d}); S.sistema=id; guardar(); render(); toast(T('Sistema agregado: ','System added: ')+n); };
+  $$('[data-sisq]',el).forEach(b=>b.onclick=e=>{ e.preventDefault(); e.stopPropagation(); const s=(S.sisExtra||[]).find(x=>x.id===b.dataset.sisq); if(!s||!confirm(T(`¿Quitar «${s.n}» de la lista?`,`Remove “${s.n}” from the list?`))) return;
+    S.sisExtra=S.sisExtra.filter(x=>x.id!==s.id); if(S.sistema===s.id) S.sistema=SISTEMAS[0].id; guardar(); render(); });
+  $('#tUP',el).onchange=e=>{ S.tipoUP=+e.target.value; guardar(); render(); };
+  if($('#upOtro',el)) $('#upOtro',el).onchange=e=>{ S.upOtro=e.target.value.trim(); guardar(); };
   $('#sup',el).onchange=e=>{ S.superficie=+e.target.value||0; guardar(); };
   $('#pNom',el).onchange=e=>{ S.proyecto.nombre=e.target.value; guardar(); actualizarPill(); };
   $('#pProd',el).onchange=e=>{ S.proyecto.productor=e.target.value; guardar(); }; }

@@ -237,3 +237,12 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
   .prosp-grid .card,.prosp-grid .pg{break-inside:avoid}
   a{color:inherit;text-decoration:none}
 }
+
+/* Sistemas de producción agregados por el usuario (Bloque 1) */
+.sis-nuevo{margin-top:12px;border:1px dashed var(--border-strong);border-radius:var(--r-md);padding:8px 12px}
+.sis-nuevo summary{cursor:pointer;font-weight:700;color:var(--primary)}
+.sis-nuevo[open] summary{margin-bottom:8px}
+.opt.sis-usuario{position:relative;border-style:dashed}
+.sis-quitar{position:absolute;top:6px;right:8px;border:0;background:none;color:var(--muted);cursor:pointer;font-size:14px}
+.sis-quitar:hover{color:var(--bad-text,#c43a2f)}
+@media print{.sis-nuevo,.sis-quitar{display:none!important}}
