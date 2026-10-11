@@ -13,7 +13,8 @@ const BLOQUES = [
   {id:'formulacion', n:'7', ill:'i-telar',  corto:E('Formulación','Formulation'),     titulo:E('Formulación del sistema complejo adaptativo','Complex adaptive system formulation'), render:()=>renderFormulacion},
   {id:'tablero',     n:'8', ill:'i-panel2', corto:E('Tablero','Dashboard'),           titulo:E('Tablero de resultados','Results dashboard'), render:()=>renderTablero},
   {id:'sostenible',  n:'9', ill:'i-tierra', corto:E('Sostenibilidad','Sustainability'),titulo:E('Sostenibilidad, ODS y huella','Sustainability, SDGs and footprint'), render:()=>renderSostenible},
-  {id:'informe',     n:'10',ill:'i-report', corto:E('Informe','Report'),             titulo:E('Informe general y exportación','General report and export'), render:()=>renderInforme},
+  {id:'prospectiva', n:'10', ill:'i-panel2', corto:E('Prospectiva','Outlook'),       titulo:E('Prospectiva a 2, 5 y 10 años','Outlook at 2, 5 and 10 years'), render:()=>renderProspectiva},
+  {id:'informe',     n:'11',ill:'i-report', corto:E('Informe','Report'),             titulo:E('Informe general y exportación','General report and export'), render:()=>renderInforme},
   {id:'validacion',  n:'✓', ill:'i-check',  corto:E('Validación','Validation'),       titulo:E('Validación','Validation'), render:()=>renderValidacion},
   {id:'teoria',      n:'§', ill:'i-book',   corto:E('Teoría','Theory'),               titulo:E('Marco teórico','Theoretical framework'), render:()=>renderTeoria}
 ];
@@ -62,6 +63,7 @@ function renderInicio(el){
     ['formulacion',T('Formulación','Formulation'),T('Teje el modelo: agentes, interacciones, retroalimentaciones y propiedades emergentes.','Weave the model: agents, interactions, feedbacks and emergent properties.')],
     ['tablero',T('Tablero','Dashboard'),T('Red ponderada, nodos clave, comunidades, correlaciones y estadísticas.','Weighted network, key nodes, communities, correlations and statistics.')],
     ['sostenible',T('Sostenibilidad','Sustainability'),T('Lo que cada actividad suma o resta al suelo, el agua, la atmósfera, la vegetación y la fauna; los 17 ODS y la huella de carbono.','What each activity adds or subtracts for soil, water, air, vegetation and fauna; the 17 SDGs and the carbon footprint.')],
+    ['prospectiva',T('Prospectiva','Outlook'),T('Tres futuros a 2, 5 y 10 años (deseable, tendencial y no deseado) con precios, clima, mano de obra y adopción de tus innovaciones.','Three futures at 2, 5 and 10 years (desirable, trend, undesired) with prices, climate, labour and adoption of your innovations.')],
     ['informe',T('Informe','Report'),T('Resumen redactado, tablas, CSV, PDF y el proyecto completo.','Written summary, tables, CSV, PDF and the full project.')]];
   el.innerHTML = `<section class="hero">
     <div><div class="eyebrow">Ratio Complexus · ${T('lo que está tejido junto','what is woven together')}</div>

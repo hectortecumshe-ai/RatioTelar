@@ -120,6 +120,10 @@ const EJEMPLO = {
       T('Captura litros de diésel, kg de nitrógeno y de urea, y el rendimiento: con eso se calcula la huella.','Enter litres of diesel, kg of nitrogen and urea, and yield: the footprint is computed from them.'),
       T('Completa precios y valores del Bloque 6: el índice de Sarandón necesita la dimensión económica.','Complete the Block 6 prices and values: Sarandón’s index needs the economic dimension.')
     ])}),
+  prospectiva: ()=>({
+    corto: T('El artículo de Calpan no hace prospectiva: este bloque es una herramienta de Ratio Telar para mirar el futuro de cualquier unidad a partir de su propio Stack.','The Calpan paper does no foresight: this block is a Ratio Telar tool to look at any farm’s future from its own Stack.'),
+    hecho: _li([T('Con el maíz de Calpan, el cambio de rendimiento por °C es el publicado para maíz (−7.4 %; Zhao et al., 2017) y la adopción parte de las actividades innovadas que captures.','For Calpan maize, the yield change per °C is the published maize value (−7.4 %; Zhao et al., 2017) and adoption starts from the innovated activities you enter.')+' '+marcaInterp()]),
+    pasos: _ol([T('Captura antes tus actividades innovadas (Bloque 4) y, si puedes, ingreso y costo por hectárea (Bloque 6).','First enter your innovated activities (Block 4) and, if you can, income and cost per hectare (Block 6).'),T('Revisa los supuestos de cada escenario y ajústalos a tu región.','Review each scenario’s assumptions and adjust them to your region.'),T('Compara los tres futuros a 2, 5 y 10 años y anota qué decisiones de hoy acercan el deseable.','Compare the three futures at 2, 5 and 10 years and note which decisions today bring the desirable one closer.')])}),
   informe: ()=>({
     corto: T('El caso de Calpan se presenta como informe con calendario, red, sostenibilidad y fuentes; tu cultivo genera el mismo informe con tus datos.','The Calpan case is presented as a report with calendar, network, sustainability and sources; your crop produces the same report with your data.'),
     hecho: _li([

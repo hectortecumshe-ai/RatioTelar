@@ -194,3 +194,14 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
 @media (prefers-reduced-motion:reduce){.clado .rama{animation:none;stroke-dashoffset:0}}
 @media print{.clado .rama{animation:none;stroke-dashoffset:0}}
 @media print{.clado-inf{break-inside:auto}.clado-inf .clado{min-width:0}.clado-inf .clado-c{overflow:visible}}
+
+/* Prospectiva a 2, 5 y 10 años */
+.prosp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px;margin-bottom:10px}
+.prosp-grid .card{margin:0}
+.prosp-g .linea-p{stroke-dasharray:1400;stroke-dashoffset:1400;animation:tejer 1.6s cubic-bezier(.2,.7,.2,1) forwards}
+.leyenda-esc{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin:6px 0 16px;font-size:14px}
+.leyenda-esc i,.punto{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.prosp-sup input{width:84px}
+.prosp-t td{vertical-align:middle}
+@media (prefers-reduced-motion:reduce){.prosp-g .linea-p{animation:none;stroke-dashoffset:0}}
+@media print{.prosp-g .linea-p{animation:none;stroke-dashoffset:0}}

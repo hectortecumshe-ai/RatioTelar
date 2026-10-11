@@ -115,6 +115,7 @@ function estadoInicial(){ return {
   granja:[],                       // especies de la granja de traspatio
   maizTipo:'nativo', maizRaza:'', maizVar:'',   // subcategoría del maíz
   bovProp:'carne', bovSis:'vacabecerro', bovRaza:'',   // subcategoría de bovinos
+  prosp:null,                      // supuestos editados de la prospectiva (null = valores iniciales)
   reqInn:[],                       // [{t, b, d, fuente}]
   manejo:{},                       // n paso -> {off:{codigo:true}, inn:[{t, el:[ids], imp:[5], nota}], imp:{codigo:[5]}}
   elemExtra:[],                    // elementos agregados por el usuario {id,cat,n}

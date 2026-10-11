@@ -29,6 +29,7 @@ function renderInforme(el){ const R=construirRed(), st=estadisticaRed(R), sos=so
   <div class="grid g2"><div class="card"><h3>${T('Diez elementos más relacionados','Ten most related elements')}</h3><table class="tbl"><tbody>${top.map((d,i)=>`<tr><td>${i+1}</td><td><span style="color:${d.col}">${CATS[d.cat].sym}</span> ${esc(d.nombre)}</td><td class="r">${fmt(d.grado,2)}</td></tr>`).join('')}</tbody></table></div>
    <div class="card"><h3>${T('ODS','SDGs')}</h3><div class="ods-grid">${ODS.map(([o,es,en,col])=>`<div class="ods-c ${cum[o].v==null?'sd':''}" style="background:${col};min-height:60px"><b>${o}</b><span class="pc">${cum[o].v!=null?fmt(cum[o].v,0)+' %':'—'}</span></div>`).join('')}</div></div></div>
   ${informeCladograma(R)}
+  ${informeProspectiva()}
   <div class="card"><h3>${T('Requerimientos e innovaciones de la localidad','Locality requirements and innovations')}</h3>
    ${S.reqInn.length?`<ul>${S.reqInn.map(r=>`<li><b>${esc(r.t)}</b>${r.fuente?' · '+esc(r.fuente):''}</li>`).join('')}</ul>`:`<p class="sindato">${T('Sin requerimientos innovados registrados.','No innovated requirements recorded.')}</p>`}
    ${R.acts.filter(a=>a.tipo==='inn').length?`<ul>${R.acts.filter(a=>a.tipo==='inn').map(a=>`<li>${T('Paso','Step')} ${a.paso}: ${esc(tx(a.n))} · IS ${fmt(IS(impactoAct(a)),2)}</li>`).join('')}</ul>`:`<p class="sindato">${T('Sin actividades innovadas registradas.','No innovated activities recorded.')}</p>`}</div>
@@ -114,6 +115,10 @@ const REF_EXTRA = [
  'Wackernagel M, Rees W. 1996. Our ecological footprint: reducing human impact on the Earth. New Society Publishers, Gabriola Island.',
  'CONABIO. 2020. Razas de maíz de México. Comisión Nacional para el Conocimiento y Uso de la Biodiversidad, Ciudad de México. https://www.biodiversidad.gob.mx/diversidad/alimentos/maices/razas-de-maiz',
  'Sánchez JJ, Goodman MM, Stuber CW. 2000. Isozymatic and morphological diversity in the races of maize of Mexico. Economic Botany 54(1): 43–59.',
+ 'Godet M, Durance P. 2007. Prospectiva estratégica: problemas y métodos. Cuadernos de LIPSOR 20. LIPSOR, París.',
+ 'IPCC. 2018. Summary for Policymakers. En: Global Warming of 1.5 °C. An IPCC Special Report. Cambridge University Press.',
+ 'Rogers EM. 2003. Diffusion of innovations, 5.ª ed. Free Press, Nueva York.',
+ 'Zhao C, Liu B, Piao S, et al. 2017. Temperature increase reduces global yields of major crops in four independent estimates. Proceedings of the National Academy of Sciences 114(35): 9326–9331.',
  'Sneath PHA. 1957. The application of computers to taxonomy. Journal of General Microbiology 17(1): 201–226.',
  'Sokal RR, Sneath PHA. 1963. Principles of numerical taxonomy. W. H. Freeman, San Francisco.',
  'Sokal RR, Rohlf FJ. 1962. The comparison of dendrograms by objective methods. Taxon 11(2): 33–40.',

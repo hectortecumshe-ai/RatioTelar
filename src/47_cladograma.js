@@ -77,7 +77,7 @@ function tarjetaCladograma(R){
       <p class="nota">↔ ${T('vecinos mutuos: cada uno es el más cercano del otro.','mutual neighbours: each is the other’s nearest.')}${C.U.some(u=>u[2]>=19.99)?' '+T('Las uniones a distancia 20 son elementos que no participan en ninguna actividad capturada ni tienen valor asignado en el Bloque 6: los liga solo un vínculo estructural, con el peso mínimo (0.05).','Joins at distance 20 are elements that take part in no recorded activity and have no value set in Block 6: only a structural tie with the minimum weight (0.05) links them.'):''}${C.desconectados?' '+T('Hay elementos sin camino entre sí; se les asignó una distancia de '+fmt(C.tope,2)+' (115 % de la mayor observada).','Some elements have no path between them; they were given a distance of '+fmt(C.tope,2)+' (115 % of the largest observed).'):''}</p>
       <p class="nota sci">${T('Enlace simple sobre distancias de camino más corto (1/peso). Correlación cofenética','Single linkage on shortest-path distances (1/weight). Cophenetic correlation')}: <b>${C.r==null?'—':fmt(C.r,3)}</b> (Sokal y Rohlf, 1962) · n = ${C.nodos.length}.</p></div></div></div>`; }
 
-/* Versión para el Informe (Bloque 10): cladograma, vecinos más cercanos y CSV de uniones; se imprime completo. */
+/* Versión para el Informe (Bloque 11): cladograma, vecinos más cercanos y CSV de uniones; se imprime completo. */
 function informeCladograma(R){
   const sub=renderInforme.clado||renderTablero.clado||'actinst', C=datosCladograma(R, sub);
   const opc={actores:T('Actores','Actors'), actinst:T('Actores e instituciones','Actors and institutions'), todos:T('Todos los elementos','All elements')};
