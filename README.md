@@ -2,7 +2,7 @@
 
 # Ratio Telar
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23290104.svg)](https://doi.org/10.5281/zenodo.23290104)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23293557.svg)](https://doi.org/10.5281/zenodo.23293557)
 
 👉 **https://hectortecumshe-ai.github.io/RatioTelar/**
 
@@ -59,7 +59,7 @@ python pruebas/verificar_clado.py        # verifica el cladograma con SciPy
 
 ## Cómo citar
 
-Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. A., y Velázquez-Vázquez, G. (2026). *Ratio Telar: el conocimiento agrícola local como sistema complejo adaptativo* (Versión 0.3.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.23290104
+Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. A., y Velázquez-Vázquez, G. (2026). *Ratio Telar: el conocimiento agrícola local como sistema complejo adaptativo* (Versión 0.3.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.23293557
 
 ## Autores
 
