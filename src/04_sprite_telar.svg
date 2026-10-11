@@ -188,3 +188,73 @@
   <g class="hoja" style="transform-origin:50% 100%"><path d="M50 8c-4-8 2-14 10-12 0 8-4 12-10 12z" fill="#3f7e44"/></g>
   <circle cx="50" cy="50" r="42" fill="none" stroke="#2f5d50" stroke-width="2"/>
 </symbol>
+<!-- ============ VID (Vitis) ============ -->
+<symbol id="c-uva" viewBox="0 0 100 120">
+  <ellipse cx="50" cy="114" rx="30" ry="4" fill="#000" opacity=".08"/>
+  <path d="M50 112c-4-18 4-30-2-46S40 30 54 16" stroke="#6b4423" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M54 16c10-6 20-4 26 2M48 40c-10-4-18-2-24 4" stroke="#6b4423" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <path d="M80 18c4 2 4 8 0 9s-5-5-2-7" stroke="#7fb35a" stroke-width="1.6" fill="none"/>
+  <g class="hoja"><path d="M24 44c-10-2-18 4-18 12 4-2 7-1 9 2-4 4-3 10 2 12 2-4 5-5 9-4 0 5 4 8 9 6-2-8-1-18-11-28z" fill="#5f8f3e"/></g>
+  <g class="hoja" style="animation-delay:-1.4s"><path d="M70 22c8-6 18-2 20 6-4-1-7 0-8 3 5 2 6 8 2 11-2-3-5-4-9-2 1 5-2 9-7 8 0-8 0-18 2-26z" fill="#7fb35a"/></g>
+  <g fill="#6b3fa0"><circle cx="50" cy="56" r="6"/><circle cx="62" cy="56" r="6"/><circle cx="44" cy="66" r="6"/><circle cx="56" cy="66" r="6"/><circle cx="68" cy="66" r="6"/><circle cx="50" cy="76" r="6"/><circle cx="62" cy="76" r="6"/><circle cx="56" cy="86" r="6"/><circle cx="44" cy="78" r="5"/></g>
+  <g fill="#fff" opacity=".45"><circle cx="48" cy="54" r="1.6"/><circle cx="60" cy="54" r="1.6"/><circle cx="54" cy="64" r="1.6"/><circle cx="48" cy="74" r="1.6"/><circle cx="60" cy="74" r="1.6"/><circle cx="54" cy="84" r="1.6"/></g>
+  <path d="M56 50c-1-4 1-8 4-10" stroke="#6b4423" stroke-width="2" fill="none"/>
+</symbol>
+<!-- ============ CONEJO ============ -->
+<symbol id="a-conejo" viewBox="0 0 120 100">
+  <ellipse cx="60" cy="94" rx="40" ry="4" fill="#000" opacity=".08"/>
+  <ellipse cx="54" cy="70" rx="30" ry="20" fill="#d9cbb8"/>
+  <circle cx="26" cy="68" r="7" fill="#f6f1e4"/>
+  <ellipse cx="44" cy="88" rx="12" ry="5" fill="#cbb9a2"/><ellipse cx="72" cy="88" rx="8" ry="4" fill="#cbb9a2"/>
+  <circle cx="84" cy="54" r="15" fill="#d9cbb8"/>
+  <g class="hoja" style="transform-origin:80px 42px"><ellipse cx="78" cy="22" rx="5" ry="18" fill="#d9cbb8" transform="rotate(-12 78 22)"/><ellipse cx="78" cy="23" rx="2.4" ry="13" fill="#e8a8a0" transform="rotate(-12 78 23)"/></g>
+  <g class="hoja" style="transform-origin:90px 42px;animation-delay:-1.2s"><ellipse cx="92" cy="24" rx="5" ry="17" fill="#d9cbb8" transform="rotate(14 92 24)"/><ellipse cx="92" cy="25" rx="2.4" ry="12" fill="#e8a8a0" transform="rotate(14 92 25)"/></g>
+  <circle cx="90" cy="52" r="2.4" fill="#2b2420"/><ellipse cx="98" cy="58" rx="2.6" ry="2" fill="#c9827a"/>
+  <path d="M98 61l8-2M98 62l8 2" stroke="#8a7a68" stroke-width=".8"/>
+</symbol>
+<!-- ============ GALLO DE PELEA ============ -->
+<symbol id="a-gallo" viewBox="0 0 120 100">
+  <ellipse cx="58" cy="96" rx="34" ry="3.5" fill="#000" opacity=".08"/>
+  <g class="cola"><path d="M40 52C22 36 10 40 6 56c10-8 20-6 28 2zM40 56C24 50 14 58 14 72c8-10 18-12 26-8zM42 60c-12 4-18 14-14 26 4-10 10-16 18-18z" fill="#1f3b2f"/>
+  <path d="M38 50C26 34 18 30 10 34" stroke="#2f6b4a" stroke-width="3" fill="none"/></g>
+  <path d="M40 60c0-14 12-22 28-20 10 2 14 10 12 20-2 12-12 18-24 18-10 0-16-8-16-18z" fill="#b5462a"/>
+  <path d="M50 52c8 0 16 4 20 12-8 0-16-2-20-12z" fill="#e0a13c"/>
+  <path d="M70 46c2-14 8-22 16-22 6 0 10 6 8 14l-6 10c-4 6-12 6-18-2z" fill="#c9622a"/>
+  <path d="M82 22c2-6 6-8 10-6-2 2-1 4 1 5-3 1-4 3-3 5-3-2-6-2-8-4z" fill="#c62f2f"/>
+  <path d="M94 34l9 3-9 3z" fill="#e0a13c"/><path d="M90 42c2 4 0 8-3 9-1-4 0-7 3-9z" fill="#c62f2f"/>
+  <circle cx="89" cy="32" r="2.2" fill="#f4cf55"/><circle cx="89" cy="32" r="1" fill="#2b2420"/>
+  <path d="M56 76v16M64 76v16" stroke="#e0a13c" stroke-width="3.4" stroke-linecap="round"/>
+  <path d="M50 92h8M60 92h9M58 84l-5 2M66 84l-4 2" stroke="#e0a13c" stroke-width="2.4" stroke-linecap="round"/>
+</symbol>
+<!-- ============ GRANJA DE TRASPATIO ============ -->
+<symbol id="a-granja" viewBox="0 0 120 100">
+  <ellipse cx="60" cy="95" rx="54" ry="4" fill="#000" opacity=".08"/>
+  <path d="M8 92V50l26-18 26 18v42z" fill="#b5462a"/><path d="M4 52l30-22 30 22" stroke="#7a2e1c" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <rect x="24" y="66" width="20" height="26" fill="#7a2e1c"/><path d="M24 66l20 26M44 66L24 92" stroke="#f4e6b0" stroke-width="2"/>
+  <rect x="28" y="48" width="12" height="9" fill="#f4e6b0"/>
+  <path d="M64 92V74h52v18" fill="none" stroke="#9a6a3a" stroke-width="2.4"/><path d="M64 80h52M76 74v18M90 74v18M104 74v18" stroke="#9a6a3a" stroke-width="2"/>
+  <g class="float"><ellipse cx="84" cy="66" rx="9" ry="7" fill="#f6f1e4"/><circle cx="92" cy="60" r="4.5" fill="#f6f1e4"/><path d="M94 56l3-3 1 4z" fill="#c62f2f"/><path d="M96 61l4 1-4 1z" fill="#e0a13c"/></g>
+  <g class="float d2"><ellipse cx="106" cy="66" rx="7" ry="5" fill="#d9cbb8"/><ellipse cx="111" cy="57" rx="1.8" ry="5" fill="#d9cbb8"/><circle cx="112" cy="64" r="3.6" fill="#d9cbb8"/></g>
+  <circle cx="98" cy="20" r="9" fill="#f4cf55" class="gira" style="animation-duration:20s"/>
+</symbol>
+
+<!-- ============ CHAYOTE (Sechium edule) ============ -->
+<symbol id="c-chayote" viewBox="0 0 100 120">
+  <ellipse cx="50" cy="114" rx="28" ry="4" fill="#000" opacity=".08"/>
+  <path d="M8 18c20-8 40 4 58-2s26-2 30 4" stroke="#5f8f3e" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+  <path d="M30 14c-4-6-2-12 4-14M70 12c4-4 10-4 12 2" stroke="#7fb35a" stroke-width="1.6" fill="none"/>
+  <g class="hoja"><path d="M22 18c-10 2-16 12-12 20 8-2 14-8 12-20z" fill="#6aa148"/><path d="M78 16c10 2 16 12 12 20-8-2-14-8-12-20z" fill="#7fb35a"/></g>
+  <path d="M50 20v10" stroke="#5f8f3e" stroke-width="3"/>
+  <g class="hoja" style="transform-origin:50px 30px;animation-duration:4.2s"><path d="M50 30c-16 0-26 18-24 40 2 22 14 38 24 38s22-16 24-38c2-22-8-40-24-40z" fill="#9cc56b"/>
+  <path d="M38 40c-6 18-6 40 2 60M50 32v74M62 40c6 18 6 40-2 60" stroke="#7fa84f" stroke-width="2.2" fill="none"/>
+  <path d="M44 100c2 4 10 4 12 0" stroke="#6b8f3e" stroke-width="2.4" fill="none"/><ellipse cx="42" cy="54" rx="4" ry="10" fill="#fff" opacity=".25"/></g>
+</symbol>
+<!-- ============ CHINICUIL (Comadia redtenbacheri) ============ -->
+<symbol id="a-chinicuil" viewBox="0 0 120 100">
+  <ellipse cx="60" cy="94" rx="46" ry="4" fill="#000" opacity=".08"/>
+  <path d="M4 90C30 70 70 40 116 30c-36 20-70 44-96 62z" fill="#6f9e8a" stroke="#4f7d6b" stroke-width="1.4"/>
+  <g class="hoja" style="transform-origin:40px 70px;animation-duration:2.4s">
+  <g fill="#c62f2f" stroke="#8a1f1f" stroke-width="1"><circle cx="24" cy="70" r="7"/><circle cx="34" cy="64" r="7.4"/><circle cx="45" cy="58" r="7.6"/><circle cx="56" cy="52" r="7.6"/><circle cx="67" cy="47" r="7.4"/><circle cx="78" cy="42" r="7"/></g>
+  <circle cx="88" cy="38" r="7.4" fill="#3b2a20"/><circle cx="91" cy="35" r="1.6" fill="#f6f1e4"/>
+  <g fill="#f08a7a" opacity=".7"><circle cx="34" cy="61" r="1.6"/><circle cx="45" cy="55" r="1.6"/><circle cx="56" cy="49" r="1.6"/><circle cx="67" cy="44" r="1.6"/></g></g>
+</symbol>

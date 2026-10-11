@@ -642,6 +642,16 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
 @keyframes medir{from{stroke-dasharray:0 200}}
 @media(max-width:600px){ #pill{display:none} .bar-top{gap:4px} .modesw button{padding:4px 7px} }
 
+.cat-grid.mini{grid-template-columns:repeat(auto-fill,minmax(118px,1fr))}
+.cat-grid.mini .cat-card svg{width:70px;height:60px}
+.card.granja{border-top:4px solid #b5462a}
+.lugares{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}
+.lugares .chip{cursor:pointer;font-family:inherit}
+.lugares .chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+.razas{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;margin-top:10px}
+.razas>div{background:var(--bg-soft);border-radius:var(--r-sm);padding:8px 10px}
+
 </style>
 </head>
 <body>
@@ -836,6 +846,76 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
   <g class="hoja" style="transform-origin:50% 100%"><path d="M50 8c-4-8 2-14 10-12 0 8-4 12-10 12z" fill="#3f7e44"/></g>
   <circle cx="50" cy="50" r="42" fill="none" stroke="#2f5d50" stroke-width="2"/>
 </symbol>
+<!-- ============ VID (Vitis) ============ -->
+<symbol id="c-uva" viewBox="0 0 100 120">
+  <ellipse cx="50" cy="114" rx="30" ry="4" fill="#000" opacity=".08"/>
+  <path d="M50 112c-4-18 4-30-2-46S40 30 54 16" stroke="#6b4423" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M54 16c10-6 20-4 26 2M48 40c-10-4-18-2-24 4" stroke="#6b4423" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <path d="M80 18c4 2 4 8 0 9s-5-5-2-7" stroke="#7fb35a" stroke-width="1.6" fill="none"/>
+  <g class="hoja"><path d="M24 44c-10-2-18 4-18 12 4-2 7-1 9 2-4 4-3 10 2 12 2-4 5-5 9-4 0 5 4 8 9 6-2-8-1-18-11-28z" fill="#5f8f3e"/></g>
+  <g class="hoja" style="animation-delay:-1.4s"><path d="M70 22c8-6 18-2 20 6-4-1-7 0-8 3 5 2 6 8 2 11-2-3-5-4-9-2 1 5-2 9-7 8 0-8 0-18 2-26z" fill="#7fb35a"/></g>
+  <g fill="#6b3fa0"><circle cx="50" cy="56" r="6"/><circle cx="62" cy="56" r="6"/><circle cx="44" cy="66" r="6"/><circle cx="56" cy="66" r="6"/><circle cx="68" cy="66" r="6"/><circle cx="50" cy="76" r="6"/><circle cx="62" cy="76" r="6"/><circle cx="56" cy="86" r="6"/><circle cx="44" cy="78" r="5"/></g>
+  <g fill="#fff" opacity=".45"><circle cx="48" cy="54" r="1.6"/><circle cx="60" cy="54" r="1.6"/><circle cx="54" cy="64" r="1.6"/><circle cx="48" cy="74" r="1.6"/><circle cx="60" cy="74" r="1.6"/><circle cx="54" cy="84" r="1.6"/></g>
+  <path d="M56 50c-1-4 1-8 4-10" stroke="#6b4423" stroke-width="2" fill="none"/>
+</symbol>
+<!-- ============ CONEJO ============ -->
+<symbol id="a-conejo" viewBox="0 0 120 100">
+  <ellipse cx="60" cy="94" rx="40" ry="4" fill="#000" opacity=".08"/>
+  <ellipse cx="54" cy="70" rx="30" ry="20" fill="#d9cbb8"/>
+  <circle cx="26" cy="68" r="7" fill="#f6f1e4"/>
+  <ellipse cx="44" cy="88" rx="12" ry="5" fill="#cbb9a2"/><ellipse cx="72" cy="88" rx="8" ry="4" fill="#cbb9a2"/>
+  <circle cx="84" cy="54" r="15" fill="#d9cbb8"/>
+  <g class="hoja" style="transform-origin:80px 42px"><ellipse cx="78" cy="22" rx="5" ry="18" fill="#d9cbb8" transform="rotate(-12 78 22)"/><ellipse cx="78" cy="23" rx="2.4" ry="13" fill="#e8a8a0" transform="rotate(-12 78 23)"/></g>
+  <g class="hoja" style="transform-origin:90px 42px;animation-delay:-1.2s"><ellipse cx="92" cy="24" rx="5" ry="17" fill="#d9cbb8" transform="rotate(14 92 24)"/><ellipse cx="92" cy="25" rx="2.4" ry="12" fill="#e8a8a0" transform="rotate(14 92 25)"/></g>
+  <circle cx="90" cy="52" r="2.4" fill="#2b2420"/><ellipse cx="98" cy="58" rx="2.6" ry="2" fill="#c9827a"/>
+  <path d="M98 61l8-2M98 62l8 2" stroke="#8a7a68" stroke-width=".8"/>
+</symbol>
+<!-- ============ GALLO DE PELEA ============ -->
+<symbol id="a-gallo" viewBox="0 0 120 100">
+  <ellipse cx="58" cy="96" rx="34" ry="3.5" fill="#000" opacity=".08"/>
+  <g class="cola"><path d="M40 52C22 36 10 40 6 56c10-8 20-6 28 2zM40 56C24 50 14 58 14 72c8-10 18-12 26-8zM42 60c-12 4-18 14-14 26 4-10 10-16 18-18z" fill="#1f3b2f"/>
+  <path d="M38 50C26 34 18 30 10 34" stroke="#2f6b4a" stroke-width="3" fill="none"/></g>
+  <path d="M40 60c0-14 12-22 28-20 10 2 14 10 12 20-2 12-12 18-24 18-10 0-16-8-16-18z" fill="#b5462a"/>
+  <path d="M50 52c8 0 16 4 20 12-8 0-16-2-20-12z" fill="#e0a13c"/>
+  <path d="M70 46c2-14 8-22 16-22 6 0 10 6 8 14l-6 10c-4 6-12 6-18-2z" fill="#c9622a"/>
+  <path d="M82 22c2-6 6-8 10-6-2 2-1 4 1 5-3 1-4 3-3 5-3-2-6-2-8-4z" fill="#c62f2f"/>
+  <path d="M94 34l9 3-9 3z" fill="#e0a13c"/><path d="M90 42c2 4 0 8-3 9-1-4 0-7 3-9z" fill="#c62f2f"/>
+  <circle cx="89" cy="32" r="2.2" fill="#f4cf55"/><circle cx="89" cy="32" r="1" fill="#2b2420"/>
+  <path d="M56 76v16M64 76v16" stroke="#e0a13c" stroke-width="3.4" stroke-linecap="round"/>
+  <path d="M50 92h8M60 92h9M58 84l-5 2M66 84l-4 2" stroke="#e0a13c" stroke-width="2.4" stroke-linecap="round"/>
+</symbol>
+<!-- ============ GRANJA DE TRASPATIO ============ -->
+<symbol id="a-granja" viewBox="0 0 120 100">
+  <ellipse cx="60" cy="95" rx="54" ry="4" fill="#000" opacity=".08"/>
+  <path d="M8 92V50l26-18 26 18v42z" fill="#b5462a"/><path d="M4 52l30-22 30 22" stroke="#7a2e1c" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <rect x="24" y="66" width="20" height="26" fill="#7a2e1c"/><path d="M24 66l20 26M44 66L24 92" stroke="#f4e6b0" stroke-width="2"/>
+  <rect x="28" y="48" width="12" height="9" fill="#f4e6b0"/>
+  <path d="M64 92V74h52v18" fill="none" stroke="#9a6a3a" stroke-width="2.4"/><path d="M64 80h52M76 74v18M90 74v18M104 74v18" stroke="#9a6a3a" stroke-width="2"/>
+  <g class="float"><ellipse cx="84" cy="66" rx="9" ry="7" fill="#f6f1e4"/><circle cx="92" cy="60" r="4.5" fill="#f6f1e4"/><path d="M94 56l3-3 1 4z" fill="#c62f2f"/><path d="M96 61l4 1-4 1z" fill="#e0a13c"/></g>
+  <g class="float d2"><ellipse cx="106" cy="66" rx="7" ry="5" fill="#d9cbb8"/><ellipse cx="111" cy="57" rx="1.8" ry="5" fill="#d9cbb8"/><circle cx="112" cy="64" r="3.6" fill="#d9cbb8"/></g>
+  <circle cx="98" cy="20" r="9" fill="#f4cf55" class="gira" style="animation-duration:20s"/>
+</symbol>
+
+<!-- ============ CHAYOTE (Sechium edule) ============ -->
+<symbol id="c-chayote" viewBox="0 0 100 120">
+  <ellipse cx="50" cy="114" rx="28" ry="4" fill="#000" opacity=".08"/>
+  <path d="M8 18c20-8 40 4 58-2s26-2 30 4" stroke="#5f8f3e" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+  <path d="M30 14c-4-6-2-12 4-14M70 12c4-4 10-4 12 2" stroke="#7fb35a" stroke-width="1.6" fill="none"/>
+  <g class="hoja"><path d="M22 18c-10 2-16 12-12 20 8-2 14-8 12-20z" fill="#6aa148"/><path d="M78 16c10 2 16 12 12 20-8-2-14-8-12-20z" fill="#7fb35a"/></g>
+  <path d="M50 20v10" stroke="#5f8f3e" stroke-width="3"/>
+  <g class="hoja" style="transform-origin:50px 30px;animation-duration:4.2s"><path d="M50 30c-16 0-26 18-24 40 2 22 14 38 24 38s22-16 24-38c2-22-8-40-24-40z" fill="#9cc56b"/>
+  <path d="M38 40c-6 18-6 40 2 60M50 32v74M62 40c6 18 6 40-2 60" stroke="#7fa84f" stroke-width="2.2" fill="none"/>
+  <path d="M44 100c2 4 10 4 12 0" stroke="#6b8f3e" stroke-width="2.4" fill="none"/><ellipse cx="42" cy="54" rx="4" ry="10" fill="#fff" opacity=".25"/></g>
+</symbol>
+<!-- ============ CHINICUIL (Comadia redtenbacheri) ============ -->
+<symbol id="a-chinicuil" viewBox="0 0 120 100">
+  <ellipse cx="60" cy="94" rx="46" ry="4" fill="#000" opacity=".08"/>
+  <path d="M4 90C30 70 70 40 116 30c-36 20-70 44-96 62z" fill="#6f9e8a" stroke="#4f7d6b" stroke-width="1.4"/>
+  <g class="hoja" style="transform-origin:40px 70px;animation-duration:2.4s">
+  <g fill="#c62f2f" stroke="#8a1f1f" stroke-width="1"><circle cx="24" cy="70" r="7"/><circle cx="34" cy="64" r="7.4"/><circle cx="45" cy="58" r="7.6"/><circle cx="56" cy="52" r="7.6"/><circle cx="67" cy="47" r="7.4"/><circle cx="78" cy="42" r="7"/></g>
+  <circle cx="88" cy="38" r="7.4" fill="#3b2a20"/><circle cx="91" cy="35" r="1.6" fill="#f6f1e4"/>
+  <g fill="#f08a7a" opacity=".7"><circle cx="34" cy="61" r="1.6"/><circle cx="45" cy="55" r="1.6"/><circle cx="56" cy="49" r="1.6"/><circle cx="67" cy="44" r="1.6"/></g></g>
+</symbol>
 
 <symbol id="i-steer" viewBox="0 0 170 120">
   <ellipse cx="88" cy="112" rx="62" ry="5" fill="#000" opacity=".08"/>
@@ -936,7 +1016,9 @@ const LOC = ()=> LANG==='en' ? 'en-US' : 'es-MX';
 /* ---------- Catálogo de cultivos y especies (Bloque 1) ----------
    doc: 'stack' = con Stack de conocimiento local documentado; 'base' = catálogo para documentar.  */
 const CATALOGO = [
+  {id:'uva', tipo:'cultivo', ico:'c-uva', n:E('Uva (vid)','Grape (vine)'), sci:'Vitis spp.', doc:'base', col:'#6b3fa0', destacado:true},
   {id:'maiz', tipo:'cultivo', ico:'c-maiz', n:E('Maíz criollo','Landrace maize'), sci:'Zea mays L.', doc:'stack', col:'#d9a441'},
+  {id:'chayote', tipo:'cultivo', ico:'c-chayote', n:E('Chayote','Chayote'), sci:'Sechium edule (Jacq.) Sw.', doc:'base', col:'#7fa84f'},
   {id:'frijol', tipo:'cultivo', ico:'c-frijol', n:E('Frijol','Common bean'), sci:'Phaseolus vulgaris L.', doc:'base', col:'#7a3b3b'},
   {id:'calabaza', tipo:'cultivo', ico:'c-calabaza', n:E('Calabaza','Squash'), sci:'Cucurbita spp.', doc:'base', col:'#e8913a'},
   {id:'chile', tipo:'cultivo', ico:'c-chile', n:E('Chile','Chili pepper'), sci:'Capsicum annuum L.', doc:'base', col:'#c9302c'},
@@ -948,23 +1030,41 @@ const CATALOGO = [
   {id:'jitomate', tipo:'cultivo', ico:'c-jitomate', n:E('Jitomate','Tomato'), sci:'Solanum lycopersicum L.', doc:'base', col:'#d7372e'},
   {id:'trigo', tipo:'cultivo', ico:'c-trigo', n:E('Trigo','Wheat'), sci:'Triticum aestivum L.', doc:'base', col:'#c9a24a'},
   {id:'cana', tipo:'cultivo', ico:'c-cana', n:E('Caña de azúcar','Sugarcane'), sci:'Saccharum officinarum L.', doc:'base', col:'#7d9a3a'},
+  {id:'granja', tipo:'especie', ico:'a-granja', n:E('Granja de traspatio','Backyard farm'), sci:E('Varias especies','Several species'), doc:'base', col:'#b5462a', especial:true},
   {id:'bovino', tipo:'especie', ico:'i-steer', n:E('Bovino','Cattle'), sci:'Bos taurus / B. indicus', doc:'base', col:'#8a4b2e'},
   {id:'porcino', tipo:'especie', ico:'a-cerdo', n:E('Porcino','Pig'), sci:'Sus scrofa domesticus', doc:'base', col:'#e3a3a0'},
   {id:'ovino', tipo:'especie', ico:'a-ovino', n:E('Ovino','Sheep'), sci:'Ovis aries', doc:'base', col:'#8a8f86'},
   {id:'caprino', tipo:'especie', ico:'a-caprino', n:E('Caprino','Goat'), sci:'Capra hircus', doc:'base', col:'#c9a27a'},
   {id:'ave', tipo:'especie', ico:'i-chicken', n:E('Aves de traspatio','Backyard poultry'), sci:'Gallus gallus domesticus', doc:'base', col:'#b05434'},
-  {id:'abeja', tipo:'especie', ico:'a-abeja', n:E('Abeja melífera','Honeybee'), sci:'Apis mellifera L.', doc:'base', col:'#f4c242'}
+  {id:'abeja', tipo:'especie', ico:'a-abeja', n:E('Abeja melífera','Honeybee'), sci:'Apis mellifera L.', doc:'base', col:'#f4c242'},
+  {id:'conejo', tipo:'especie', ico:'a-conejo', n:E('Conejo','Rabbit'), sci:'Oryctolagus cuniculus', doc:'base', col:'#b8a58c'},
+  {id:'gallo', tipo:'especie', ico:'a-gallo', n:E('Gallos de pelea','Gamefowl'), sci:'Gallus gallus domesticus', doc:'base', col:'#c9622a'},
+  {id:'chinicuil', tipo:'especie', ico:'a-chinicuil', n:E('Chinicuil (gusano rojo de maguey)','Chinicuil (red agave worm)'), sci:'Comadia redtenbacheri', doc:'base', col:'#c62f2f'}
 ];
+/* Razas de maíz de México (CONABIO, 2020; clasificación de Sánchez et al., 2000): 64 razas en 7 grupos.
+   RAZAS_EXT: descritas inicialmente fuera de México (Caribe y Guatemala) pero colectadas en el país. */
+const RAZAS_MAIZ = [
+  {g:E('Cónico','Conical'), r:['Arrocillo','Cacahuacintle','Cónico','Cónico Norteño','Chalqueño','Dulce','Elotes cónicos','Mixteco','Mushito','Mushito de Michoacán','Negrito','Palomero de Chihuahua','Palomero de Jalisco','Palomero toluqueño','Uruapeño']},
+  {g:E('Sierra de Chihuahua','Sierra de Chihuahua'), r:['Apachito','Azul','Complejo Serrano de Jalisco','Cristalino de Chihuahua','Gordo','Mountain Yellow (Amarillo de Montaña)']},
+  {g:E('Ocho Hileras','Eight-rowed'), r:['Ancho','Blando','Bofo','Bolita','Elotes occidentales','Harinoso de ocho','Jala','Onaveño','Tablilla de ocho','Tabloncillo','Tabloncillo Perla','Zamorano Amarillo']},
+  {g:E('Chapalote','Chapalote'), r:['Chapalote','Dulcillo del Noroeste','Elotero de Sinaloa','Reventador']},
+  {g:E('Tropicales precoces','Early tropical'), r:['Conejo','Nal-Tel','Ratón','Zapalote Chico']},
+  {g:E('Dentados tropicales','Tropical dents'), r:['Celaya','Chiquito','Choapaneco','Cubano Amarillo','Nal-Tel de Altura','Pepitilla','Tepecintle','Tuxpeño','Tuxpeño Norteño','Vandeño','Zapalote Grande']},
+  {g:E('Maduración tardía','Late maturing'), r:['Dzit Bacal','Comiteco','Coscomatepec','Mixeño','Motozinteco','Negro de Chimaltenango','Olotillo','Olotón','Quicheño','Serrano','Serrano Mixe','Tehua']}
+];
+const RAZAS_EXT = ['Cubano Amarillo','Nal-Tel de Altura','Serrano','Negro de Chimaltenango','Quicheño'];
 const SISTEMAS = [
   {id:'milpa', n:E('Milpa (maíz–frijol–calabaza)','Milpa (maize–bean–squash)'), doc:true},
+  {id:'vinedo', n:E('Viñedo (espaldera o parral)','Vineyard (trellis or pergola)'), doc:false},
   {id:'miaf', n:E('MIAF (maíz intercalado con árboles frutales)','MIAF (maize intercropped with fruit trees)'), doc:true},
   {id:'mono', n:E('Monocultivo','Monoculture'), doc:false},
   {id:'agrofor', n:E('Sistema agroforestal','Agroforestry system'), doc:false},
   {id:'traspatio', n:E('Traspatio o solar','Backyard (solar)'), doc:false},
   {id:'pastoreo', n:E('Pastoreo o agostadero','Grazing or rangeland'), doc:false},
+  {id:'cinegetico', n:E('Rancho cinegético (vida silvestre bajo manejo, UMA)','Game ranch (managed wildlife, UMA)'), doc:false},
   {id:'confinado', n:E('Producción en confinamiento','Confined production'), doc:false}
 ];
-const TIPOS_UP = [E('Milpa','Milpa'),E('Parcela','Plot'),E('Unidad de producción agrícola','Farm (crops)'),E('Unidad de producción pecuaria','Farm (livestock)'),E('Unidad mixta agrícola–pecuaria','Mixed crop–livestock farm')];
+const TIPOS_UP = [E('Milpa','Milpa'),E('Parcela','Plot'),E('Unidad de producción agrícola','Farm (crops)'),E('Unidad de producción pecuaria','Farm (livestock)'),E('Unidad mixta agrícola–pecuaria','Mixed crop–livestock farm'),E('Rancho cinegético (UMA de aprovechamiento cinegético)','Game ranch (UMA for hunting use)')];
 
 /* ---------- Estado / state ---------- */
 let S;
@@ -973,6 +1073,8 @@ function estadoInicial(){ return {
   proyecto:{nombre:'', productor:'', fecha:new Date().toISOString().slice(0,10), notas:''},
   cultivo:'maiz', sistema:'milpa', tipoUP:0, superficie:1.5,
   edo:'21', mun:'026', loc:'0001',
+  granja:[],                       // especies de la granja de traspatio
+  maizTipo:'nativo', maizRaza:'', maizVar:'',   // subcategoría del maíz
   reqInn:[],                       // [{t, b, d, fuente}]
   manejo:{},                       // n paso -> {off:{codigo:true}, inn:[{t, el:[ids], imp:[5], nota}], imp:{codigo:[5]}}
   elemExtra:[],                    // elementos agregados por el usuario {id,cat,n}
@@ -988,6 +1090,11 @@ function guardar(){ try{ localStorage.setItem('telar_v2', JSON.stringify(S)); }c
 function cargar(){ try{ const g=JSON.parse(localStorage.getItem('telar_v2')||'null'); if(g && g.manejo) return Object.assign(estadoInicial(), g); }catch(e){} return estadoInicial(); }
 const cultivoSel = ()=> CATALOGO.find(c=>c.id===S.cultivo) || CATALOGO[0];
 const conStack = ()=> cultivoSel().doc==='stack';
+/* Lugares de trabajo del autor (accesos directos del Bloque 2) */
+const LUGARES = [
+  {edo:'21', mun:'026', loc:'0001', n:E('Calpan, Puebla · caso documentado','Calpan, Puebla · documented case')},
+  {edo:'30', mun:'134', loc:'0018', n:E('Mata de Zarza, Puente Nacional, Veracruz','Mata de Zarza, Puente Nacional, Veracruz')}
+];
 
 </script>
 <script>
@@ -2181,7 +2288,7 @@ function telarVivo(){ const cols=['#9a6a3a','#d9a441','#5f8f3e','#2f7d8a','#7a4f
   s+=`<g class="lanzadera"><rect x="30" y="${330}" width="70" height="22" rx="11" fill="var(--accent)"/><circle cx="65" cy="341" r="5" fill="#fff"/></g></svg>`; return s; }
 function renderInicio(el){
   const nl=Object.values(TERR.localidades).reduce((s,l)=>s+l.length,0), nm=Object.values(TERR.municipios).reduce((s,l)=>s+l.length,0);
-  const pasos=[['cultivo',T('Cultivo o especie','Crop or species'),T('Elige entre 18 cultivos y especies domésticas y el sistema: milpa, MIAF, traspatio, agostadero…','Choose among 18 crops and livestock species and the system: milpa, MIAF, backyard, rangeland…')],
+  const pasos=[['cultivo',T('Cultivo o especie','Crop or species'),T(`Elige entre ${CATALOGO.filter(c=>c.tipo==='cultivo').length} cultivos (la uva primero), ${CATALOGO.filter(c=>c.tipo==='especie'&&!c.especial).length} especies y la granja de traspatio; y el sistema: viñedo, milpa, MIAF, traspatio…`,`Choose among ${CATALOGO.filter(c=>c.tipo==='cultivo').length} crops (grape first), ${CATALOGO.filter(c=>c.tipo==='especie'&&!c.especial).length} species and the backyard farm; and the system: vineyard, milpa, MIAF, backyard…`)],
     ['region',T('Región','Region'),T(`Del país a la localidad: ${fmt(nm,0)} municipios y ${fmt(nl,0)} localidades del INEGI, con altitud y ubicación en el mapa.`,`From country to locality: ${fmt(nm,0)} municipalities and ${fmt(nl,0)} INEGI localities with altitude and map position.`)],
     ['requerimientos',T('Requerimientos','Requirements'),T('Las 5B del saber local y los requerimientos que la localidad ha innovado.','The 5B of local knowledge and the requirements the locality has innovated.')],
     ['manejo',T('Manejo','Management'),T('38 pasos y sus actividades tradicionales; agrega las innovadoras de tu localidad.','38 steps and their traditional activities; add your locality’s innovations.')],
@@ -2231,7 +2338,17 @@ function renderCultivo(el){ const tipo=renderCultivo.tipo||cultivoSel().tipo; co
     <div class="tipo-tabs"><button data-tipo="cultivo" class="${tipo==='cultivo'?'on':''}">${T('Cultivos','Crops')}</button><button data-tipo="especie" class="${tipo==='especie'?'on':''}">${T('Especies animales','Livestock species')}</button></div></div>
     <div class="cat-grid">${CATALOGO.filter(x=>x.tipo===tipo).map((x,i)=>`<div class="cat-card aparece ${x.id===S.cultivo?'sel':''}" data-cult="${x.id}" style="--cc:${x.col};animation-delay:${i*40}ms" tabindex="0" role="button">
       <span class="est ${x.doc==='stack'?'doc':''}">${x.doc==='stack'?T('Stack documentado','Documented Stack'):T('Por documentar','To document')}</span>
-      <svg viewBox="0 0 ${x.ico.startsWith('a-')||x.ico==='i-steer'||x.ico==='i-chicken'?'0 0 120 100':'0 0 100 120'}"><use href="#${x.ico}"/></svg><b>${esc(tx(x.n))}</b><i>${esc(x.sci)}</i></div>`).join('')}</div></div>
+      <svg viewBox="${x.ico==='i-steer'?'0 0 170 120':x.ico.startsWith('a-')||x.ico==='i-chicken'?'0 0 120 100':'0 0 100 120'}"><use href="#${x.ico}"/></svg><b>${esc(tx(x.n))}</b><i>${esc(tx(x.sci))}</i></div>`).join('')}</div></div>
+  ${S.cultivo==='maiz'?`<div class="card aparece" style="border-top:4px solid #d9a441"><div class="row between"><h3 style="margin:0">${ill('c-maiz','','width:34px;height:40px;vertical-align:middle;margin-right:6px')}${T('Tipo de maíz','Maize type')}</h3>
+     <div class="tipo-tabs" style="margin:0"><button data-mtipo="nativo" class="${S.maizTipo==='nativo'?'on':''}">${T('Nativo o criollo (raza)','Native landrace (race)')}</button><button data-mtipo="mejorado" class="${S.maizTipo==='mejorado'?'on':''}">${T('Mejorado o híbrido','Improved or hybrid')}</button></div></div>
+    ${S.maizTipo==='nativo'?`<p class="nota">${T('Las 64 razas de maíz reportadas para México, en sus siete grupos raciales. 59 son nativas; las marcadas con ° se describieron primero en el Caribe o Guatemala y también se han colectado en México.','The 64 maize races reported for Mexico in their seven racial groups. 59 are native; those marked ° were first described in the Caribbean or Guatemala and have also been collected in Mexico.')}</p>
+     <label class="f"><span>${T('Raza','Race')}</span><select id="mRaza"><option value="">${T('— Sin especificar —','— Not specified —')}</option>${RAZAS_MAIZ.map(g=>`<optgroup label="${esc(T('Grupo','Group')+' '+tx(g.g))}">${g.r.map(r=>`<option value="${esc(r)}" ${S.maizRaza===r?'selected':''}>${esc(r)}${RAZAS_EXT.includes(r)?' °':''}</option>`).join('')}</optgroup>`).join('')}</select></label>
+     <div class="razas">${RAZAS_MAIZ.map(g=>`<div><b>${esc(tx(g.g))}</b> <span class="muted">(${g.r.length})</span><div class="elchips">${g.r.map(r=>`<button type="button" class="elchip ${S.maizRaza===r?'on':''}" style="--ec:#c98b21" data-raza="${esc(r)}">${esc(r)}${RAZAS_EXT.includes(r)?' °':''}</button>`).join('')}</div></div>`).join('')}</div>
+     <div class="fuente">${T('Fuente','Source')}: CONABIO (2020), ${T('Razas de maíz de México; clasificación de Sánchez et al. (2000)','Maize races of Mexico; classification by Sánchez et al. (2000)')}. ${T('El artículo de Calpan trata maíces criollos sin especificar raza; en Puebla se reportan cerca de 22.','The Calpan paper covers landraces without specifying race; about 22 are reported in Puebla.')}</div>`
+    :`<label class="f"><span>${T('Nombre de la variedad o del híbrido','Variety or hybrid name')}</span><input id="mVar" value="${esc(S.maizVar)}" placeholder="${T('escríbelo tal como lo compras o lo nombra la institución','as you buy it or as the institution names it')}"></label>`}</div>`:''}
+  ${S.cultivo==='granja'?`<div class="card granja aparece"><h3>${ill('a-granja','','width:46px;height:38px;vertical-align:middle;margin-right:8px')}${T('Especies de tu granja de traspatio','Species in your backyard farm')}</h3><p class="nota">${T('Marca las especies que conviven en la granja; cada una aporta sus propios pasos de manejo, insumos y productos.','Tick the species living together on the farm; each brings its own management steps, inputs and products.')}</p>
+    <div class="cat-grid mini">${CATALOGO.filter(x=>x.tipo==='especie'&&!x.especial).map(x=>`<div class="cat-card ${S.granja.includes(x.id)?'sel':''}" data-gesp="${x.id}" style="--cc:${x.col}" tabindex="0" role="button"><svg viewBox="${x.ico==='i-steer'?'0 0 170 120':'0 0 120 100'}"><use href="#${x.ico}"/></svg><b>${esc(tx(x.n))}</b></div>`).join('')}</div>
+    <p><b>${S.granja.length}</b> ${T('especies seleccionadas','species selected')}${S.granja.length?': '+S.granja.map(id=>esc(tx(CATALOGO.find(c=>c.id===id).n))).join(', '):''}</p></div>`:''}
   <div class="grid g2"><div class="card"><h3>${T('Sistema de producción','Production system')}${ayuda('sistema')}</h3>
     <div class="opts">${SISTEMAS.map(s=>`<label class="opt ${S.sistema===s.id?'sel':''}"><input type="radio" name="sis" value="${s.id}" ${S.sistema===s.id?'checked':''}><b>${esc(tx(s.n))}</b><small>${s.doc?T('documentado en Calpan','documented in Calpan'):T('captura tu propia descripción','enter your own description')}</small></label>`).join('')}</div></div>
    <div class="card"><h3>${T('Unidad de producción','Production unit')}</h3>
@@ -2239,11 +2356,16 @@ function renderCultivo(el){ const tipo=renderCultivo.tipo||cultivoSel().tipo; co
     <label class="f"><span>${T('Superficie (ha)','Area (ha)')}${ayuda('superficie')}</span><input type="number" id="sup" min="0" step="0.1" value="${S.superficie}"></label>
     <label class="f"><span>${T('Nombre del proyecto o de la parcela','Project or plot name')}</span><input id="pNom" value="${esc(S.proyecto.nombre)}" placeholder="${T('p. ej., Parcela El Llano','e.g., El Llano plot')}"></label>
     <label class="f"><span>${T('Productor o productora','Farmer')}</span><input id="pProd" value="${esc(S.proyecto.productor)}"></label>
-    <div class="kpis" style="margin-top:10px"><div class="kpi"><div class="l">${T('Seleccionado','Selected')}</div><div class="v" style="font-size:20px">${esc(tx(c.n))}</div><div class="s"><i>${esc(c.sci)}</i></div></div>
+    <div class="kpis" style="margin-top:10px"><div class="kpi"><div class="l">${T('Seleccionado','Selected')}</div><div class="v" style="font-size:20px">${esc(tx(c.n))}</div><div class="s"><i>${esc(tx(c.sci))}</i></div></div>
     <div class="kpi"><div class="l">${T('Pasos de manejo','Management steps')}</div><div class="v">${c.doc==='stack'?38:Object.keys(S.manejo).length}</div><div class="s">${c.doc==='stack'?T('83 actividades publicadas','83 published activities'):T('captúralos en el Bloque 4','enter them in Block 4')}</div></div></div></div></div>
   ${siguiente('cultivo')}`;
   $$('[data-tipo]',el).forEach(b=>b.onclick=()=>{ renderCultivo.tipo=b.dataset.tipo; render(); });
-  $$('[data-cult]',el).forEach(c=>c.onclick=()=>{ S.cultivo=c.dataset.cult; S.formulado=false; guardar(); render(); toast(tx(cultivoSel().n)); });
+  $$('[data-cult]',el).forEach(c=>c.onclick=()=>{ S.cultivo=c.dataset.cult; S.formulado=false; if(S.cultivo==='granja') S.sistema='traspatio'; if(S.cultivo==='uva'&&S.sistema==='milpa') S.sistema='vinedo'; guardar(); render(); toast(tx(cultivoSel().n)); });
+  $$('[data-mtipo]',el).forEach(b=>b.onclick=()=>{ S.maizTipo=b.dataset.mtipo; guardar(); render(); });
+  $$('[data-raza]',el).forEach(b=>b.onclick=()=>{ S.maizRaza = S.maizRaza===b.dataset.raza ? '' : b.dataset.raza; guardar(); render(); toast(S.maizRaza||T('Raza sin especificar','Race not specified')); });
+  const mr=$('#mRaza',el); if(mr) mr.onchange=()=>{ S.maizRaza=mr.value; guardar(); render(); };
+  const mv=$('#mVar',el); if(mv) mv.onchange=()=>{ S.maizVar=mv.value.trim(); guardar(); actualizarPill(); };
+  $$('[data-gesp]',el).forEach(c=>c.onclick=()=>{ const id=c.dataset.gesp; S.granja = S.granja.includes(id) ? S.granja.filter(x=>x!==id) : S.granja.concat(id); guardar(); render(); });
   $$('input[name=sis]',el).forEach(r=>r.onchange=()=>{ S.sistema=r.value; guardar(); render(); });
   $('#tUP',el).onchange=e=>{ S.tipoUP=+e.target.value; guardar(); };
   $('#sup',el).onchange=e=>{ S.superficie=+e.target.value||0; guardar(); };
@@ -2261,6 +2383,7 @@ function renderRegion(el){ const e=edoDe(S.edo), muns=TERR.municipios[S.edo]||[]
       <label class="f"><span>${T('Estado','State')}</span><select id="zEst">${TERR.estados.map(x=>`<option value="${x[0]}" ${x[0]===S.edo?'selected':''}>${esc(x[1])}</option>`).join('')}</select></label>
       <label class="f"><span>${T('Municipio','Municipality')}</span><select id="zMun">${muns.map(x=>`<option value="${x[0]}" ${x[0]===S.mun?'selected':''}>${esc(x[1])}</option>`).join('')}</select></label>
       <label class="f"><span>${T('Localidad','Locality')}${ayuda('localidad')}</span><select id="zLoc">${locs.map(x=>`<option value="${x[0]}" ${x[0]===S.loc?'selected':''}>${esc(x[1])}${x[2]!=null?' · '+fmt(x[2],0)+' hab.':''}</option>`).join('')}</select></label>
+      <div class="lugares"><span class="nota">${T('Lugares de trabajo','Work places')}:</span>${LUGARES.map((p,i)=>`<button class="chip ${S.edo===p.edo&&S.mun===p.mun&&S.loc===p.loc?'on':''}" data-lugar="${i}">📍 ${esc(tx(p.n))}</button>`).join('')}</div>
       <div class="ruta"><span>${T('México','Mexico')}</span><i>›</i><span>${esc(tx(REG_BX[e[3]].n))}</span><i>›</i><span>${esc(e[1])}</span><i>›</i><span>${esc(m?m[1]:'')}</span><i>›</i><span>${esc(l?l[1]:'')}</span></div></div></div></div>
   <div class="kpis">
    <div class="kpi"><div class="l">${T('Localidad: población 2020','Locality: population 2020')}</div><div class="v">${l&&l[2]!=null?fmt(l[2],0):'—'}</div><div class="s">${l?(l[6]?T('urbana','urban'):T('rural','rural')):''}</div></div>
@@ -2282,6 +2405,7 @@ function renderRegion(el){ const e=edoDe(S.edo), muns=TERR.municipios[S.edo]||[]
   $('#zEst',el).onchange=ev=>ponEdo(ev.target.value);
   $('#zMun',el).onchange=ev=>{ S.mun=ev.target.value; S.loc=(TERR.localidades[S.edo+S.mun]||[[null]])[0][0]; guardar(); render(); };
   $('#zLoc',el).onchange=ev=>{ S.loc=ev.target.value; guardar(); render(); };
+  $$('[data-lugar]',el).forEach(b=>b.onclick=()=>{ const p=LUGARES[+b.dataset.lugar]; S.edo=p.edo; S.mun=p.mun; S.loc=p.loc; guardar(); render(); toast(tx(p.n)); });
   const ac=$('#aCalpan',el); if(ac) ac.onclick=()=>{ S.edo='21'; S.mun='026'; S.loc='0001'; guardar(); render(); }; }
 
 /* ================= BLOQUE 3 · REQUERIMIENTOS ================= */
@@ -2574,7 +2698,7 @@ function renderInforme(el){ const R=construirRed(), st=estadisticaRed(R), sos=so
      <p class="muted" style="margin:0">${esc(S.proyecto.productor||'')}</p></div><div class="bill" style="--anim:running;width:90px;height:90px">${ill(c.ico)}</div></div>
    <p style="font-size:17px">${esc(resumenTexto(R,st,sos,cum))}</p>
    <div class="grid g2"><table class="tbl"><tbody>
-     <tr><td>${T('Cultivo o especie','Crop or species')}</td><td><b>${esc(tx(c.n))}</b> <i>${esc(c.sci)}</i></td></tr><tr><td>${T('Sistema','System')}</td><td>${esc(tx(SISTEMAS.find(s=>s.id===S.sistema).n))}</td></tr>
+     <tr><td>${T('Cultivo o especie','Crop or species')}</td><td><b>${esc(tx(c.n))}</b> <i>${esc(tx(c.sci))}</i>${S.cultivo==='maiz'?' · '+(S.maizTipo==='nativo'?(S.maizRaza?T('raza ','race ')+esc(S.maizRaza):T('nativo, raza sin especificar','native, race not specified')):esc(S.maizVar||T('mejorado','improved'))):''}${S.cultivo==='granja'&&S.granja.length?' · '+S.granja.map(id=>esc(tx(CATALOGO.find(x=>x.id===id).n))).join(', '):''}</td></tr><tr><td>${T('Sistema','System')}</td><td>${esc(tx(SISTEMAS.find(s=>s.id===S.sistema).n))}</td></tr>
      <tr><td>${T('Superficie','Area')}</td><td>${fmt(S.superficie,1)} ha</td></tr><tr><td>${T('Región','Region')}</td><td>${esc(tx(REG_BX[e[3]].n))}</td></tr>
      <tr><td>${T('Estado · municipio','State · municipality')}</td><td>${esc(e[1])} · ${esc(m?m[1]:'')}</td></tr><tr><td>${T('Localidad','Locality')}</td><td>${esc(l?l[1]:'')}${l&&l[3]!=null?' · '+fmt(l[3],0)+' m':''}</td></tr></tbody></table>
     <div class="kpis" style="margin:0"><div class="kpi"><div class="l">${T('Actividades','Activities')}</div><div class="v">${R.acts.length}</div></div><div class="kpi"><div class="l">${T('Elementos · vínculos','Elements · links')}</div><div class="v">${st.n} · ${st.m}</div></div>
@@ -2663,6 +2787,8 @@ const REF_EXTRA = [
  'Sarandón SJ. 2002. El desarrollo y uso de indicadores para evaluar la sustentabilidad de los agroecosistemas. En: Sarandón SJ (ed.), Agroecología: el camino hacia una agricultura sustentable. Ediciones Científicas Americanas, La Plata: 393–414.',
  'Blondel VD, Guillaume J-L, Lambiotte R, Lefebvre E. 2008. Fast unfolding of communities in large networks. Journal of Statistical Mechanics: Theory and Experiment P10008.',
  'Wackernagel M, Rees W. 1996. Our ecological footprint: reducing human impact on the Earth. New Society Publishers, Gabriola Island.',
+ 'CONABIO. 2020. Razas de maíz de México. Comisión Nacional para el Conocimiento y Uso de la Biodiversidad, Ciudad de México. https://www.biodiversidad.gob.mx/diversidad/alimentos/maices/razas-de-maiz',
+ 'Sánchez JJ, Goodman MM, Stuber CW. 2000. Isozymatic and morphological diversity in the races of maize of Mexico. Economic Botany 54(1): 43–59.',
  'Watts DJ, Strogatz SH. 1998. Collective dynamics of ‘small-world’ networks. Nature 393: 440–442.',
  'Naciones Unidas. 2015. Transformar nuestro mundo: la Agenda 2030 para el Desarrollo Sostenible. A/RES/70/1.',
  'INEGI. 2020. Censo de Población y Vivienda 2020; Catálogo Único de Claves Geoestadísticas.'];
@@ -2689,7 +2815,7 @@ function renderNav(){ $('#nav').innerHTML = BLOQUES.map(b=>`<button class="${S.b
   const a=$('#nav .act'); if(a&&a.scrollIntoView) a.scrollIntoView({block:'nearest',inline:'center'});
   const hechos=BLOQUES.filter(b=>/^\d+$/.test(b.n)&&(S.visitados[b.id]||S.bloque===b.id)).length;
   $('#progTxt').textContent=T(`Avance: ${hechos} de ${NUMERADOS} bloques`,`Progress: ${hechos} of ${NUMERADOS} blocks`); $('#progFill').style.width=(100*hechos/NUMERADOS)+'%'; }
-function actualizarPill(){ const l=locSel(); $('#pillTxt').textContent=`${tx(cultivoSel().n)} · ${l?l[1]:''}`; }
+function actualizarPill(){ const l=locSel(); $('#pillTxt').textContent=`${tx(cultivoSel().n)}${S.cultivo==='maiz'&&(S.maizTipo==='nativo'?S.maizRaza:S.maizVar)?' '+(S.maizTipo==='nativo'?S.maizRaza:S.maizVar):''}${S.cultivo==='granja'&&S.granja.length?' ('+S.granja.length+')':''} · ${l?l[1]:''}`; }
 function renderAyuda(){ $('#dlgAyuda').innerHTML=`<div class="dh"><h2>${T('Cómo usar Ratio Telar','How to use Ratio Telar')}</h2><button class="ibtn round" onclick="this.closest('dialog').close()" aria-label="×">✕</button></div>
   <div class="db"><ol><li>${T('<b>Avanza en orden</b>: cultivo, región, requerimientos, manejo, elementos y precio-valor.','<b>Move in order</b>: crop, region, requirements, management, elements and price-value.')}</li>
   <li>${T('En <b>Formulación</b> presiona <i>Tejer el sistema</i>; en <b>Tablero</b> ves la red y su estadística; en <b>Sostenibilidad</b>, los ODS y la huella.','In <b>Formulation</b> press <i>Weave the system</i>; <b>Dashboard</b> shows the network and its statistics; <b>Sustainability</b> shows SDGs and footprint.')}</li>

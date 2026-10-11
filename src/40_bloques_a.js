@@ -53,7 +53,7 @@ function telarVivo(){ const cols=['#9a6a3a','#d9a441','#5f8f3e','#2f7d8a','#7a4f
   s+=`<g class="lanzadera"><rect x="30" y="${330}" width="70" height="22" rx="11" fill="var(--accent)"/><circle cx="65" cy="341" r="5" fill="#fff"/></g></svg>`; return s; }
 function renderInicio(el){
   const nl=Object.values(TERR.localidades).reduce((s,l)=>s+l.length,0), nm=Object.values(TERR.municipios).reduce((s,l)=>s+l.length,0);
-  const pasos=[['cultivo',T('Cultivo o especie','Crop or species'),T('Elige entre 18 cultivos y especies domésticas y el sistema: milpa, MIAF, traspatio, agostadero…','Choose among 18 crops and livestock species and the system: milpa, MIAF, backyard, rangeland…')],
+  const pasos=[['cultivo',T('Cultivo o especie','Crop or species'),T(`Elige entre ${CATALOGO.filter(c=>c.tipo==='cultivo').length} cultivos (la uva primero), ${CATALOGO.filter(c=>c.tipo==='especie'&&!c.especial).length} especies y la granja de traspatio; y el sistema: viñedo, milpa, MIAF, traspatio…`,`Choose among ${CATALOGO.filter(c=>c.tipo==='cultivo').length} crops (grape first), ${CATALOGO.filter(c=>c.tipo==='especie'&&!c.especial).length} species and the backyard farm; and the system: vineyard, milpa, MIAF, backyard…`)],
     ['region',T('Región','Region'),T(`Del país a la localidad: ${fmt(nm,0)} municipios y ${fmt(nl,0)} localidades del INEGI, con altitud y ubicación en el mapa.`,`From country to locality: ${fmt(nm,0)} municipalities and ${fmt(nl,0)} INEGI localities with altitude and map position.`)],
     ['requerimientos',T('Requerimientos','Requirements'),T('Las 5B del saber local y los requerimientos que la localidad ha innovado.','The 5B of local knowledge and the requirements the locality has innovated.')],
     ['manejo',T('Manejo','Management'),T('38 pasos y sus actividades tradicionales; agrega las innovadoras de tu localidad.','38 steps and their traditional activities; add your locality’s innovations.')],
@@ -103,7 +103,17 @@ function renderCultivo(el){ const tipo=renderCultivo.tipo||cultivoSel().tipo; co
     <div class="tipo-tabs"><button data-tipo="cultivo" class="${tipo==='cultivo'?'on':''}">${T('Cultivos','Crops')}</button><button data-tipo="especie" class="${tipo==='especie'?'on':''}">${T('Especies animales','Livestock species')}</button></div></div>
     <div class="cat-grid">${CATALOGO.filter(x=>x.tipo===tipo).map((x,i)=>`<div class="cat-card aparece ${x.id===S.cultivo?'sel':''}" data-cult="${x.id}" style="--cc:${x.col};animation-delay:${i*40}ms" tabindex="0" role="button">
       <span class="est ${x.doc==='stack'?'doc':''}">${x.doc==='stack'?T('Stack documentado','Documented Stack'):T('Por documentar','To document')}</span>
-      <svg viewBox="0 0 ${x.ico.startsWith('a-')||x.ico==='i-steer'||x.ico==='i-chicken'?'0 0 120 100':'0 0 100 120'}"><use href="#${x.ico}"/></svg><b>${esc(tx(x.n))}</b><i>${esc(x.sci)}</i></div>`).join('')}</div></div>
+      <svg viewBox="${x.ico==='i-steer'?'0 0 170 120':x.ico.startsWith('a-')||x.ico==='i-chicken'?'0 0 120 100':'0 0 100 120'}"><use href="#${x.ico}"/></svg><b>${esc(tx(x.n))}</b><i>${esc(tx(x.sci))}</i></div>`).join('')}</div></div>
+  ${S.cultivo==='maiz'?`<div class="card aparece" style="border-top:4px solid #d9a441"><div class="row between"><h3 style="margin:0">${ill('c-maiz','','width:34px;height:40px;vertical-align:middle;margin-right:6px')}${T('Tipo de maíz','Maize type')}</h3>
+     <div class="tipo-tabs" style="margin:0"><button data-mtipo="nativo" class="${S.maizTipo==='nativo'?'on':''}">${T('Nativo o criollo (raza)','Native landrace (race)')}</button><button data-mtipo="mejorado" class="${S.maizTipo==='mejorado'?'on':''}">${T('Mejorado o híbrido','Improved or hybrid')}</button></div></div>
+    ${S.maizTipo==='nativo'?`<p class="nota">${T('Las 64 razas de maíz reportadas para México, en sus siete grupos raciales. 59 son nativas; las marcadas con ° se describieron primero en el Caribe o Guatemala y también se han colectado en México.','The 64 maize races reported for Mexico in their seven racial groups. 59 are native; those marked ° were first described in the Caribbean or Guatemala and have also been collected in Mexico.')}</p>
+     <label class="f"><span>${T('Raza','Race')}</span><select id="mRaza"><option value="">${T('— Sin especificar —','— Not specified —')}</option>${RAZAS_MAIZ.map(g=>`<optgroup label="${esc(T('Grupo','Group')+' '+tx(g.g))}">${g.r.map(r=>`<option value="${esc(r)}" ${S.maizRaza===r?'selected':''}>${esc(r)}${RAZAS_EXT.includes(r)?' °':''}</option>`).join('')}</optgroup>`).join('')}</select></label>
+     <div class="razas">${RAZAS_MAIZ.map(g=>`<div><b>${esc(tx(g.g))}</b> <span class="muted">(${g.r.length})</span><div class="elchips">${g.r.map(r=>`<button type="button" class="elchip ${S.maizRaza===r?'on':''}" style="--ec:#c98b21" data-raza="${esc(r)}">${esc(r)}${RAZAS_EXT.includes(r)?' °':''}</button>`).join('')}</div></div>`).join('')}</div>
+     <div class="fuente">${T('Fuente','Source')}: CONABIO (2020), ${T('Razas de maíz de México; clasificación de Sánchez et al. (2000)','Maize races of Mexico; classification by Sánchez et al. (2000)')}. ${T('El artículo de Calpan trata maíces criollos sin especificar raza; en Puebla se reportan cerca de 22.','The Calpan paper covers landraces without specifying race; about 22 are reported in Puebla.')}</div>`
+    :`<label class="f"><span>${T('Nombre de la variedad o del híbrido','Variety or hybrid name')}</span><input id="mVar" value="${esc(S.maizVar)}" placeholder="${T('escríbelo tal como lo compras o lo nombra la institución','as you buy it or as the institution names it')}"></label>`}</div>`:''}
+  ${S.cultivo==='granja'?`<div class="card granja aparece"><h3>${ill('a-granja','','width:46px;height:38px;vertical-align:middle;margin-right:8px')}${T('Especies de tu granja de traspatio','Species in your backyard farm')}</h3><p class="nota">${T('Marca las especies que conviven en la granja; cada una aporta sus propios pasos de manejo, insumos y productos.','Tick the species living together on the farm; each brings its own management steps, inputs and products.')}</p>
+    <div class="cat-grid mini">${CATALOGO.filter(x=>x.tipo==='especie'&&!x.especial).map(x=>`<div class="cat-card ${S.granja.includes(x.id)?'sel':''}" data-gesp="${x.id}" style="--cc:${x.col}" tabindex="0" role="button"><svg viewBox="${x.ico==='i-steer'?'0 0 170 120':'0 0 120 100'}"><use href="#${x.ico}"/></svg><b>${esc(tx(x.n))}</b></div>`).join('')}</div>
+    <p><b>${S.granja.length}</b> ${T('especies seleccionadas','species selected')}${S.granja.length?': '+S.granja.map(id=>esc(tx(CATALOGO.find(c=>c.id===id).n))).join(', '):''}</p></div>`:''}
   <div class="grid g2"><div class="card"><h3>${T('Sistema de producción','Production system')}${ayuda('sistema')}</h3>
     <div class="opts">${SISTEMAS.map(s=>`<label class="opt ${S.sistema===s.id?'sel':''}"><input type="radio" name="sis" value="${s.id}" ${S.sistema===s.id?'checked':''}><b>${esc(tx(s.n))}</b><small>${s.doc?T('documentado en Calpan','documented in Calpan'):T('captura tu propia descripción','enter your own description')}</small></label>`).join('')}</div></div>
    <div class="card"><h3>${T('Unidad de producción','Production unit')}</h3>
@@ -111,11 +121,16 @@ function renderCultivo(el){ const tipo=renderCultivo.tipo||cultivoSel().tipo; co
     <label class="f"><span>${T('Superficie (ha)','Area (ha)')}${ayuda('superficie')}</span><input type="number" id="sup" min="0" step="0.1" value="${S.superficie}"></label>
     <label class="f"><span>${T('Nombre del proyecto o de la parcela','Project or plot name')}</span><input id="pNom" value="${esc(S.proyecto.nombre)}" placeholder="${T('p. ej., Parcela El Llano','e.g., El Llano plot')}"></label>
     <label class="f"><span>${T('Productor o productora','Farmer')}</span><input id="pProd" value="${esc(S.proyecto.productor)}"></label>
-    <div class="kpis" style="margin-top:10px"><div class="kpi"><div class="l">${T('Seleccionado','Selected')}</div><div class="v" style="font-size:20px">${esc(tx(c.n))}</div><div class="s"><i>${esc(c.sci)}</i></div></div>
+    <div class="kpis" style="margin-top:10px"><div class="kpi"><div class="l">${T('Seleccionado','Selected')}</div><div class="v" style="font-size:20px">${esc(tx(c.n))}</div><div class="s"><i>${esc(tx(c.sci))}</i></div></div>
     <div class="kpi"><div class="l">${T('Pasos de manejo','Management steps')}</div><div class="v">${c.doc==='stack'?38:Object.keys(S.manejo).length}</div><div class="s">${c.doc==='stack'?T('83 actividades publicadas','83 published activities'):T('captúralos en el Bloque 4','enter them in Block 4')}</div></div></div></div></div>
   ${siguiente('cultivo')}`;
   $$('[data-tipo]',el).forEach(b=>b.onclick=()=>{ renderCultivo.tipo=b.dataset.tipo; render(); });
-  $$('[data-cult]',el).forEach(c=>c.onclick=()=>{ S.cultivo=c.dataset.cult; S.formulado=false; guardar(); render(); toast(tx(cultivoSel().n)); });
+  $$('[data-cult]',el).forEach(c=>c.onclick=()=>{ S.cultivo=c.dataset.cult; S.formulado=false; if(S.cultivo==='granja') S.sistema='traspatio'; if(S.cultivo==='uva'&&S.sistema==='milpa') S.sistema='vinedo'; guardar(); render(); toast(tx(cultivoSel().n)); });
+  $$('[data-mtipo]',el).forEach(b=>b.onclick=()=>{ S.maizTipo=b.dataset.mtipo; guardar(); render(); });
+  $$('[data-raza]',el).forEach(b=>b.onclick=()=>{ S.maizRaza = S.maizRaza===b.dataset.raza ? '' : b.dataset.raza; guardar(); render(); toast(S.maizRaza||T('Raza sin especificar','Race not specified')); });
+  const mr=$('#mRaza',el); if(mr) mr.onchange=()=>{ S.maizRaza=mr.value; guardar(); render(); };
+  const mv=$('#mVar',el); if(mv) mv.onchange=()=>{ S.maizVar=mv.value.trim(); guardar(); actualizarPill(); };
+  $$('[data-gesp]',el).forEach(c=>c.onclick=()=>{ const id=c.dataset.gesp; S.granja = S.granja.includes(id) ? S.granja.filter(x=>x!==id) : S.granja.concat(id); guardar(); render(); });
   $$('input[name=sis]',el).forEach(r=>r.onchange=()=>{ S.sistema=r.value; guardar(); render(); });
   $('#tUP',el).onchange=e=>{ S.tipoUP=+e.target.value; guardar(); };
   $('#sup',el).onchange=e=>{ S.superficie=+e.target.value||0; guardar(); };
@@ -133,6 +148,7 @@ function renderRegion(el){ const e=edoDe(S.edo), muns=TERR.municipios[S.edo]||[]
       <label class="f"><span>${T('Estado','State')}</span><select id="zEst">${TERR.estados.map(x=>`<option value="${x[0]}" ${x[0]===S.edo?'selected':''}>${esc(x[1])}</option>`).join('')}</select></label>
       <label class="f"><span>${T('Municipio','Municipality')}</span><select id="zMun">${muns.map(x=>`<option value="${x[0]}" ${x[0]===S.mun?'selected':''}>${esc(x[1])}</option>`).join('')}</select></label>
       <label class="f"><span>${T('Localidad','Locality')}${ayuda('localidad')}</span><select id="zLoc">${locs.map(x=>`<option value="${x[0]}" ${x[0]===S.loc?'selected':''}>${esc(x[1])}${x[2]!=null?' · '+fmt(x[2],0)+' hab.':''}</option>`).join('')}</select></label>
+      <div class="lugares"><span class="nota">${T('Lugares de trabajo','Work places')}:</span>${LUGARES.map((p,i)=>`<button class="chip ${S.edo===p.edo&&S.mun===p.mun&&S.loc===p.loc?'on':''}" data-lugar="${i}">📍 ${esc(tx(p.n))}</button>`).join('')}</div>
       <div class="ruta"><span>${T('México','Mexico')}</span><i>›</i><span>${esc(tx(REG_BX[e[3]].n))}</span><i>›</i><span>${esc(e[1])}</span><i>›</i><span>${esc(m?m[1]:'')}</span><i>›</i><span>${esc(l?l[1]:'')}</span></div></div></div></div>
   <div class="kpis">
    <div class="kpi"><div class="l">${T('Localidad: población 2020','Locality: population 2020')}</div><div class="v">${l&&l[2]!=null?fmt(l[2],0):'—'}</div><div class="s">${l?(l[6]?T('urbana','urban'):T('rural','rural')):''}</div></div>
@@ -154,6 +170,7 @@ function renderRegion(el){ const e=edoDe(S.edo), muns=TERR.municipios[S.edo]||[]
   $('#zEst',el).onchange=ev=>ponEdo(ev.target.value);
   $('#zMun',el).onchange=ev=>{ S.mun=ev.target.value; S.loc=(TERR.localidades[S.edo+S.mun]||[[null]])[0][0]; guardar(); render(); };
   $('#zLoc',el).onchange=ev=>{ S.loc=ev.target.value; guardar(); render(); };
+  $$('[data-lugar]',el).forEach(b=>b.onclick=()=>{ const p=LUGARES[+b.dataset.lugar]; S.edo=p.edo; S.mun=p.mun; S.loc=p.loc; guardar(); render(); toast(tx(p.n)); });
   const ac=$('#aCalpan',el); if(ac) ac.onclick=()=>{ S.edo='21'; S.mun='026'; S.loc='0001'; guardar(); render(); }; }
 
 /* ================= BLOQUE 3 · REQUERIMIENTOS ================= */

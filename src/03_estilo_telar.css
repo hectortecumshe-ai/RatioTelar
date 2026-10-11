@@ -163,3 +163,13 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
 .dibuja-m{animation:medir 1.4s var(--ease) both}
 @keyframes medir{from{stroke-dasharray:0 200}}
 @media(max-width:600px){ #pill{display:none} .bar-top{gap:4px} .modesw button{padding:4px 7px} }
+
+.cat-grid.mini{grid-template-columns:repeat(auto-fill,minmax(118px,1fr))}
+.cat-grid.mini .cat-card svg{width:70px;height:60px}
+.card.granja{border-top:4px solid #b5462a}
+.lugares{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}
+.lugares .chip{cursor:pointer;font-family:inherit}
+.lugares .chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+.razas{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;margin-top:10px}
+.razas>div{background:var(--bg-soft);border-radius:var(--r-sm);padding:8px 10px}

@@ -20,7 +20,7 @@ function renderInforme(el){ const R=construirRed(), st=estadisticaRed(R), sos=so
      <p class="muted" style="margin:0">${esc(S.proyecto.productor||'')}</p></div><div class="bill" style="--anim:running;width:90px;height:90px">${ill(c.ico)}</div></div>
    <p style="font-size:17px">${esc(resumenTexto(R,st,sos,cum))}</p>
    <div class="grid g2"><table class="tbl"><tbody>
-     <tr><td>${T('Cultivo o especie','Crop or species')}</td><td><b>${esc(tx(c.n))}</b> <i>${esc(c.sci)}</i></td></tr><tr><td>${T('Sistema','System')}</td><td>${esc(tx(SISTEMAS.find(s=>s.id===S.sistema).n))}</td></tr>
+     <tr><td>${T('Cultivo o especie','Crop or species')}</td><td><b>${esc(tx(c.n))}</b> <i>${esc(tx(c.sci))}</i>${S.cultivo==='maiz'?' · '+(S.maizTipo==='nativo'?(S.maizRaza?T('raza ','race ')+esc(S.maizRaza):T('nativo, raza sin especificar','native, race not specified')):esc(S.maizVar||T('mejorado','improved'))):''}${S.cultivo==='granja'&&S.granja.length?' · '+S.granja.map(id=>esc(tx(CATALOGO.find(x=>x.id===id).n))).join(', '):''}</td></tr><tr><td>${T('Sistema','System')}</td><td>${esc(tx(SISTEMAS.find(s=>s.id===S.sistema).n))}</td></tr>
      <tr><td>${T('Superficie','Area')}</td><td>${fmt(S.superficie,1)} ha</td></tr><tr><td>${T('Región','Region')}</td><td>${esc(tx(REG_BX[e[3]].n))}</td></tr>
      <tr><td>${T('Estado · municipio','State · municipality')}</td><td>${esc(e[1])} · ${esc(m?m[1]:'')}</td></tr><tr><td>${T('Localidad','Locality')}</td><td>${esc(l?l[1]:'')}${l&&l[3]!=null?' · '+fmt(l[3],0)+' m':''}</td></tr></tbody></table>
     <div class="kpis" style="margin:0"><div class="kpi"><div class="l">${T('Actividades','Activities')}</div><div class="v">${R.acts.length}</div></div><div class="kpi"><div class="l">${T('Elementos · vínculos','Elements · links')}</div><div class="v">${st.n} · ${st.m}</div></div>
@@ -109,6 +109,8 @@ const REF_EXTRA = [
  'Sarandón SJ. 2002. El desarrollo y uso de indicadores para evaluar la sustentabilidad de los agroecosistemas. En: Sarandón SJ (ed.), Agroecología: el camino hacia una agricultura sustentable. Ediciones Científicas Americanas, La Plata: 393–414.',
  'Blondel VD, Guillaume J-L, Lambiotte R, Lefebvre E. 2008. Fast unfolding of communities in large networks. Journal of Statistical Mechanics: Theory and Experiment P10008.',
  'Wackernagel M, Rees W. 1996. Our ecological footprint: reducing human impact on the Earth. New Society Publishers, Gabriola Island.',
+ 'CONABIO. 2020. Razas de maíz de México. Comisión Nacional para el Conocimiento y Uso de la Biodiversidad, Ciudad de México. https://www.biodiversidad.gob.mx/diversidad/alimentos/maices/razas-de-maiz',
+ 'Sánchez JJ, Goodman MM, Stuber CW. 2000. Isozymatic and morphological diversity in the races of maize of Mexico. Economic Botany 54(1): 43–59.',
  'Watts DJ, Strogatz SH. 1998. Collective dynamics of ‘small-world’ networks. Nature 393: 440–442.',
  'Naciones Unidas. 2015. Transformar nuestro mundo: la Agenda 2030 para el Desarrollo Sostenible. A/RES/70/1.',
  'INEGI. 2020. Censo de Población y Vivienda 2020; Catálogo Único de Claves Geoestadísticas.'];
@@ -135,7 +137,7 @@ function renderNav(){ $('#nav').innerHTML = BLOQUES.map(b=>`<button class="${S.b
   const a=$('#nav .act'); if(a&&a.scrollIntoView) a.scrollIntoView({block:'nearest',inline:'center'});
   const hechos=BLOQUES.filter(b=>/^\d+$/.test(b.n)&&(S.visitados[b.id]||S.bloque===b.id)).length;
   $('#progTxt').textContent=T(`Avance: ${hechos} de ${NUMERADOS} bloques`,`Progress: ${hechos} of ${NUMERADOS} blocks`); $('#progFill').style.width=(100*hechos/NUMERADOS)+'%'; }
-function actualizarPill(){ const l=locSel(); $('#pillTxt').textContent=`${tx(cultivoSel().n)} · ${l?l[1]:''}`; }
+function actualizarPill(){ const l=locSel(); $('#pillTxt').textContent=`${tx(cultivoSel().n)}${S.cultivo==='maiz'&&(S.maizTipo==='nativo'?S.maizRaza:S.maizVar)?' '+(S.maizTipo==='nativo'?S.maizRaza:S.maizVar):''}${S.cultivo==='granja'&&S.granja.length?' ('+S.granja.length+')':''} · ${l?l[1]:''}`; }
 function renderAyuda(){ $('#dlgAyuda').innerHTML=`<div class="dh"><h2>${T('Cómo usar Ratio Telar','How to use Ratio Telar')}</h2><button class="ibtn round" onclick="this.closest('dialog').close()" aria-label="×">✕</button></div>
   <div class="db"><ol><li>${T('<b>Avanza en orden</b>: cultivo, región, requerimientos, manejo, elementos y precio-valor.','<b>Move in order</b>: crop, region, requirements, management, elements and price-value.')}</li>
   <li>${T('En <b>Formulación</b> presiona <i>Tejer el sistema</i>; en <b>Tablero</b> ves la red y su estadística; en <b>Sostenibilidad</b>, los ODS y la huella.','In <b>Formulation</b> press <i>Weave the system</i>; <b>Dashboard</b> shows the network and its statistics; <b>Sustainability</b> shows SDGs and footprint.')}</li>

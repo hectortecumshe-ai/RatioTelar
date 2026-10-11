@@ -12,7 +12,7 @@ Diez bloques que se alimentan con los datos de la localidad, como en RatioBos:
 
 | Bloque | Contenido |
 |---|---|
-| 1 · Cultivo | Catálogo ilustrado de 12 cultivos y 6 especies domésticas; sistema (milpa, MIAF, traspatio…) y unidad de producción |
+| 1 · Cultivo | Catálogo ilustrado: 14 cultivos (uva primero, maíz con sus 64 razas de CONABIO, chayote…), 9 especies (conejo, gallos de pelea, chinicuil…) y la granja de traspatio; sistema y unidad de producción, incluidos los ranchos cinegéticos |
 | 2 · Región | Mapa real de México; estado, municipio y localidad (2,478 municipios y 54,357 localidades del INEGI con altitud y coordenadas) |
 | 3 · Requerimientos | Requerimientos técnicos tradicionales (las 5B) y los innovados en la localidad |
 | 4 · Manejo | 38 pasos con sus actividades tradicionales, impacto editable, actividades innovadoras y fechas de las actividades principales |
