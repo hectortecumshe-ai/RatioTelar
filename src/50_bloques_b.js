@@ -90,18 +90,59 @@ function renderPrecios(el){ const filtro=renderPrecios.cat||'insumos'; const par
   <div class="tipo-tabs" style="flex-wrap:wrap">${Object.entries(CATS).map(([k,c])=>`<button data-pcat="${k}" class="${k===filtro?'on':''}">${c.sym} ${esc(tx(c.n))}</button>`).join('')}</div>
   <div class="card"><div class="tbl-c"><table class="tbl val"><thead><tr><th>${T('Elemento','Element')}</th><th class="r">${T('Precio unitario ($)','Unit price ($)')}${ayuda('precioValor')}</th><th>${T('Unidad','Unit')}</th><th class="r">${T('Cantidad por ha','Quantity per ha')}</th><th class="r">$/ha</th>${DIMV.map(([k,n,a])=>`<th>${esc(tx(n))}${ayuda(a)}</th>`).join('')}<th class="r">${T('Valor','Value')}</th></tr></thead><tbody>
    ${l.map(e=>{ const p=S.precio[e.id]||{}, v=valorEl(e.id,part); const sub=(+p.p||0)*(+p.q||0);
-     return `<tr><td><b>${esc(tx(e.n))}</b></td><td class="r"><input type="number" step="any" min="0" data-pp="${e.id}" value="${p.p??''}"></td><td><input data-pu="${e.id}" value="${esc(p.u??'')}" style="width:80px" placeholder="kg, L, jornal"></td><td class="r"><input type="number" step="any" min="0" data-pq="${e.id}" value="${p.q??''}"></td><td class="r">${p.p&&p.q?fmt(sub,2):'—'}</td>${DIMV.map(([k])=>`<td>${estrellas(e.id,k)}</td>`).join('')}<td class="r"><b>${fmt(v.v,2)}</b><div class="tiny muted">${v.origen==='usuario'?T('valorado','rated'):T('estructural','structural')}</div></td></tr>`; }).join('')}
+     return `<tr><td><b>${esc(tx(e.n))}</b>${e.usuario?` <span class="badge acc">${T('tuyo','yours')}</span> <button class="btn sm ghost" data-qpel="${esc(e.id)}" title="${T('Quitar del catálogo','Remove from catalogue')}">×</button>${e.d?`<div class="tiny muted">${esc(e.d)}</div>`:''}`:''}${(part[e.id]||0)?'':`<div class="tiny muted">${T('aún no participa en actividades','not yet in any activity')}</div>`}</td><td class="r"><input type="number" step="any" min="0" data-pp="${e.id}" value="${p.p??''}"></td><td><input data-pu="${e.id}" value="${esc(p.u??'')}" style="width:80px" placeholder="kg, L, jornal"></td><td class="r"><input type="number" step="any" min="0" data-pq="${e.id}" value="${p.q??''}"></td><td class="r">${p.p&&p.q?fmt(sub,2):'—'}</td>${DIMV.map(([k])=>`<td>${estrellas(e.id,k)}</td>`).join('')}<td class="r"><b>${fmt(v.v,2)}</b><div class="tiny muted">${v.origen==='usuario'?T('valorado','rated'):T('estructural','structural')}</div></td></tr>`; }).join('')}
    </tbody></table></div>
+   <div class="nueva"><b>+ ${T('Agregar a','Add to')} «${esc(tx(CATS[filtro].n))}»</b>
+     <div class="grid g3" style="margin-top:8px"><label class="f"><span>${T('Nombre','Name')}</span><input id="nqN" placeholder="${esc(T(EJEMPLO_CAT[filtro][0],EJEMPLO_CAT[filtro][1]))}"></label>
+      <label class="f"><span>${T('Descripción (opcional)','Description (optional)')}</span><input id="nqD"></label>
+      <label class="f"><span>${T('Unidad','Unit')}</span><input id="nqU" placeholder="kg, L, jornal, ha, pieza"></label>
+      <label class="f"><span>${T('Precio unitario ($)','Unit price ($)')}</span><input type="number" step="any" min="0" id="nqP"></label>
+      <label class="f"><span>${T('Cantidad por ha','Quantity per ha')}</span><input type="number" step="any" min="0" id="nqQ"></label>
+      <div style="align-self:end"><button class="btn" id="nqAdd">+ ${T('Agregar al catálogo','Add to catalogue')}</button></div></div>
+     <p class="nota">${T('Para que un elemento nuevo entre a la red y a la sostenibilidad, elígelo en una actividad (Bloque 4, «+ Actividad innovadora»).','For a new element to enter the network and sustainability, choose it in an activity (Block 4, “+ Innovative activity”).')}</p></div>
    <p class="nota">${T('No hay precios regionales publicados para estos elementos en las fuentes de Ratio Telar: la base se alimenta con tus cotizaciones y se guarda en tu navegador.','There are no published regional prices for these elements in Ratio Telar sources: the database is fed with your quotes and saved in your browser.')}</p></div>
+  <div class="card"><div class="row between"><h3 style="margin:0">${T('Mi catálogo','My catalogue')}</h3>
+    <div class="row" style="gap:6px;flex-wrap:wrap"><button class="btn sm ghost" id="catBaj">⤓ ${T('Descargar catálogo (CSV)','Download catalogue (CSV)')}</button><button class="btn sm ghost" id="catCar">⤒ ${T('Cargar catálogo (CSV)','Load catalogue (CSV)')}</button><input type="file" id="catF" accept=".csv,text/csv" hidden></div></div>
+   <div class="catgrid" style="margin-top:10px">${Object.entries(CATS).map(([k,c])=>{ const base=ELEM.filter(e=>e.cat===k).length, mio=(S.elemExtra||[]).filter(e=>e.cat===k).length;
+     return `<button class="catbox" data-pcat="${k}" style="--ec:${c.col};text-align:left;cursor:pointer;font-family:inherit"><h3><span class="sym">${c.sym}</span>${esc(tx(c.n))}</h3><div class="nota">${base} ${T('del caso','from the case')} · <b style="color:var(--accent-text)">${mio} ${T('tuyos','yours')}</b></div></button>`; }).join('')}</div>
+   <p class="nota">${T('El CSV lleva las columnas categoria, elemento, descripcion, unidad, precio, cantidad_ha, economico, uso, cultural y ecologico. Al cargarlo, los elementos que ya existen actualizan su precio y su valor, y los nuevos se agregan a tu catálogo. Sirve para compartir el catálogo entre unidades de producción o localidades.','The CSV has columns categoria, elemento, descripcion, unidad, precio, cantidad_ha, economico, uso, cultural, ecologico. When loaded, existing elements update price and value and new ones are added to your catalogue. Use it to share the catalogue across farms or localities.')}</p></div>
   <div class="card"><h3>${T('Costo por hectárea de los elementos con precio','Cost per hectare of priced elements')}</h3>${(()=>{ const it=todosElem().map(e=>{ const p=S.precio[e.id]||{}; return {l:tx(e.n), v:(+p.p||0)*(+p.q||0), c:CATS[e.cat].col}; }).filter(x=>x.v>0).sort((a,b)=>b.v-a.v);
     return it.length ? barrasH(it.map(x=>({...x, vl:'$'+fmt(x.v,0)})),{izq:260})+`<p><b>${T('Total','Total')}: $${fmt(it.reduce((s,x)=>s+x.v,0),2)} / ha</b> · ${T('unidad de','unit of')} ${fmt(S.superficie,1)} ha: <b>$${fmt(it.reduce((s,x)=>s+x.v,0)*S.superficie,2)}</b></p>` : `<p class="sindato">${T('Captura precio y cantidad por hectárea para ver la estructura de costos.','Enter price and quantity per hectare to see the cost structure.')}</p>`; })()}</div>
   ${siguiente('precios')}`;
   $$('[data-pcat]',el).forEach(b=>b.onclick=()=>{ renderPrecios.cat=b.dataset.pcat; render(); });
+  $('#nqAdd',el).onclick=()=>{ const n=$('#nqN',el).value.trim(); if(!n) return toast(T('Escribe el nombre','Write the name'));
+    if(todosElem().some(e=>e.cat===filtro && tx(e.n).toLowerCase()===n.toLowerCase())) return toast(T('Ya existe en esta categoría','Already in this category'));
+    const id='U'+Date.now().toString(36); S.elemExtra=S.elemExtra||[]; S.elemExtra.push({id, cat:filtro, n:E(n,n), d:$('#nqD',el).value.trim(), usuario:true});
+    const p=$('#nqP',el).value, q=$('#nqQ',el).value, u=$('#nqU',el).value.trim(); if(p!==''||q!==''||u) S.precio[id]={p:p===''?'':+p, q:q===''?'':+q, u};
+    guardar(); render(); toast(T('Agregado al catálogo','Added to the catalogue')); };
+  $$('[data-qpel]',el).forEach(b=>b.onclick=()=>{ const id=b.dataset.qpel; S.elemExtra=S.elemExtra.filter(e=>e.id!==id); delete S.precio[id]; delete S.valor[id];
+    Object.values(S.manejo).forEach(m=>(m.inn||[]).forEach(x=>{ x.el=(x.el||[]).filter(z=>z!==id); })); guardar(); render(); });
+  $('#catBaj',el).onclick=()=>descargar(slug()+'_catalogo.csv', csv([['categoria','elemento','descripcion','unidad','precio','cantidad_ha','economico','uso','cultural','ecologico','propio']].concat(todosElem().map(e=>{ const p=S.precio[e.id]||{}, v=S.valor[e.id]||{}; return [e.cat, tx(e.n), e.d||'', p.u||'', p.p??'', p.q??'', v.eco??'', v.uso??'', v.cul??'', v.eia??'', e.usuario?'si':'no']; }))), 'text/csv');
+  $('#catCar',el).onclick=()=>$('#catF',el).click();
+  $('#catF',el).onchange=ev=>{ const f=ev.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{ try{ const n=importarCatalogo(r.result); guardar(); render(); toast(T(`Catálogo cargado: ${n.nuevos} nuevos, ${n.act} actualizados`,`Catalogue loaded: ${n.nuevos} new, ${n.act} updated`)); }catch(e){ toast(T('CSV no válido','Invalid CSV')); } }; r.readAsText(f,'utf-8'); };
   $$('[data-peso]',el).forEach(r=>r.onchange=()=>{ S.pesosValor[r.dataset.peso]=+r.value; guardar(); render(); });
   const setP=(attr,k,num)=>$$(`[data-${attr}]`,el).forEach(i=>i.onchange=()=>{ const id=i.dataset[attr]; S.precio[id]=S.precio[id]||{}; S.precio[id][k]= num ? (i.value===''?'':+i.value) : i.value; guardar(); render(); });
   setP('pp','p',true); setP('pu','u',false); setP('pq','q',true);
   $$('.estrellas',el).forEach(s=>s.onclick=ev=>{ const b=ev.target.closest('button'); if(!b) return; const [id,k]=s.dataset.val.split('|'), i=+b.dataset.i; S.valor[id]=S.valor[id]||{}; S.valor[id][k]= S.valor[id][k]===i ? '' : i; S.formulado=false; guardar(); render(); }); }
 
+/* Lectura de un CSV de catálogo (comillas dobles opcionales; separador coma) */
+function leerCSV(t){ const filas=[]; let f=[], c='', q=false; t=t.replace(/^\ufeff/,'');
+  for(let i=0;i<t.length;i++){ const ch=t[i];
+    if(q){ if(ch==='"'){ if(t[i+1]==='"'){ c+='"'; i++; } else q=false; } else c+=ch; }
+    else if(ch==='"') q=true; else if(ch===','){ f.push(c); c=''; } else if(ch==='\n'||ch==='\r'){ if(ch==='\r'&&t[i+1]==='\n') i++; f.push(c); filas.push(f); f=[]; c=''; } else c+=ch; }
+  if(c!==''||f.length){ f.push(c); filas.push(f); } return filas.filter(r=>r.some(x=>x.trim()!=='')); }
+function importarCatalogo(texto){ const filas=leerCSV(texto), cab=filas.shift().map(h=>h.trim().toLowerCase()); const ix=(k)=>cab.indexOf(k); let nuevos=0, act=0;
+  const catDe=(v)=>{ v=(v||'').trim().toLowerCase(); return Object.keys(CATS).find(k=>k===v || tx(CATS[k].n).toLowerCase()===v || CATS[k].n.es.toLowerCase()===v || CATS[k].n.en.toLowerCase()===v); };
+  filas.forEach(r=>{ const cat=catDe(r[ix('categoria')]), nom=(r[ix('elemento')]||'').trim(); if(!cat||!nom) return;
+    let e=todosElem().find(x=>x.cat===cat && (tx(x.n).toLowerCase()===nom.toLowerCase() || x.n.es.toLowerCase()===nom.toLowerCase()));
+    if(!e){ e={id:'U'+Date.now().toString(36)+nuevos, cat, n:E(nom,nom), d:(r[ix('descripcion')]||'').trim(), usuario:true}; S.elemExtra=S.elemExtra||[]; S.elemExtra.push(e); nuevos++; } else act++;
+    const num=(k)=>{ const v=(r[ix(k)]||'').trim(); return v===''?'':+v; };
+    const p={u:(r[ix('unidad')]||'').trim(), p:num('precio'), q:num('cantidad_ha')}; if(p.u||p.p!==''||p.q!=='') S.precio[e.id]=Object.assign(S.precio[e.id]||{}, p);
+    const v={eco:num('economico'), uso:num('uso'), cul:num('cultural'), eia:num('ecologico')}; if(Object.values(v).some(x=>x!=='')) S.valor[e.id]=v; });
+  return {nuevos, act}; }
+const EJEMPLO_CAT = {actores:['p. ej., Mayordomo de la viña','e.g., Vineyard foreman'], instituciones:['p. ej., Universidad Veracruzana','e.g., Universidad Veracruzana'], insumos:['p. ej., Abono de lombricomposta','e.g., Vermicompost'],
+  equipo:['p. ej., Tijeras de poda','e.g., Pruning shears'], naturales:['p. ej., Manantial','e.g., Spring'], financieros:['p. ej., Crédito de avío','e.g., Working-capital loan'], conocimientos:['p. ej., Saber de poda de la región','e.g., Local pruning know-how'],
+  politicas:['p. ej., Programa estatal de fomento','e.g., State support programme'], perturbaciones:['p. ej., Norte (vientos del norte)','e.g., Norther winds'], productos:['p. ej., Vino artesanal','e.g., Craft wine']};
 /* ================= BLOQUE 7 · FORMULACIÓN DEL SCA ================= */
 function propiedadesSCA(R, st){ const nInn=R.acts.filter(a=>a.tipo==='inn').length, nCat=new Set(R.nodos.map(d=>d.cat)).size;
   return [
