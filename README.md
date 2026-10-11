@@ -16,7 +16,7 @@ Diez bloques que se alimentan con los datos de la localidad, como en RatioBos:
 | 2 · Región | Mapa real de México; estado, municipio y localidad (2,478 municipios y 54,357 localidades del INEGI con altitud y coordenadas) |
 | 3 · Requerimientos | Requerimientos técnicos tradicionales (las 5B) y los innovados en la localidad |
 | 4 · Manejo | 38 pasos con sus actividades tradicionales, impacto editable, actividades innovadoras y fechas de las actividades principales |
-| 5 · Elementos | 66 elementos en 10 categorías: actores, instituciones, insumos, equipo, recursos naturales y financieros, conocimientos, políticas, perturbaciones y productos |
+| 5 · Elementos | 63 elementos en 10 categorías: actores, instituciones, insumos, equipo, recursos naturales y financieros, conocimientos, políticas, perturbaciones y productos |
 | 6 · Precio y valor | Precio por unidad y por hectárea; valor económico, de uso, cultural y ecológico con pesos ajustables |
 | 7 · Formulación | Modelo del sistema complejo adaptativo, propiedades emergentes y formulación matemática |
 | 8 · Tablero | Red ponderada interactiva, nodos y vínculos clave, comunidades (Louvain), distribución de grados, correlaciones φ, matriz entre categorías y calendario circular |
