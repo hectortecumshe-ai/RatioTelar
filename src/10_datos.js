@@ -34,13 +34,17 @@ const CATALOGO = [
   {id:'jitomate', tipo:'cultivo', ico:'c-jitomate', n:E('Jitomate','Tomato'), sci:'Solanum lycopersicum L.', doc:'base', col:'#d7372e'},
   {id:'trigo', tipo:'cultivo', ico:'c-trigo', n:E('Trigo','Wheat'), sci:'Triticum aestivum L.', doc:'base', col:'#c9a24a'},
   {id:'cana', tipo:'cultivo', ico:'c-cana', n:E('Caña de azúcar','Sugarcane'), sci:'Saccharum officinarum L.', doc:'base', col:'#7d9a3a'},
+  {id:'jamaica', tipo:'cultivo', ico:'c-jamaica', n:E('Jamaica','Roselle (jamaica)'), sci:'Hibiscus sabdariffa L.', doc:'base', col:'#c2185b'},
+  {id:'maracuya', tipo:'cultivo', ico:'c-maracuya', n:E('Maracuyá','Passion fruit'), sci:'Passiflora edulis Sims', doc:'base', col:'#e3b92f'},
+  {id:'guanabana', tipo:'cultivo', ico:'c-guanabana', n:E('Guanábana','Soursop'), sci:'Annona muricata L.', doc:'base', col:'#5f9a4a'},
+  {id:'mango', tipo:'cultivo', ico:'c-mango', n:E('Mango','Mango'), sci:'Mangifera indica L.', doc:'base', col:'#f2a33a'},
   {id:'granja', tipo:'especie', ico:'a-granja', n:E('Granja de traspatio','Backyard farm'), sci:E('Varias especies','Several species'), doc:'base', col:'#b5462a', especial:true},
   {id:'bovino', tipo:'especie', ico:'i-steer', n:E('Bovino','Cattle'), sci:'Bos taurus / B. indicus', doc:'base', col:'#8a4b2e'},
   {id:'porcino', tipo:'especie', ico:'a-cerdo', n:E('Porcino','Pig'), sci:'Sus scrofa domesticus', doc:'base', col:'#e3a3a0'},
   {id:'ovino', tipo:'especie', ico:'a-ovino', n:E('Ovino','Sheep'), sci:'Ovis aries', doc:'base', col:'#8a8f86'},
   {id:'caprino', tipo:'especie', ico:'a-caprino', n:E('Caprino','Goat'), sci:'Capra hircus', doc:'base', col:'#c9a27a'},
   {id:'ave', tipo:'especie', ico:'i-chicken', n:E('Aves de traspatio','Backyard poultry'), sci:'Gallus gallus domesticus', doc:'base', col:'#b05434'},
-  {id:'abeja', tipo:'especie', ico:'a-abeja', n:E('Abeja melífera','Honeybee'), sci:'Apis mellifera L.', doc:'base', col:'#f4c242'},
+  {id:'abeja', tipo:'especie', ico:'a-abeja', n:E('Abeja melífera (apiario)','Honeybee (apiary)'), sci:'Apis mellifera L.', doc:'base', col:'#f4c242', up:'apiario'},
   {id:'conejo', tipo:'especie', ico:'a-conejo', n:E('Conejo','Rabbit'), sci:'Oryctolagus cuniculus', doc:'base', col:'#b8a58c'},
   {id:'gallo', tipo:'especie', ico:'a-gallo', n:E('Gallos de pelea','Gamefowl'), sci:'Gallus gallus domesticus', doc:'base', col:'#c9622a'},
   {id:'chinicuil', tipo:'especie', ico:'a-chinicuil', n:E('Chinicuil (gusano rojo de maguey)','Chinicuil (red agave worm)'), sci:'Comadia redtenbacheri', doc:'base', col:'#c62f2f'}
@@ -65,10 +69,11 @@ const SISTEMAS = [
   {id:'agrofor', n:E('Sistema agroforestal','Agroforestry system'), doc:false},
   {id:'traspatio', n:E('Traspatio o solar','Backyard (solar)'), doc:false},
   {id:'pastoreo', n:E('Pastoreo o agostadero','Grazing or rangeland'), doc:false},
+  {id:'apiario', n:E('Apiario (colmenas fijas o trashumantes)','Apiary (fixed or migratory hives)'), doc:false},
   {id:'cinegetico', n:E('Rancho cinegético (vida silvestre bajo manejo, UMA)','Game ranch (managed wildlife, UMA)'), doc:false},
   {id:'confinado', n:E('Producción en confinamiento','Confined production'), doc:false}
 ];
-const TIPOS_UP = [E('Milpa','Milpa'),E('Parcela','Plot'),E('Unidad de producción agrícola','Farm (crops)'),E('Unidad de producción pecuaria','Farm (livestock)'),E('Unidad mixta agrícola–pecuaria','Mixed crop–livestock farm'),E('Rancho cinegético (UMA de aprovechamiento cinegético)','Game ranch (UMA for hunting use)')];
+const TIPOS_UP = [E('Milpa','Milpa'),E('Parcela','Plot'),E('Unidad de producción agrícola','Farm (crops)'),E('Unidad de producción pecuaria','Farm (livestock)'),E('Unidad mixta agrícola–pecuaria','Mixed crop–livestock farm'),E('Rancho cinegético (UMA de aprovechamiento cinegético)','Game ranch (UMA for hunting use)'),E('Apiario (unidad de producción apícola)','Apiary (beekeeping unit)')];
 
 /* ---------- Estado / state ---------- */
 let S;

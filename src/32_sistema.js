@@ -116,12 +116,12 @@ function huellaCarbono(){ const c=S.carbono, d=+c.diesel||0, N=+c.nKg||0, U=+c.u
   if(c.diesel===''&&c.nKg===''&&c.urea==='') return null;
   const comb=d*IPCC.diesel, n2o=N*(IPCC.EF1+IPCC.gasf*IPCC.EF4+IPCC.leach*IPCC.EF5)*44/28*IPCC.gwpN2O, urea=U*IPCC.ureaC*44/12;
   const tot=comb+n2o+urea; return {comb, n2o, urea, tot, porT: r>0 ? tot/r : null}; }
-/* ---------- Índice de sustentabilidad general (Sarandón, 2002; Sarandón et al., 2006) ----------
+/* ---------- Índice general de sostenibilidad (Sarandón, 2002; Sarandón et al., 2006) ----------
    Cada dimensión se expresa en una escala de 0 a 4 a partir de sus subindicadores:
      IK  económica      = media(A margen, B diversificación de productos, C autonomía de insumos externos)
      IE  ecológica      = media de (s_c + 2) en todas las actividades y compartimentos
      ISC sociocultural  = media(A saber local, B acceso a conocimiento técnico, C integración institucional)
-   ISGen = (IK + IE + ISC) / 3. Regla: el sistema es sustentable si ISGen > 2 y ninguna dimensión es < 2.
+   ISGen = (IK + IE + ISC) / 3. Regla: el sistema es sostenible si ISGen > 2 y ninguna dimensión es < 2.
    La traducción de los datos de Ratio Telar a subindicadores 0–4 es una lectura de Ratio Telar. */
 const EXTERNOS = ['FERTG','HERB','INSEC','FOLIAR','COAD','BIOI','HORM','COMB'];
 function sarandon(sos){ const acts=sos.acts; if(!acts.length) return null;
