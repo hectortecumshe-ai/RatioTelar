@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ratio Telar 0.2.0 · Ficha técnica</title>
+<style>
+@page{size:Letter;margin:16mm 16mm 16mm 16mm}
+body{font-family:"Palatino Linotype",Palatino,"Book Antiqua",serif;color:#1d2420;font-size:10.6pt;line-height:1.45;margin:0}
+h1{font-size:24pt;margin:0 0 2px;letter-spacing:-.01em}
+h1 i{color:#b05434}
+h2{font-size:13pt;color:#2f5d50;border-bottom:1.5px solid #c3c1b3;padding-bottom:2px;margin:14px 0 6px}
+.sub{font-size:12pt;font-style:italic;color:#5a645e;margin:0 0 8px}
+.aut{font-size:10.5pt;margin:0}
+.af{font-size:8.6pt;color:#5a645e;margin:2px 0 8px}
+.doi{display:inline-block;background:#2f5d50;color:#fff;border-radius:4px;padding:1px 8px;font-size:9.5pt}
+.top{display:flex;gap:14px;align-items:flex-start}
+.top img{width:46%;border:1px solid #e0ded4;border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:9.4pt}
+th,td{border-bottom:1px solid #e0ded4;padding:3px 6px;text-align:left;vertical-align:top}
+th{background:#ecebe3}
+td.r,th.r{text-align:right}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.nota{font-size:8.8pt;color:#5a645e}
+ol.ref{font-size:8.7pt;padding-left:16px;margin:4px 0}
+ol.ref li{margin:1px 0}
+.k{display:inline-block;background:#e7f5eb;color:#1d6b34;border-radius:3px;padding:0 5px;font-weight:700;font-size:9pt}
+</style>
+</head>
+<body>
+<div class="top"><div style="flex:1">
+<p class="nota" style="letter-spacing:.12em;text-transform:uppercase;margin:0 0 4px">Ratio Complexus · ficha técnica del software</p>
+<h1>Ratio <i>Telar</i></h1>
+<p class="sub">El conocimiento agrícola local como sistema complejo adaptativo</p>
+<p class="aut"><b>Héctor Tecumshé Mojica-Zárate</b><sup>1</sup> · Óscar Díaz-José<sup>1</sup> · Luis Ángel Barrera-Guzmán<sup>1</sup> · Guadalupe Velázquez-Vázquez<sup>2</sup></p>
+<p class="af"><sup>1</sup> Centro Académico Regional Sede Huatusco, Universidad Autónoma Chapingo, México · <sup>2</sup> Benemérita Universidad Autónoma de Puebla, México · ORCID 0000-0002-9067-3983</p>
+<p><span class="doi">DOI 10.5281/zenodo.23290104</span> &nbsp;Versión 0.2.0 · 2026 · Licencia MIT<br>
+App: https://hectortecumshe-ai.github.io/RatioTelar/ · Código: https://github.com/hectortecumshe-ai/RatioTelar</p>
+</div><img src="ratiotelar.jpg" alt="Ratio Telar"></div>
+
+<h2>Resumen</h2>
+<p>Ratio Telar es una aplicación web libre, bilingüe (español e inglés) y de un solo archivo, que funciona en el navegador sin servidor ni recursos de terceros. Representa una milpa, una parcela o una unidad de producción agrícola o pecuaria como un <b>sistema complejo adaptativo</b>: sus elementos (actores, instituciones, insumos, equipo, recursos naturales y financieros, conocimientos, políticas, perturbaciones y productos) se vuelven nodos y sus interacciones en las actividades de manejo, vínculos ponderados por el valor que el sistema les asigna. Integra el Stack de Conocimiento Local del maíz criollo de Calpan, Puebla (Díaz-José et al., 2026), el catálogo geoestadístico del INEGI hasta la localidad, el análisis de redes, un calendario circular de actividades y la evaluación de la sostenibilidad con el índice de Sarandón (2002), los 17 Objetivos de Desarrollo Sostenible y la huella de carbono del IPCC. Ofrece una vista para productores y otra para científicos.</p>
+
+<h2>Diez bloques</h2>
+<table><tbody>
+<tr><td><b>1 · Cultivo</b></td><td>14 cultivos (uva, maíz con las 64 razas de CONABIO, chayote, frijol, calabaza, chile, café, cacao, aguacate, maguey, nopal, jitomate, trigo, caña), 9 especies (bovino, porcino, ovino, caprino, aves, gallos de pelea, conejo, abeja, chinicuil), granja de traspatio; sistemas, incluidos viñedo y rancho cinegético.</td></tr>
+<tr><td><b>2 · Región</b></td><td>Mapa de México; 32 estados, 2,478 municipios y 54,357 localidades del INEGI con población, altitud y coordenadas.</td></tr>
+<tr><td><b>3 · Requerimientos</b></td><td>Requerimientos técnicos tradicionales (las cinco reglas básicas del Stack) e innovados en la localidad.</td></tr>
+<tr><td><b>4 · Manejo</b></td><td>38 pasos y sus actividades tradicionales, actividades innovadoras, impacto por compartimento y fechas de las actividades principales.</td></tr>
+<tr><td><b>5 · Elementos</b></td><td>63 elementos del caso en 10 categorías; vínculos estructurales documentados.</td></tr>
+<tr><td><b>6 · Precio y valor</b></td><td>Precio por hectárea y valor en cuatro dimensiones (económica, de uso, cultural, ecológica); catálogo propio exportable en CSV.</td></tr>
+<tr><td><b>7 · Formulación</b></td><td>Modelo del sistema, propiedades emergentes y formulación: w<sub>ij</sub> = Σ<sub>a</sub> √(v<sub>i</sub>·v<sub>j</sub>).</td></tr>
+<tr><td><b>8 · Tablero</b></td><td>Red ponderada, centralidades, comunidades (Louvain), distribución de grados, correlaciones φ, matriz entre categorías y calendario circular.</td></tr>
+<tr><td><b>9 · Sostenibilidad</b></td><td>Suma y resta por compartimento (suelo, agua, atmósfera, vegetación, fauna), índice por paso, ISGen de Sarandón, 17 ODS y huella de carbono.</td></tr>
+<tr><td><b>10 · Informe</b></td><td>Resumen redactado, calendario, tablas, CSV, impresión o PDF y proyecto completo en JSON.</td></tr>
+</tbody></table>
+
+<h2>Validación</h2>
+<div class="g2"><div>
+<p><b>Motor de redes frente a NetworkX 3.7</b> (Hagberg et al., 2008).</p>
+<table><thead><tr><th>Prueba</th><th class="r">Diferencia máxima</th></tr></thead><tbody>
+<tr><td>Red de Krackhardt (1990): intermediación, cercanía, agrupamiento, vector propio, camino medio</td><td class="r">&lt; 0.00005 <span class="k">✓</span></td></tr>
+<tr><td>Red ponderada de prueba: intermediación con distancia 1/w</td><td class="r">0 <span class="k">✓</span></td></tr>
+<tr><td>Red real del maíz (60 nodos, 158 vínculos): intermediación ponderada</td><td class="r">0 <span class="k">✓</span></td></tr>
+<tr><td>Modularidad Q de la partición (0.4496), agrupamiento (0.5252), camino medio (2.9017)</td><td class="r">0 <span class="k">✓</span></td></tr>
+</tbody></table></div><div>
+<p><b>Reproducción del caso publicado</b> (Díaz-José et al., 2026).</p>
+<table><tbody>
+<tr><td>Pasos del Stack · reglas básicas</td><td class="r">38 · 5 <span class="k">✓</span></td></tr>
+<tr><td>Hojas del dendrograma (Figura 3)</td><td class="r">38 <span class="k">✓</span></td></tr>
+<tr><td>Participantes (Cuadro 1)</td><td class="r">100 <span class="k">✓</span></td></tr>
+<tr><td>Valores de IIC publicados</td><td class="r">11 <span class="k">✓</span></td></tr>
+</tbody></table>
+<p class="nota">Huella de carbono: factores por defecto del IPCC (2006, 2019) y GWP100 del AR6 (Forster et al., 2021); cálculo de control en la app.</p></div></div>
+
+<h2>Resultados del caso: maíz criollo de Calpan, Puebla</h2>
+<p>Con valores estructurales y sin el nodo omnipresente de los productores, la red se organiza en <b>siete comunidades</b> con estructura modular clara (Q = 0.45, por encima del umbral de 0.3 de Newman y Girvan, 2004): asesoría técnica y sanidad; insumos comprados y costos; maquinaria, suelo y humedad; memoria campesina (familia, semilla criolla, saber tácito y cultural, calendario lunar); mercado; clima; y academia e instituciones. Los asesores técnicos, el conocimiento técnico y el tácito concentran la mayor intermediación. El índice de sustentabilidad general de Sarandón es ISGen = 2.61 (IK 3.11, IE 2.05, ISC 2.67): sustentable según la regla ISGen &gt; 2 sin dimensiones menores que 2. Los vínculos entre actividades y elementos y los perfiles de impacto son lecturas de Ratio Telar, marcadas y editables en la aplicación.</p>
+
+<h2>Cómo citar</h2>
+<p>Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. A., y Velázquez-Vázquez, G. (2026). <i>Ratio Telar: el conocimiento agrícola local como sistema complejo adaptativo</i> (Versión 0.2.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.23290104</p>
+
+<h2>Referencias principales</h2>
+<ol class="ref">
+<li>Díaz-José O, Mojica-Zárate HT, Díaz-José J, Vilaboa-Arróniz J. 2026. El conocimiento agrícola local: el stack del maíz criollo en Calpan, Puebla. Agricultura, Sociedad y Desarrollo 23(3). https://doi.org/10.22231/asyd.v23i3.1822</li>
+<li>Mojica Zárate HT. 2017. Modelo y procedimiento para la gestión estratégica integrada de los recursos naturales en territorios áridos con orientación agroproductiva. Tesis doctoral, Universidad Central «Marta Abreu» de Las Villas.</li>
+<li>Sarandón SJ. 2002. El desarrollo y uso de indicadores para evaluar la sustentabilidad de los agroecosistemas. En: Sarandón SJ (ed.), Agroecología: el camino hacia una agricultura sustentable. Ediciones Científicas Americanas, La Plata: 393–414.</li>
+<li>Blondel VD, Guillaume J-L, Lambiotte R, Lefebvre E. 2008. Fast unfolding of communities in large networks. Journal of Statistical Mechanics P10008.</li>
+<li>Brandes U. 2001. A faster algorithm for betweenness centrality. Journal of Mathematical Sociology 25(2): 163–177.</li>
+<li>Holland JH. 1995. Hidden order: how adaptation builds complexity. Addison-Wesley.</li>
+<li>CONABIO. 2020. Razas de maíz de México. https://www.biodiversidad.gob.mx/diversidad/alimentos/maices/razas-de-maiz</li>
+<li>INEGI. 2020. Censo de Población y Vivienda 2020; Catálogo Único de Claves Geoestadísticas.</li>
+<li>IPCC. 2019. 2019 Refinement to the 2006 IPCC Guidelines for National Greenhouse Gas Inventories, vol. 4.</li>
+</ol>
+</body>
+</html>
