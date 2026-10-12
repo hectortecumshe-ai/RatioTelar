@@ -4,7 +4,7 @@
    Ratio Telar — Ratio Complexus («lo que está tejido junto»)
    ===================================================================== */
 const CONFIG = {
-  app:'Ratio Telar', version:'0.3.0', anio:2026, doi:'10.5281/zenodo.23293557',
+  app:'Ratio Telar', version:'0.4.0', anio:2026, doi:'10.5281/zenodo.23293557',
   repo:'https://github.com/hectortecumshe-ai/RatioTelar',
   autores:'Héctor Tecumshé Mojica-Zárate · Óscar Díaz-José · Luis Ángel Barrera-Guzmán · Guadalupe Velázquez-Vázquez',
   citaAutores:{es:'Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. A., y Velázquez-Vázquez, G.',en:'Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. A., & Velázquez-Vázquez, G.'},
@@ -119,6 +119,8 @@ function estadoInicial(){ return {
   variedad:{},                     // cultivo -> variedad, tipo o raza elegida o escrita
   sisExtra:[],                     // sistemas de producción agregados por el usuario {id, n, d}
   upOtro:'',                       // tipo de unidad escrito por el usuario (tipoUP = -1)
+  regen:{}, regenBase:null, regenMO:{},   // perillas de regeneración (0–4), línea base y materia orgánica
+  riesgo:{},                       // riesgo -> {p, i, c, off}
   prosp:null,                      // supuestos editados de la prospectiva (null = valores iniciales)
   reqInn:[],                       // [{t, b, d, fuente}]
   manejo:{},                       // n paso -> {off:{codigo:true}, inn:[{t, el:[ids], imp:[5], nota}], imp:{codigo:[5]}}

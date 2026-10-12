@@ -729,6 +729,30 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
 .cat-nuevo{margin-top:14px}
 @media print{.cat-nuevo{display:none!important}}
 
+/* Bloques 5 y 6: perillas de regeneración y de riesgo */
+.perillas{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.perilla{border:1px solid var(--border);border-left:5px solid var(--pc);border-radius:var(--r-md);padding:10px 12px;background:var(--bg)}
+.perilla.ajustada{background:color-mix(in srgb,var(--pc) 8%,var(--bg))}
+.perilla .pv{font-weight:700;color:var(--pc);white-space:nowrap}
+.perilla input[type=range],.perilla-c input[type=range]{width:100%;accent-color:var(--pc,var(--primary))}
+.perilla .marcas{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:-2px}
+.perilla .nota{margin:6px 0 0}
+.perilla .sug{font-size:12px}
+button.link{border:0;background:none;color:var(--primary);text-decoration:underline;cursor:pointer;padding:0;font:inherit}
+.perilla-c{min-width:120px}
+.perilla-c small{display:block;font-size:11.5px;color:var(--muted)}
+.riesgos-t tr.r-off td{opacity:.45}
+.medidor{max-width:280px;margin:0 auto;display:block}
+.rr-card .kpis{margin-top:4px}
+@media print{.perilla input[type=range],.perilla-c input[type=range],#rReset,#rgBase,#rgBaseX,button.link{display:none!important}.perilla{break-inside:avoid}}
+table.tbl.riesgos-t{display:table;width:100%;table-layout:fixed}
+.riesgos-t th:nth-child(1),.riesgos-t td:nth-child(1){width:44px}
+.riesgos-t th:nth-child(2),.riesgos-t td:nth-child(2){width:auto;white-space:normal}
+.riesgos-t th:nth-child(3),.riesgos-t th:nth-child(4),.riesgos-t th:nth-child(5){width:15%}
+.riesgos-t th:nth-child(6),.riesgos-t td:nth-child(6){width:80px}
+.riesgos-t td small.muted{font-size:11.5px;line-height:1.3;display:block}
+@media(max-width:760px){table.tbl.riesgos-t{display:block;table-layout:auto}}
+
 </style>
 </head>
 <body>
@@ -1035,6 +1059,18 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
   <circle cx="88" cy="38" r="7.4" fill="#3b2a20"/><circle cx="91" cy="35" r="1.6" fill="#f6f1e4"/>
   <g fill="#f08a7a" opacity=".7"><circle cx="34" cy="61" r="1.6"/><circle cx="45" cy="55" r="1.6"/><circle cx="56" cy="49" r="1.6"/><circle cx="67" cy="44" r="1.6"/></g></g>
 </symbol>
+<symbol id="i-regen" viewBox="0 0 100 100">
+  <ellipse cx="50" cy="88" rx="34" ry="6" fill="#8a5a2c" opacity=".85"/>
+  <path d="M22 50a28 28 0 0 1 48-20" stroke="#2f8f6a" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M66 18l6 13-14 2z" fill="#2f8f6a"/>
+  <path d="M78 50a28 28 0 0 1-48 20" stroke="#d9a441" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M34 82l-6-13 14-2z" fill="#d9a441"/>
+  <path d="M50 70V46" stroke="#4f8a3a" stroke-width="4" stroke-linecap="round"/>
+  <g class="hoja"><path d="M50 52c-12 0-18-8-18-16 10 0 18 6 18 16z" fill="#6aa148"/><path d="M50 46c0-12 8-18 18-18 0 10-8 18-18 18z" fill="#7fb35a"/></g>
+</symbol>
+<symbol id="i-riesgo" viewBox="0 0 100 100">
+  <path d="M50 10L94 88H6z" fill="#f2c46d" stroke="#c98b21" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M30 70c-6 0-9-4-9-8 0-5 4-8 9-8 1-7 7-11 13-11 7 0 12 5 13 11 5 0 9 3 9 8s-4 8-9 8z" fill="#9aa8b8"/>
+  <path d="M48 60l-6 12h7l-4 12 12-16h-7l5-8z" fill="#c43a2f"/>
+</symbol>
 
 <symbol id="i-steer" viewBox="0 0 170 120">
   <ellipse cx="88" cy="112" rx="62" ry="5" fill="#000" opacity=".08"/>
@@ -1148,7 +1184,7 @@ html[lang="en"] .familia-ratio .fr-es,html:not([lang="en"]) .familia-ratio .fr-e
    Ratio Telar — Ratio Complexus («lo que está tejido junto»)
    ===================================================================== */
 const CONFIG = {
-  app:'Ratio Telar', version:'0.3.0', anio:2026, doi:'10.5281/zenodo.23293557',
+  app:'Ratio Telar', version:'0.4.0', anio:2026, doi:'10.5281/zenodo.23293557',
   repo:'https://github.com/hectortecumshe-ai/RatioTelar',
   autores:'Héctor Tecumshé Mojica-Zárate · Óscar Díaz-José · Luis Ángel Barrera-Guzmán · Guadalupe Velázquez-Vázquez',
   citaAutores:{es:'Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. A., y Velázquez-Vázquez, G.',en:'Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. A., & Velázquez-Vázquez, G.'},
@@ -1263,6 +1299,8 @@ function estadoInicial(){ return {
   variedad:{},                     // cultivo -> variedad, tipo o raza elegida o escrita
   sisExtra:[],                     // sistemas de producción agregados por el usuario {id, n, d}
   upOtro:'',                       // tipo de unidad escrito por el usuario (tipoUP = -1)
+  regen:{}, regenBase:null, regenMO:{},   // perillas de regeneración (0–4), línea base y materia orgánica
+  riesgo:{},                       // riesgo -> {p, i, c, off}
   prosp:null,                      // supuestos editados de la prospectiva (null = valores iniciales)
   reqInn:[],                       // [{t, b, d, fuente}]
   manejo:{},                       // n paso -> {off:{codigo:true}, inn:[{t, el:[ids], imp:[5], nota}], imp:{codigo:[5]}}
@@ -1602,7 +1640,7 @@ const TEORIA = [
 <script>
 "use strict";
 /* =====================================================================
-   1e. ELEMENTOS DEL SISTEMA COMPLEJO ADAPTATIVO (Bloque 5)
+   1e. ELEMENTOS DEL SISTEMA COMPLEJO ADAPTATIVO (Bloque 7)
    Elementos del caso maíz criollo de Calpan, tomados del texto del artículo
    (Díaz-José et al., 2026): actores (pp. 7–9), instituciones (pp. 7–8), insumos,
    equipo y productos (Figura 4), conocimientos (pp. 1–5, Fig. 4), perturbaciones
@@ -1745,7 +1783,7 @@ const IMPACTO = {
   LAB:{v:[1,1,0,0,0], r:E('Fertilizar según el análisis de suelo evita excesos.','Fertilising by soil analysis avoids excess.')},
   FORR:{v:[-1,0,0,0,0], r:E('Retirar el rastrojo como forraje deja menos cobertura al suelo.','Removing stover as fodder leaves less soil cover.')}
 };
-/* Relación compartimento / indicador → ODS para el Bloque 9 (relación propuesta por Ratio Telar). */
+/* Relación compartimento / indicador → ODS para el Bloque 11 (relación propuesta por Ratio Telar). */
 const ODS_COMP = {2:[0,3], 6:[1], 13:[2], 15:[0,3,4]};
 
 </script>
@@ -1990,6 +2028,27 @@ const EJEMPLO = {
       T('Pon las fechas de las actividades principales (siembra, deshierbe, poda, corte): alimentan el calendario circular del Tablero y del Informe.','Enter the dates of the main activities (sowing, weeding, pruning, harvest): they feed the circular calendar in the Dashboard and Report.'),
       T('Marca cuáles son tradicionales y cuáles innovadas.','Mark which are traditional and which are innovated.')
     ])}),
+  regeneracion: ()=>({
+    corto: T('El artículo de Calpan no mide la regeneración, pero su Stack permite leerla: tres pasos de labranza, rastrojo devuelto al suelo, selección de semilla criolla y análisis de suelo.','The Calpan paper does not measure regeneration, but its Stack lets us read it: three tillage passes, stubble returned to the soil, landrace seed selection and soil testing.'),
+    hecho: _li([
+      T('Labranza: primer, segundo y tercer paso de arado (subsoleador, arado reversible o de discos, rastra y vigado; pasos 3 a 5).','Tillage: first, second and third tillage passes (subsoiler, reversible or disc plough, harrow and levelling; steps 3–5).')+' '+marcaDato(),
+      T('Materia orgánica: rastreo para incorporar materia orgánica y captar humedad (paso 32) y análisis de suelo (paso 13).','Organic matter: harrowing to incorporate organic matter and capture moisture (step 32) and soil testing (step 13).')+' '+marcaDato(),
+      T('Saber local: selección de la mazorca y desgranado (paso 6) y almacenamiento de semilla (paso 8).','Local knowledge: ear selection and shelling (step 6) and seed storage (step 8).')+' '+marcaDato(),
+      T('Las puntuaciones 0–4 que propone la app a partir de estas actividades son lectura de Ratio Telar.','The 0–4 scores the app proposes from these activities are Ratio Telar readings.')+' '+marcaInterp()]),
+    pasos: _ol([
+      T('Revisa el valor sugerido de cada perilla y muévela según lo que pasa en tu parcela.','Check each knob’s suggested value and move it to match your plot.'),
+      T('Si tienes análisis de suelo, anota el % de materia orgánica de antes y de ahora.','If you have soil tests, enter the % organic matter before and now.'),
+      T('Guarda una línea base y vuelve en el siguiente ciclo para ver si el sistema se regenera.','Save a baseline and come back next cycle to see whether the system regenerates.')])}),
+  riesgos: ()=>({
+    corto: T('En Calpan, el Stack registra perturbaciones climáticas que mueven la fecha de siembra: El Niño y La Niña, ciclones del Atlántico, la Oscilación Madden-Julian y la Ártica. No publica probabilidades.','In Calpan, the Stack records climate disturbances that shift the sowing date: El Niño and La Niña, Atlantic cyclones, the Madden-Julian and Arctic oscillations. It publishes no probabilities.'),
+    hecho: _li([
+      T('Perturbaciones del entorno: ','Environmental disturbances: ')+CALPAN.clima.join(', ')+'. '+marcaDato(),
+      T('Productores y asesores siguen el pronóstico del tiempo y el calendario lunar para decidir.','Farmers and advisers follow the weather forecast and the lunar calendar to decide.')+' '+marcaDato(),
+      T('Las probabilidades e impactos 1–5 son sugerencias de Ratio Telar a partir de tus datos y de los escenarios de la prospectiva.','The 1–5 likelihoods and impacts are Ratio Telar suggestions from your data and the outlook scenarios.')+' '+marcaInterp()]),
+    pasos: _ol([
+      T('Desmarca los riesgos que no aplican a tu localidad.','Untick the risks that do not apply to your locality.'),
+      T('Para cada riesgo, mueve la probabilidad (qué tan seguido pasa) y el impacto (cuánto daño hace) de 1 a 5.','For each risk, move likelihood (how often it happens) and impact (how much damage) from 1 to 5.'),
+      T('Indica el control que ya tienes: seguro, reserva de semilla, bordos, venta anticipada, organización.','Set the control you already have: insurance, seed reserve, bunds, forward sale, organisation.')])}),
   elementos: ()=>{ const porCat=Object.keys(CATS).map(k=>[k,ELEM.filter(e=>e.cat===k).length]).filter(x=>x[1]);
     return {
     corto: T(`Se identificaron ${ELEM.length} elementos en ${porCat.length} categorías; los actores clave fueron productores, proveedores de insumos, asesores técnicos, investigadores y la academia local (CBTA 255).`,`${ELEM.length} elements in ${porCat.length} categories were identified; key actors were farmers, input suppliers, technical advisers, researchers and local academia (CBTA 255).`),
@@ -2016,12 +2075,12 @@ const EJEMPLO = {
   formulacion: ()=>({
     corto: T(`Con los ${ART.pasos} pasos, sus actividades y los elementos ligados, Ratio Telar tejió la red del sistema del maíz de Calpan.`,`From the ${ART.pasos} steps, their activities and linked elements, Ratio Telar wove the Calpan maize network.`),
     hecho: _li([
-      T(`Nodos: los elementos del Bloque 5; aristas: compartir una actividad (${LAZOS.length} lazos adicionales entre actores e instituciones descritos en el artículo).`,`Nodes: the Block 5 elements; edges: sharing an activity (${LAZOS.length} extra ties among actors and institutions described in the paper).`),
-      T('Peso de cada vínculo: la raíz del producto de los valores de los dos elementos (Bloque 6).','Each tie’s weight: the square root of the product of the two elements’ values (Block 6).'),
+      T(`Nodos: los elementos del Bloque 7; aristas: compartir una actividad (${LAZOS.length} lazos adicionales entre actores e instituciones descritos en el artículo).`,`Nodes: the Block 7 elements; edges: sharing an activity (${LAZOS.length} extra ties among actors and institutions described in the paper).`),
+      T('Peso de cada vínculo: la raíz del producto de los valores de los dos elementos (Bloque 8).','Each tie’s weight: the square root of the product of the two elements’ values (Block 8).'),
       T('Seguimiento en tres ciclos: ','Monitoring over three cycles: ')+CUADRO1.map(c=>c.ciclo).join(', ')+'.'
     ]),
     pasos: _ol([
-      T('Revisa que los bloques 3 a 6 tengan datos: sin pasos ni elementos no hay red.','Check that Blocks 3–6 have data: without steps or elements there is no network.'),
+      T('Revisa que los bloques 3 a 8 tengan datos: sin pasos ni elementos no hay red.','Check that Blocks 3–8 have data: without steps or elements there is no network.'),
       T('Formula el sistema: la app calcula la red y sus indicadores.','Formulate the system: the app computes the network and its indicators.'),
       T('Si algo se ve raro, vuelve al bloque correspondiente y corrige.','If something looks odd, go back to the relevant block and fix it.')
     ])}),
@@ -2049,12 +2108,12 @@ const EJEMPLO = {
     pasos: _ol([
       T('Revisa el efecto de cada actividad sobre suelo, agua, atmósfera, vegetación y fauna.','Review each activity’s effect on soil, water, atmosphere, vegetation and fauna.'),
       T('Captura litros de diésel, kg de nitrógeno y de urea, y el rendimiento: con eso se calcula la huella.','Enter litres of diesel, kg of nitrogen and urea, and yield: the footprint is computed from them.'),
-      T('Completa precios y valores del Bloque 6: el índice de Sarandón necesita la dimensión económica.','Complete the Block 6 prices and values: Sarandón’s index needs the economic dimension.')
+      T('Completa precios y valores del Bloque 8: el índice de Sarandón necesita la dimensión económica.','Complete the Block 8 prices and values: Sarandón’s index needs the economic dimension.')
     ])}),
   prospectiva: ()=>({
     corto: T('El artículo de Calpan no hace prospectiva: este bloque es una herramienta de Ratio Telar para mirar el futuro de cualquier unidad a partir de su propio Stack.','The Calpan paper does no foresight: this block is a Ratio Telar tool to look at any farm’s future from its own Stack.'),
     hecho: _li([T('Con el maíz de Calpan, el cambio de rendimiento por °C es el publicado para maíz (−7.4 %; Zhao et al., 2017) y la adopción parte de las actividades innovadas que captures.','For Calpan maize, the yield change per °C is the published maize value (−7.4 %; Zhao et al., 2017) and adoption starts from the innovated activities you enter.')+' '+marcaInterp()]),
-    pasos: _ol([T('Captura antes tus actividades innovadas (Bloque 4) y, si puedes, ingreso y costo por hectárea (Bloque 6).','First enter your innovated activities (Block 4) and, if you can, income and cost per hectare (Block 6).'),T('Revisa los supuestos de cada escenario y ajústalos a tu región.','Review each scenario’s assumptions and adjust them to your region.'),T('Compara los tres futuros a 2, 5 y 10 años y anota qué decisiones de hoy acercan el deseable.','Compare the three futures at 2, 5 and 10 years and note which decisions today bring the desirable one closer.')])}),
+    pasos: _ol([T('Captura antes tus actividades innovadas (Bloque 4) y, si puedes, ingreso y costo por hectárea (Bloque 8).','First enter your innovated activities (Block 4) and, if you can, income and cost per hectare (Block 8).'),T('Revisa los supuestos de cada escenario y ajústalos a tu región.','Review each scenario’s assumptions and adjust them to your region.'),T('Compara los tres futuros a 2, 5 y 10 años y anota qué decisiones de hoy acercan el deseable.','Compare the three futures at 2, 5 and 10 years and note which decisions today bring the desirable one closer.')])}),
   informe: ()=>({
     corto: T('El caso de Calpan se presenta como informe con calendario, red, sostenibilidad y fuentes; tu cultivo genera el mismo informe con tus datos.','The Calpan case is presented as a report with calendar, network, sustainability and sources; your crop produces the same report with your data.'),
     hecho: _li([
@@ -2141,6 +2200,12 @@ const AYUDA = {
     s:[['ok',E('≥ 70 %: avance alto.','≥ 70 %: high progress.')],['warn',E('40–70 %: parcial.','40–70 %: partial.')],['bad',E('< 40 %: bajo.','< 40 %: low.')],['info',E('Sin dato: no hay evidencia todavía.','No data: no evidence yet.')]]},
   clado:{c:E('Cladograma (dendrograma) del vecino más cercano: agrupa a los elementos según su distancia en la red. La distancia es el camino más corto sumando 1/peso de cada vínculo; el método de enlace simple une en cada paso a los dos grupos con el par de miembros más próximo (Sneath, 1957).','Nearest-neighbour cladogram (dendrogram): groups elements by their network distance. Distance is the shortest path summing 1/weight over links; single linkage joins, at each step, the two groups whose closest members are nearest (Sneath, 1957).'),
     s:[['ok',E('Ramas cortas: vecinos muy ligados, que conviene manejar juntos.','Short branches: tightly linked neighbours, best managed together.')],['warn',E('Un elemento que se une al final está aislado: revisa si le faltan vínculos.','An element joining last is isolated: check whether links are missing.')],['info',E('Correlación cofenética cercana a 1: el árbol representa bien las distancias originales.','Cophenetic correlation near 1: the tree represents the original distances well.')]]},
+  regen:{c:E('Índice de regeneración (0–100): promedio de ocho perillas de 0 a 4 sobre los principios de salud del suelo y de agricultura regenerativa. Mide si el sistema devuelve más de lo que toma. Con una línea base puedes ver si sube o baja de un ciclo a otro.','Regeneration index (0–100): average of eight 0–4 knobs based on soil health and regenerative agriculture principles. It measures whether the system gives back more than it takes. With a baseline you can see whether it rises or falls between cycles.'),
+    s:[['ok',E('≥ 75: regenerativo.','≥ 75: regenerative.')],['info',E('50–74: en transición regenerativa.','50–74: regenerative transition.')],['warn',E('25–49: convencional.','25–49: conventional.')],['bad',E('< 25: degradante: el sistema se desgasta.','< 25: degrading: the system wears out.')]]},
+  riesgo:{c:E('Índice de riesgo (0–100): promedio del riesgo residual de cada amenaza, r = probabilidad × impacto, reducido por la capacidad adaptativa y por los controles que ya tienes, dividido entre 25 (el máximo de la matriz).','Risk index (0–100): average residual risk of each hazard, r = likelihood × impact, reduced by adaptive capacity and the controls you already have, divided by 25 (matrix maximum).'),
+    s:[['ok',E('< 16: bajo.','< 16: low.')],['warn',E('16–35: medio.','16–35: medium.')],['bad',E('≥ 36: alto; ≥ 60: muy alto.','≥ 36: high; ≥ 60: very high.')]]},
+  CA:{c:E('Capacidad adaptativa (0–100): qué tanto puede el sistema absorber un golpe y reorganizarse. Promedia la regeneración, la diversificación de productos, el acceso a conocimiento técnico y la integración institucional (subindicadores de Sarandón).','Adaptive capacity (0–100): how well the system can absorb a shock and reorganise. Averages regeneration, product diversification, access to technical knowledge and institutional integration (Sarandón sub-indicators).'),
+    s:[['info',E('Reduce el riesgo hasta en 40 % (supuesto de Ratio Telar).','Reduces risk by up to 40 % (Ratio Telar assumption).')]]},
   sarandon:{c:E('Índice general de sostenibilidad de Sarandón (2002): promedia una dimensión económica (IK), una ecológica (IE) y una sociocultural (ISC), cada una en escala de 0 a 4 a partir de subindicadores. Es un método muy usado para evaluar agroecosistemas en América Latina.','Sarandón’s (2002) general sustainability index: averages an economic (IK), an ecological (IE) and a socio-cultural (ISC) dimension, each on a 0–4 scale built from sub-indicators. Widely used to assess agro-ecosystems in Latin America.'),
     s:[['ok',E('ISGen > 2 y ninguna dimensión < 2: sostenible.','ISGen > 2 and no dimension < 2: sustainable.')],['warn',E('ISGen > 2 pero alguna dimensión < 2: sostenibilidad débil; atiende esa dimensión.','ISGen > 2 but a dimension < 2: weak sustainability; address that dimension.')],['bad',E('ISGen ≤ 2: no sostenible.','ISGen ≤ 2: not sustainable.')]]},
   huella:{c:E('Huella de carbono de la hectárea: emisiones de CO₂ equivalente por combustible, óxido nitroso del nitrógeno aplicado y CO₂ de la urea (IPCC 2006 y 2019; GWP100 del AR6).','Carbon footprint per hectare: CO₂-equivalent from fuel, nitrous oxide from applied nitrogen and CO₂ from urea (IPCC 2006 and 2019; AR6 GWP100).'),
@@ -2303,7 +2368,7 @@ function actividades(){
   else Object.entries(S.manejo).forEach(([n,m])=> (m.inn||[]).forEach((x,i)=> out.push({paso:+n, b:'', cod:'N'+n+'.'+(i+1), n:E(x.t,x.t), tipo:'inn', el:x.el||[], imp:x.imp||null})));
   return out;
 }
-/* Valor de un elemento (Bloque 6): media ponderada de cuatro dimensiones 0–5, normalizada 0–1.
+/* Valor de un elemento (Bloque 8): media ponderada de cuatro dimensiones 0–5, normalizada 0–1.
    Si no se ha valorado, se usa su valor estructural: participación relativa en las actividades. */
 function participacion(){ const c={}; actividades().forEach(a=>a.el.forEach(id=>c[id]=(c[id]||0)+1)); return c; }
 function valorEl(id, part){ const v=S.valor[id], w=S.pesosValor;
@@ -2366,7 +2431,7 @@ function correlaciones(R, ids){ const acts=R.acts, N=acts.length; const inc=ids.
 function matrizCategorias(R){ const ks=Object.keys(CATS), cat=Object.fromEntries(R.nodos.map(d=>[d.id,d.cat])); const M=ks.map(()=>ks.map(()=>0));
   R.aristas.forEach(e=>{ const i=ks.indexOf(cat[e.a]), j=ks.indexOf(cat[e.b]); M[i][j]+=e.w; if(i!==j) M[j][i]+=e.w; }); return {ks, M}; }
 
-/* ---------- Sostenibilidad (Bloque 9) ----------
+/* ---------- Sostenibilidad (Bloque 11) ----------
    Impacto de una actividad en el compartimento c: s_c = recorte a [−2, 2] de Σ perfiles de sus elementos (o el valor editado).
    Índice de sostenibilidad de la actividad: IS = (1/5) Σ_c (s_c + 2)/4  ∈ [0, 1]   (0.5 = neutra). */
 function impactoAct(a){ if(a.imp) return a.imp.slice(); const v=[0,0,0,0,0]; a.el.forEach(id=>{ const p=IMPACTO[id]; if(p) p.v.forEach((x,c)=>v[c]+=x); }); return v.map(x=>Math.max(-2,Math.min(2,x))); }
@@ -2628,7 +2693,7 @@ function histograma(vals, opt={}){ const W=opt.w||460, H=230, L=40, B=34; if(!va
     `<text x="${L+i*bw+bw/2}" y="${H-B+14}" text-anchor="middle" font-size="10.5" class="m">${f0(i*ancho)}</text>${v?`<text x="${L+i*bw+bw/2}" y="${H-B-h-4}" text-anchor="middle" font-size="10.5">${v}</text>`:''}`; });
   return s+`<text x="${(L+W)/2}" y="${H-4}" text-anchor="middle" font-size="12" class="m">${T('vecinos por elemento','neighbours per element')}</text></svg>`; }
 
-/* Modelo esquemático del sistema complejo adaptativo (Bloque 7) */
+/* Modelo esquemático del sistema complejo adaptativo (Bloque 9) */
 function modeloSCA(R){ const W=980, H=560; const cnt=(c)=>R.nodos.filter(d=>d.cat===c).length;
   const caja=(x,y,w,h,col,tit,sub,cl='')=>`<g class="caja ${cl}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="14" fill="${col}" fill-opacity=".13" stroke="${col}" stroke-width="2"/><text x="${x+w/2}" y="${y+24}" text-anchor="middle" font-size="15" font-weight="700" style="fill:${col}">${esc(tit)}</text><text x="${x+w/2}" y="${y+44}" text-anchor="middle" font-size="12" class="m">${esc(sub)}</text></g>`;
   const fl=(d,col='var(--border-strong)',das='',cl='flujo')=>`<path d="${d}" fill="none" stroke="${col}" stroke-width="2.6" ${das?`stroke-dasharray="${das}"`:''} marker-end="url(#fl)" class="${cl}"/>`;
@@ -2684,7 +2749,7 @@ function barrasPasos(pp){ const W=980, H=280, L=40, B=40, n=pp.length, bw=(W-L-1
 <script>
 "use strict";
 /* =====================================================================
-   Cladograma del vecino más cercano (Bloque 8).
+   Cladograma del vecino más cercano (Bloque 10).
    Distancia entre dos elementos = camino más corto en la red ponderada,
    con longitud de cada vínculo = 1/peso (la misma que usan cercanía e
    intermediación; Brandes, 2001). Agrupamiento jerárquico aglomerativo por
@@ -2758,10 +2823,10 @@ function tarjetaCladograma(R){
       <div class="tbl-c" style="max-height:420px"><table class="tbl"><thead><tr><th>${T('Elemento','Element')}</th><th>${T('Vecino más cercano','Nearest neighbour')}</th><th class="r">${T('Distancia','Distance')}</th></tr></thead><tbody>
       ${vn.map(v=>{ const a=C.nodos[v.i], b=C.nodos[v.j]; return `<tr><td><span style="color:${a.col}">${CATS[a.cat].sym}</span> ${esc(a.nombre)}</td><td><span style="color:${b.col}">${CATS[b.cat].sym}</span> ${esc(b.nombre)}${v.mutuo?` <span class="badge ok" title="${T('vecinos mutuos: cada uno es el más cercano del otro','mutual neighbours: each is the other’s nearest')}">↔</span>`:''}</td><td class="r">${fmt(v.d,3)}</td></tr>`; }).join('')}
       </tbody></table></div>
-      <p class="nota">↔ ${T('vecinos mutuos: cada uno es el más cercano del otro.','mutual neighbours: each is the other’s nearest.')}${C.U.some(u=>u[2]>=19.99)?' '+T('Las uniones a distancia 20 son elementos que no participan en ninguna actividad capturada ni tienen valor asignado en el Bloque 6: los liga solo un vínculo estructural, con el peso mínimo (0.05).','Joins at distance 20 are elements that take part in no recorded activity and have no value set in Block 6: only a structural tie with the minimum weight (0.05) links them.'):''}${C.desconectados?' '+T('Hay elementos sin camino entre sí; se les asignó una distancia de '+fmt(C.tope,2)+' (115 % de la mayor observada).','Some elements have no path between them; they were given a distance of '+fmt(C.tope,2)+' (115 % of the largest observed).'):''}</p>
+      <p class="nota">↔ ${T('vecinos mutuos: cada uno es el más cercano del otro.','mutual neighbours: each is the other’s nearest.')}${C.U.some(u=>u[2]>=19.99)?' '+T('Las uniones a distancia 20 son elementos que no participan en ninguna actividad capturada ni tienen valor asignado en el Bloque 8: los liga solo un vínculo estructural, con el peso mínimo (0.05).','Joins at distance 20 are elements that take part in no recorded activity and have no value set in Block 8: only a structural tie with the minimum weight (0.05) links them.'):''}${C.desconectados?' '+T('Hay elementos sin camino entre sí; se les asignó una distancia de '+fmt(C.tope,2)+' (115 % de la mayor observada).','Some elements have no path between them; they were given a distance of '+fmt(C.tope,2)+' (115 % of the largest observed).'):''}</p>
       <p class="nota sci">${T('Enlace simple sobre distancias de camino más corto (1/peso). Correlación cofenética','Single linkage on shortest-path distances (1/weight). Cophenetic correlation')}: <b>${C.r==null?'—':fmt(C.r,3)}</b> (Sokal y Rohlf, 1962) · n = ${C.nodos.length}.</p></div></div></div>`; }
 
-/* Versión para el Informe (Bloque 11): cladograma, vecinos más cercanos y CSV de uniones; se imprime completo. */
+/* Versión para el Informe (Bloque 13): cladograma, vecinos más cercanos y CSV de uniones; se imprime completo. */
 function informeCladograma(R){
   const sub=renderInforme.clado||renderTablero.clado||'actinst', C=datosCladograma(R, sub);
   const opc={actores:T('Actores','Actors'), actinst:T('Actores e instituciones','Actors and institutions'), todos:T('Todos los elementos','All elements')};
@@ -2783,7 +2848,7 @@ function csvCladograma(R){ const sub=renderInforme.clado||renderTablero.clado||'
 <script>
 "use strict";
 /* =====================================================================
-   A. CORRELACIONES POR ELEMENTO (Bloque 8)
+   A. CORRELACIONES POR ELEMENTO (Bloque 10)
    φ = correlación de Pearson entre los vectores de incidencia (0/1) de dos
    elementos en las actividades del sistema (la misma de la matriz del Tablero).
    ===================================================================== */
@@ -2842,31 +2907,36 @@ function simularProspectiva(){
   const ISt=sos.trad, ISi=sos.inn, hayInn=nI>0 && ISi!=null;
   const I0=S.precio.INGR&&+S.precio.INGR.p>0 ? +S.precio.INGR.p : null, C0=S.precio.COSTOS&&+S.precio.COSTOS.p>0 ? +S.precio.COSTOS.p : null;
   const sig=(t,t50)=>1/(1+Math.exp(-(t-t50)));
+  const rg0=regeneracion(), IR0=rg0.IR, cap0=capacidadAdaptativa(rg0), otros=cap0.parts.slice(1), Lef=P.Lext*(1-0.5*IR0);
+  const CAde=(ir)=>(ir+otros.reduce((s,x)=>s+x.v,0))/(1+otros.length);
   const res=ESCENARIOS.map(e=>{ const p=P.esc[e.id], aMax=Math.max(p.aMax,a0), s0=sig(0,p.t50), serie=[];
     for(let t=0;t<=10;t++){
       const A=a0+(aMax-a0)*(sig(t,p.t50)-s0)/(1-s0), dA=hayInn?A-a0:0;
       const Fcl=Math.max(0, 1+(P.beta/100)*p.dT*t/10);
-      const pt=P.p0+(p.pExt-P.p0)*t/10, Fex=(1-pt*P.Lext/100)/(1-P.p0*P.Lext/100);
+      const pt=P.p0+(p.pExt-P.p0)*t/10, Fex=(1-pt*Lef/100)/(1-P.p0*Lef/100);
+      const IRt=Math.min(1, IR0+0.5*(1-IR0)*dA), RGt=riesgos({rg:{IR:IRt}, CA:CAde(IRt), dClima:5*(pt-P.p0)}).idx;
       const Ld=Math.pow(1+p.gL/100,t), Ln=1-(P.rL/100)*dA, def=Math.max(0,Ln-Ld)/Ln, Flab=1-0.5*def;
       const Y=100*Fcl*Fex*(1+(P.eY/100)*dA)*Flab, Pr=100*Math.pow(1+p.gP/100,t), C=100*Math.pow(1+p.gC/100,t)*(1-(P.sC/100)*dA);
       const IB=Pr*Y/100, rel=100*IB/C, IS_=hayInn&&ISt!=null ? ISt*(1-A)+ISi*A : sos.global;
-      serie.push({t, A:hayInn?A*100:a0*100, Y, Pr, C, rel, Ld:Ld*100, Ln:Ln*100, def:def*100, IS:IS_, neto: I0!=null&&C0!=null ? I0*IB/100 - C0*C/100 : null}); }
+      serie.push({t, A:hayInn?A*100:a0*100, Y, Pr, C, rel, Ld:Ld*100, Ln:Ln*100, def:def*100, IS:IS_, IR:100*IRt, RG:100*RGt, neto: I0!=null&&C0!=null ? I0*IB/100 - C0*C/100 : null}); }
     return {...e, p, serie}; });
-  return {res, P, a0, hayInn, ISt, ISi, I0, C0, nI}; }
+  return {res, P, a0, hayInn, ISt, ISi, I0, C0, nI, IR0, Lef}; }
 const IND_PROSP = [
   {k:'Y', n:E('Rendimiento','Yield'), u:E('índice, año 0 = 100','index, year 0 = 100'), d:0},
   {k:'Pr', n:E('Precio real del producto','Real product price'), u:E('índice','index'), d:0},
   {k:'C', n:E('Costo de producción por ha','Production cost per ha'), u:E('índice','index'), d:0},
   {k:'rel', n:E('Ingreso bruto ÷ costo','Gross income ÷ cost'), u:E('índice, año 0 = 100','index, year 0 = 100'), d:0},
-  {k:'neto', n:E('Ingreso neto por ha','Net income per ha'), u:E('$ / ha (Bloque 6)','$ / ha (Block 6)'), d:0},
+  {k:'neto', n:E('Ingreso neto por ha','Net income per ha'), u:E('$ / ha (Bloque 8)','$ / ha (Block 8)'), d:0},
   {k:'Ld', n:E('Mano de obra familiar disponible','Available family labour'), u:E('índice; la línea punteada es la requerida','index; dotted line is the labour required'), d:0},
   {k:'A', n:E('Adopción de innovaciones','Innovation adoption'), u:E('% de las actividades','% of activities'), d:0},
-  {k:'IS', n:E('Índice de sostenibilidad','Sustainability index'), u:E('0–1','0–1'), d:2}
+  {k:'IS', n:E('Índice de sostenibilidad','Sustainability index'), u:E('0–1','0–1'), d:2},
+  {k:'IR', n:E('Índice de regeneración','Regeneration index'), u:E('0–100 (Bloque 5)','0–100 (Block 5)'), d:0},
+  {k:'RG', n:E('Índice de riesgo','Risk index'), u:E('0–100 (Bloque 6)','0–100 (Block 6)'), d:0}
 ];
 function graficaProsp(sim, k){ const W=420, H=250, L=54, B=36, R=14, Tp=14, ser=sim.res.map(r=>r.serie.map(x=>x[k]));
-  if(ser[0][0]==null) return `<p class="sindato">${T('Captura el ingreso y el costo por hectárea en el Bloque 6 (Recursos financieros) para ver el ingreso neto en pesos.','Enter income and cost per hectare in Block 6 (Financial resources) to see net income in pesos.')}</p>`;
+  if(ser[0][0]==null) return `<p class="sindato">${T('Captura el ingreso y el costo por hectárea en el Bloque 8 (Recursos financieros) para ver el ingreso neto en pesos.','Enter income and cost per hectare in Block 8 (Financial resources) to see net income in pesos.')}</p>`;
   const extra=k==='Ld'?sim.res.map(r=>r.serie.map(x=>x.Ln)):[]; const all=[...ser.flat(),...extra.flat()];
-  let mn=Math.min(...all), mx=Math.max(...all); if(k==='IS'){ mn=0; mx=1; } else if(k==='A'){ mn=0; mx=100; } else { if(mx-mn<1e-9){ mn-=Math.abs(mn)*.05||1; mx+=Math.abs(mx)*.05||1; } const pad=(mx-mn)*.08; mn-=pad; mx+=pad; }
+  let mn=Math.min(...all), mx=Math.max(...all); if(k==='IS'){ mn=0; mx=1; } else if(k==='A'||k==='IR'||k==='RG'){ mn=0; mx=100; } else { if(mx-mn<1e-9){ mn-=Math.abs(mn)*.05||1; mx+=Math.abs(mx)*.05||1; } const pad=(mx-mn)*.08; mn-=pad; mx+=pad; }
   const X=t=>L+(W-L-R)*t/10, Yp=v=>Tp+(H-Tp-B)*(1-(v-mn)/(mx-mn));
   let s=`<svg class="chart prosp-g" viewBox="0 0 ${W} ${H}" role="img">`;
   for(let i=0;i<=4;i++){ const v=mn+(mx-mn)*i/4, y=Yp(v); s+=`<line class="grid" x1="${L}" y1="${y}" x2="${W-R}" y2="${y}"/><text x="${L-6}" y="${y+4}" text-anchor="end" font-size="13" class="m">${fmt(v,k==='IS'?2:0)}</text>`; }
@@ -2889,6 +2959,9 @@ function lecturaProsp(sim){ const ult=k=>sim.res.map(r=>r.serie[10][k]), [d,t,n]
   rie.push(T(`En el escenario no deseado, a 10 años el rendimiento cambia ${pc(Y[n])} y la relación ingreso ÷ costo ${pc(rel[n])}.`,`In the undesired scenario, by year 10 yield changes ${pc(Y[n])} and income ÷ cost ${pc(rel[n])}.`));
   rie.push(T(`La mano de obra familiar disponible baja a ${fmt(L[n],0)} (tendencial: ${fmt(L[t],0)}); ${def[n]>0.5?`el déficit llega a ${fmt(def[n],0)} % de la requerida`:'sin déficit frente a la requerida'}.`,`Available family labour drops to ${fmt(L[n],0)} (trend: ${fmt(L[t],0)}); ${def[n]>0.5?`the shortfall reaches ${fmt(def[n],0)} % of what is needed`:'no shortfall against what is needed'}.`));
   rie.push(T(`Con ${fmt(sim.res[n].p.dT,1)} °C por década y ${fmt(sim.P.beta,1)} % de rendimiento por °C, el clima por sí solo resta ${fmt(-sim.P.beta*sim.res[n].p.dT,1)} % en 10 años, más las pérdidas de los años extremos.`,`With ${fmt(sim.res[n].p.dT,1)} °C per decade and ${fmt(sim.P.beta,1)} % yield per °C, climate alone removes ${fmt(-sim.P.beta*sim.res[n].p.dT,1)} % in 10 years, plus losses in extreme years.`));
+  const IRu=ult('IR'), RGu=ult('RG');
+  pot.push(T(`La regeneración pasa de ${fmt(100*sim.IR0,0)} a ${fmt(IRu[d],0)} en el escenario deseable; un sistema más regenerado pierde menos en los años extremos.`,`Regeneration goes from ${fmt(100*sim.IR0,0)} to ${fmt(IRu[d],0)} in the desirable scenario; a more regenerated system loses less in extreme years.`));
+  rie.push(T(`El índice de riesgo llega a ${fmt(RGu[n],0)} en el escenario no deseado (tendencial: ${fmt(RGu[t],0)}), por la mayor frecuencia de eventos climáticos.`,`The risk index reaches ${fmt(RGu[n],0)} in the undesired scenario (trend: ${fmt(RGu[t],0)}), from more frequent climate events.`));
   return {pot, rie}; }
 function renderProspectiva(el){ const sim=simularProspectiva(), P=sim.P, lec=lecturaProsp(sim), c=cultivoSel();
   const editable=(id,k,v)=>`<input type="number" step="${k==='aMax'?0.05:k==='t50'?1:0.1}" data-pe="${id}" data-pk="${k}" value="${v}">`;
@@ -2903,7 +2976,7 @@ function renderProspectiva(el){ const sim=simularProspectiva(), P=sim.P, lec=lec
   <div class="grid g2">
    <div class="card" style="border-top:4px solid #2f8f6a"><h3>${T('Potencialidades','Potentials')}</h3><ul>${lec.pot.map(x=>`<li>${x}</li>`).join('')}</ul></div>
    <div class="card" style="border-top:4px solid #c43a2f"><h3>${T('Perspectivas no deseadas','Undesired prospects')}</h3><ul>${lec.rie.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>
-  <div class="card"><h3>${T('Resultados a 2, 5 y 10 años','Results at 2, 5 and 10 years')}</h3>${tablaHorizontes(sim, ['Y','rel','neto','Ld','A','IS'])}</div>
+  <div class="card"><h3>${T('Resultados a 2, 5 y 10 años','Results at 2, 5 and 10 years')}</h3>${tablaHorizontes(sim, ['Y','rel','neto','Ld','A','IS','IR','RG'])}</div>
   <div class="card"><div class="row between"><h3 style="margin:0">${T('Supuestos de cada escenario','Assumptions per scenario')}</h3><button class="btn ghost sm" id="pReset">${T('Volver a los valores iniciales','Reset to defaults')}</button></div>
    <div class="tbl-c"><table class="tbl prosp-sup"><thead><tr><th>${T('Variable','Variable')}</th>${ESCENARIOS.map(e=>`<th style="color:${e.col}">${esc(tx(e.n))}</th>`).join('')}<th>${T('Base','Basis')}</th></tr></thead><tbody>
     ${PARAM_P.map(([k,n,b])=>`<tr><td>${esc(tx(n))}</td>${ESCENARIOS.map(e=>`<td>${editable(e.id,k,P.esc[e.id][k])}</td>`).join('')}<td>${marca(b)}</td></tr>`).join('')}
@@ -2921,8 +2994,9 @@ function renderProspectiva(el){ const sim=simularProspectiva(), P=sim.P, lec=lec
    Y(t) = 100 · [1 + β·ΔT·t/10] · [(1 − p(t)·L<sub>ext</sub>)/(1 − p₀·L<sub>ext</sub>)] · [1 + e<sub>Y</sub>·(A − a₀)] · [1 − 0.5·déficit(t)]<br>
    P(t) = 100·(1+g<sub>P</sub>)<sup>t</sup> ; C(t) = 100·(1+g<sub>C</sub>)<sup>t</sup>·[1 − s<sub>C</sub>·(A − a₀)] ; ${T('ingreso ÷ costo','income ÷ cost')} = 100·(P·Y/100)/C<br>
    L<sub>disp</sub>(t) = (1+g<sub>L</sub>)<sup>t</sup> ; L<sub>req</sub>(t) = 1 − r<sub>L</sub>·(A − a₀) ; ${T('déficit','shortfall')} = max(0, L<sub>req</sub> − L<sub>disp</sub>)/L<sub>req</sub><br>
-   IS(t) = IS<sub>trad</sub>·(1 − A) + IS<sub>inn</sub>·A ${T('(medias de tus actividades, Bloque 9)','(means of your activities, Block 9)')}</div>
-   <p class="nota">a₀ = ${fmt(sim.a0,3)} · IS<sub>trad</sub> = ${fmt(sim.ISt,3)} · IS<sub>inn</sub> = ${sim.ISi==null?'—':fmt(sim.ISi,3)} · β = ${fmt(P.beta,1)} %/°C. ${T('La elasticidad 0.5 del rendimiento al déficit de mano de obra es un supuesto.','The 0.5 elasticity of yield to labour shortfall is an assumption.')}</p>
+   IR(t) = IR₀ + 0.5·(1 − IR₀)·(A − a₀) ; L<sub>ext,ef</sub> = L<sub>ext</sub>·(1 − 0.5·IR₀) ; ${T('riesgo','risk')}(t): P<sub>clima</sub> + 5·(p(t) − p₀) ${T('y CA con IR(t)','and CA with IR(t)')}<br>
+   IS(t) = IS<sub>trad</sub>·(1 − A) + IS<sub>inn</sub>·A ${T('(medias de tus actividades, Bloque 11)','(means of your activities, Block 11)')}</div>
+   <p class="nota">a₀ = ${fmt(sim.a0,3)} · IS<sub>trad</sub> = ${fmt(sim.ISt,3)} · IS<sub>inn</sub> = ${sim.ISi==null?'—':fmt(sim.ISi,3)} · β = ${fmt(P.beta,1)} %/°C. ${T('La elasticidad 0.5 del rendimiento al déficit de mano de obra, el amortiguamiento 0.5 de las pérdidas por la regeneración y la ganancia 0.5 de regeneración por adopción son supuestos.','The 0.5 elasticity of yield to labour shortfall, the 0.5 damping of losses by regeneration and the 0.5 regeneration gain from adoption are assumptions.')} IR₀ = ${fmt(sim.IR0,2)}.</p>
    <p class="fuente">${T('Fuentes','Sources')}: IPCC (2018), SR1.5, SPM A.1 · Zhao C, et al. (2017) PNAS 114(35): 9326–9331 · Rogers EM (2003) · Godet M, Durance P (2007).</p></div>
   ${siguiente('prospectiva')}`;
   const guardaP=()=>{ guardar(); render(); };
@@ -2942,6 +3016,230 @@ function informeProspectiva(){ const sim=simularProspectiva(), lec=lecturaProsp(
 <script>
 "use strict";
 /* =====================================================================
+   Bloque 5 · REGENERACIÓN DEL SISTEMA PRODUCTIVO
+   Bloque 6 · RIESGOS DEL SISTEMA
+   ---------------------------------------------------------------------
+   Regeneración: ocho indicadores en escala 0–4, agrupados en los principios
+   de salud del suelo del USDA-NRCS (mínima perturbación, suelo cubierto,
+   diversidad, raíces vivas) más los que la literatura de agricultura
+   regenerativa añade (integración animal, menos insumos de síntesis,
+   materia orgánica; Newton et al., 2020; Schreefel et al., 2020) y el saber
+   local del Stack. Cada indicador tiene un valor sugerido a partir de las
+   actividades que se practican (Bloque 4) que el usuario puede ajustar con
+   su perilla. Índice de regeneración IR = Σ s / (4·n), 0–1.
+   La lectura de los valores sugeridos y los cortes de clase son «Lectura de
+   Ratio Telar».
+   Riesgo: matriz de probabilidad × impacto 1–5 (IEC 31010:2019; ISO 31000:2018)
+   y el marco del IPCC (2014): el riesgo depende de la amenaza, la exposición y
+   la vulnerabilidad. La capacidad adaptativa CA (0–1) reduce el riesgo:
+   r = P · I · (1 − 0.4·CA) · (1 − 0.15·control). En la prospectiva, la
+   probabilidad de las amenazas climáticas sube ΔP = 5·(p(t) − p₀). Los factores 0.4 y 0.15 son
+   supuestos de Ratio Telar, marcados y explicados en la app.
+   ===================================================================== */
+const NIVEL04 = [E('Nulo','None'),E('Bajo','Low'),E('Medio','Medium'),E('Alto','High'),E('Muy alto','Very high')];
+const NIVEL15 = [null,E('Muy bajo','Very low'),E('Bajo','Low'),E('Medio','Medium'),E('Alto','High'),E('Muy alto','Very high')];
+const _tiene = (a, ids)=> a.el.some(id=>ids.includes(id));
+const DIV_SIS = {milpa:3, miaf:4, vinedo:1, mono:1, agrofor:4, traspatio:5, pastoreo:1, apiario:1, cinegetico:3, confinado:1};
+const REGEN_IND = [
+  {id:'labranza', pr:E('Mínima perturbación','Minimal disturbance'), n:E('Labranza mínima','Minimal tillage'), col:'#9a6a3a',
+   q:E('¿Cuántos pasos de maquinaria o arado mueven el suelo en cada ciclo? Menos pasos, menos erosión y más vida en el suelo.','How many machinery or plough passes move the soil each cycle? Fewer passes, less erosion and more soil life.'),
+   auto:(acts)=>{ const n=acts.filter(a=>_tiene(a,['ARADO','SUBS','RASTRA'])&&!/decisi|determinaci|evaluaci|decision/i.test(a.n.es||'')).length; return {s:n===0?4:n===1?3:n===2?2:n<=4?1:0, m:T(`${n} actividades de labranza practicadas`,`${n} tillage activities practised`)}; }},
+  {id:'cobertura', pr:E('Suelo cubierto','Soil cover'), n:E('Suelo cubierto todo el año','Soil covered all year'), col:'#7a9a3a',
+   q:E('¿Cuántos meses del año el suelo está cubierto por el cultivo, rastrojo, acolchado o abono verde?','How many months a year is the soil covered by crop, stubble, mulch or green manure?'),
+   auto:(acts)=>{ const r=acts.some(a=>_tiene(a,['RAST'])&&a.v&&a.v[0]>0); return {s:r?2:1, m:r?T('el rastrojo se deja o se incorpora; ajusta según los meses de cobertura','stubble is left or incorporated; adjust to months of cover'):T('sin dato de cobertura: ajústalo','no cover data: adjust it')}; }},
+  {id:'diversidad', pr:E('Diversidad','Diversity'), n:E('Diversidad de especies','Species diversity'), col:'#2f8f6a',
+   q:E('¿Cuántas especies se cultivan o crían juntas en la unidad (incluidos árboles y animales)?','How many species are grown or raised together in the unit (including trees and animals)?'),
+   auto:()=>{ const k=S.cultivo==='granja'?Math.max(1,S.granja.length):(DIV_SIS[S.sistema]||1); return {s:k<=1?0:k===2?1:k===3?2:k<=5?3:4, m:T(`${k} especies según el sistema elegido`,`${k} species according to the chosen system`)}; }},
+  {id:'raices', pr:E('Raíces vivas','Living roots'), n:E('Raíces vivas el mayor tiempo','Living roots as long as possible'), col:'#5f8f3e',
+   q:E('¿Cuántos meses al año hay plantas vivas en la parcela (cultivo, cobertera, árboles, pastos)?','How many months a year are there living plants on the plot (crop, cover crop, trees, pasture)?'),
+   auto:()=>{ const perenne=['miaf','agrofor','vinedo','pastoreo','traspatio'].includes(S.sistema); return {s:perenne?3:2, m:perenne?T('sistema con plantas perennes','system with perennial plants'):T('cultivo de un ciclo: ajusta según los meses con plantas vivas','single-cycle crop: adjust to months with living plants')}; }},
+  {id:'animales', pr:E('Integración animal','Livestock integration'), n:E('Animales integrados al sistema','Animals integrated into the system'), col:'#b0703e',
+   q:E('¿Hay animales que pastorean el rastrojo, aportan estiércol o conviven en la unidad?','Are there animals grazing stubble, providing manure or living in the unit?'),
+   auto:(acts)=>{ const esp=cultivoSel().tipo==='especie'||['pastoreo','traspatio'].includes(S.sistema); const forr=acts.some(a=>_tiene(a,['FORR'])); return {s:esp?3:forr?2:0, m:esp?T('unidad con animales','unit with animals'):forr?T('se produce forraje para animales','fodder is produced for animals'):T('sin animales registrados','no animals recorded')}; }},
+  {id:'insumos', pr:E('Menos síntesis','Fewer synthetics'), n:E('Menos agroquímicos de síntesis','Fewer synthetic agrochemicals'), col:'#2f7d8a',
+   q:E('¿Qué parte de las actividades con insumos usa agroquímicos de síntesis frente a bioinsumos?','What share of input activities uses synthetic agrochemicals versus bio-inputs?'),
+   auto:(acts)=>{ const s=acts.filter(a=>_tiene(a,['INSEC','HERB','FERTG','FOLIAR'])).length, b=acts.filter(a=>_tiene(a,['BIOI'])).length; if(!s&&!b) return {s:4, m:T('sin insumos registrados','no inputs recorded')}; const r=s/(s+b); return {s:Math.round(4*(1-r)), m:T(`${s} actividades con agroquímicos y ${b} con bioinsumos`,`${s} activities with agrochemicals and ${b} with bio-inputs`)}; }},
+  {id:'mo', pr:E('M. orgánica','Org. matter'), n:E('Materia orgánica y residuos','Organic matter and residues'), col:'#7a4f9a',
+   q:E('¿Se incorporan rastrojo, estiércol o composta, y se mide la materia orgánica del suelo?','Are stubble, manure or compost incorporated, and is soil organic matter measured?'),
+   auto:(acts)=>{ const r=acts.filter(a=>_tiene(a,['RAST'])&&a.v&&a.v[0]>0).length, lab=acts.some(a=>_tiene(a,['LAB'])); const s=Math.min(4,(r===0?1:r===1?2:3)+(lab?1:0)); return {s, m:T(`${r} actividades que devuelven residuos al suelo${lab?'; con análisis de suelo':''}`,`${r} activities returning residues to soil${lab?'; with soil testing':''}`)}; }},
+  {id:'saber', pr:E('Saber local','Local knowledge'), n:E('Saber local y semilla propia','Local knowledge and own seed'), col:'#d9a441',
+   q:E('¿Qué tanto se apoya el manejo en el saber tácito y cultural, la selección de semilla propia y la familia?','How much does management rely on tacit and cultural knowledge, own seed selection and the family?'),
+   auto:(acts)=>{ if(!acts.length) return {s:2, m:T('sin actividades: ajústalo','no activities: adjust it')}; const f=acts.filter(a=>_tiene(a,['KTAC','KCUL','LUNA','FAM','SEMS'])).length/acts.length; return {s:Math.min(4,Math.round(8*f)), m:T(`${Math.round(100*f)} % de las actividades usan saber local o semilla propia`,`${Math.round(100*f)} % of activities use local knowledge or own seed`)}; }}
+];
+const CLASE_IR = v=> v==null?null : v<0.25?{n:E('Degradante','Degrading'),c:'bad'} : v<0.5?{n:E('Convencional','Conventional'),c:'warn'} : v<0.75?{n:E('En transición regenerativa','In regenerative transition'),c:'info'} : {n:E('Regenerativo','Regenerative'),c:'ok'};
+function regeneracion(){ const acts=sostenibilidad().acts, R=S.regen||{};
+  const ind=REGEN_IND.map(d=>{ const a=d.auto(acts), u=R[d.id]; const s=(u!=null&&u!=='')?+u:a.s; return {...d, sug:a.s, motivo:a.m, s, ajustado:(u!=null&&u!=='')}; });
+  const IR=ind.reduce((t,x)=>t+x.s,0)/(4*ind.length);
+  const regenAct=acts.map(a=>({a, r:(a.v[0]+a.v[1]+a.v[3]+a.v[4])})).sort((x,y)=>y.r-x.r);
+  const base=S.regenBase||null, IRb=base?base.IR:null;
+  return {ind, IR, clase:CLASE_IR(IR), sube:regenAct.filter(x=>x.r>0).slice(0,6), baja:regenAct.filter(x=>x.r<0).reverse().slice(0,6), base, dIR:IRb!=null?IR-IRb:null, mo:S.regenMO||{}}; }
+
+/* ---------------- RIESGOS ---------------- */
+const CAT_R = {clima:{n:E('Climáticos','Climatic'),col:'#2d78b0'}, bio:{n:E('Biológicos','Biological'),col:'#5f8f3e'}, mercado:{n:E('Mercado','Market'),col:'#c98b21'}, social:{n:E('Sociales','Social'),col:'#b05434'}, inst:{n:E('Institucionales','Institutional'),col:'#5a6b8a'}, recursos:{n:E('Recursos naturales','Natural resources'),col:'#7a4f9a'}};
+const RIESGOS = [
+  {id:'sequia', cat:'clima', n:E('Sequía o lluvias tardías','Drought or late rains'), el:['HUM','CLIMA','ENSO']},
+  {id:'helada', cat:'clima', n:E('Helada','Frost'), el:['CLIMA']},
+  {id:'granizo', cat:'clima', n:E('Granizo','Hail'), el:['CLIMA']},
+  {id:'lluvia', cat:'clima', n:E('Lluvias intensas o inundación','Heavy rain or flooding'), el:['CICL','CLIMA']},
+  {id:'calor', cat:'clima', n:E('Ola de calor','Heatwave'), el:['CLIMA']},
+  {id:'ciclon', cat:'clima', n:E('Ciclones y huracanes','Cyclones and hurricanes'), el:['CICL','MJO']},
+  {id:'plagas', cat:'bio', n:E('Plagas','Pests'), el:['PLAGA']},
+  {id:'enferm', cat:'bio', n:E('Enfermedades','Diseases'), el:['PLAGA']},
+  {id:'malezas', cat:'bio', n:E('Malezas resistentes o invasoras','Resistant or invasive weeds'), el:['ARV','HERB']},
+  {id:'precio', cat:'mercado', n:E('Caída del precio de venta','Fall in sale price'), el:['PRECIO','COMP','GRANO']},
+  {id:'insumos', cat:'mercado', n:E('Alza de insumos y servicios','Rise in input and service costs'), el:['COSTOS','FERTG','PI']},
+  {id:'venta', cat:'mercado', n:E('Intermediarismo o falta de comprador','Middlemen or no buyer'), el:['COMP','TRANS']},
+  {id:'manoobra', cat:'social', n:E('Falta de mano de obra y de relevo generacional','Labour shortage and no generational succession'), el:['PM','FAM']},
+  {id:'saber', cat:'social', n:E('Pérdida del saber local','Loss of local knowledge'), el:['KTAC','KCUL','FAM']},
+  {id:'insegur', cat:'social', n:E('Inseguridad o robo','Insecurity or theft'), el:[]},
+  {id:'apoyos', cat:'inst', n:E('Retiro de programas y apoyos','Withdrawal of programmes and support'), el:['AT','SDR']},
+  {id:'tierra', cat:'inst', n:E('Conflictos de tenencia de la tierra','Land tenure conflicts'), el:[]},
+  {id:'erosion', cat:'recursos', n:E('Erosión y pérdida de fertilidad','Erosion and fertility loss'), el:['SUELO']},
+  {id:'agua', cat:'recursos', n:E('Escasez de agua','Water scarcity'), el:['HUM']}
+];
+const NIVEL_R = r=> r<=4?{n:E('Bajo','Low'),c:'#3f9b5f'} : r<=9?{n:E('Medio','Medium'),c:'#d9b13a'} : r<=15?{n:E('Alto','High'),c:'#e0803a'} : {n:E('Muy alto','Very high'),c:'#c43a2f'};
+function sugerenciaRiesgo(id, acts, P){ const e=P.esc.ten; let p=3, i=3, m=T('moderado: ajústalo a tu localidad','moderate: adjust it to your locality');
+  const sh=acts.length?acts.filter(a=>_tiene(a,['INSEC','HERB','FERTG','FOLIAR','PI'])).length/acts.length:0, kt=acts.length?acts.filter(a=>_tiene(a,['KTAC','KCUL','FAM'])).length/acts.length:0;
+  if(id==='insumos'){ p=e.gC>=2?4:3; i=1+Math.round(4*Math.min(1,sh*2)); m=T(`probabilidad del escenario tendencial (costos +${e.gC} %/año); impacto según el ${Math.round(100*sh)} % de actividades con insumos comprados`,`trend-scenario probability (costs +${e.gC} %/yr); impact from the ${Math.round(100*sh)} % of activities with purchased inputs`); }
+  if(id==='manoobra'){ p=e.gL<=-1.5?4:e.gL<0?3:2; m=T(`según la pérdida de mano de obra del escenario tendencial (${e.gL} %/año)`,`from the trend scenario labour loss (${e.gL} %/yr)`); }
+  if(id==='precio'){ p=e.gP<0?4:3; m=T('según el precio del escenario tendencial','from the trend scenario price'); }
+  if(id==='saber'){ i=1+Math.round(4*Math.min(1,kt*2)); m=T(`impacto según el ${Math.round(100*kt)} % de actividades que dependen del saber local`,`impact from the ${Math.round(100*kt)} % of activities relying on local knowledge`); }
+  if(['sequia','calor'].includes(id)){ p=e.dT>=0.2?4:3; m=T(`calentamiento del escenario tendencial (${e.dT} °C por década; IPCC, 2018)`,`trend-scenario warming (${e.dT} °C per decade; IPCC, 2018)`); }
+  return {p, i, m}; }
+function capacidadAdaptativa(rg){ const sos=sostenibilidad(), sar=sarandon(sos); const parts=[{n:E('Regeneración','Regeneration'), v:rg.IR}];
+  if(sar){ const B=sar.IKs.find(x=>x.k==='B'), K=sar.ISCs.find(x=>x.k==='B'), I=sar.ISCs.find(x=>x.k==='C');
+    if(B&&B.v!=null) parts.push({n:E('Diversificación de productos','Product diversification'), v:B.v/4});
+    if(K&&K.v!=null) parts.push({n:E('Acceso a conocimiento técnico','Access to technical knowledge'), v:K.v/4});
+    if(I&&I.v!=null) parts.push({n:E('Integración institucional','Institutional integration'), v:I.v/4}); }
+  return {CA:parts.reduce((t,x)=>t+x.v,0)/parts.length, parts}; }
+function riesgos(opt={}){ const acts=sostenibilidad().acts, P=prosp(), U=S.riesgo||{}, rg=opt.rg||regeneracion(), cap=opt.CA!=null?{CA:opt.CA,parts:[]}:capacidadAdaptativa(rg), dP=opt.dClima||0;
+  const L=RIESGOS.map(d=>{ const sg=sugerenciaRiesgo(d.id, acts, P), u=U[d.id]||{};
+    const off=u.off===true, p0=u.p!=null?+u.p:sg.p, i=u.i!=null?+u.i:sg.i, ctl=u.c!=null?+u.c:0;
+    const p=d.cat==='clima'?Math.min(5,p0+dP):p0, bruto=p*i, r=bruto*(1-0.4*cap.CA)*(1-0.15*ctl);
+    return {...d, sug:sg, p, i, ctl, off, bruto, r, nivel:NIVEL_R(r), ajustado:(u.p!=null||u.i!=null)}; });
+  const act=L.filter(x=>!x.off), idx=act.length?act.reduce((t,x)=>t+x.r,0)/(25*act.length):0;
+  const porCat=Object.keys(CAT_R).map(k=>{ const l=act.filter(x=>x.cat===k); return {k, v:l.length?l.reduce((t,x)=>t+x.r,0)/(25*l.length):null, n:l.length}; });
+  return {L, act, idx, porCat, CA:cap.CA, partsCA:cap.parts, top:[...act].sort((a,b)=>b.r-a.r)}; }
+const CLASE_RG = v=> v<0.16?{n:E('Bajo','Low'),c:'ok'} : v<0.36?{n:E('Medio','Medium'),c:'warn'} : v<0.6?{n:E('Alto','High'),c:'bad'} : {n:E('Muy alto','Very high'),c:'bad'};
+
+/* ---------------- Gráficas ---------------- */
+function matrizRiesgo(rs, opt={}){ const c=opt.celda||64, L=86, Tp=16, W=L+5*c+20, H=Tp+5*c+56;
+  let s=`<svg class="chart matriz-r" viewBox="0 0 ${W} ${H}" role="img" aria-label="${T('Matriz de probabilidad e impacto','Likelihood and impact matrix')}">`;
+  for(let p=1;p<=5;p++) for(let i=1;i<=5;i++){ const x=L+(i-1)*c, y=Tp+(5-p)*c, nv=NIVEL_R(p*i); s+=`<rect x="${x}" y="${y}" width="${c-3}" height="${c-3}" rx="6" fill="${nv.c}" fill-opacity=".22" stroke="${nv.c}" stroke-opacity=".5"/>`; }
+  const celdas={}; rs.act.forEach(x=>{ const k=Math.round(x.p)+'-'+x.i; (celdas[k]=celdas[k]||[]).push(x); });
+  Object.entries(celdas).forEach(([k,l])=>{ const [p,i]=k.split('-').map(Number), x=L+(i-1)*c+(c-3)/2, y=Tp+(5-p)*c+(c-3)/2;
+    s+=`<circle cx="${x}" cy="${y}" r="${12+Math.min(10,l.length*2)}" fill="${NIVEL_R(p*i).c}" data-tip="${esc(l.map(z=>tx(z.n)).join(' · '))}"/><text x="${x}" y="${y+4.5}" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">${l.length}</text>`; });
+  for(let p=1;p<=5;p++) s+=`<text x="${L-8}" y="${Tp+(5-p)*c+c/2}" text-anchor="end" font-size="11.5" class="m">${p} · ${esc(tx(NIVEL15[p]))}</text>`;
+  for(let i=1;i<=5;i++) s+=`<text x="${L+(i-1)*c+c/2-1}" y="${Tp+5*c+14}" text-anchor="middle" font-size="11.5" class="m">${i}</text>`;
+  s+=`<text x="${L+2.5*c}" y="${H-8}" text-anchor="middle" font-size="12" font-weight="700">${T('Impacto','Impact')} →</text><text x="14" y="${Tp+2.5*c}" text-anchor="middle" font-size="12" font-weight="700" transform="rotate(-90 14 ${Tp+2.5*c})">${T('Probabilidad','Likelihood')} →</text>`;
+  return s+'</svg>'; }
+const radarRegen = rg => radar(rg.ind.map(x=>x.s/4), rg.ind.map(x=>tx(x.pr)), rg.ind.map(x=>x.col), {w:440});
+function medidorIR(v, clase, etq){ const W=260, H=186, C=130, R=100, a0=Math.PI, ang=a0-Math.PI*Math.max(0,Math.min(1,v)), x=C+0.78*R*Math.cos(ang), y=130-0.78*R*Math.sin(ang);
+  const arco=(f0,f1,col)=>{ const s0=a0-Math.PI*f0, s1=a0-Math.PI*f1; return `<path d="M${C+R*Math.cos(s0)},${130-R*Math.sin(s0)} A${R},${R} 0 0 1 ${C+R*Math.cos(s1)},${130-R*Math.sin(s1)}" stroke="${col}" stroke-width="18" fill="none"/>`; };
+  return `<svg class="chart medidor" viewBox="0 0 ${W} ${H}" role="img">${arco(0,.25,'#c43a2f')}${arco(.25,.5,'#e0a33a')}${arco(.5,.75,'#7fb35a')}${arco(.75,1,'#2f8f6a')}
+    <line x1="${C}" y1="130" x2="${x}" y2="${y}" stroke="var(--text)" stroke-width="3.5" stroke-linecap="round"/><circle cx="${C}" cy="130" r="7" fill="var(--text)"/>
+    <text x="${C}" y="166" text-anchor="middle" font-size="28" font-weight="700">${fmt(100*v,0)}</text><text x="${C}" y="182" text-anchor="middle" font-size="11.5" class="m">${esc(etq)}</text><text x="22" y="148" text-anchor="middle" font-size="11" class="m">0</text><text x="238" y="148" text-anchor="middle" font-size="11" class="m">100</text></svg>`; }
+
+/* ---------------- Bloque 5 · Regeneración ---------------- */
+function renderRegeneracion(el){ const rg=regeneracion();
+  const perilla=(x)=>`<div class="perilla ${x.ajustado?'ajustada':''}" style="--pc:${x.col}"><div class="row between"><b>${esc(tx(x.n))}</b><span class="pv">${x.s} · ${esc(tx(NIVEL04[x.s]))}</span></div>
+    <input type="range" min="0" max="4" step="1" value="${x.s}" data-regen="${x.id}" aria-label="${esc(tx(x.n))}">
+    <div class="marcas"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span></div>
+    <p class="nota">${esc(tx(x.q))}</p><p class="nota sug">${T('Sugerido','Suggested')}: <b>${x.sug}</b> · ${esc(x.motivo)}${x.ajustado?` · <button type="button" class="link" data-regen-reset="${x.id}">${T('volver al sugerido','back to suggested')}</button>`:''}</p></div>`;
+  el.innerHTML=`${cabecera('regeneracion',T('¿Tu sistema se regenera o se desgasta con cada ciclo? Aquí se mide si las prácticas devuelven al suelo, al agua y a la biodiversidad más de lo que toman. Cada perilla va de 0 a 4: empieza con un valor sugerido a partir de tus actividades y la ajustas a lo que pasa en tu parcela.','Does your system regenerate or wear out with each cycle? This measures whether practices give back to soil, water and biodiversity more than they take. Each knob goes from 0 to 4: it starts at a value suggested by your activities and you adjust it to what happens on your plot.'))}
+  ${consejo(T('Mueve las perillas como si ajustaras el volumen: 0 es nada, 4 es lo máximo. Guarda una línea base hoy y vuelve en el próximo ciclo para ver si tu sistema se está regenerando.','Move the knobs like a volume control: 0 is nothing, 4 is the maximum. Save a baseline today and come back next cycle to see whether your system is regenerating.'),
+    T('Ocho indicadores en escala ordinal 0–4 basados en los principios de salud del suelo (USDA-NRCS) y en las definiciones de agricultura regenerativa por procesos y resultados (Newton et al., 2020; Schreefel et al., 2020). IR = Σs/(4n). Los valores sugeridos y los cortes de clase son lectura de Ratio Telar.','Eight ordinal 0–4 indicators based on soil health principles (USDA-NRCS) and process- and outcome-based definitions of regenerative agriculture (Newton et al., 2020; Schreefel et al., 2020). IR = Σs/(4n). Suggested values and class cut-offs are Ratio Telar readings.'))}
+  <div class="grid g2"><div class="card" style="text-align:center"><h3>${T('Índice de regeneración','Regeneration index')}${ayuda('regen')}</h3>${medidorIR(rg.IR, rg.clase, tx(rg.clase.n))}
+     <p><span class="badge ${rg.clase.c}" style="font-size:14px">${esc(tx(rg.clase.n))}</span></p>
+     ${rg.dIR!=null?`<p>${T('Cambio frente a la línea base','Change from baseline')} (${esc(rg.base.fecha)}): <b style="color:var(--${rg.dIR>=0?'ok':'bad'}-text)">${rg.dIR>=0?'+':''}${fmt(100*rg.dIR,0)}</b> ${rg.dIR>0.005?T('· el sistema se regenera','· the system is regenerating'):rg.dIR<-0.005?T('· el sistema se desgasta','· the system is wearing out'):T('· sin cambio','· no change')}</p>`:''}
+     <div class="row" style="justify-content:center;gap:8px;flex-wrap:wrap"><button class="btn sm" id="rgBase">${rg.base?T('Actualizar línea base','Update baseline'):T('Guardar como línea base','Save as baseline')}</button>${rg.base?`<button class="btn ghost sm" id="rgBaseX">${T('Quitar línea base','Remove baseline')}</button>`:''}</div>
+     <p class="nota">${T('Clases (lectura de Ratio Telar): < 25 degradante · 25–49 convencional · 50–74 en transición regenerativa · ≥ 75 regenerativo.','Classes (Ratio Telar reading): < 25 degrading · 25–49 conventional · 50–74 regenerative transition · ≥ 75 regenerative.')}</p></div>
+   <div class="card"><h3>${T('Perfil de regeneración','Regeneration profile')}</h3>${radarRegen(rg)}
+     ${rg.base?`<p class="nota">${T('Línea base','Baseline')}: ${rg.base.ind.map(b=>{ const x=rg.ind.find(y=>y.id===b.id); const d=x?x.s-b.s:0; return `${esc(tx((REGEN_IND.find(y=>y.id===b.id)||{pr:b.id}).pr))} ${d>0?'↑':d<0?'↓':'→'}`; }).join(' · ')}</p>`:''}</div></div>
+  <div class="card"><h3>${T('Las ocho perillas de la regeneración','The eight regeneration knobs')}</h3><div class="perillas">${rg.ind.map(perilla).join('')}</div></div>
+  <div class="grid g2"><div class="card"><h3>${T('Materia orgánica del suelo (opcional)','Soil organic matter (optional)')}</h3>
+     <div class="grid g2"><label class="f"><span>${T('% MO en la línea base','% SOM at baseline')}</span><input type="number" step="0.1" min="0" id="moB" value="${rg.mo.b??''}"></label><label class="f"><span>${T('% MO actual','Current % SOM')}</span><input type="number" step="0.1" min="0" id="moA" value="${rg.mo.a??''}"></label></div>
+     ${rg.mo.b!=null&&rg.mo.a!=null&&rg.mo.b!==''&&rg.mo.a!==''?`<p>${T('Cambio','Change')}: <b style="color:var(--${(+rg.mo.a)>=(+rg.mo.b)?'ok':'bad'}-text)">${(+rg.mo.a)-(+rg.mo.b)>=0?'+':''}${fmt((+rg.mo.a)-(+rg.mo.b),2)}</b> ${T('puntos de MO','SOM points')} (${fmt(100*((+rg.mo.a)-(+rg.mo.b))/(+rg.mo.b||1),0)} %)</p>`:`<p class="nota">${T('Con dos análisis de suelo (antes y ahora) ves si la materia orgánica sube: es la prueba más directa de regeneración.','With two soil tests (before and now) you see whether organic matter rises: the most direct proof of regeneration.')}</p>`}</div>
+   <div class="card"><h3>${T('Actividades que regeneran y que desgastan','Activities that regenerate and wear out')}</h3>
+     <p class="nota">${T('Suma del impacto en suelo, agua, vegetación y fauna (Bloque 4).','Sum of impact on soil, water, vegetation and fauna (Block 4).')}</p>
+     <div class="grid g2"><div><b style="color:var(--ok-text)">${T('Regeneran','Regenerate')}</b><ul>${rg.sube.map(x=>`<li>${esc(tx(x.a.n))} <span class="muted">(+${x.r})</span></li>`).join('')||`<li class="muted">—</li>`}</ul></div>
+     <div><b style="color:var(--bad-text)">${T('Desgastan','Wear out')}</b><ul>${rg.baja.map(x=>`<li>${esc(tx(x.a.n))} <span class="muted">(${x.r})</span></li>`).join('')||`<li class="muted">—</li>`}</ul></div></div></div></div>
+  ${siguiente('regeneracion')}`;
+  $$('[data-regen]',el).forEach(i=>i.oninput=()=>{ const v=+i.value; i.closest('.perilla').querySelector('.pv').textContent=v+' · '+tx(NIVEL04[v]); });
+  $$('[data-regen]',el).forEach(i=>i.onchange=()=>{ S.regen=S.regen||{}; S.regen[i.dataset.regen]=+i.value; guardar(); render(); });
+  $$('[data-regen-reset]',el).forEach(b=>b.onclick=()=>{ delete S.regen[b.dataset.regenReset]; guardar(); render(); });
+  $('#rgBase',el).onclick=()=>{ S.regenBase={fecha:new Date().toISOString().slice(0,10), IR:rg.IR, ind:rg.ind.map(x=>({id:x.id,s:x.s}))}; guardar(); render(); toast(T('Línea base guardada','Baseline saved')); };
+  if($('#rgBaseX',el)) $('#rgBaseX',el).onclick=()=>{ if(confirm(T('¿Quitar la línea base?','Remove the baseline?'))){ S.regenBase=null; guardar(); render(); } };
+  ['moB','moA'].forEach(k=>$('#'+k,el).onchange=e=>{ S.regenMO=S.regenMO||{}; S.regenMO[k==='moB'?'b':'a']=e.target.value; guardar(); render(); });
+  enlazarTips(el); }
+
+/* ---------------- Bloque 6 · Riesgos ---------------- */
+function renderRiesgos(el){ const rs=riesgos(), cls=CLASE_RG(rs.idx), filtro=renderRiesgos.cat||'todos';
+  const fila=x=>`<tr class="${x.off?'r-off':''}"><td><input type="checkbox" data-roff="${x.id}" ${x.off?'':'checked'} aria-label="${T('Aplica','Applies')}"></td>
+    <td><span class="punto" style="background:${CAT_R[x.cat].col}"></span>${esc(tx(x.n))}<br><small class="muted">${T('Sugerido','Suggested')}: P ${x.sug.p} · I ${x.sug.i} — ${esc(x.sug.m)}</small></td>
+    <td class="perilla-c"><input type="range" min="1" max="5" step="1" value="${Math.round(x.p)}" data-rp="${x.id}" ${x.off?'disabled':''}><small>${Math.round(x.p)} · ${esc(tx(NIVEL15[Math.round(x.p)]))}</small></td>
+    <td class="perilla-c"><input type="range" min="1" max="5" step="1" value="${x.i}" data-ri="${x.id}" ${x.off?'disabled':''}><small>${x.i} · ${esc(tx(NIVEL15[x.i]))}</small></td>
+    <td class="perilla-c"><input type="range" min="0" max="3" step="1" value="${x.ctl}" data-rc="${x.id}" ${x.off?'disabled':''}><small>${[T('ninguno','none'),T('bajo','low'),T('medio','medium'),T('alto','high')][x.ctl]}</small></td>
+    <td class="r"><b style="color:${x.nivel.c}">${fmt(x.r,1)}</b><br><small>${esc(tx(x.nivel.n))}</small></td></tr>`;
+  const lista=rs.L.filter(x=>filtro==='todos'||x.cat===filtro);
+  el.innerHTML=`${cabecera('riesgos',T('¿Qué puede salir mal y qué tan grave sería? Cada riesgo se mide con dos perillas: qué tan probable es (1 a 5) y qué tanto daño haría (1 a 5). La capacidad de adaptación de tu sistema —su regeneración, diversificación, conocimiento técnico e instituciones— lo reduce.','What could go wrong and how serious would it be? Each risk is measured with two knobs: how likely it is (1 to 5) and how much damage it would do (1 to 5). Your system’s adaptive capacity —its regeneration, diversification, technical knowledge and institutions— reduces it.'))}
+  ${consejo(T('Empieza por los riesgos que ya viviste en tu localidad. Si un riesgo no aplica, desmárcalo. La tercera perilla es el control que ya tienes (seguro, reserva de semilla, bordo, venta anticipada…).','Start with the risks you have already lived through. If a risk does not apply, untick it. The third knob is the control you already have (insurance, seed reserve, contour bund, forward sale…).'),
+    T('Matriz de probabilidad × impacto de 5 × 5 (IEC 31010:2019; ISO 31000:2018) dentro del marco de riesgo del IPCC (2014): amenaza, exposición y vulnerabilidad. r = P·I·(1 − 0.4·CA)·(1 − 0.15·control); índice = media de r / 25. Los factores 0.4 y 0.15 son supuestos de Ratio Telar.','5 × 5 likelihood × impact matrix (IEC 31010:2019; ISO 31000:2018) within the IPCC (2014) risk framework: hazard, exposure and vulnerability. r = P·I·(1 − 0.4·CA)·(1 − 0.15·control); index = mean r / 25. The 0.4 and 0.15 factors are Ratio Telar assumptions.'))}
+  <div class="kpis"><div class="kpi" style="border-top:4px solid var(--${cls.c})"><div class="l">${T('Índice de riesgo','Risk index')}${ayuda('riesgo')}</div><div class="v">${fmt(100*rs.idx,0)}</div><div class="s"><span class="badge ${cls.c}">${esc(tx(cls.n))}</span> ${T('de 0 a 100','from 0 to 100')}</div></div>
+   <div class="kpi"><div class="l">${T('Capacidad adaptativa','Adaptive capacity')}${ayuda('CA')}</div><div class="v">${fmt(100*rs.CA,0)}</div><div class="s">${rs.partsCA.map(p=>esc(tx(p.n))+' '+fmt(100*p.v,0)).join(' · ')}</div></div>
+   <div class="kpi"><div class="l">${T('Riesgos altos o muy altos','High or very high risks')}</div><div class="v">${rs.act.filter(x=>x.r>9).length}</div><div class="s">${T('de','of')} ${rs.act.length} ${T('que aplican','that apply')}</div></div>
+   <div class="kpi"><div class="l">${T('Mayor riesgo','Highest risk')}</div><div class="v" style="font-size:18px">${rs.top[0]?esc(tx(rs.top[0].n)):'—'}</div><div class="s">${rs.top[0]?fmt(rs.top[0].r,1)+' / 25':''}</div></div></div>
+  <div class="grid g2"><div class="card"><h3>${T('Matriz de riesgos','Risk matrix')}</h3>${matrizRiesgo(rs)}<p class="nota">${T('Cada círculo indica cuántos riesgos caen en esa celda; pasa el cursor para ver cuáles.','Each circle shows how many risks fall in that cell; hover to see which.')}</p></div>
+   <div class="card"><h3>${T('Riesgo por categoría','Risk by category')}</h3>${barrasH(rs.porCat.filter(c=>c.v!=null).map(c=>({l:tx(CAT_R[c.k].n), v:100*c.v, c:CAT_R[c.k].col, vl:fmt(100*c.v,0)})),{max:100, izq:170})}
+     <h4 style="margin:10px 0 4px">${T('Los cinco riesgos mayores','The five highest risks')}</h4><ol>${rs.top.slice(0,5).map(x=>`<li>${esc(tx(x.n))} <b style="color:${x.nivel.c}">${fmt(x.r,1)}</b></li>`).join('')}</ol></div></div>
+  <div class="card"><div class="row between"><h3 style="margin:0">${T('Perillas de cada riesgo','Knobs for each risk')}</h3><div class="basesw">${[['todos',T('Todos','All')],...Object.entries(CAT_R).map(([k,c])=>[k,tx(c.n)])].map(([k,n])=>`<button data-rcat="${k}" class="${k===filtro?'on':''}">${esc(n)}</button>`).join('')}</div></div>
+   <div class="tbl-c"><table class="tbl riesgos-t"><thead><tr><th>${T('Aplica','Applies')}</th><th>${T('Riesgo','Risk')}</th><th>${T('Probabilidad','Likelihood')}</th><th>${T('Impacto','Impact')}</th><th>${T('Control','Control')}</th><th class="r">${T('Riesgo','Risk')} /25</th></tr></thead><tbody>${lista.map(fila).join('')}</tbody></table></div>
+   <div class="row" style="gap:8px;margin-top:8px"><button class="btn ghost sm" id="rReset">${T('Volver a los valores sugeridos','Back to suggested values')}</button></div>
+   ${conStack()?`<p class="nota">${T('En Calpan, el Stack registra como perturbaciones del entorno El Niño y La Niña, la temporada de ciclones del Atlántico, la Oscilación Madden-Julian y la Oscilación Ártica','In Calpan, the Stack records as environmental disturbances El Niño and La Niña, the Atlantic hurricane season, the Madden-Julian Oscillation and the Arctic Oscillation')} ${marcaDato()}; ${T('el artículo no publica probabilidades: se dejan como sugerencias editables.','the paper publishes no probabilities: they are left as editable suggestions.')}</p>`:''}</div>
+  ${siguiente('riesgos')}`;
+  const U=()=>{ S.riesgo=S.riesgo||{}; return S.riesgo; }, set=(id,k,v)=>{ const u=U(); u[id]=u[id]||{}; u[id][k]=v; guardar(); render(); };
+  $$('[data-rp]',el).forEach(i=>i.onchange=()=>set(i.dataset.rp,'p',+i.value));
+  $$('[data-ri]',el).forEach(i=>i.onchange=()=>set(i.dataset.ri,'i',+i.value));
+  $$('[data-rc]',el).forEach(i=>i.onchange=()=>set(i.dataset.rc,'c',+i.value));
+  $$('[data-roff]',el).forEach(i=>i.onchange=()=>set(i.dataset.roff,'off',!i.checked));
+  $$('[data-rcat]',el).forEach(b=>b.onclick=()=>{ renderRiesgos.cat=b.dataset.rcat; render(); });
+  $('#rReset',el).onclick=()=>{ if(confirm(T('¿Volver a los valores sugeridos en todos los riesgos?','Return all risks to suggested values?'))){ S.riesgo={}; guardar(); render(); } };
+  enlazarTips(el); }
+
+/* ---------------- Tarjetas para los bloques siguientes ---------------- */
+function tarjetaRegenRiesgo(id){ const rg=regeneracion(), rs=riesgos({rg}), crg=CLASE_RG(rs.idx);
+  const k2=`<div class="kpis" style="margin:8px 0"><div class="kpi"><div class="l">${T('Regeneración (Bloque 5)','Regeneration (Block 5)')}</div><div class="v">${fmt(100*rg.IR,0)}</div><div class="s"><span class="badge ${rg.clase.c}">${esc(tx(rg.clase.n))}</span></div></div>
+     <div class="kpi"><div class="l">${T('Riesgo (Bloque 6)','Risk (Block 6)')}</div><div class="v">${fmt(100*rs.idx,0)}</div><div class="s"><span class="badge ${crg.c}">${esc(tx(crg.n))}</span></div></div>
+     <div class="kpi"><div class="l">${T('Capacidad adaptativa','Adaptive capacity')}</div><div class="v">${fmt(100*rs.CA,0)}</div><div class="s">0–100</div></div></div>`;
+  if(id==='elementos'){ const exp={}; rs.act.forEach(x=>x.el.forEach(e=>{ exp[e]=Math.max(exp[e]||0,x.r); }));
+    const l=Object.entries(exp).filter(([e])=>elemPorId(e)).sort((a,b)=>b[1]-a[1]).slice(0,10);
+    return `<div class="card rr-card"><h3>${T('Regeneración y riesgo en los elementos','Regeneration and risk in the elements')}</h3>${k2}
+      <p class="nota">${T('Elementos más expuestos: el riesgo mayor de las amenazas que los afectan (Bloque 6).','Most exposed elements: the highest risk among the hazards that affect them (Block 6).')}</p>
+      ${barrasH(l.map(([e,r])=>{ const d=elemPorId(e); return {l:tx(d.n), v:r, c:CATS[d.cat].col, vl:fmt(r,1)}; }),{max:25, izq:240})}</div>`; }
+  if(id==='formulacion') return `<div class="card rr-card"><h3>${T('Regeneración y riesgo en el modelo','Regeneration and risk in the model')}</h3>${k2}
+      <div class="formula">IR = Σ<sub>k</sub> s<sub>k</sub> / (4·8) ; CA = media(IR, ${T('diversificación','diversification')}, ${T('conocimiento técnico','technical knowledge')}, ${T('integración institucional','institutional integration')})<br>r<sub>h</sub> = P<sub>h</sub>·I<sub>h</sub>·(1 − 0.4·CA)·(1 − 0.15·c<sub>h</sub>) ; ${T('índice de riesgo','risk index')} = Σ r<sub>h</sub> / (25·H)</div>
+      <p class="nota">${T('La regeneración es una propiedad emergente: resulta de cómo se combinan las actividades y no de una sola práctica. El riesgo depende de la amenaza y de la vulnerabilidad del sistema, que la capacidad adaptativa reduce (IPCC, 2014).','Regeneration is an emergent property: it results from how activities combine, not from a single practice. Risk depends on the hazard and on system vulnerability, which adaptive capacity reduces (IPCC, 2014).')}</p></div>`;
+  if(id==='tablero') return `<div class="card t12 rr-card"><h3>${T('Regeneración y riesgo del sistema','System regeneration and risk')}</h3>${k2}
+      <div class="grid g2"><div>${radarRegen(rg)}</div><div>${matrizRiesgo(rs,{celda:54})}</div></div></div>`;
+  if(id==='sostenible') return `<div class="card rr-card"><h3>${T('Regeneración, riesgo y sostenibilidad','Regeneration, risk and sustainability')}</h3>${k2}
+      <p>${T('Un sistema sostenible se mantiene; uno regenerativo, además, mejora sus recursos con cada ciclo. Un riesgo alto amenaza ambos.','A sustainable system maintains itself; a regenerative one also improves its resources each cycle. High risk threatens both.')} ${T('Relación con los ODS (lectura de Ratio Telar): la regeneración aporta a los ODS 2, 13 y 15; la gestión del riesgo, a los ODS 1, 2 y 13.','SDG links (Ratio Telar reading): regeneration contributes to SDGs 2, 13 and 15; risk management to SDGs 1, 2 and 13.')}</p>
+      ${barrasH(rg.ind.map(x=>({l:tx(x.n), v:x.s, c:x.col, vl:x.s+' / 4'})),{max:4, izq:240})}</div>`;
+  return ''; }
+function ponerRegenRiesgo(id, el){ if(!['elementos','formulacion','tablero','sostenible'].includes(id)) return; const h=tarjetaRegenRiesgo(id); if(!h) return;
+  const nx=$('.next',el); if(id==='tablero'){ const t=$('.tablero',el); if(t){ t.insertAdjacentHTML('afterbegin',h); return; } }
+  if(nx) nx.insertAdjacentHTML('beforebegin',h); else el.insertAdjacentHTML('beforeend',h); }
+function informeRegenRiesgo(){ const rg=regeneracion(), rs=riesgos({rg}), crg=CLASE_RG(rs.idx);
+  return `<div class="card"><h3>${T('Regeneración del sistema','System regeneration')}</h3>
+     <div class="grid g2"><div style="text-align:center">${medidorIR(rg.IR, rg.clase, tx(rg.clase.n))}<p><span class="badge ${rg.clase.c}">${esc(tx(rg.clase.n))}</span>${rg.dIR!=null?` · ${T('cambio frente a la línea base','change from baseline')} ${rg.dIR>=0?'+':''}${fmt(100*rg.dIR,0)}`:''}</p></div><div>${radarRegen(rg)}</div></div>
+     <table class="tbl"><tbody>${rg.ind.map(x=>`<tr><td>${esc(tx(x.n))}</td><td class="r"><b>${x.s}</b> / 4</td><td class="muted">${esc(tx(NIVEL04[x.s]))}${x.ajustado?' · '+T('ajustado','adjusted'):''}</td></tr>`).join('')}</tbody></table></div>
+   <div class="card"><h3>${T('Riesgos del sistema','System risks')}</h3>
+     <p>${T('Índice de riesgo','Risk index')}: <b>${fmt(100*rs.idx,0)}</b> / 100 · <span class="badge ${crg.c}">${esc(tx(crg.n))}</span> · ${T('capacidad adaptativa','adaptive capacity')} ${fmt(100*rs.CA,0)}</p>
+     <div class="grid g2"><div>${matrizRiesgo(rs,{celda:54})}</div><div><table class="tbl"><thead><tr><th>${T('Riesgo','Risk')}</th><th class="r">P</th><th class="r">I</th><th class="r">r</th></tr></thead><tbody>${rs.top.slice(0,8).map(x=>`<tr><td>${esc(tx(x.n))}</td><td class="r">${fmt(x.p,0)}</td><td class="r">${x.i}</td><td class="r"><b style="color:${x.nivel.c}">${fmt(x.r,1)}</b></td></tr>`).join('')}</tbody></table></div></div></div>`; }
+
+</script>
+<script>
+"use strict";
+/* =====================================================================
    6. BLOQUES · base, Inicio, 1 Cultivo, 2 Región, 3 Requerimientos
    ===================================================================== */
 const BLOQUES = [
@@ -2950,13 +3248,15 @@ const BLOQUES = [
   {id:'region',      n:'2', ill:'i-mapa',   corto:E('Región','Region'),               titulo:E('Región, municipio y localidad','Region, municipality and locality'), render:()=>renderRegion},
   {id:'requerimientos',n:'3',ill:'i-req',   corto:E('Requerimientos','Requirements'), titulo:E('Requerimientos técnicos tradicionales e innovados','Traditional and innovated technical requirements'), render:()=>renderReq},
   {id:'manejo',      n:'4', ill:'i-manejo', corto:E('Manejo','Management'),           titulo:E('Manejo: pasos y actividades','Management: steps and activities'), render:()=>renderManejo},
-  {id:'elementos',   n:'5', ill:'i-red',    corto:E('Elementos','Elements'),          titulo:E('Elementos que interactúan en el sistema','Elements interacting in the system'), render:()=>renderElementos},
-  {id:'precios',     n:'6', ill:'i-valor',  corto:E('Precio y valor','Price and value'),titulo:E('Precio y valor de los elementos','Price and value of the elements'), render:()=>renderPrecios},
-  {id:'formulacion', n:'7', ill:'i-telar',  corto:E('Formulación','Formulation'),     titulo:E('Formulación del sistema complejo adaptativo','Complex adaptive system formulation'), render:()=>renderFormulacion},
-  {id:'tablero',     n:'8', ill:'i-panel2', corto:E('Tablero','Dashboard'),           titulo:E('Tablero de resultados','Results dashboard'), render:()=>renderTablero},
-  {id:'sostenible',  n:'9', ill:'i-tierra', corto:E('Sostenibilidad','Sustainability'),titulo:E('Sostenibilidad, ODS y huella','Sustainability, SDGs and footprint'), render:()=>renderSostenible},
-  {id:'prospectiva', n:'10', ill:'i-panel2', corto:E('Prospectiva','Outlook'),       titulo:E('Prospectiva a 2, 5 y 10 años','Outlook at 2, 5 and 10 years'), render:()=>renderProspectiva},
-  {id:'informe',     n:'11',ill:'i-report', corto:E('Informe','Report'),             titulo:E('Informe general y exportación','General report and export'), render:()=>renderInforme},
+  {id:'regeneracion', n:'5', ill:'i-regen', corto:E('Regeneración','Regeneration'), titulo:E('Regeneración del sistema productivo','Regeneration of the production system'), render:()=>renderRegeneracion},
+  {id:'riesgos',     n:'6', ill:'i-riesgo', corto:E('Riesgos','Risks'), titulo:E('Riesgos del sistema','System risks'), render:()=>renderRiesgos},
+  {id:'elementos',   n:'7', ill:'i-red',    corto:E('Elementos','Elements'),          titulo:E('Elementos que interactúan en el sistema','Elements interacting in the system'), render:()=>renderElementos},
+  {id:'precios',     n:'8', ill:'i-valor',  corto:E('Precio y valor','Price and value'),titulo:E('Precio y valor de los elementos','Price and value of the elements'), render:()=>renderPrecios},
+  {id:'formulacion', n:'9', ill:'i-telar',  corto:E('Formulación','Formulation'),     titulo:E('Formulación del sistema complejo adaptativo','Complex adaptive system formulation'), render:()=>renderFormulacion},
+  {id:'tablero',     n:'10', ill:'i-panel2', corto:E('Tablero','Dashboard'),           titulo:E('Tablero de resultados','Results dashboard'), render:()=>renderTablero},
+  {id:'sostenible',  n:'11', ill:'i-tierra', corto:E('Sostenibilidad','Sustainability'),titulo:E('Sostenibilidad, ODS y huella','Sustainability, SDGs and footprint'), render:()=>renderSostenible},
+  {id:'prospectiva', n:'12', ill:'i-panel2', corto:E('Prospectiva','Outlook'),       titulo:E('Prospectiva a 2, 5 y 10 años','Outlook at 2, 5 and 10 years'), render:()=>renderProspectiva},
+  {id:'informe',     n:'13',ill:'i-report', corto:E('Informe','Report'),             titulo:E('Informe general y exportación','General report and export'), render:()=>renderInforme},
   {id:'validacion',  n:'✓', ill:'i-check',  corto:E('Validación','Validation'),       titulo:E('Validación','Validation'), render:()=>renderValidacion},
   {id:'teoria',      n:'§', ill:'i-book',   corto:E('Teoría','Theory'),               titulo:E('Marco teórico','Theoretical framework'), render:()=>renderTeoria}
 ];
@@ -3000,6 +3300,8 @@ function renderInicio(el){
     ['region',T('Región','Region'),T(`Del país a la localidad: ${fmt(nm,0)} municipios y ${fmt(nl,0)} localidades del INEGI, con altitud y ubicación en el mapa.`,`From country to locality: ${fmt(nm,0)} municipalities and ${fmt(nl,0)} INEGI localities with altitude and map position.`)],
     ['requerimientos',T('Requerimientos','Requirements'),T('Las 5B del saber local y los requerimientos que la localidad ha innovado.','The 5B of local knowledge and the requirements the locality has innovated.')],
     ['manejo',T('Manejo','Management'),T('38 pasos y sus actividades tradicionales; agrega las innovadoras de tu localidad.','38 steps and their traditional activities; add your locality’s innovations.')],
+    ['regeneracion',T('Regeneración','Regeneration'),T('Ocho perillas de 0 a 4 miden si el sistema se regenera: labranza, cobertura, diversidad, raíces vivas, animales, insumos, materia orgánica y saber local.','Eight 0–4 knobs measure whether the system regenerates: tillage, cover, diversity, living roots, animals, inputs, organic matter and local knowledge.')],
+    ['riesgos',T('Riesgos','Risks'),T('Diecinueve riesgos climáticos, biológicos, de mercado, sociales, institucionales y de recursos en una matriz de probabilidad por impacto.','Nineteen climatic, biological, market, social, institutional and resource risks in a likelihood-by-impact matrix.')],
     ['elementos',T('Elementos','Elements'),T('Actores, instituciones, insumos, equipo, recursos naturales y financieros, conocimientos, políticas, perturbaciones y productos.','Actors, institutions, inputs, equipment, natural and financial resources, knowledge, policies, disturbances and products.')],
     ['precios',T('Precio y valor','Price and value'),T('El precio lo pone el mercado; el valor, el sistema: económico, de uso, cultural y ecológico.','Price is set by the market; value by the system: economic, use, cultural and ecological.')],
     ['formulacion',T('Formulación','Formulation'),T('Teje el modelo: agentes, interacciones, retroalimentaciones y propiedades emergentes.','Weave the model: agents, interactions, feedbacks and emergent properties.')],
@@ -3196,7 +3498,7 @@ function impCeldas(v, data){ return `<div class="imps">${COMP.map((c,i)=>`<div><
 function renderManejo(el){ const fb=renderManejo.fb||null; const pasos = conStack()?PASOS.filter(p=>!fb||p.b===fb):[];
   const nInn=Object.values(S.manejo).reduce((s,m)=>s+(m.inn||[]).length,0), nOff=Object.values(S.manejo).reduce((s,m)=>s+Object.values(m.off||{}).filter(Boolean).length,0);
   el.innerHTML = `${cabecera('manejo',T('Cada paso del ciclo tiene actividades que el saber local ha probado durante años. Marca las que practicas, corrige su impacto si hace falta y agrega las actividades innovadoras de tu localidad: son los hilos nuevos del telar.','Each step of the cycle has activities local knowledge has tested for years. Tick those you practise, correct their impact if needed and add your locality’s innovative activities: they are the loom’s new threads.'))}
-  ${consejo(T('Abre un paso, revisa sus actividades y usa «+ Actividad innovadora» para lo que hoy haces diferente. Los cuadros de colores muestran si la actividad suma (verde) o resta (rojo) al suelo, el agua, la atmósfera, la vegetación y la fauna.','Open a step, review its activities and use “+ Innovative activity” for what you now do differently. Coloured boxes show whether the activity adds (green) or subtracts (red) for soil, water, air, vegetation and fauna.'),T('El impacto por omisión es la suma, recortada a ±2, de los perfiles de los elementos que intervienen (Bloque 5); es una lectura editable, no una medición.','Default impact is the sum, clipped to ±2, of the profiles of the elements involved (Block 5); an editable reading, not a measurement.'))}
+  ${consejo(T('Abre un paso, revisa sus actividades y usa «+ Actividad innovadora» para lo que hoy haces diferente. Los cuadros de colores muestran si la actividad suma (verde) o resta (rojo) al suelo, el agua, la atmósfera, la vegetación y la fauna.','Open a step, review its activities and use “+ Innovative activity” for what you now do differently. Coloured boxes show whether the activity adds (green) or subtracts (red) for soil, water, air, vegetation and fauna.'),T('El impacto por omisión es la suma, recortada a ±2, de los perfiles de los elementos que intervienen (Bloque 7); es una lectura editable, no una medición.','Default impact is the sum, clipped to ±2, of the profiles of the elements involved (Block 7); an editable reading, not a measurement.'))}
   <div class="kpis"><div class="kpi"><div class="l">${T('Actividades activas','Active activities')}</div><div class="v">${actividades().length}</div><div class="s">${T('tradicionales e innovadas','traditional and innovated')}</div></div>
    <div class="kpi"><div class="l">${T('Innovadas','Innovated')}</div><div class="v" style="color:var(--accent-text)">${nInn}</div><div class="s">${T('agregadas por la localidad','added by the locality')}</div></div>
    <div class="kpi"><div class="l">${T('No practicadas','Not practised')}</div><div class="v">${nOff}</div><div class="s">${T('salen de la red','leave the network')}</div></div></div>
@@ -3366,7 +3668,7 @@ function renderTablero(el){ const R=construirRed(renderTablero.sinPM), st=estadi
   const Mk=kp.map(a=>kp.map(b=>mc.M[mc.ks.indexOf(a)][mc.ks.indexOf(b)]));
   const sos=sostenibilidad(); const met={grado:T('Grado ponderado','Weighted degree'), inter:T('Intermediación','Betweenness'), eig:T('Vector propio','Eigenvector'), cerc:T('Cercanía','Closeness')};
   el.innerHTML = `${cabecera('tablero',T('El sistema completo en una vista: quién está más relacionado, qué hilos pesan más, qué grupos se forman y qué elementos se mueven juntos. Pasa el cursor sobre nodos y vínculos; haz clic en un nodo para ver solo sus relaciones.','The whole system at a glance: who is most related, which threads weigh most, which groups form and which elements move together. Hover nodes and links; click a node to see only its relations.'))}
-  ${!S.formulado?`<div class="alert warn"><p>${T('Aún no tejes el sistema en el Bloque 7; el tablero muestra el estado actual de tus datos.','You have not woven the system in Block 7 yet; the dashboard shows the current state of your data.')}</p><button class="btn sm" data-ir="formulacion">${T('Ir a formular','Go to formulation')}</button></div>`:''}
+  ${!S.formulado?`<div class="alert warn"><p>${T('Aún no tejes el sistema en el Bloque 9; el tablero muestra el estado actual de tus datos.','You have not woven the system in Block 9 yet; the dashboard shows the current state of your data.')}</p><button class="btn sm" data-ir="formulacion">${T('Ir a formular','Go to formulation')}</button></div>`:''}
   <div class="kpis">
    <div class="kpi"><div class="l">${T('Nodos · vínculos','Nodes · links')}</div><div class="v">${st.n} · ${st.m}</div><div class="s">${R.acts.length} ${T('actividades','activities')}</div></div>
    <div class="kpi"><div class="l">${T('Densidad','Density')}${ayuda('densidad')}</div><div class="v">${fmt(st.densidad,3)}</div><div class="s">${T('grado medio','mean degree')} ${fmt(st.gradoMedio,1)}</div></div>
@@ -3439,14 +3741,14 @@ function renderSostenible(el){ const R=construirRed(), sos=sostenibilidad(), cum
     <div class="formula">ISGen = (IK + IE + ISC) / 3 ; ${T('sostenible si','sustainable if')} ISGen &gt; 2 ${T('y ninguna dimensión','and no dimension')} &lt; 2 ${T('(escala 0–4)','(0–4 scale)')}</div>
     <div class="grid g2"><table class="tbl"><thead><tr><th colspan="3">IK · ${T('subindicadores económicos','economic sub-indicators')}</th></tr></thead><tbody>${sar.IKs.map(x=>`<tr><td>${x.k}. ${esc(tx(x.n))}<div class="tiny muted">${esc(x.f)}</div></td><td class="r"><b>${x.v!=null?fmt(x.v,2):'—'}</b></td></tr>`).join('')}</tbody></table>
      <table class="tbl"><thead><tr><th colspan="3">ISC · ${T('subindicadores socioculturales','socio-cultural sub-indicators')}</th></tr></thead><tbody>${sar.ISCs.map(x=>`<tr><td>${x.k}. ${esc(tx(x.n))}<div class="tiny muted">${esc(x.f)}</div></td><td class="r"><b>${x.v!=null?fmt(x.v,2):'—'}</b></td></tr>`).join('')}</tbody></table></div>
-    <p class="nota">IE = ${T('media de (impacto + 2) en las actividades y los cinco compartimentos','mean of (impact + 2) across activities and the five compartments')}. ${T('El margen (IK·A) requiere el ingreso y el costo por hectárea del Bloque 6 (elementos «Ingresos netos» y «Costos de producción»).','The margin (IK·A) needs income and cost per hectare from Block 6 (“Net income” and “Production costs” elements).')} ${marcaInterp(T('Traducción de los datos a subindicadores 0–4','Translation of the data into 0–4 sub-indicators'))}</p></div>`:''}
+    <p class="nota">IE = ${T('media de (impacto + 2) en las actividades y los cinco compartimentos','mean of (impact + 2) across activities and the five compartments')}. ${T('El margen (IK·A) requiere el ingreso y el costo por hectárea del Bloque 8 (elementos «Ingresos netos» y «Costos de producción»).','The margin (IK·A) needs income and cost per hectare from Block 8 (“Net income” and “Production costs” elements).')} ${marcaInterp(T('Traducción de los datos a subindicadores 0–4','Translation of the data into 0–4 sub-indicators'))}</p></div>`:''}
   <div class="tablero">
    <div class="card t6"><h3>${T('Lo que suma y lo que resta','What adds and what subtracts')}</h3>${sumaResta(sos.comp)}<p class="nota">${T('Suma de los impactos de todas las actividades activas en cada compartimento.','Sum of the impacts of all active activities in each compartment.')} ${marcaInterp()}</p></div>
    <div class="card t6"><h3>${T('Los 17 ODS en tu sistema','The 17 SDGs in your system')}${ayuda('ods')}</h3>${ruedaODS(cum)}</div>
    <div class="card t12"><h3>${T('Sostenibilidad por paso','Sustainability by step')}</h3>${conStack()?barrasPasos(sos.porPaso):`<p class="sindato">—</p>`}</div>
    <div class="card t12"><h3>${T('Grado de cumplimiento de cada ODS','Degree of compliance with each SDG')}</h3>
     <div class="ods-grid">${ODS.map(([o,es,en,col])=>{ const x=cum[o]; return `<div class="ods-c ${x.v==null?'sd':''} aparece" style="background:${col}" title="${esc(x.fuentes.join(', '))}"><b>${o}</b>${esc(LANG==='en'?en:es)}<span class="pc">${x.v!=null?fmt(x.v,0)+' %':T('sin dato','no data')}</span></div>`; }).join('')}</div>
-    <p class="nota">${T('Evidencias: ambientales (ODS 2, 6, 12, 13, 15, de los compartimentos), estructurales (ODS 4: actividades con conocimiento técnico o asesoría; ODS 17: instituciones vinculadas; ODS 1 y 8: margen de ingresos sobre costos del Bloque 6)  La relación entre compartimentos y ODS es una propuesta de Ratio Telar.','Evidence: environmental (SDGs 2, 6, 12, 13, 15, from compartments), structural (SDG 4: activities with technical knowledge or advice; SDG 17: linked institutions; SDGs 1 and 8: income-over-cost margin from Block 6)  The compartment–SDG mapping is a Ratio Telar proposal.')} ${marcaInterp()}</p></div>
+    <p class="nota">${T('Evidencias: ambientales (ODS 2, 6, 12, 13, 15, de los compartimentos), estructurales (ODS 4: actividades con conocimiento técnico o asesoría; ODS 17: instituciones vinculadas; ODS 1 y 8: margen de ingresos sobre costos del Bloque 8)  La relación entre compartimentos y ODS es una propuesta de Ratio Telar.','Evidence: environmental (SDGs 2, 6, 12, 13, 15, from compartments), structural (SDG 4: activities with technical knowledge or advice; SDG 17: linked institutions; SDGs 1 and 8: income-over-cost margin from Block 8)  The compartment–SDG mapping is a Ratio Telar proposal.')} ${marcaInterp()}</p></div>
    <div class="card t6"><h3>${T('Actividades que más restan','Activities that subtract most')}</h3><div class="tbl-c"><table class="tbl"><thead><tr><th>${T('Actividad','Activity')}</th><th class="r">${T('Paso','Step')}</th><th>${T('Impacto','Impact')}</th><th class="r">IS</th></tr></thead><tbody>${peores.map(filaAct).join('')}</tbody></table></div></div>
    <div class="card t6"><h3>${T('Actividades que más suman','Activities that add most')}</h3><div class="tbl-c"><table class="tbl"><thead><tr><th>${T('Actividad','Activity')}</th><th class="r">${T('Paso','Step')}</th><th>${T('Impacto','Impact')}</th><th class="r">IS</th></tr></thead><tbody>${mejores.map(filaAct).join('')}</tbody></table></div></div>
    <div class="card t12"><h3>${T('Huella de carbono de la hectárea','Carbon footprint per hectare')}${ayuda('huella')}</h3>
@@ -3495,6 +3797,7 @@ function renderInforme(el){ const R=construirRed(), st=estadisticaRed(R), sos=so
   <div class="grid g2"><div class="card"><h3>${T('Diez elementos más relacionados','Ten most related elements')}</h3><table class="tbl"><tbody>${top.map((d,i)=>`<tr><td>${i+1}</td><td><span style="color:${d.col}">${CATS[d.cat].sym}</span> ${esc(d.nombre)}</td><td class="r">${fmt(d.grado,2)}</td></tr>`).join('')}</tbody></table></div>
    <div class="card"><h3>${T('ODS','SDGs')}</h3><div class="ods-grid">${ODS.map(([o,es,en,col])=>`<div class="ods-c ${cum[o].v==null?'sd':''}" style="background:${col};min-height:60px"><b>${o}</b><span class="pc">${cum[o].v!=null?fmt(cum[o].v,0)+' %':'—'}</span></div>`).join('')}</div></div></div>
   ${informeCladograma(R)}
+  ${informeRegenRiesgo()}
   ${informeProspectiva()}
   <div class="card"><h3>${T('Requerimientos e innovaciones de la localidad','Locality requirements and innovations')}</h3>
    ${S.reqInn.length?`<ul>${S.reqInn.map(r=>`<li><b>${esc(r.t)}</b>${r.fuente?' · '+esc(r.fuente):''}</li>`).join('')}</ul>`:`<p class="sindato">${T('Sin requerimientos innovados registrados.','No innovated requirements recorded.')}</p>`}
@@ -3586,6 +3889,12 @@ const REF_EXTRA = [
  'Jouvenel B de. 1964. L’art de la conjecture. Éditions du Rocher, Mónaco.',
  'Rogers EM. 2003. Diffusion of innovations, 5.ª ed. Free Press, Nueva York.',
  'Zhao C, Liu B, Piao S, et al. 2017. Temperature increase reduces global yields of major crops in four independent estimates. Proceedings of the National Academy of Sciences 114(35): 9326–9331.',
+ 'Newton P, Civita N, Frankel-Goldwater L, Bartel K, Johns C. 2020. What is regenerative agriculture? A review of scholar and practitioner definitions based on processes and outcomes. Frontiers in Sustainable Food Systems 4: 577723.',
+ 'Schreefel L, Schulte RPO, de Boer IJM, Schrijver AP, van Zanten HHE. 2020. Regenerative agriculture – the soil is the base. Global Food Security 26: 100404.',
+ 'USDA-NRCS. Soil health management principles: minimize disturbance, maximize soil cover, maximize biodiversity, maximize continuous living roots. United States Department of Agriculture, Natural Resources Conservation Service.',
+ 'IPCC. 2014. Summary for Policymakers. En: Climate Change 2014: Impacts, Adaptation, and Vulnerability. Contribución del Grupo de Trabajo II al Quinto Informe de Evaluación. Cambridge University Press.',
+ 'ISO. 2018. ISO 31000:2018 Risk management — Guidelines. International Organization for Standardization, Ginebra.',
+ 'IEC. 2019. IEC 31010:2019 Risk management — Risk assessment techniques. International Electrotechnical Commission, Ginebra.',
  'Sneath PHA. 1957. The application of computers to taxonomy. Journal of General Microbiology 17(1): 201–226.',
  'Sokal RR, Sneath PHA. 1963. Principles of numerical taxonomy. W. H. Freeman, San Francisco.',
  'Sokal RR, Rohlf FJ. 1962. The comparison of dendrograms by objective methods. Taxon 11(2): 33–40.',
@@ -3600,10 +3909,11 @@ function renderTeoria(el){
    [T('El Stack de conocimiento local','The local knowledge stack'),T('El Stack organiza el conocimiento agrícola en capas interdependientes con cuatro rasgos: multidimensionalidad, jerarquización, interdisciplinariedad y aplicabilidad (Díaz-José et al., 2026). Combina conocimiento tácito y explícito, que se convierten uno en otro en la creación de conocimiento (Nonaka y Takeuchi, 1995), y la memoria biocultural de las comunidades (Toledo y Barrera-Bassols, 2008).','The Stack organises farming knowledge in interdependent layers with four traits: multidimensionality, hierarchy, interdisciplinarity and applicability (Díaz-José et al., 2026). It combines tacit and explicit knowledge, which convert into each other as knowledge is created (Nonaka & Takeuchi, 1995), and communities’ biocultural memory (Toledo & Barrera-Bassols, 2008).')],
    [T('Gestión Estratégica Integrada y racionalidad ambiental','Integrated Strategic Management and environmental rationality'),T('El modelo de la tesis integra fundamentos socioeconómicos, ambientales y turístico-ecotecnológicos con enfoques participativo, sostenible y de sistemas complejos, en cuatro fases y nueve pasos (Mojica Zárate, 2017). Se apoya en la racionalidad ambiental de Leff (1994, 2004), que pide reconocer los saberes locales frente a la racionalidad económica dominante, y en el marco de sistemas socioecológicos de Ostrom (2009).','The thesis model integrates socio-economic, environmental and tourism–eco-technological foundations with participatory, sustainable and complex-systems approaches, in four phases and nine steps (Mojica Zárate, 2017). It draws on Leff’s (1994, 2004) environmental rationality, which calls for recognising local knowledge against dominant economic rationality, and on Ostrom’s (2009) social-ecological systems framework.')],
    [T('Redes y estadística','Networks and statistics'),T('La centralidad de grado, cercanía e intermediación (Freeman, 1978; algoritmo de Brandes, 2001) identifica a quién articula el sistema; el agrupamiento y el camino medio caracterizan los «mundos pequeños» (Watts y Strogatz, 1998); la modularidad mide la estructura de comunidades (Newman y Girvan, 2004; Newman, 2006), que aquí se detectan con el método de Louvain (Blondel et al., 2008). La correlación φ entre elementos es la de Pearson sobre su incidencia en las actividades. El cladograma agrupa a los elementos por su distancia en la red (camino más corto con longitud 1/peso) con el enlace simple o del vecino más cercano (Sneath, 1957; Sokal y Sneath, 1963); la correlación cofenética indica qué tan fiel es el árbol a esas distancias (Sokal y Rohlf, 1962).','Degree, closeness and betweenness centrality (Freeman, 1978; Brandes’ algorithm, 2001) identify who holds the system together; clustering and mean path characterise “small worlds” (Watts & Strogatz, 1998); modularity measures community structure (Newman & Girvan, 2004; Newman, 2006), detected here with the Louvain method (Blondel et al., 2008). The φ correlation between elements is Pearson’s on their incidence across activities. The cladogram groups elements by network distance (shortest path with length 1/weight) using single or nearest-neighbour linkage (Sneath, 1957; Sokal & Sneath, 1963); the cophenetic correlation shows how faithfully the tree keeps those distances (Sokal & Rohlf, 1962).')],
+   [T('Regeneración y riesgo','Regeneration and risk'),T('Un sistema regenerativo no solo se mantiene: mejora con cada ciclo el suelo, el agua y la biodiversidad de los que depende. Las definiciones de agricultura regenerativa combinan procesos (mínima perturbación del suelo, suelo cubierto, diversidad, raíces vivas, integración animal, menos insumos de síntesis) y resultados (más materia orgánica, mejor ciclo del agua, más biodiversidad) (Newton et al., 2020; Schreefel et al., 2020); los cuatro primeros procesos son los principios de salud del suelo del USDA-NRCS. Ratio Telar los mide con ocho perillas ordinales de 0 a 4, sugeridas a partir de las actividades del Stack, y con una línea base para seguir la trayectoria del sistema. El riesgo se entiende como en el IPCC (2014): resulta de la amenaza, la exposición y la vulnerabilidad; se estima con una matriz de probabilidad por impacto de 5 × 5 (IEC 31010:2019) dentro del proceso de gestión de ISO 31000:2018. La capacidad adaptativa —regeneración, diversificación, conocimiento técnico e integración institucional— reduce la vulnerabilidad, y conecta el riesgo con la resiliencia de los ciclos adaptativos (Holling, 2001).','A regenerative system does not merely maintain itself: each cycle it improves the soil, water and biodiversity it depends on. Definitions of regenerative agriculture combine processes (minimal soil disturbance, soil cover, diversity, living roots, livestock integration, fewer synthetic inputs) and outcomes (more organic matter, better water cycling, more biodiversity) (Newton et al., 2020; Schreefel et al., 2020); the first four processes are the USDA-NRCS soil health principles. Ratio Telar measures them with eight ordinal 0–4 knobs, suggested from the Stack activities, and with a baseline to follow the system’s trajectory. Risk is understood as in the IPCC (2014): it results from hazard, exposure and vulnerability; it is estimated with a 5 × 5 likelihood-by-impact matrix (IEC 31010:2019) within the ISO 31000:2018 management process. Adaptive capacity —regeneration, diversification, technical knowledge and institutional integration— reduces vulnerability and links risk with the resilience of adaptive cycles (Holling, 2001).')],
    [T('Prospectiva y futuribles','Foresight and futuribles'),T('La prospectiva parte de que el futuro no está escrito: es múltiple e incierto, y se construye con las decisiones de hoy. De Jouvenel (1964) llamó «futuribles» a los futuros posibles, y Godet (2007; Godet y Durance, 2011) sistematizó la prospectiva estratégica con el análisis estructural (MICMAC), el juego de actores (MACTOR) y los escenarios. En la tesis, la prospectiva es uno de los siete principios del procedimiento: el estado deseado se fija con una línea base y un horizonte futurible, el plan estratégico distingue desafíos, riesgos, potencialidades y limitaciones, y la ejecución se sigue con una línea prospectiva y escenarios de los indicadores estratégicos (Mojica Zárate, 2017). Ratio Telar lleva esta idea a la unidad productiva con tres escenarios exploratorios a 2, 5 y 10 años: deseable, tendencial y no deseado. No son pronósticos, sino futuros posibles construidos con supuestos explícitos. El clima entra con la tasa de calentamiento del IPCC (2018) y la pérdida de rendimiento por grado de Zhao et al. (2017); la adopción de las innovaciones del Stack sigue la curva en S de la difusión (Rogers, 2003); los precios, los costos y la pérdida de mano de obra en el campo son supuestos editables. En un sistema complejo adaptativo el futuro emerge de las interacciones y puede cambiar de rumbo tras una perturbación (Holling, 2001): por eso los escenarios sirven para conversar y decidir, no para predecir.','Foresight starts from the idea that the future is not written: it is multiple and uncertain, and is built by today’s decisions. De Jouvenel (1964) called possible futures “futuribles”, and Godet (2007; Godet & Durance, 2011) systematised strategic foresight with structural analysis (MICMAC), actor analysis (MACTOR) and scenarios. In the thesis, foresight is one of the seven principles of the procedure: the desired state is set with a baseline and a futurible horizon, the strategic plan distinguishes challenges, risks, potentials and limitations, and implementation is followed with a foresight line and scenarios of the strategic indicators (Mojica Zárate, 2017). Ratio Telar brings this idea to the farm with three exploratory scenarios at 2, 5 and 10 years: desirable, trend and undesired. They are not forecasts but possible futures built on explicit assumptions. Climate enters with the IPCC (2018) warming rate and the yield loss per degree of Zhao et al. (2017); adoption of the Stack’s innovations follows the S-shaped diffusion curve (Rogers, 2003); prices, costs and the loss of farm labour are editable assumptions. In a complex adaptive system the future emerges from interactions and can change course after a disturbance (Holling, 2001): scenarios are for discussing and deciding, not for predicting.')],
    [T('Sostenibilidad, ODS y huella','Sustainability, SDGs and footprint'),T('La sostenibilidad se evalúa con indicadores por compartimento, en la tradición del marco MESMIS (Masera et al., 1999), y con el índice general de sostenibilidad de Sarandón (2002), que promedia las dimensiones económica, ecológica y sociocultural en escala de 0 a 4; y se relaciona con los 17 Objetivos de la Agenda 2030 (Naciones Unidas, 2015). La huella de carbono usa los factores por defecto del IPCC (2006, 2019) y los potenciales de calentamiento del AR6 (Forster et al., 2021). La huella ecológica en hectáreas globales (Wackernagel y Rees, 1996) requiere factores nacionales que no se incluyen.','Sustainability is assessed with compartment indicators in the tradition of the MESMIS framework (Masera et al., 1999) and with Sarandón’s (2002) general sustainability index, averaging economic, ecological and socio-cultural dimensions on a 0–4 scale; and related to the 17 Goals of the 2030 Agenda (United Nations, 2015). The carbon footprint uses IPCC default factors (2006, 2019) and AR6 warming potentials (Forster et al., 2021). The ecological footprint in global hectares (Wackernagel & Rees, 1996) needs national factors not included here.')]];
   const refs=[ART.cita+' https://doi.org/'+ART.doi, TESIS.cita].concat(TEORIA.map(t=>t.c)).concat(REF_EXTRA).sort((a,b)=>a.localeCompare(b,'es'));
-  el.innerHTML = `${cabecera('teoria',T('Las ideas que sostienen a Ratio Telar: sistemas complejos adaptativos, saber local, gestión estratégica integrada, redes, prospectiva y sostenibilidad.','The ideas behind Ratio Telar: complex adaptive systems, local knowledge, integrated strategic management, networks, foresight and sustainability.'))}
+  el.innerHTML = `${cabecera('teoria',T('Las ideas que sostienen a Ratio Telar: sistemas complejos adaptativos, saber local, gestión estratégica integrada, redes, regeneración, riesgo, prospectiva y sostenibilidad.','The ideas behind Ratio Telar: complex adaptive systems, local knowledge, integrated strategic management, networks, regeneration, risk, foresight and sustainability.'))}
   <div class="teoria">${sec.map((s,i)=>`<details ${i===0?'open':''}><summary>${s[0]}</summary><div class="tb"><p>${s[1]}</p></div></details>`).join('')}</div>
   <div class="card"><h2>${T('Referencias','References')}</h2><ol>${refs.map(r=>`<li>${esc(r)}</li>`).join('')}</ol></div>
   <div class="card"><h3>${T('Alcances y límites','Scope and limits')}</h3><ul>
@@ -3627,7 +3937,7 @@ function renderAyuda(){ $('#dlgAyuda').innerHTML=`<div class="dh"><h2>${T('Cómo
 function render(){ document.documentElement.lang=LANG; $$('.langsw button[data-lang]').forEach(b=>b.classList.toggle('on',b.dataset.lang===LANG));
   document.documentElement.setAttribute('data-modo',MODO); $$('.modesw button').forEach(b=>{ const on=b.dataset.vista===MODO; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); });
   $('#lblProd').textContent=T('Productor','Producer'); $('#lblCien').textContent=T('Científico','Scientist'); $('#brandSub').textContent=T('· lo que está tejido junto','· what is woven together');
-  const b=B(S.bloque)||BLOQUES[0]; b.render()($('#main')); ponerEjemplo(b.id, $('#main')); enlazarTips($('#main'));
+  const b=B(S.bloque)||BLOQUES[0]; b.render()($('#main')); ponerEjemplo(b.id, $('#main')); ponerRegenRiesgo(b.id, $('#main')); enlazarTips($('#main'));
   $('#pie').innerHTML=`<svg style="width:26px;height:26px;vertical-align:middle;margin-right:6px"><use href="#i-logo"/></svg><b>Ratio Telar</b> ${CONFIG.version} · Ratio Complexus · ${esc(CONFIG.autores)} · ${CONFIG.anio}<br><span class="tiny">${T('Herramienta de apoyo a la decisión: los resultados dependen de los datos capturados. Licencia MIT.','Decision-support tool: results depend on the data entered. MIT licence.')} · <a href="https://hectortecumshe-ai.github.io/">hectortecumshe-ai.github.io</a></span>`;
   renderNav(); actualizarPill(); renderAyuda(); }
 function irA(id){ S.visitados[S.bloque]=true; S.bloque=id; guardar(); render(); scrollTo({top:0,behavior:'smooth'}); }

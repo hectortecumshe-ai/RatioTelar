@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "Si usas este software, cítalo como se indica. / If you use this software, please cite it as below."
 title: "Ratio Telar: el conocimiento agrícola local como sistema complejo adaptativo"
-version: 0.3.0
+version: 0.4.0
 doi: "10.5281/zenodo.23293557"
 date-released: 2026-10-11
 type: software
@@ -18,7 +18,7 @@ authors:
     family-names: "Velázquez-Vázquez"
 repository-code: "https://github.com/hectortecumshe-ai/RatioTelar"
 url: "https://hectortecumshe-ai.github.io/RatioTelar/"
-keywords: [complex adaptive systems, local knowledge, landrace maize, milpa, knowledge stack, social network analysis, nearest-neighbour cladogram, foresight scenarios, sostenibilidad, Mexico]
+keywords: [complex adaptive systems, local knowledge, landrace maize, milpa, knowledge stack, social network analysis, nearest-neighbour cladogram, foresight scenarios, regenerative agriculture, agricultural risk, sostenibilidad, Mexico]
 references:
   - type: article
     title: "El conocimiento agrícola local: el stack del maíz criollo en Calpan, Puebla"

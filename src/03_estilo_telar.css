@@ -250,3 +250,27 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
 .cat-card .sis-quitar{z-index:2}
 .cat-nuevo{margin-top:14px}
 @media print{.cat-nuevo{display:none!important}}
+
+/* Bloques 5 y 6: perillas de regeneración y de riesgo */
+.perillas{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.perilla{border:1px solid var(--border);border-left:5px solid var(--pc);border-radius:var(--r-md);padding:10px 12px;background:var(--bg)}
+.perilla.ajustada{background:color-mix(in srgb,var(--pc) 8%,var(--bg))}
+.perilla .pv{font-weight:700;color:var(--pc);white-space:nowrap}
+.perilla input[type=range],.perilla-c input[type=range]{width:100%;accent-color:var(--pc,var(--primary))}
+.perilla .marcas{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:-2px}
+.perilla .nota{margin:6px 0 0}
+.perilla .sug{font-size:12px}
+button.link{border:0;background:none;color:var(--primary);text-decoration:underline;cursor:pointer;padding:0;font:inherit}
+.perilla-c{min-width:120px}
+.perilla-c small{display:block;font-size:11.5px;color:var(--muted)}
+.riesgos-t tr.r-off td{opacity:.45}
+.medidor{max-width:280px;margin:0 auto;display:block}
+.rr-card .kpis{margin-top:4px}
+@media print{.perilla input[type=range],.perilla-c input[type=range],#rReset,#rgBase,#rgBaseX,button.link{display:none!important}.perilla{break-inside:avoid}}
+table.tbl.riesgos-t{display:table;width:100%;table-layout:fixed}
+.riesgos-t th:nth-child(1),.riesgos-t td:nth-child(1){width:44px}
+.riesgos-t th:nth-child(2),.riesgos-t td:nth-child(2){width:auto;white-space:normal}
+.riesgos-t th:nth-child(3),.riesgos-t th:nth-child(4),.riesgos-t th:nth-child(5){width:15%}
+.riesgos-t th:nth-child(6),.riesgos-t td:nth-child(6){width:80px}
+.riesgos-t td small.muted{font-size:11.5px;line-height:1.3;display:block}
+@media(max-width:760px){table.tbl.riesgos-t{display:block;table-layout:auto}}

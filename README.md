@@ -10,9 +10,9 @@
 
 Ratio Telar teje en un solo tablero el territorio, los pasos y actividades del cultivo, los actores que sostienen el conocimiento, los recursos naturales y la sostenibilidad. Está hecha para productores y para científicos, en español y en inglés.
 
-## Qué contiene (versión 0.3.0)
+## Qué contiene (versión 0.4.0)
 
-Once bloques que se alimentan con los datos de la localidad, como en RatioBos:
+Trece bloques que se alimentan con los datos de la localidad, como en RatioBos:
 
 | Bloque | Contenido |
 |---|---|
@@ -20,15 +20,23 @@ Once bloques que se alimentan con los datos de la localidad, como en RatioBos:
 | 2 · Región | Mapa real de México; estado, municipio y localidad (2,478 municipios y 54,357 localidades del INEGI con altitud y coordenadas) |
 | 3 · Requerimientos | Requerimientos técnicos tradicionales (las 5B) y los innovados en la localidad |
 | 4 · Manejo | 38 pasos con sus actividades tradicionales, impacto editable, actividades innovadoras y fechas de las actividades principales |
-| 5 · Elementos | 63 elementos en 10 categorías: actores, instituciones, insumos, equipo, recursos naturales y financieros, conocimientos, políticas, perturbaciones y productos |
-| 6 · Precio y valor | Precio por unidad y por hectárea; valor económico, de uso, cultural y ecológico con pesos ajustables |
-| 7 · Formulación | Modelo del sistema complejo adaptativo, propiedades emergentes y formulación matemática |
-| 8 · Tablero | Red ponderada interactiva, nodos y vínculos clave, comunidades (Louvain), distribución de grados, correlaciones φ (matriz y por elemento), matriz entre categorías, calendario circular y **cladograma del vecino más cercano** |
-| 9 · Sostenibilidad | Suma y resta por compartimento (suelo, agua, atmósfera, vegetación, fauna), índice por paso, índice de Sarandón (2002), 17 ODS y huella de carbono (IPCC) |
-| 10 · Prospectiva | Tres escenarios (deseable, tendencial y no deseado) a 2, 5 y 10 años: rendimiento, precio, costo, ingreso ÷ costo, mano de obra, adopción de innovaciones y sostenibilidad; supuestos editables |
-| 11 · Informe | Resumen redactado, calendario, cladograma, prospectiva, tablas, CSV, impresión o PDF y proyecto completo |
+| 5 · Regeneración | Ocho perillas 0–4 (labranza mínima, suelo cubierto, diversidad, raíces vivas, integración animal, menos insumos de síntesis, materia orgánica, saber local) con valores sugeridos a partir del manejo; índice de regeneración, perfil, línea base y materia orgánica del suelo |
+| 6 · Riesgos | 19 amenazas climáticas, biológicas, de mercado, sociales, institucionales y de recursos; probabilidad, impacto y control con perillas; matriz 5 × 5, capacidad adaptativa e índice de riesgo |
+| 7 · Elementos | 63 elementos en 10 categorías: actores, instituciones, insumos, equipo, recursos naturales y financieros, conocimientos, políticas, perturbaciones y productos |
+| 8 · Precio y valor | Precio por unidad y por hectárea; valor económico, de uso, cultural y ecológico con pesos ajustables |
+| 9 · Formulación | Modelo del sistema complejo adaptativo, propiedades emergentes y formulación matemática |
+| 10 · Tablero | Red ponderada interactiva, nodos y vínculos clave, comunidades (Louvain), distribución de grados, correlaciones φ (matriz y por elemento), matriz entre categorías, calendario circular y **cladograma del vecino más cercano** |
+| 11 · Sostenibilidad | Suma y resta por compartimento (suelo, agua, atmósfera, vegetación, fauna), índice por paso, índice de Sarandón (2002), 17 ODS y huella de carbono (IPCC) |
+| 12 · Prospectiva | Tres escenarios (deseable, tendencial y no deseado) a 2, 5 y 10 años: rendimiento, precio, costo, ingreso ÷ costo, mano de obra, adopción de innovaciones y sostenibilidad; supuestos editables |
+| 13 · Informe | Resumen redactado, calendario, cladograma, prospectiva, tablas, CSV, impresión o PDF y proyecto completo |
 
 Además: **Validación** (caso publicado, motor de redes frente a NetworkX, cladograma frente a SciPy, cálculo de control de la huella), **Teoría** y, en cada bloque, la ventana **«Así se hizo con el maíz criollo de Calpan»** para los cultivos aún por documentar.
+
+## Novedades de la versión 0.4.0
+
+- **Bloque 5 · Regeneración del sistema productivo:** mide si el sistema devuelve al suelo, al agua y a la biodiversidad más de lo que toma, con ocho perillas 0–4 basadas en los principios de salud del suelo (USDA-NRCS) y de agricultura regenerativa (Newton et al., 2020; Schreefel et al., 2020); índice de regeneración, línea base y materia orgánica.
+- **Bloque 6 · Riesgos del sistema:** 19 amenazas con perillas de probabilidad, impacto y control; matriz 5 × 5 (IEC 31010:2019; ISO 31000:2018), capacidad adaptativa e índice de riesgo en el marco del IPCC (2014).
+- Sus resultados aparecen en Elementos, Formulación, Tablero, Sostenibilidad, Prospectiva (regeneración y riesgo a 2, 5 y 10 años) e Informe. Los bloques se renumeraron: el Informe es ahora el 13.
 
 ## Novedades de la versión 0.3.0
 
@@ -59,7 +67,7 @@ python pruebas/verificar_clado.py        # verifica el cladograma con SciPy
 
 ## Cómo citar
 
-Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. A., y Velázquez-Vázquez, G. (2026). *Ratio Telar: el conocimiento agrícola local como sistema complejo adaptativo* (Versión 0.3.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.23293557
+Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. A., y Velázquez-Vázquez, G. (2026). *Ratio Telar: el conocimiento agrícola local como sistema complejo adaptativo* (Versión 0.4.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.23293557
 
 ## Autores
 
