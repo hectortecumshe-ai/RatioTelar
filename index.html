@@ -611,7 +611,7 @@ svg.modelo .retro{animation:fluir 2.2s linear infinite reverse}
 .ods-c b{display:block;font-size:18px}
 .ods-c .pc{position:absolute;right:6px;bottom:4px;font-size:15px;font-weight:700}
 .ods-c.sd{opacity:.35}
-.formula{font-style:italic;background:var(--bg-soft);border-radius:var(--r-sm);padding:8px 12px;margin:8px 0;overflow-x:auto}
+.formula:not(.btn){font-style:italic;background:var(--bg-soft);border-radius:var(--r-sm);padding:8px 12px;margin:8px 0;overflow-x:auto}
 .nota{font-size:13px;color:var(--muted)}
 .leyenda{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted);margin-top:6px}
 .leyenda span{display:inline-flex;align-items:center;gap:6px}
@@ -696,8 +696,8 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
   .teoria details{break-inside:avoid}
   .tbl-c,.clado-c{max-height:none!important;overflow:visible!important}
   table.tbl{display:table!important;overflow:visible!important;width:100%!important;max-width:100%!important;table-layout:auto}
-  .tbl,.formula,.modelo{overflow:visible!important}
-  .formula{white-space:normal}
+  .tbl,.formula:not(.btn),.modelo{overflow:visible!important}
+  .formula:not(.btn){white-space:normal}
   .prosp-sup input,.tbl input{width:58px!important;padding:2px 4px!important;font-size:10pt!important}
   .card .bill,#sinPM,label:has(#sinPM){display:none!important}
   .tbl td,.tbl th{padding:4px 6px!important}

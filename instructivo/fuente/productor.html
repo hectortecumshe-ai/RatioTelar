@@ -1,0 +1,759 @@
+<style>table.hoja td{height:34px;border:1px solid var(--line)}table.hoja td:first-child{white-space:nowrap}@media print{table.hoja td{height:9mm;padding-top:0;padding-bottom:0}.tbl:has(table.hoja){overflow:visible;max-height:none}}</style>
+<!-- ============================ PORTADA ============================ -->
+<section class="cover" id="portada">
+  <div class="band">{{BANDA}}</div>
+  <div class="in">
+    <div>
+      <div class="kick"><img src="logo.svg" alt="Ratio Telar"><div><div class="eyebrow" lang="es">Instructivo del Productor</div><div class="eyebrow" lang="en">Producer Guide</div><div style="font-size:15px;color:var(--muted)">Ratio Telar {{VERSION}} · Ratio Complexus</div></div></div>
+      <h1 lang="es">Tu parcela como un <em>sistema vivo</em>, <span class="a">tejida hilo por hilo</span></h1>
+      <h1 lang="en">Your farm as a <em>living system</em>, <span class="a">woven thread by thread</span></h1>
+      <p class="sub" lang="es">Una guía práctica para describir, evaluar y proyectar tu milpa, parcela o unidad de producción con Ratio Telar: quién la sostiene, qué la regenera, qué la pone en riesgo y hacia dónde va. Con el caso real del maíz criollo de Calpan, Puebla, de principio a fin.</p>
+      <p class="sub" lang="en">A practical guide to describing, assessing and projecting your milpa, plot or farm with Ratio Telar: who holds it together, what regenerates it, what puts it at risk and where it is heading. With the real case of Calpan landrace maize, Puebla, from start to finish.</p>
+      <div class="meta">
+        <div lang="es"><b>1.ª edición</b> · octubre de 2026 · describe Ratio Telar {{VERSION}}</div>
+        <div lang="en"><b>1st edition</b> · October 2026 · covers Ratio Telar {{VERSION}}</div>
+        <div>{{DOI}}<span lang="es">Texto CC BY 4.0 · app MIT</span><span lang="en">Text CC BY 4.0 · app MIT</span></div>
+      </div>
+      <div class="who">{{AUTORES}}<br><span lang="es">Hay otra guía para investigación y docencia: el <a href="instructivo-cientifico.html">Instructivo del Científico</a>.</span><span lang="en">There is a companion guide for research and teaching: the <a href="instructivo-cientifico.html">Scientist Guide</a>.</span></div>
+    </div>
+    <div class="art" aria-hidden="true">
+      <div class="frame"><img lang="es" src="instructivo/img/regen-es.jpg" alt=""><img lang="en" src="instructivo/img/regen-en.jpg" alt=""></div>
+      <div class="frame b"><img lang="es" src="instructivo/img/clado-es.jpg" alt="" style="height:300px;object-fit:cover;object-position:top"><img lang="en" src="instructivo/img/clado-en.jpg" alt="" style="height:300px;object-fit:cover;object-position:top"></div>
+    </div>
+  </div>
+  <div class="steps">{{PASOS}}</div>
+</section>
+
+<div class="doc">
+
+<!-- ============================ PRELIMINARES ============================ -->
+<section class="chap" id="leer" data-toc="P" style="--c:var(--acc)">
+  <div class="chap-head"><span class="big">P</span>
+    <div class="eyebrow" lang="es">Antes de leer</div><div class="eyebrow" lang="en">Before reading</div>
+    <h2 lang="es">Cómo usar este instructivo</h2><h2 lang="en">How to use this guide</h2>
+    <p lang="es">Para quién es, cómo está organizado y qué significa cada señal que encontrarás en las páginas.</p>
+    <p lang="en">Who it is for, how it is organised and what each sign on the page means.</p>
+    <span class="rule"></span></div>
+
+  <p class="lead" lang="es">Este instructivo es para quien conoce una parcela, una milpa, un viñedo, un apiario o una granja de traspatio y quiere verla completa: el productor y la productora, el técnico o la técnica de campo, el extensionista, el estudiante que hace su servicio social o su tesis en una comunidad. No necesitas saber programación ni estadística; necesitas conocer tu unidad de producción y a la gente que la trabaja.</p>
+  <p class="lead" lang="en">This guide is for whoever knows a plot, a milpa, a vineyard, an apiary or a backyard farm and wants to see it whole: farmers, field technicians, extension agents, students doing their social service or thesis in a community. You need no coding or statistics; you need to know your farm and the people who work it.</p>
+
+  <p lang="es">Sigue el mismo orden que la app: un capítulo por cada bloque de la barra superior, del 1 al 13, cada uno con su color. Todos los ejemplos usan <b>un solo caso</b>, el <b>maíz criollo de San Andrés Calpan, Puebla</b>, documentado por Díaz-José y colaboradores (2026) con 100 informantes entre 2022 y 2024. Así, los números de un capítulo son los que entran al siguiente. Si lo lees de corrido, al terminar habrás tejido, evaluado y proyectado un sistema real.</p>
+  <p lang="en">It follows the app’s order: one chapter for each block in the top bar, 1 to 13, each with its own colour. Every example uses <b>a single case</b>, the <b>landrace maize of San Andrés Calpan, Puebla</b>, documented by Díaz-José and colleagues (2026) with 100 informants between 2022 and 2024. So the numbers in one chapter are the ones that feed the next. Read it start to finish and you will have woven, assessed and projected a real system.</p>
+
+  {{FIG_TELAR}}
+
+  <h3 id="convenciones"><span lang="es">Convenciones</span><span lang="en">Conventions</span></h3>
+  <div class="tbl"><table>
+    <thead><tr><th lang="es">Así se escribe</th><th lang="en">Written as</th><th lang="es">Significa</th><th lang="en">Means</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ui pri" lang="es">Tejer el sistema</span><span class="ui pri" lang="en">Weave the system</span></td><td lang="es">Un botón o casilla de la app, con su texto tal como aparece en pantalla.</td><td lang="en">An app button or field, with its text exactly as on screen.</td></tr>
+      <tr><td><span class="path" lang="es">Informe<i>›</i>Guardar proyecto</span><span class="path" lang="en">Report<i>›</i>Save project</span></td><td lang="es">Una ruta: abre el primer elemento y luego el siguiente.</td><td lang="en">A path: open the first item, then the next.</td></tr>
+      <tr><td><span class="val">1.5</span></td><td lang="es">Un valor que escribes tal cual.</td><td lang="en">A value you type as shown.</td></tr>
+      <tr><td><b style="display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#c0772b;color:#fff;font:700 12px var(--sans)">1</b></td><td lang="es">Una marca sobre la captura; su explicación está debajo con el mismo número.</td><td lang="en">A marker on a screenshot; it is explained below with the same number.</td></tr>
+      <tr><td><b>● Dato publicado</b> · <b>◆ Lectura de Ratio Telar</b></td><td lang="es">Las mismas etiquetas de la app: un dato tomado de una fuente citada, o una propuesta de la app que puedes cambiar.</td><td lang="en">The app’s own labels: a figure taken from a cited source, or an app proposal you can change.</td></tr>
+    </tbody></table></div>
+
+  <h3 id="recuadros"><span lang="es">Los cinco recuadros</span><span lang="en">The five boxes</span></h3>
+  <div class="box farm"><span class="bi">◆</span><span class="bt" lang="es">En Calpan</span><span class="bt" lang="en">In Calpan</span><p lang="es">El caso de ejemplo, paso a paso, con los números reales que da la app.</p><p lang="en">The worked case, step by step, with the real numbers the app returns.</p></div>
+  <div class="box tip"><span class="bi">✓</span><span class="bt" lang="es">Consejo</span><span class="bt" lang="en">Tip</span><p lang="es">Atajos y buenas prácticas que ahorran tiempo o evitan errores.</p><p lang="en">Shortcuts and good practice that save time or avoid mistakes.</p></div>
+  <div class="box warn"><span class="bi">!</span><span class="bt" lang="es">Atención</span><span class="bt" lang="en">Caution</span><p lang="es">Errores frecuentes que pueden llevar a una conclusión equivocada.</p><p lang="en">Common mistakes that can lead to a wrong conclusion.</p></div>
+  <div class="box why"><span class="bi">?</span><span class="bt" lang="es">¿Por qué?</span><span class="bt" lang="en">Why?</span><p lang="es">La razón detrás de una recomendación, en pocas líneas. Puedes saltarla.</p><p lang="en">The reason behind a recommendation, in a few lines. You can skip it.</p></div>
+  <div class="box rule"><span class="bi">→</span><span class="bt" lang="es">Regla de decisión</span><span class="bt" lang="en">Decision rule</span><p lang="es">Una tabla corta: si ves esto, haz aquello.</p><p lang="en">A short table: if you see this, do that.</p></div>
+
+  <div class="box why"><span class="bi">?</span><span class="bt" lang="es">Ratio Telar no inventa datos</span><span class="bt" lang="en">Ratio Telar does not make up data</span>
+    <p lang="es">Cada cifra de la app trae su fuente. Lo que es una propuesta de la app lleva la etiqueta <b>◆ Lectura de Ratio Telar</b>, y lo que no está documentado aparece como <b>sin dato</b>. Este instructivo sigue la misma regla: los números de Calpan son los que da la app con los datos del artículo; cuando algo es un supuesto, lo decimos.</p>
+    <p lang="en">Every figure in the app carries its source. What the app proposes is labelled <b>◆ Ratio Telar reading</b>, and what is not documented shows as <b>no data</b>. This guide follows the same rule: the Calpan numbers are those the app returns with the paper’s data; when something is an assumption, we say so.</p></div>
+</section>
+
+<!-- ============================ 0 · PRIMEROS PASOS ============================ -->
+<section class="chap" id="empezar" data-toc="0" style="--c:var(--pri)">
+  <div class="chap-head"><span class="big">0</span>
+    <div class="eyebrow" lang="es">Primeros pasos</div><div class="eyebrow" lang="en">Getting started</div>
+    <h2 lang="es">Abre la app y conoce la pantalla</h2><h2 lang="en">Open the app and meet the screen</h2>
+    <p lang="es">Ratio Telar es una página web que funciona sola en tu navegador. No se instala, no pide cuenta y no manda tus datos a ningún lado.</p>
+    <p lang="en">Ratio Telar is a web page that runs on its own in your browser. Nothing to install, no account, and your data goes nowhere.</p>
+    <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="38" height="28" rx="3"/><path d="M17 42h14M24 36v6M12 28l7-8 6 5 9-11"/></svg>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+
+  <h3 id="abrir" data-n="0.1"><span lang="es">Abrir Ratio Telar</span><span lang="en">Opening Ratio Telar</span></h3>
+  <p lang="es">Entra a <a href="{{APP}}"><b>hectortecumshe-ai.github.io/RatioTelar</b></a> desde la computadora, la tableta o el celular, o escanea el código QR de la página «Ratio Telar en una página». Se descarga un solo archivo; después funciona sin internet mientras dejes la pestaña abierta, y puedes guardar la página (<kbd>Ctrl</kbd> + <kbd>S</kbd>) para usarla en la parcela sin señal.</p>
+  <p lang="en">Go to <a href="{{APP}}"><b>hectortecumshe-ai.github.io/RatioTelar</b></a> from a computer, tablet or phone, or scan the QR code on the “Ratio Telar on one page” page. It downloads a single file; after that it works offline while the tab stays open, and you can save the page (<kbd>Ctrl</kbd> + <kbd>S</kbd>) to use it in the field with no signal.</p>
+  <div class="box why"><span class="bi">?</span><span class="bt" lang="es">¿Dónde quedan mis datos?</span><span class="bt" lang="en">Where is my data kept?</span>
+    <p lang="es">Solo en el navegador que usas. No se suben a internet ni a GitHub. Para pasarlos a otra computadora o compartirlos con tu asesor usa <span class="path">Informe<i>›</i>Guardar proyecto</span> (un archivo .json) y en la otra computadora <span class="path">Informe<i>›</i>Abrir proyecto</span>.</p>
+    <p lang="en">Only in the browser you use. Nothing is uploaded to the internet or to GitHub. To move it to another computer or share it with your adviser use <span class="path">Report<i>›</i>Save project</span> (a .json file) and on the other computer <span class="path">Report<i>›</i>Open project</span>.</p></div>
+
+  <h3 id="pantalla" data-n="0.2"><span lang="es">La pantalla de inicio</span><span lang="en">The home screen</span></h3>
+  <figure data-fig="inicio">
+    <figcaption><span class="fn"></span><span lang="es"><b>Inicio.</b> Todo lo que necesitas para moverte está en la barra superior.</span><span lang="en"><b>Home.</b> Everything you need to get around is in the top bar.</span></figcaption>
+    <ol class="legend">
+      <li><span lang="es"><b>ES / EN</b> cambia el idioma de toda la app, también del informe.</span><span lang="en"><b>ES / EN</b> switches the language of the whole app, report included.</span></li>
+      <li><span lang="es"><b>Productor / Científico</b> cambia la vista; tus datos no se pierden.</span><span lang="en"><b>Producer / Scientist</b> switches the view; your data is kept.</span></li>
+      <li><span lang="es"><b>☀ / ☾</b> cambia entre tema de día y de noche.</span><span lang="en"><b>☀ / ☾</b> switches between day and night themes.</span></li>
+      <li><span lang="es"><b>?</b> abre la ayuda general. Además, cada dato tiene su propio <b>?</b>.</span><span lang="en"><b>?</b> opens the general help. Every figure also has its own <b>?</b>.</span></li>
+      <li><span lang="es">La <b>barra de bloques</b>, del 1 al 13, más Validación y Teoría. Puedes saltar a cualquiera; la palomita marca los que ya visitaste.</span><span lang="en">The <b>block bar</b>, 1 to 13, plus Validation and Theory. You can jump to any of them; a tick marks the ones you have visited.</span></li>
+      <li><span lang="es">La <b>píldora</b> te recuerda qué cultivo y qué localidad estás tejiendo.</span><span lang="en">The <b>pill</b> reminds you which crop and locality you are weaving.</span></li>
+    </ol>
+  </figure>
+
+  <h3 id="ayudas" data-n="0.3"><span lang="es">Las ayudas «?»</span><span lang="en">The “?” helps</span></h3>
+  <p lang="es">Junto a cada número importante hay un <b>?</b>. Al tocarlo aparece qué significa, cómo se calcula y cómo leerlo, con un semáforo: verde (bien), ámbar (revisa) y rojo (atiende).</p>
+  <p lang="en">Next to every important figure there is a <b>?</b>. Tap it to see what it means, how it is computed and how to read it, with a traffic light: green (good), amber (check) and red (act).</p>
+  <figure data-fig="ayuda"><figcaption><span class="fn"></span><span lang="es"><b>Ayuda de un dato.</b> El «?» de los requerimientos tradicionales.</span><span lang="en"><b>Help for a figure.</b> The “?” of the traditional requirements.</span></figcaption></figure>
+
+  <h3 id="vistas" data-n="0.4"><span lang="es">Vista productor y vista científica</span><span lang="en">Producer and scientist views</span></h3>
+  <p lang="es">La <b>vista productor</b> muestra lo esencial en lenguaje sencillo; es la que describe este instructivo. La <b>vista científica</b> agrega tablas completas, fórmulas, correlaciones y validación. Puedes cambiar de vista en cualquier momento.</p>
+  <p lang="en">The <b>producer view</b> shows the essentials in plain language; it is the one this guide describes. The <b>scientist view</b> adds full tables, formulas, correlations and validation. You can switch at any time.</p>
+  <figure data-fig="vistas"><figcaption><span class="fn"></span><span lang="es"><b>Vista científica.</b> Matriz de correlaciones del Tablero, que solo aparece en esta vista.</span><span lang="en"><b>Scientist view.</b> The Dashboard correlation matrix, shown only in this view.</span></figcaption></figure>
+
+  <h3 id="ruta" data-n="0.5"><span lang="es">La ruta completa</span><span lang="en">The full route</span></h3>
+  <div class="flow">{{FLUJO}}</div>
+  <div class="box tip"><span class="bi">✓</span><span class="bt" lang="es">Si es tu primera vez</span><span class="bt" lang="en">If this is your first time</span>
+    <p lang="es">Deja el maíz criollo de Calpan, que viene cargado, y recorre los bloques con este instructivo. Cuando entiendas el caso, cambia al tuyo en el Bloque 1.</p>
+    <p lang="en">Keep the preloaded Calpan landrace maize and walk through the blocks with this guide. Once you understand the case, switch to yours in Block 1.</p></div>
+</section>
+
+<!-- ============================ 1 · CULTIVO ============================ -->
+<section class="chap" id="b1" data-toc="1" style="--c:var(--b1)">
+  <div class="chap-head"><span class="big">1</span>
+    <div class="eyebrow" lang="es">Bloque 1 · Cultivo</div><div class="eyebrow" lang="en">Block 1 · Crop</div>
+    <h2 lang="es">Cultivo o especie, variedad y sistema</h2><h2 lang="en">Crop or species, variety and system</h2>
+    <p lang="es">Todo sistema se teje alrededor de algo que se siembra o se cría. Aquí eliges qué es, de qué variedad o raza, y cómo se produce.</p>
+    <p lang="en">Every system is woven around something sown or raised. Here you choose what it is, its variety or breed, and how it is produced.</p>
+    <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 44V14M24 24c-6 0-10-4-10-10 6 0 10 4 10 10zM24 30c6 0 10-4 10-10-6 0-10 4-10 10z"/></svg>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+
+  <h3 id="b1-catalogo" data-n="1.1"><span lang="es">El catálogo</span><span lang="en">The catalogue</span></h3>
+  <p lang="es">El catálogo tiene <b>18 cultivos</b> (uva, maíz criollo, chayote, frijol, calabaza, chile, café, cacao, aguacate, maguey, nopal, jitomate, trigo, caña de azúcar, jamaica, maracuyá, guanábana y mango) y <b>9 especies animales</b> (bovino, porcino, ovino, caprino, aves de traspatio, abeja melífera, conejo, gallos de pelea y chinicuil), más la <b>granja de traspatio</b>, que combina varias especies. Cada tarjeta dice si tiene <b>Stack documentado</b> (hoy, el maíz de Calpan) o si está <b>Por documentar</b>.</p>
+  <p lang="en">The catalogue has <b>18 crops</b> (grape, landrace maize, chayote, bean, squash, chili, coffee, cacao, avocado, agave, prickly pear, tomato, wheat, sugarcane, roselle, passion fruit, soursop and mango) and <b>9 animal species</b> (cattle, pig, sheep, goat, backyard poultry, honeybee, rabbit, gamefowl and chinicuil), plus the <b>backyard farm</b>, which combines several species. Each card shows whether it has a <b>Documented Stack</b> (today, Calpan maize) or is <b>To document</b>.</p>
+  <figure data-fig="catalogo">
+    <figcaption><span class="fn"></span><span lang="es"><b>Catálogo de cultivos.</b> El maíz criollo es el único con Stack documentado.</span><span lang="en"><b>Crop catalogue.</b> Landrace maize is the only one with a documented Stack.</span></figcaption>
+    <ol class="legend"><li><span lang="es">La tarjeta elegida lleva palomita.</span><span lang="en">The selected card shows a tick.</span></li><li><span lang="es"><b>Cultivos / Especies animales</b> cambia de pestaña.</span><span lang="en"><b>Crops / Livestock species</b> switches tabs.</span></li></ol>
+  </figure>
+  <div class="box why"><span class="bi">?</span><span class="bt" lang="es">«Por documentar» no es un defecto</span><span class="bt" lang="en">“To document” is not a flaw</span>
+    <p lang="es">Significa que no existe todavía un Stack publicado para ese cultivo. La app te deja documentarlo tú, y en cada bloque aparece la ventana <b>«Así se hizo con el maíz criollo de Calpan, Puebla»</b> para que veas cómo se llenó en el caso de referencia (capítulo D).</p>
+    <p lang="en">It means there is no published Stack for that crop yet. The app lets you document it yourself, and every block shows the window <b>“How it was done with landrace maize in Calpan, Puebla”</b> so you can see how it was filled in the reference case (chapter D).</p></div>
+
+  <h3 id="b1-variedad" data-n="1.2"><span lang="es">Variedad, tipo o raza</span><span lang="en">Variety, type or breed</span></h3>
+  <p lang="es">Al elegir un cultivo o especie aparece su tarjeta de variedades, tipos o razas, agrupadas (por ejemplo, el mango en mexicanas y de Florida). Toca un chip o escribe la tuya tal como la nombran en tu localidad. La variedad aparece en la píldora de arriba y en el informe.</p>
+  <p lang="en">When you choose a crop or species its varieties, types or breeds card appears, grouped (for example, mango into Mexican and Florida types). Tap a chip or type your own as it is named locally. The variety shows in the top pill and in the report.</p>
+  <figure data-fig="variedad">
+    <figcaption><span class="fn"></span><span lang="es"><b>Variedades del mango.</b> Ataulfo elegido.</span><span lang="en"><b>Mango varieties.</b> Ataulfo selected.</span></figcaption>
+    <ol class="legend"><li><span lang="es">Campo libre: escribe o elige.</span><span lang="en">Free field: type or choose.</span></li><li><span lang="es">Chips agrupados; el elegido se rellena de color.</span><span lang="en">Grouped chips; the chosen one is filled in.</span></li></ol>
+  </figure>
+  <div class="box warn"><span class="bi">!</span><span class="bt" lang="es">Las listas son orientativas</span><span class="bt" lang="en">The lists are indicative</span>
+    <p lang="es">Salvo el maíz (64 razas de CONABIO), las listas son una <b>lectura de Ratio Telar</b> de lo que se cultiva o cría en México. Para variedades registradas consulta el Catálogo Nacional de Variedades Vegetales del SNICS; para razas, la asociación de criadores.</p>
+    <p lang="en">Except for maize (CONABIO’s 64 races), the lists are a <b>Ratio Telar reading</b> of what is grown or raised in Mexico. For registered varieties see SNICS’s National Catalogue of Plant Varieties; for breeds, the breeders’ association.</p></div>
+
+  <h3 id="b1-maiz" data-n="1.3"><span lang="es">El maíz: nativo o mejorado</span><span lang="en">Maize: native or improved</span></h3>
+  <p lang="es">El maíz tiene una tarjeta propia. Si es <b>nativo o criollo</b>, eliges su raza entre las 64 reportadas para México en siete grupos (CONABIO, 2020); las marcadas con ° se describieron primero en el Caribe o Guatemala. Si es <b>mejorado o híbrido</b>, escribes su nombre comercial.</p>
+  <p lang="en">Maize has its own card. If it is <b>native (landrace)</b>, choose its race among the 64 reported for Mexico in seven groups (CONABIO, 2020); those marked ° were first described in the Caribbean or Guatemala. If it is <b>improved or hybrid</b>, type its trade name.</p>
+  <figure data-fig="maiz">
+    <figcaption><span class="fn"></span><span lang="es"><b>Tipo de maíz.</b></span><span lang="en"><b>Maize type.</b></span></figcaption>
+    <ol class="legend"><li><span lang="es">Nativo o mejorado.</span><span lang="en">Native or improved.</span></li><li><span lang="es">Raza (también se elige con los chips de abajo).</span><span lang="en">Race (also chosen with the chips below).</span></li></ol>
+  </figure>
+  <div class="box farm"><span class="bi">◆</span><span class="bt" lang="es">En Calpan</span><span class="bt" lang="en">In Calpan</span>
+    <p lang="es">El artículo trata maíces criollos sin especificar raza; en Puebla se reportan cerca de 22. Dejamos <b>Nativo o criollo</b> con <b>Sin especificar</b>.</p>
+    <p lang="en">The paper covers landraces without naming the race; about 22 are reported in Puebla. We keep <b>Native landrace</b> with <b>Not specified</b>.</p></div>
+
+  <h3 id="b1-bovinos" data-n="1.4"><span lang="es">Bovinos y abejas</span><span lang="en">Cattle and bees</span></h3>
+  <p lang="es">Los bovinos se describen en tres pasos: <b>propósito</b> (carne, leche o doble propósito), <b>sistema</b> con su régimen (extensivo, semiintensivo, intensivo o traspatio: vaca–becerro, repasto, engorda en corral, lechería familiar, semiespecializada o especializada) y <b>raza o cruza</b>. Al elegir el sistema, el sistema de producción y el tipo de unidad se ajustan solos.</p>
+  <p lang="en">Cattle are described in three steps: <b>purpose</b> (beef, dairy or dual purpose), <b>system</b> with its regime (extensive, semi-intensive, intensive or backyard: cow–calf, stocker, feedlot, family, semi-specialised or specialised dairy) and <b>breed or cross</b>. Choosing the system sets the production system and unit type automatically.</p>
+  <figure data-fig="bovino">
+    <figcaption><span class="fn"></span><span lang="es"><b>Tipo de ganado bovino.</b></span><span lang="en"><b>Cattle type.</b></span></figcaption>
+    <ol class="legend"><li><span lang="es">Propósito.</span><span lang="en">Purpose.</span></li><li><span lang="es">Sistema, con su régimen en una etiqueta de color.</span><span lang="en">System, with its regime in a coloured label.</span></li><li><span lang="es">Razas agrupadas (cebuinas, europeas y sintéticas, cruzas y criollas).</span><span lang="en">Grouped breeds (zebu, European and composite, crosses and criollo).</span></li></ol>
+  </figure>
+  <p lang="es">La <b>abeja melífera</b> lleva su unidad de producción: al elegirla, el sistema y el tipo de unidad quedan como <b>apiario</b>, y aparece una tarjeta que lo explica.</p>
+  <p lang="en">The <b>honeybee</b> brings its production unit: choosing it sets the system and unit type to <b>apiary</b>, and a card explaining it appears.</p>
+  <figure data-fig="apiario"><figcaption><span class="fn"></span><span lang="es"><b>Abeja melífera y su apiario.</b></span><span lang="en"><b>Honeybee and its apiary.</b></span></figcaption></figure>
+
+  <h3 id="b1-propios" data-n="1.5"><span lang="es">Agregar tu cultivo, tu especie o tu sistema</span><span lang="en">Adding your crop, species or system</span></h3>
+  <p lang="es">Si no encuentras lo que produces, agrégalo. Debajo del catálogo está <span class="ui">＋ ¿No está tu cultivo? Agrégalo al catálogo</span> (en especies dice «¿No está tu especie?»), y debajo de los sistemas, <span class="ui">＋ ¿No está tu sistema? Agrégalo</span>. Escribe el nombre común y, si quieres, el científico o una descripción, y toca <span class="ui pri">Agregar y elegir</span>.</p>
+  <p lang="en">If you cannot find what you produce, add it. Below the catalogue there is <span class="ui">＋ Your crop is missing? Add it to the catalogue</span> (for species, “Your species is missing?”), and below the systems, <span class="ui">＋ Your system is missing? Add it</span>. Type the common name and, if you wish, the scientific name or a description, and tap <span class="ui pri">Add and select</span>.</p>
+  <figure data-fig="nuevo">
+    <figcaption><span class="fn"></span><span lang="es"><b>Agregar al catálogo.</b></span><span lang="en"><b>Adding to the catalogue.</b></span></figcaption>
+    <ol class="legend"><li><span lang="es">Cultivo o especie nueva.</span><span lang="en">New crop or species.</span></li><li><span lang="es">Sistema de producción nuevo.</span><span lang="en">New production system.</span></li></ol>
+  </figure>
+  <figure data-fig="propio">
+    <figcaption><span class="fn"></span><span lang="es"><b>Un cultivo propio.</b> La pitahaya, agregada con su variedad escrita a mano.</span><span lang="en"><b>A crop of your own.</b> Dragon fruit, added with its variety typed in.</span></figcaption>
+    <ol class="legend"><li><span lang="es">Lo agregado lleva borde punteado y una ✕ para quitarlo.</span><span lang="en">Added items have a dashed border and an ✕ to remove them.</span></li><li><span lang="es">Su variedad, escrita como se nombra en la localidad.</span><span lang="en">Its variety, typed as it is named locally.</span></li></ol>
+  </figure>
+
+  <h3 id="b1-sistema" data-n="1.6"><span lang="es">Sistema y unidad de producción</span><span lang="en">Production system and unit</span></h3>
+  <p lang="es">El sistema de producción dice cómo se organiza la unidad: milpa, viñedo, MIAF, monocultivo, agroforestal, traspatio, pastoreo, apiario, rancho cinegético, confinamiento o el que agregues. El tipo de unidad (milpa, parcela, unidad agrícola, pecuaria o mixta, rancho cinegético, apiario u <b>Otro (escríbelo)</b>) y la superficie completan la descripción.</p>
+  <p lang="en">The production system says how the unit is organised: milpa, vineyard, MIAF, monoculture, agroforestry, backyard, grazing, apiary, game ranch, confinement or one you add. The unit type (milpa, plot, crop, livestock or mixed farm, game ranch, apiary or <b>Other (type it)</b>) and the area complete the description.</p>
+  <figure data-fig="sistema">
+    <figcaption><span class="fn"></span><span lang="es"><b>Sistema y unidad.</b></span><span lang="en"><b>System and unit.</b></span></figcaption>
+    <ol class="legend"><li><span lang="es">Milpa (maíz–frijol–calabaza), documentada en Calpan.</span><span lang="en">Milpa (maize–bean–squash), documented in Calpan.</span></li><li><span lang="es">Tipo de unidad; con «Otro» aparece un campo para escribirlo.</span><span lang="en">Unit type; “Other” shows a field to type it.</span></li></ol>
+  </figure>
+  <div class="box farm"><span class="bi">◆</span><span class="bt" lang="es">En Calpan</span><span class="bt" lang="en">In Calpan</span>
+    <p lang="es">Maíz criollo en <b>milpa</b>, tipo de unidad <b>Milpa</b>, <span class="val">1.5</span> ha (la parcela «Contigua», una de las de seguimiento del artículo). El artículo también describe el MIAF, con tejocote, pera lechera, nuez de castilla, manzana panochera, durazno y capulín.</p>
+    <p lang="en">Landrace maize in a <b>milpa</b>, unit type <b>Milpa</b>, <span class="val">1.5</span> ha (the “Contigua” plot, one of the paper’s monitored plots). The paper also describes MIAF, with tejocote, pear, walnut, apple, peach and capulin.</p></div>
+</section>
+
+<!-- ============================ 2 · REGIÓN ============================ -->
+<section class="chap" id="b2" data-toc="2" style="--c:var(--b2)">
+  <div class="chap-head"><span class="big">2</span>
+    <div class="eyebrow" lang="es">Bloque 2 · Región</div><div class="eyebrow" lang="en">Block 2 · Region</div>
+    <h2 lang="es">Región, municipio y localidad</h2><h2 lang="en">Region, municipality and locality</h2>
+    <p lang="es">Cada localidad cultiva a su manera. Ubica tu parcela y la app trae los datos oficiales del INEGI.</p>
+    <p lang="en">Every locality farms its own way. Locate your plot and the app brings INEGI’s official data.</p>
+    <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 44s14-12 14-24a14 14 0 0 0-28 0c0 12 14 24 14 24z"/><circle cx="24" cy="20" r="5"/></svg>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="b2-mapa" data-n="2.1"><span lang="es">Del país a la localidad</span><span lang="en">From country to locality</span></h3>
+  <p lang="es">Toca tu estado en el mapa o elígelo en la lista; luego el <b>municipio</b> y la <b>localidad</b>. La app reconoce 2,478 municipios y 54,357 localidades del INEGI, con su población de 2020, su altitud y su punto en el mapa. La región (Norte, Centro norte, Centro o Sur) se asigna sola. Los botones de <b>Lugares de trabajo</b> llevan directo a Calpan, Puebla, y a Mata de Zarza, Veracruz.</p>
+  <p lang="en">Tap your state on the map or pick it from the list; then the <b>municipality</b> and the <b>locality</b>. The app knows 2,478 municipalities and 54,357 INEGI localities, with their 2020 population, altitude and map point. The region (North, North-central, Central or South) is set automatically. The <b>Work places</b> buttons go straight to Calpan, Puebla, and Mata de Zarza, Veracruz.</p>
+  <figure data-fig="region">
+    <figcaption><span class="fn"></span><span lang="es"><b>Bloque 2.</b> Puebla iluminado; el punto rojo es la localidad.</span><span lang="en"><b>Block 2.</b> Puebla highlighted; the red dot is the locality.</span></figcaption>
+    <ol class="legend"><li><span lang="es">Mapa de México por regiones.</span><span lang="en">Map of Mexico by region.</span></li></ol>
+  </figure>
+  <h3 id="b2-datos" data-n="2.2"><span lang="es">Los datos de tu localidad</span><span lang="en">Your locality’s data</span></h3>
+  <figure data-fig="localidad"><figcaption><span class="fn"></span><span lang="es"><b>Datos del INEGI y del caso documentado.</b></span><span lang="en"><b>INEGI data and the documented case.</b></span></figcaption></figure>
+  <div class="box farm"><span class="bi">◆</span><span class="bt" lang="es">En Calpan</span><span class="bt" lang="en">In Calpan</span>
+    <p lang="es">Puebla (región Centro) › Calpan › <b>San Andrés Calpan</b>: 8,195 habitantes y 2,421 m de altitud; el municipio tiene 15,271 habitantes (INEGI, 2020). La app muestra además lo que dice el artículo del municipio: colindancias, comunidades estudiadas y sus sistemas.</p>
+    <p lang="en">Puebla (Central region) › Calpan › <b>San Andrés Calpan</b>: 8,195 inhabitants at 2,421 m; the municipality has 15,271 inhabitants (INEGI, 2020). The app also shows what the paper says about the municipality: borders, communities studied and their systems.</p></div>
+  <div class="box tip"><span class="bi">✓</span><span class="bt" lang="es">Si tu localidad no aparece</span><span class="bt" lang="en">If your locality is missing</span>
+    <p lang="es">Elige la más cercana y anótalo en las notas del proyecto. Las localidades muy pequeñas a veces aparecen con otro nombre en el catálogo del INEGI.</p>
+    <p lang="en">Choose the nearest one and note it in the project notes. Very small localities sometimes appear under another name in INEGI’s catalogue.</p></div>
+</section>
+
+<!-- ============================ 3 · REQUERIMIENTOS ============================ -->
+<section class="chap" id="b3" data-toc="3" style="--c:var(--b3)">
+  <div class="chap-head"><span class="big">3</span>
+    <div class="eyebrow" lang="es">Bloque 3 · Requerimientos</div><div class="eyebrow" lang="en">Block 3 · Requirements</div>
+    <h2 lang="es">Requerimientos tradicionales e innovados</h2><h2 lang="en">Traditional and innovated requirements</h2>
+    <p lang="es">Lo que el cultivo necesita para salir bien, según el saber local, y lo que la localidad ha incorporado con los años.</p>
+    <p lang="en">What the crop needs to do well, according to local knowledge, and what the locality has adopted over the years.</p>
+    <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="6" width="28" height="36" rx="3"/><path d="M16 16h16M16 24h16M16 32h10"/></svg>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="b3-5b" data-n="3.1"><span lang="es">Las cinco reglas básicas (5B)</span><span lang="en">The five basic rules (5B)</span></h3>
+  <p lang="es">Los productores de Calpan resumieron su saber en cinco reglas: <b>buena tierra</b> (preparar el terreno a tiempo para captar humedad), <b>buena semilla</b> (genética adaptada que aguante sin agua), <b>buena siembra</b> (arreglos que reducen la competencia por agua), <b>buena alimentación</b> (fertilización en los momentos clave) y <b>buena vigilancia</b> (seguir plagas, enfermedades, malezas y humedad). Para cada una marcas si se cumple en tu parcela: <b>Sí</b>, <b>Parcial</b> o <b>No</b>.</p>
+  <p lang="en">Calpan’s farmers summed up their knowledge in five rules: <b>good soil</b> (timely land preparation to capture moisture), <b>good seed</b> (adapted genetics that withstand drought), <b>good sowing</b> (arrangements that reduce competition for water), <b>good nutrition</b> (fertilising at key moments) and <b>good watchfulness</b> (monitoring pests, diseases, weeds and moisture). For each one you mark whether it is met on your plot: <b>Yes</b>, <b>Partly</b> or <b>No</b>.</p>
+  <figure data-fig="req"><figcaption><span class="fn"></span><span lang="es"><b>Requerimientos tradicionales.</b> Las 5B con su descripción, tomada del artículo.</span><span lang="en"><b>Traditional requirements.</b> The 5B with their description, taken from the paper.</span></figcaption></figure>
+  <h3 id="b3-innovados" data-n="3.2"><span lang="es">Requerimientos innovados</span><span lang="en">Innovated requirements</span></h3>
+  <p lang="es">Abajo agregas lo que la localidad ha innovado: escribe el requerimiento, elige la regla a la que pertenece, una descripción y la fuente (productor, asesor, investigación, programa), y toca <span class="ui pri">Agregar requerimiento</span>.</p>
+  <p lang="en">Below you add what the locality has innovated: write the requirement, choose the rule it belongs to, a description and the source (farmer, adviser, research, programme), and tap <span class="ui pri">Add requirement</span>.</p>
+  <figure data-fig="reqinn"><figcaption><span class="fn"></span><span lang="es"><b>Un requerimiento innovado registrado.</b> Ejemplo ilustrativo, no del artículo.</span><span lang="en"><b>A recorded innovated requirement.</b> Illustrative example, not from the paper.</span></figcaption></figure>
+  <div class="box tip"><span class="bi">✓</span><span class="bt" lang="es">Anota siempre la fuente</span><span class="bt" lang="en">Always record the source</span>
+    <p lang="es">«Lo dijo don Ramiro, 2025» o «Recomendación del CBTA 255» bastan. La fuente se imprime en el informe y le da valor a tu registro.</p>
+    <p lang="en">“Said by Mr Ramiro, 2025” or “CBTA 255 recommendation” is enough. The source is printed in the report and gives your record its worth.</p></div>
+</section>
+
+<!-- ============================ 4 · MANEJO ============================ -->
+<section class="chap" id="b4" data-toc="4" style="--c:var(--b4)">
+  <div class="chap-head"><span class="big">4</span>
+    <div class="eyebrow" lang="es">Bloque 4 · Manejo</div><div class="eyebrow" lang="en">Block 4 · Management</div>
+    <h2 lang="es">Pasos, actividades y fechas</h2><h2 lang="en">Steps, activities and dates</h2>
+    <p lang="es">El corazón del sistema: lo que se hace, en qué orden y cuándo. Todo lo que sigue se calcula con estas actividades.</p>
+    <p lang="en">The heart of the system: what is done, in what order and when. Everything that follows is computed from these activities.</p>
+    <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 40l18-28M28 12c3-4 9-4 10 0-3 3-6 3-10 0zM6 42h36"/></svg>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="b4-pasos" data-n="4.1"><span lang="es">Los 38 pasos de Calpan</span><span lang="en">Calpan’s 38 steps</span></h3>
+  <p lang="es">Con el maíz de Calpan, la app trae los <b>38 pasos y 83 actividades</b> de la Figura 4 del artículo, del diagnóstico de la parcela en diciembre a la cosecha y el balance económico. Arriba ves cuántas actividades están activas, cuántas innovadas y cuántas no practicadas; la <b>fecha de siembra</b> se mueve con un control deslizante y los pasos fijados en días después de la siembra se recorren solos. Los botones de las 5B filtran los pasos por regla.</p>
+  <p lang="en">With Calpan maize the app brings the <b>38 steps and 83 activities</b> of the paper’s Figure 4, from plot assessment in December to harvest and economic balance. At the top you see how many activities are active, innovated and not practised; the <b>sowing date</b> moves with a slider and steps set in days after sowing follow. The 5B buttons filter steps by rule.</p>
+  <figure data-fig="manejo">
+    <figcaption><span class="fn"></span><span lang="es"><b>Bloque 4.</b></span><span lang="en"><b>Block 4.</b></span></figcaption>
+    <ol class="legend"><li><span lang="es">Fecha de siembra (21 de marzo en el caso).</span><span lang="en">Sowing date (21 March in the case).</span></li><li><span lang="es">Filtro por regla 5B.</span><span lang="en">Filter by 5B rule.</span></li></ol>
+  </figure>
+  <h3 id="b4-paso" data-n="4.2"><span lang="es">Dentro de un paso</span><span lang="en">Inside a step</span></h3>
+  <p lang="es">Al abrir un paso ves sus actividades. Para cada una: <b>desmarca</b> la casilla si en tu parcela no se hace (sale de la red); revisa los <b>cuadros de colores</b>, que dicen si la actividad suma (verde) o resta (rojo) al suelo, al agua, a la atmósfera, a la vegetación y a la fauna, y corrígelos si en tu caso es distinto; y fija las <b>fechas</b> de las actividades principales (siembra, deshierbe, fertilización, corte, cosecha). Con <span class="ui">+ Actividad innovadora</span> agregas lo que hoy hace diferente tu localidad, eligiendo los elementos que participan.</p>
+  <p lang="en">Opening a step shows its activities. For each one: <b>untick</b> it if it is not done on your plot (it leaves the network); check the <b>coloured squares</b>, which show whether the activity adds (green) or subtracts (red) for soil, water, atmosphere, vegetation and fauna, and correct them if your case differs; and set the <b>dates</b> of main activities (sowing, weeding, fertilising, cutting, harvest). With <span class="ui">+ Innovative activity</span> you add what your locality does differently today, choosing the elements involved.</p>
+  <figure data-fig="paso"><figcaption><span class="fn"></span><span lang="es"><b>Paso 18, siembra.</b> Actividades, impacto por compartimento y fechas.</span><span lang="en"><b>Step 18, sowing.</b> Activities, impact by compartment and dates.</span></figcaption></figure>
+  <div class="box why"><span class="bi">?</span><span class="bt" lang="es">¿Por qué importan los elementos de cada actividad?</span><span class="bt" lang="en">Why do each activity’s elements matter?</span>
+    <p lang="es">Porque así se teje la red: dos elementos que participan en la misma actividad quedan ligados. Si una actividad innovadora usa «bioinsumos» y «asesores técnicos», esa práctica fortalece el vínculo entre ellos.</p>
+    <p lang="en">Because that is how the network is woven: two elements taking part in the same activity become linked. If an innovative activity uses “bio-inputs” and “technical advisers”, that practice strengthens the link between them.</p></div>
+  <h3 id="b4-ejemplo" data-n="4.3"><span lang="es">La ventana del ejemplo</span><span lang="en">The example window</span></h3>
+  <p lang="es">Si tu cultivo está «Por documentar», cada bloque muestra el recuadro dorado <b>«Así se hizo con el maíz criollo de Calpan, Puebla»</b>. Al abrirlo ves lo que se registró en Calpan para ese bloque y los pasos para llenarlo con tu cultivo.</p>
+  <p lang="en">If your crop is “To document”, each block shows the golden box <b>“How it was done with landrace maize in Calpan, Puebla”</b>. Opening it shows what was recorded in Calpan for that block and the steps to fill it in for your crop.</p>
+  <figure data-fig="ejemplo"><figcaption><span class="fn"></span><span lang="es"><b>Ventana de ejemplo</b> en el Bloque 4, con la uva elegida.</span><span lang="en"><b>Example window</b> in Block 4, with grape chosen.</span></figcaption></figure>
+  <div class="box farm"><span class="bi">◆</span><span class="bt" lang="es">En Calpan</span><span class="bt" lang="en">In Calpan</span>
+    <p lang="es">La app muestra <b>85 actividades activas</b>, todas tradicionales; aún no hay innovadas. La siembra queda el <b>21 de marzo</b>, dentro de la ventana de marzo y abril que señala el artículo según las lluvias y fenómenos como El Niño y La Niña.</p>
+    <p lang="en">The app shows <b>85 active activities</b>, all traditional; none innovated yet. Sowing is set on <b>21 March</b>, within the March–April window the paper reports depending on rains and phenomena such as El Niño and La Niña.</p></div>
+</section>
+
+<!-- ============================ 5 · REGENERACIÓN ============================ -->
+<section class="chap" id="b5" data-toc="5" style="--c:var(--b5)">
+  <div class="chap-head"><span class="big">5</span>
+    <div class="eyebrow" lang="es">Bloque 5 · Regeneración</div><div class="eyebrow" lang="en">Block 5 · Regeneration</div>
+    <h2 lang="es">¿Tu sistema se regenera o se desgasta?</h2><h2 lang="en">Is your system regenerating or wearing out?</h2>
+    <p lang="es">Ocho perillas de 0 a 4 miden si las prácticas devuelven al suelo, al agua y a la biodiversidad más de lo que toman.</p>
+    <p lang="en">Eight 0–4 knobs measure whether practices give back to soil, water and biodiversity more than they take.</p>
+    <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 24a14 14 0 0 1 24-10M38 24a14 14 0 0 1-24 10M34 6v8h-8M14 42v-8h8"/></svg>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="b5-indice" data-n="5.1"><span lang="es">El índice de regeneración</span><span lang="en">The regeneration index</span></h3>
+  <p lang="es">El medidor resume las ocho perillas en un número de 0 a 100 y una clase: <b>degradante</b> (menos de 25), <b>convencional</b> (25 a 49), <b>en transición regenerativa</b> (50 a 74) y <b>regenerativo</b> (75 o más). Junto está el <b>perfil de regeneración</b>, un radar donde se ve de un golpe qué principio está fuerte y cuál flojo.</p>
+  <p lang="en">The gauge sums up the eight knobs in a 0–100 number and a class: <b>degrading</b> (under 25), <b>conventional</b> (25–49), <b>regenerative transition</b> (50–74) and <b>regenerative</b> (75 or more). Next to it is the <b>regeneration profile</b>, a radar that shows at a glance which principle is strong and which weak.</p>
+  <figure data-fig="regen">
+    <figcaption><span class="fn"></span><span lang="es"><b>Índice y perfil de regeneración.</b></span><span lang="en"><b>Regeneration index and profile.</b></span></figcaption>
+    <ol class="legend"><li><span lang="es">Medidor de 0 a 100, con su clase.</span><span lang="en">0–100 gauge, with its class.</span></li><li><span lang="es"><span class="ui pri">Guardar como línea base</span>.</span><span lang="en"><span class="ui pri">Save as baseline</span>.</span></li></ol>
+  </figure>
+  <h3 id="b5-perillas" data-n="5.2"><span lang="es">Las ocho perillas</span><span lang="en">The eight knobs</span></h3>
+  <p lang="es">Cada perilla responde una pregunta y trae un <b>valor sugerido</b> calculado con tus actividades del Bloque 4, con su motivo («4 actividades de labranza practicadas»). Si en tu parcela es distinto, muévela; la tarjeta se colorea y aparece <span class="ui">volver al sugerido</span>.</p>
+  <p lang="en">Each knob answers one question and brings a <b>suggested value</b> computed from your Block 4 activities, with its reason (“4 tillage activities practised”). If your plot differs, move it; the card is shaded and <span class="ui">back to suggested</span> appears.</p>
+  {{FIG_PERILLA}}
+  <div class="tbl"><table>
+    <thead><tr><th lang="es">Perilla</th><th lang="en">Knob</th><th lang="es">Pregunta</th><th lang="en">Question</th><th class="r" lang="es">Calpan</th><th class="r" lang="en">Calpan</th></tr></thead>
+    <tbody>
+      <tr><td lang="es"><b>Labranza mínima</b></td><td lang="en"><b>Minimal tillage</b></td><td lang="es">¿Cuántas labores mueven el suelo en cada ciclo?</td><td lang="en">How many operations move the soil each cycle?</td><td class="r">1</td></tr>
+      <tr><td lang="es"><b>Suelo cubierto</b></td><td lang="en"><b>Soil cover</b></td><td lang="es">¿Cuántos meses está cubierto por cultivo, rastrojo o abono verde?</td><td lang="en">How many months is it covered by crop, stubble or green manure?</td><td class="r">2</td></tr>
+      <tr><td lang="es"><b>Diversidad de especies</b></td><td lang="en"><b>Species diversity</b></td><td lang="es">¿Cuántas especies se cultivan o crían juntas?</td><td lang="en">How many species are grown or raised together?</td><td class="r">2</td></tr>
+      <tr><td lang="es"><b>Raíces vivas</b></td><td lang="en"><b>Living roots</b></td><td lang="es">¿Cuántos meses hay plantas vivas en la parcela?</td><td lang="en">How many months are there living plants on the plot?</td><td class="r">2</td></tr>
+      <tr><td lang="es"><b>Animales integrados</b></td><td lang="en"><b>Animals integrated</b></td><td lang="es">¿Hay animales que pastorean el rastrojo o aportan estiércol?</td><td lang="en">Are there animals grazing stubble or providing manure?</td><td class="r">2</td></tr>
+      <tr><td lang="es"><b>Menos agroquímicos</b></td><td lang="en"><b>Fewer agrochemicals</b></td><td lang="es">¿Qué parte de los insumos son de síntesis frente a bioinsumos?</td><td lang="en">What share of inputs is synthetic versus bio-inputs?</td><td class="r">0</td></tr>
+      <tr><td lang="es"><b>Materia orgánica</b></td><td lang="en"><b>Organic matter</b></td><td lang="es">¿Se devuelven residuos al suelo y se mide la materia orgánica?</td><td lang="en">Are residues returned to the soil and organic matter measured?</td><td class="r">4</td></tr>
+      <tr><td lang="es"><b>Saber local</b></td><td lang="en"><b>Local knowledge</b></td><td lang="es">¿Qué tanto se apoya el manejo en el saber local y la semilla propia?</td><td lang="en">How much does management rely on local knowledge and own seed?</td><td class="r">2</td></tr>
+    </tbody></table></div>
+  <figure data-fig="perillas">
+    <figcaption><span class="fn"></span><span lang="es"><b>Las perillas.</b> Cada una con su pregunta y su valor sugerido.</span><span lang="en"><b>The knobs.</b> Each with its question and suggested value.</span></figcaption>
+    <ol class="legend"><li><span lang="es">Labranza mínima: 1 · Bajo, porque se practican cuatro labores que mueven el suelo.</span><span lang="en">Minimal tillage: 1 · Low, because four soil-moving operations are practised.</span></li></ol>
+  </figure>
+  <div class="box farm"><span class="bi">◆</span><span class="bt" lang="es">En Calpan</span><span class="bt" lang="en">In Calpan</span>
+    <p lang="es">Con los valores sugeridos, el índice es <b>47 · Convencional</b>. Lo bajan las cuatro labores que mueven el suelo (subsoleo, arado, rastra y rastreo) y el uso de agroquímicos (16 actividades con agroquímicos y 1 con bioinsumos). Lo suben las seis actividades que devuelven residuos al suelo y el análisis de suelo. Las que más regeneran son el rastreo para incorporar materia orgánica y captar humedad, y la inspección visual; las que más desgastan, las ligadas al herbicida.</p>
+    <p lang="en">With the suggested values the index is <b>47 · Conventional</b>. It is lowered by the four soil-moving operations (subsoiling, ploughing, harrowing and tilling) and by agrochemical use (16 activities with agrochemicals and 1 with bio-inputs). It is raised by the six activities returning residues to the soil and by soil testing. The most regenerating are tilling to incorporate organic matter and capture moisture, and visual inspection; the most wearing, those linked to herbicide.</p></div>
+  <h3 id="b5-base" data-n="5.3"><span lang="es">Línea base y materia orgánica</span><span lang="en">Baseline and organic matter</span></h3>
+  <p lang="es">La regeneración se ve con el tiempo. Toca <span class="ui pri">Guardar como línea base</span> hoy y vuelve en el siguiente ciclo: la app dice si el índice subió («el sistema se regenera») o bajó («el sistema se desgasta») y en qué perillas. Si tienes dos análisis de suelo, anota el % de materia orgánica de antes y de ahora: es la prueba más directa.</p>
+  <p lang="en">Regeneration shows over time. Tap <span class="ui pri">Save as baseline</span> today and come back next cycle: the app says whether the index rose (“the system is regenerating”) or fell (“the system is wearing out”) and on which knobs. If you have two soil tests, enter the % organic matter before and now: it is the most direct proof.</p>
+  <figure data-fig="regenbase"><figcaption><span class="fn"></span><span lang="es"><b>Comparación con una línea base</b> (ejemplo ilustrativo: línea base de 38 en 2025 y materia orgánica de 1.8 a 2.1 %).</span><span lang="en"><b>Comparison with a baseline</b> (illustrative example: 2025 baseline of 38 and organic matter from 1.8 to 2.1 %).</span></figcaption></figure>
+  <div class="box rule"><span class="bi">→</span><span class="bt" lang="es">Regla de decisión · ¿por dónde empiezo?</span><span class="bt" lang="en">Decision rule · where do I start?</span>
+    <table><tbody>
+      <tr><td lang="es">Labranza en 0 o 1</td><td lang="en">Tillage at 0 or 1</td><td lang="es">Prueba reducir una labor o dejar rastrojo en superficie en una franja.</td><td lang="en">Try dropping one operation or leaving stubble on the surface in a strip.</td></tr>
+      <tr><td lang="es">Menos agroquímicos en 0 o 1</td><td lang="en">Fewer agrochemicals at 0 or 1</td><td lang="es">Sustituye una aplicación por un bioinsumo y regístrala como actividad innovadora.</td><td lang="en">Replace one application with a bio-input and record it as an innovative activity.</td></tr>
+      <tr><td lang="es">Diversidad o raíces vivas en 0 o 1</td><td lang="en">Diversity or living roots at 0 or 1</td><td lang="es">Una cobertera después de la cosecha o un intercalado (MIAF) suben las dos.</td><td lang="en">A cover crop after harvest or intercropping (MIAF) raises both.</td></tr>
+    </tbody></table></div>
+</section>
+
+<!-- ============================ 6 · RIESGOS ============================ -->
+<section class="chap" id="b6" data-toc="6" style="--c:var(--b6)">
+  <div class="chap-head"><span class="big">6</span>
+    <div class="eyebrow" lang="es">Bloque 6 · Riesgos</div><div class="eyebrow" lang="en">Block 6 · Risks</div>
+    <h2 lang="es">Qué puede salir mal y qué tan grave sería</h2><h2 lang="en">What could go wrong and how serious it would be</h2>
+    <p lang="es">Diecinueve riesgos en una matriz de probabilidad por impacto, reducidos por la capacidad de adaptación de tu sistema.</p>
+    <p lang="en">Nineteen risks in a likelihood-by-impact matrix, reduced by your system’s adaptive capacity.</p>
+    <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6L44 40H4z"/><path d="M24 18v10M24 33v2"/></svg>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="b6-indicadores" data-n="6.1"><span lang="es">El índice y la matriz</span><span lang="en">The index and the matrix</span></h3>
+  <p lang="es">Arriba ves el <b>índice de riesgo</b> (0 a 100), la <b>capacidad adaptativa</b> y de qué está hecha, cuántos riesgos son altos o muy altos y cuál es el mayor. Debajo, la <b>matriz de riesgos</b>: cada círculo dice cuántos riesgos caen en esa celda.</p>
+  <p lang="en">At the top you see the <b>risk index</b> (0 to 100), the <b>adaptive capacity</b> and what it is made of, how many risks are high or very high, and which is the highest. Below, the <b>risk matrix</b>: each circle shows how many risks fall in that cell.</p>
+  <figure data-fig="riesgos">
+    <figcaption><span class="fn"></span><span lang="es"><b>Bloque 6.</b></span><span lang="en"><b>Block 6.</b></span></figcaption>
+    <ol class="legend"><li><span lang="es">Índice de riesgo y su clase.</span><span lang="en">Risk index and its class.</span></li><li><span lang="es">Matriz de probabilidad por impacto.</span><span lang="en">Likelihood-by-impact matrix.</span></li></ol>
+  </figure>
+  {{FIG_MATRIZ}}
+  <h3 id="b6-perillas" data-n="6.2"><span lang="es">Las perillas de cada riesgo</span><span lang="en">Each risk’s knobs</span></h3>
+  <p lang="es">Los riesgos están agrupados en <b>climáticos</b> (sequía, helada, granizo, lluvias intensas, ola de calor, ciclones), <b>biológicos</b> (plagas, enfermedades, malezas), de <b>mercado</b> (caída del precio, alza de insumos, intermediarismo), <b>sociales</b> (falta de mano de obra y relevo, pérdida del saber local, inseguridad), <b>institucionales</b> (retiro de apoyos, tenencia de la tierra) y de <b>recursos naturales</b> (erosión, escasez de agua). Para cada uno: desmarca si no aplica, y mueve <b>probabilidad</b>, <b>impacto</b> y el <b>control</b> que ya tienes.</p>
+  <p lang="en">Risks are grouped into <b>climatic</b> (drought, frost, hail, heavy rain, heatwave, cyclones), <b>biological</b> (pests, diseases, weeds), <b>market</b> (price fall, input cost rise, middlemen), <b>social</b> (labour shortage and succession, loss of local knowledge, insecurity), <b>institutional</b> (support withdrawal, land tenure) and <b>natural resources</b> (erosion, water scarcity). For each: untick it if it does not apply, and move <b>likelihood</b>, <b>impact</b> and the <b>control</b> you already have.</p>
+  <figure data-fig="perillasr">
+    <figcaption><span class="fn"></span><span lang="es"><b>Perillas de cada riesgo.</b></span><span lang="en"><b>Knobs for each risk.</b></span></figcaption>
+    <ol class="legend"><li><span lang="es">Probabilidad: qué tan seguido pasa (1 muy baja a 5 muy alta).</span><span lang="en">Likelihood: how often it happens (1 very low to 5 very high).</span></li><li><span lang="es">Impacto: cuánto daño hace.</span><span lang="en">Impact: how much damage it does.</span></li><li><span lang="es">Control que ya tienes: ninguno, bajo, medio o alto.</span><span lang="en">Control you already have: none, low, medium or high.</span></li><li><span lang="es">Riesgo resultante, de 0 a 25, con su nivel.</span><span lang="en">Resulting risk, 0 to 25, with its level.</span></li></ol>
+  </figure>
+  <div class="box why"><span class="bi">?</span><span class="bt" lang="es">¿De dónde salen los valores sugeridos?</span><span class="bt" lang="en">Where do the suggested values come from?</span>
+    <p lang="es">De tus datos y de la prospectiva. Por ejemplo, la probabilidad de sequía sube a 4 porque el escenario tendencial supone 0.2 °C de calentamiento por década (IPCC, 2018); el impacto del alza de insumos depende de qué parte de tus actividades usa insumos comprados. Lo que no se puede deducir queda en 3, «moderado: ajústalo a tu localidad».</p>
+    <p lang="en">From your data and the outlook. For example, drought likelihood rises to 4 because the trend scenario assumes 0.2 °C of warming per decade (IPCC, 2018); the impact of input cost rises depends on what share of your activities uses purchased inputs. What cannot be deduced stays at 3, “moderate: adjust it to your locality”.</p></div>
+  <div class="box farm"><span class="bi">◆</span><span class="bt" lang="es">En Calpan</span><span class="bt" lang="en">In Calpan</span>
+    <p lang="es">Índice de riesgo <b>27 · Medio</b>, con capacidad adaptativa de <b>70</b> (regeneración 47, diversificación de productos 100, acceso a conocimiento técnico 83, integración institucional 50). Los cuatro riesgos mayores empatan en 8.6 de 25: sequía o lluvias tardías, ola de calor, alza de insumos y falta de mano de obra. El Stack registra como perturbaciones El Niño y La Niña, los ciclones del Atlántico y las oscilaciones Madden-Julian y Ártica, pero no publica sus probabilidades: por eso quedan como sugerencias editables.</p>
+    <p lang="en">Risk index <b>27 · Medium</b>, with adaptive capacity of <b>70</b> (regeneration 47, product diversification 100, access to technical knowledge 83, institutional integration 50). The four highest risks tie at 8.6 out of 25: drought or late rains, heatwave, input cost rise and labour shortage. The Stack records El Niño and La Niña, Atlantic cyclones and the Madden-Julian and Arctic oscillations as disturbances, but publishes no probabilities: so they stay as editable suggestions.</p></div>
+</section>
+
+<!-- ============================ 7 · ELEMENTOS ============================ -->
+<section class="chap" id="b7" data-toc="7" style="--c:var(--b7)">
+  <div class="chap-head"><span class="big">7</span>
+    <div class="eyebrow" lang="es">Bloque 7 · Elementos</div><div class="eyebrow" lang="en">Block 7 · Elements</div>
+    <h2 lang="es">Quiénes y qué participan</h2><h2 lang="en">Who and what takes part</h2>
+    <p lang="es">Los hilos del telar: actores, instituciones, insumos, equipo, recursos naturales y financieros, conocimientos, políticas, perturbaciones y productos.</p>
+    <p lang="en">The loom’s threads: actors, institutions, inputs, equipment, natural and financial resources, knowledge, policies, disturbances and products.</p>
+    <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="5"/><circle cx="36" cy="14" r="5"/><circle cx="24" cy="36" r="5"/><path d="M16 17l6 15M32 17l-6 15M17 14h14"/></svg>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="b7-categorias" data-n="7.1"><span lang="es">Diez categorías</span><span lang="en">Ten categories</span></h3>
+  <p lang="es">Cada elemento pertenece a una de diez categorías y participa en una o varias actividades. La barra junto a cada uno dice en cuántas actividades aparece. En Calpan son <b>63 elementos</b> tomados del artículo: por ejemplo, productores de maíz criollo, proveedores de insumos, asesores técnicos, academia local (CBTA 255), CIMMYT, semilla criolla, rastrojo, humedad del suelo, El Niño y La Niña, grano y forraje.</p>
+  <p lang="en">Each element belongs to one of ten categories and takes part in one or more activities. The bar next to each shows how many activities it appears in. In Calpan there are <b>63 elements</b> taken from the paper: for example, landrace maize farmers, input suppliers, technical advisers, local academia (CBTA 255), CIMMYT, landrace seed, stubble, soil moisture, El Niño and La Niña, grain and fodder.</p>
+  <figure data-fig="elementos"><figcaption><span class="fn"></span><span lang="es"><b>Agregar un elemento de la localidad.</b> Nombre y categoría; luego elígelo en una actividad del Bloque 4.</span><span lang="en"><b>Adding a local element.</b> Name and category; then choose it in a Block 4 activity.</span></figcaption></figure>
+  <div class="box warn"><span class="bi">!</span><span class="bt" lang="es">Un elemento sin actividad no entra a la red</span><span class="bt" lang="en">An element with no activity stays out of the network</span>
+    <p lang="es">Si agregas «Caja de ahorro comunitaria», elígelo después en la actividad donde participa (Bloque 4, «+ Actividad innovadora» o el detalle del paso). Si no, queda en el catálogo pero no se teje.</p>
+    <p lang="en">If you add “Community savings fund”, then choose it in the activity where it takes part (Block 4, “+ Innovative activity” or the step detail). Otherwise it stays in the catalogue but is not woven in.</p></div>
+  <h3 id="b7-rr" data-n="7.2"><span lang="es">Elementos expuestos al riesgo</span><span lang="en">Elements exposed to risk</span></h3>
+  <p lang="es">Al final del bloque, la tarjeta <b>Regeneración y riesgo en los elementos</b> muestra qué elementos están más expuestos: el riesgo mayor de las amenazas que los afectan (Bloque 6).</p>
+  <p lang="en">At the end of the block, the <b>Regeneration and risk in the elements</b> card shows which elements are most exposed: the highest risk among the hazards affecting them (Block 6).</p>
+  <figure data-fig="elemrr"><figcaption><span class="fn"></span><span lang="es"><b>Elementos más expuestos.</b> En Calpan, la humedad del suelo, la temperatura y El Niño encabezan la lista.</span><span lang="en"><b>Most exposed elements.</b> In Calpan, soil moisture, temperature and El Niño top the list.</span></figcaption></figure>
+</section>
+
+<!-- ============================ 8 · PRECIO Y VALOR ============================ -->
+<section class="chap" id="b8" data-toc="8" style="--c:var(--b8)">
+  <div class="chap-head"><span class="big">8</span>
+    <div class="eyebrow" lang="es">Bloque 8 · Precio y valor</div><div class="eyebrow" lang="en">Block 8 · Price and value</div>
+    <h2 lang="es">Lo que cuesta y lo que vale</h2><h2 lang="en">What it costs and what it is worth</h2>
+    <p lang="es">El precio es lo que se paga en el mercado; el valor es la importancia del elemento para el sistema. No son lo mismo.</p>
+    <p lang="en">Price is what the market charges; value is the element’s importance to the system. They are not the same.</p>
+    <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6v36M8 14h32M14 14l-6 14h12zM34 14l-6 14h12z"/></svg>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="b8-precio" data-n="8.1"><span lang="es">Precio por hectárea</span><span lang="en">Price per hectare</span></h3>
+  <p lang="es">Elige una categoría con las pestañas. Para cada elemento anota el <b>precio unitario</b>, la <b>unidad</b> (kg, L, jornal, ha) y la <b>cantidad por hectárea</b>; la app calcula el $/ha. En <b>Recursos financieros</b> están el costo de producción, los ingresos netos y el precio de venta: con ellos se calculan el margen del índice de Sarandón y el ingreso neto de la prospectiva.</p>
+  <p lang="en">Choose a category with the tabs. For each element enter the <b>unit price</b>, the <b>unit</b> (kg, L, day’s labour, ha) and the <b>quantity per hectare</b>; the app computes $/ha. <b>Financial resources</b> holds production cost, net income and sale price: they feed the margin in Sarandón’s index and net income in the outlook.</p>
+  <figure data-fig="precios">
+    <figcaption><span class="fn"></span><span lang="es"><b>Recursos financieros.</b></span><span lang="en"><b>Financial resources.</b></span></figcaption>
+    <ol class="legend"><li><span lang="es">Pestaña de la categoría.</span><span lang="en">Category tab.</span></li><li><span lang="es">Precio, unidad, cantidad por hectárea y las cuatro dimensiones del valor.</span><span lang="en">Price, unit, quantity per hectare and the four value dimensions.</span></li></ol>
+  </figure>
+  <h3 id="b8-valor" data-n="8.2"><span lang="es">El valor en cuatro dimensiones</span><span lang="en">Value in four dimensions</span></h3>
+  <p lang="es">Califica cada elemento de 0 a 5 en <b>valor económico</b>, <b>de uso</b>, <b>cultural</b> y <b>ecológico</b>. Arriba, las perillas de <b>pesos</b> dicen cuánto cuenta cada dimensión. Si no calificas, la app usa el <b>valor estructural</b>: qué tanto participa el elemento en las actividades.</p>
+  <p lang="en">Rate each element from 0 to 5 on <b>economic</b>, <b>use</b>, <b>cultural</b> and <b>ecological</b> value. At the top, the <b>weight</b> knobs say how much each dimension counts. If you do not rate, the app uses the <b>structural value</b>: how much the element takes part in the activities.</p>
+  <div class="box why"><span class="bi">?</span><span class="bt" lang="es">Un ejemplo de precio frente a valor</span><span class="bt" lang="en">An example of price versus value</span>
+    <p lang="es">La semilla criolla seleccionada en casa casi no tiene precio de mercado, pero su valor cultural y ecológico es alto; un herbicida puede costar más y valer menos para el sistema. Es una lectura de Ratio Telar: califícalo como lo vivan en tu localidad.</p>
+    <p lang="en">Home-selected landrace seed has almost no market price, yet high cultural and ecological value; a herbicide may cost more and be worth less to the system. It is a Ratio Telar reading: rate it as your locality lives it.</p></div>
+  <h3 id="b8-catalogo" data-n="8.3"><span lang="es">Tu catálogo en CSV</span><span lang="en">Your catalogue as CSV</span></h3>
+  <p lang="es">Con <span class="ui">Descargar catálogo (CSV)</span> guardas tus elementos, precios y valores en una hoja de cálculo; con <span class="ui">Cargar catálogo (CSV)</span> los traes a otro proyecto.</p>
+  <p lang="en">With <span class="ui">Download catalogue (CSV)</span> you save your elements, prices and values to a spreadsheet; with <span class="ui">Load catalogue (CSV)</span> you bring them into another project.</p>
+  <div class="box farm"><span class="bi">◆</span><span class="bt" lang="es">En Calpan</span><span class="bt" lang="en">In Calpan</span>
+    <p lang="es">El artículo no publica precios ni costos; reporta un rendimiento de 5 a 6 t/ha. Por eso el caso usa el valor estructural y el ingreso neto aparece como «sin dato» hasta que captures tus cifras.</p>
+    <p lang="en">The paper publishes no prices or costs; it reports a yield of 5–6 t/ha. So the case uses structural value and net income shows as “no data” until you enter your figures.</p></div>
+</section>
+
+<!-- ============================ 9 · FORMULACIÓN ============================ -->
+<section class="chap" id="b9" data-toc="9" style="--c:var(--b9)">
+  <div class="chap-head"><span class="big">9</span>
+    <div class="eyebrow" lang="es">Bloque 9 · Formulación</div><div class="eyebrow" lang="en">Block 9 · Formulation</div>
+    <h2 lang="es">Tejer el sistema</h2><h2 lang="en">Weaving the system</h2>
+    <p lang="es">Los elementos se vuelven nodos, las actividades compartidas se vuelven vínculos y el valor da el grosor de cada hilo.</p>
+    <p lang="en">Elements become nodes, shared activities become links and value sets each thread’s thickness.</p>
+    <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v36M20 6v36M28 6v36M36 6v36M6 16c6-4 10 4 18 0s12 4 18 0M6 32c6 4 10-4 18 0s12-4 18 0"/></svg>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="b9-tejer" data-n="9.1"><span lang="es">El botón «Tejer el sistema»</span><span lang="en">The “Weave the system” button</span></h3>
+  <p lang="es">Toca <span class="ui pri">Tejer el sistema</span>. La app arma la red y te lleva al Tablero. Junto al botón ves cuántos nodos, vínculos y actividades tiene tu sistema y su densidad. Debajo, el <b>modelo del sistema</b>: el entorno (clima y perturbaciones), los agentes, el Stack de conocimiento, el manejo, los insumos, los recursos, las instituciones, las políticas y los productos, con sus flechas.</p>
+  <p lang="en">Tap <span class="ui pri">Weave the system</span>. The app builds the network and takes you to the Dashboard. Next to the button you see how many nodes, links and activities your system has and its density. Below, the <b>system model</b>: the environment (climate and disturbances), agents, knowledge Stack, management, inputs, resources, institutions, policies and products, with their arrows.</p>
+  <figure data-fig="formulacion">
+    <figcaption><span class="fn"></span><span lang="es"><b>Bloque 9.</b> En Calpan: 61 nodos, 209 vínculos, 85 actividades, densidad 0.114.</span><span lang="en"><b>Block 9.</b> In Calpan: 61 nodes, 209 links, 85 activities, density 0.114.</span></figcaption>
+    <ol class="legend"><li><span lang="es"><span class="ui pri">Tejer el sistema</span>; después de tejer dice «Volver a tejer el sistema».</span><span lang="en"><span class="ui pri">Weave the system</span>; once woven it reads “Re-weave the system”.</span></li></ol>
+  </figure>
+  <div class="box tip"><span class="bi">✓</span><span class="bt" lang="es">Vuelve a tejer cuando cambies algo</span><span class="bt" lang="en">Re-weave whenever you change something</span>
+    <p lang="es">Si agregas actividades, elementos o valores, regresa a este bloque y vuelve a tejer. El Tablero avisa con un recuadro ámbar si aún no has tejido.</p>
+    <p lang="en">If you add activities, elements or values, come back to this block and re-weave. The Dashboard warns with an amber box if you have not woven yet.</p></div>
+</section>
+
+<!-- ============================ 10 · TABLERO ============================ -->
+<section class="chap" id="b10" data-toc="10" style="--c:var(--b10)">
+  <div class="chap-head"><span class="big">10</span>
+    <div class="eyebrow" lang="es">Bloque 10 · Tablero</div><div class="eyebrow" lang="en">Block 10 · Dashboard</div>
+    <h2 lang="es">Leer el sistema completo</h2><h2 lang="en">Reading the whole system</h2>
+    <p lang="es">Quién sostiene el sistema, qué hilos pesan más, qué grupos se forman, quién está cerca de quién y cuándo pasa cada cosa.</p>
+    <p lang="en">Who holds the system together, which threads weigh most, which groups form, who is close to whom and when each thing happens.</p>
+    <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="8" width="36" height="32" rx="3"/><circle cx="18" cy="20" r="3"/><circle cx="31" cy="17" r="3"/><circle cx="28" cy="31" r="3"/><path d="M20 21l9 9M21 19l7-1"/></svg>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="b10-resumen" data-n="10.1"><span lang="es">El resumen de arriba</span><span lang="en">The summary at the top</span></h3>
+  <p lang="es">Los indicadores de arriba dicen el tamaño de la red (nodos y vínculos), su densidad, el agrupamiento y el camino medio, la modularidad Q y la sostenibilidad media. Debajo, la tarjeta <b>Regeneración y riesgo del sistema</b> trae los índices de los bloques 5 y 6, el radar y la matriz.</p>
+  <p lang="en">The top indicators give the network size (nodes and links), its density, clustering and mean path, modularity Q and mean sustainability. Below, the <b>System regeneration and risk</b> card brings the indices from blocks 5 and 6, the radar and the matrix.</p>
+  <figure data-fig="tablero"><figcaption><span class="fn"></span><span lang="es"><b>Regeneración y riesgo en el Tablero.</b></span><span lang="en"><b>Regeneration and risk on the Dashboard.</b></span></figcaption></figure>
+  <h3 id="b10-red" data-n="10.2"><span lang="es">La red del sistema</span><span lang="en">The system network</span></h3>
+  <p lang="es">Cada punto es un elemento, con el color de su categoría; su tamaño depende de la medida que elijas arriba: <b>grado ponderado</b> (cuánto se relaciona), <b>intermediación</b> (cuánto sirve de puente), <b>vector propio</b> (si se relaciona con los importantes) o <b>cercanía</b>. Toca un nodo para ver solo sus relaciones. Como los productores participan en casi todo, la casilla <b>Ocultar al nodo omnipresente</b> deja ver la estructura interna.</p>
+  <p lang="en">Each dot is an element, coloured by category; its size depends on the measure you choose at the top: <b>weighted degree</b> (how related it is), <b>betweenness</b> (how much it bridges), <b>eigenvector</b> (whether it relates to the important ones) or <b>closeness</b>. Tap a node to see only its relations. Since farmers take part in almost everything, the <b>Hide the omnipresent node</b> box reveals the inner structure.</p>
+  <figure data-fig="red">
+    <figcaption><span class="fn"></span><span lang="es"><b>Red del sistema.</b></span><span lang="en"><b>System network.</b></span></figcaption>
+    <ol class="legend"><li><span lang="es">Medida que da el tamaño de los nodos.</span><span lang="en">Measure that sets node size.</span></li><li><span lang="es">Ocultar a los productores para ver la estructura interna.</span><span lang="en">Hide farmers to see the inner structure.</span></li></ol>
+  </figure>
+  <div class="box farm"><span class="bi">◆</span><span class="bt" lang="es">En Calpan</span><span class="bt" lang="en">In Calpan</span>
+    <p lang="es">Con los productores, la red tiene 61 elementos y 209 vínculos, y sus grupos casi no se distinguen (Q = 0.04). Al ocultarlos aparecen <b>siete comunidades</b> claras (Q = 0.45): asesoría técnica y sanidad; insumos y costos; maquinaria, suelo y humedad; memoria campesina (familia, semilla criolla, saber tácito y cultural, calendario lunar); mercado; clima; y academia e instituciones. Los asesores técnicos, el conocimiento técnico y el tácito son los mayores puentes.</p>
+    <p lang="en">With farmers, the network has 61 elements and 209 links, and its groups barely show (Q = 0.04). Hiding them reveals <b>seven clear communities</b> (Q = 0.45): technical advice and plant health; inputs and costs; machinery, soil and moisture; farming memory (family, landrace seed, tacit and cultural knowledge, lunar calendar); market; climate; and academia and institutions. Technical advisers, technical and tacit knowledge are the biggest bridges.</p></div>
+  <h3 id="b10-corr" data-n="10.3"><span lang="es">Correlaciones de un elemento</span><span lang="en">One element’s correlations</span></h3>
+  <p lang="es">Elige un elemento en la lista y verás con cuáles aparece junto en las mismas actividades (barras verdes) y con cuáles casi nunca coincide (barras rojas).</p>
+  <p lang="en">Choose an element in the list to see which ones appear together with it in the same activities (green bars) and which hardly ever coincide (red bars).</p>
+  <figure data-fig="corr">
+    <figcaption><span class="fn"></span><span lang="es"><b>Correlaciones de los asesores técnicos.</b> Se mueven a la par del conocimiento técnico (φ = 0.42), de plagas y enfermedades y del fertilizante granulado.</span><span lang="en"><b>Technical advisers’ correlations.</b> They move with technical knowledge (φ = 0.42), pests and diseases and granular fertiliser.</span></figcaption>
+    <ol class="legend"><li><span lang="es">Elemento a analizar.</span><span lang="en">Element to analyse.</span></li></ol>
+  </figure>
+  <h3 id="b10-clado" data-n="10.4"><span lang="es">El cladograma: ¿quién está cerca de quién?</span><span lang="en">The cladogram: who is close to whom?</span></h3>
+  <p lang="es">El cladograma agrupa a los elementos según su cercanía en la red: cada uno se une primero con su <b>vecino más cercano</b>. Lee el árbol de izquierda a derecha: las ramas cortas son elementos muy ligados, que conviene atender juntos. Elige ver solo actores, actores e instituciones, o todos los elementos. Debajo, la tabla dice el vecino más cercano de cada uno; ↔ marca a los vecinos mutuos.</p>
+  <p lang="en">The cladogram groups elements by closeness in the network: each first joins its <b>nearest neighbour</b>. Read the tree left to right: short branches are tightly linked elements, best looked after together. Choose to see actors only, actors and institutions, or all elements. Below, the table gives each one’s nearest neighbour; ↔ marks mutual neighbours.</p>
+  <figure data-fig="clado">
+    <figcaption><span class="fn"></span><span lang="es"><b>Cladograma de actores e instituciones de Calpan.</b> Productores y asesores técnicos son vecinos mutuos (0.22).</span><span lang="en"><b>Calpan actors and institutions cladogram.</b> Farmers and technical advisers are mutual neighbours (0.22).</span></figcaption>
+    <ol class="legend"><li><span lang="es">Qué elementos agrupar.</span><span lang="en">Which elements to group.</span></li></ol>
+  </figure>
+  <div class="box warn"><span class="bi">!</span><span class="bt" lang="es">Las uniones a distancia 20</span><span class="bt" lang="en">Joins at distance 20</span>
+    <p lang="es">Son elementos que no participan en ninguna actividad capturada: los liga solo un vínculo estructural del artículo. En Calpan son las universidades y los investigadores; si trabajan con tu localidad, agrégalos a las actividades donde participan.</p>
+    <p lang="en">These are elements that take part in no recorded activity: only a structural tie from the paper links them. In Calpan they are the universities and researchers; if they work with your locality, add them to the activities they take part in.</p></div>
+  <h3 id="b10-calendario" data-n="10.5"><span lang="es">El calendario circular</span><span lang="en">The circular calendar</span></h3>
+  <p lang="es">El año es un círculo; cada anillo es un tipo de actividad y cada arco, un paso con sus fechas. La aguja marca hoy y el centro anuncia la siguiente actividad. Toca un arco para abrir su paso en el Bloque 4; en la leyenda, para filtrar.</p>
+  <p lang="en">The year is a circle; each ring is an activity type and each arc a step with its dates. The needle marks today and the centre announces the next activity. Tap an arc to open its step in Block 4; tap the legend to filter.</p>
+  <figure data-fig="calendario"><figcaption><span class="fn"></span><span lang="es"><b>Calendario circular de Calpan.</b> De la preparación del suelo en diciembre a la cosecha en noviembre.</span><span lang="en"><b>Calpan circular calendar.</b> From land preparation in December to harvest in November.</span></figcaption></figure>
+</section>
+
+<!-- ============================ 11 · SOSTENIBILIDAD ============================ -->
+<section class="chap" id="b11" data-toc="11" style="--c:var(--b11)">
+  <div class="chap-head"><span class="big">11</span>
+    <div class="eyebrow" lang="es">Bloque 11 · Sostenibilidad</div><div class="eyebrow" lang="en">Block 11 · Sustainability</div>
+    <h2 lang="es">Suelo, agua, ODS y huella</h2><h2 lang="en">Soil, water, SDGs and footprint</h2>
+    <p lang="es">Cada actividad deja una marca. Aquí ves cuáles suman, cuáles restan, el índice de Sarandón, los 17 ODS y la huella de carbono.</p>
+    <p lang="en">Every activity leaves a mark. Here you see which add, which subtract, Sarandón’s index, the 17 SDGs and the carbon footprint.</p>
+    <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="18"/><path d="M8 20c8 2 10 8 18 6s10 6 14 2M18 8c2 6-2 10 2 14"/></svg>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="b11-indices" data-n="11.1"><span lang="es">Índice de sostenibilidad y Sarandón</span><span lang="en">Sustainability index and Sarandón</span></h3>
+  <p lang="es">El <b>índice de sostenibilidad (IS)</b> va de 0 a 1: 0.5 es neutro, arriba la actividad suma y abajo resta. El <b>índice general de sostenibilidad de Sarandón (ISGen)</b> promedia tres dimensiones en escala de 0 a 4: económica (IK), ecológica (IE) y sociocultural (ISC). El sistema es sostenible si ISGen es mayor que 2 y ninguna dimensión queda por debajo de 2.</p>
+  <p lang="en">The <b>sustainability index (IS)</b> goes from 0 to 1: 0.5 is neutral, above it the activity adds and below it subtracts. <b>Sarandón’s general sustainability index (ISGen)</b> averages three dimensions on a 0–4 scale: economic (IK), ecological (IE) and socio-cultural (ISC). The system is sustainable if ISGen is above 2 and no dimension falls below 2.</p>
+  <figure data-fig="sostenible"><figcaption><span class="fn"></span><span lang="es"><b>Índice general de sostenibilidad de Calpan.</b> IK 3.11, IE 2.05, ISC 2.67 e ISGen 2.61: sostenible.</span><span lang="en"><b>Calpan general sustainability index.</b> IK 3.11, IE 2.05, ISC 2.67 and ISGen 2.61: sustainable.</span></figcaption></figure>
+  <h3 id="b11-ods" data-n="11.2"><span lang="es">Los 17 ODS</span><span lang="en">The 17 SDGs</span></h3>
+  <p lang="es">La rueda y las tarjetas muestran el grado de cumplimiento de cada Objetivo de Desarrollo Sostenible con evidencia de tu sistema. «Sin dato» no es incumplimiento: significa que tus datos no dicen nada de ese objetivo.</p>
+  <p lang="en">The wheel and cards show how far each Sustainable Development Goal is met with evidence from your system. “No data” is not failure: it means your data says nothing about that goal.</p>
+  <figure data-fig="ods"><figcaption><span class="fn"></span><span lang="es"><b>ODS en Calpan.</b> Siete de los 17 tienen evidencia; el ODS 17 llega a 100 % y el ODS 4 a 21 %.</span><span lang="en"><b>SDGs in Calpan.</b> Seven of the 17 have evidence; SDG 17 reaches 100 % and SDG 4 21 %.</span></figcaption></figure>
+  <h3 id="b11-huella" data-n="11.3"><span lang="es">Huella de carbono</span><span lang="en">Carbon footprint</span></h3>
+  <p lang="es">Captura los litros de diésel, los kilos de nitrógeno y de urea por hectárea y el rendimiento: la app calcula los kilos de CO₂ equivalente por hectárea y por tonelada con los factores del IPCC. Si dejas los campos vacíos, la huella aparece como «—».</p>
+  <p lang="en">Enter litres of diesel, kilos of nitrogen and urea per hectare and the yield: the app computes kilos of CO₂ equivalent per hectare and per tonne with IPCC factors. If you leave the fields empty, the footprint shows as “—”.</p>
+  <figure data-fig="sarandon"><figcaption><span class="fn"></span><span lang="es"><b>Lo que suma y lo que resta</b> por compartimento, y las actividades que más restan y más suman.</span><span lang="en"><b>What adds and what subtracts</b> by compartment, and the activities that subtract and add most.</span></figcaption></figure>
+  <div class="box farm"><span class="bi">◆</span><span class="bt" lang="es">En Calpan</span><span class="bt" lang="en">In Calpan</span>
+    <p lang="es">El IS medio de las actividades es <b>0.51</b>, casi neutro. Las que más restan están ligadas al herbicida y a la mezcla de agroquímicos; las que más suman, a la inspección, el rastreo para incorporar materia orgánica y las decisiones con información. Las fuentes no publican diésel ni nitrógeno por hectárea en Calpan, así que la huella espera tus datos.</p>
+    <p lang="en">The activities’ mean IS is <b>0.51</b>, almost neutral. Those subtracting most are linked to herbicide and agrochemical mixing; those adding most, to inspection, tilling to incorporate organic matter and informed decisions. The sources publish no diesel or nitrogen per hectare for Calpan, so the footprint awaits your data.</p></div>
+</section>
+
+<!-- ============================ 12 · PROSPECTIVA ============================ -->
+<section class="chap" id="b12" data-toc="12" style="--c:var(--b12)">
+  <div class="chap-head"><span class="big">12</span>
+    <div class="eyebrow" lang="es">Bloque 12 · Prospectiva</div><div class="eyebrow" lang="en">Block 12 · Outlook</div>
+    <h2 lang="es">Tres futuros a 2, 5 y 10 años</h2><h2 lang="en">Three futures at 2, 5 and 10 years</h2>
+    <p lang="es">No son pronósticos: son escenarios para conversar con la familia, los asesores y la comunidad sobre qué hacer hoy.</p>
+    <p lang="en">They are not forecasts: they are scenarios to discuss with the family, advisers and community what to do today.</p>
+    <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 38c10-2 14-14 20-16s10 4 16-6M6 38c10 0 16-6 22-6s10 2 14 0M6 38c8 2 18 4 36 4"/></svg>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="b12-escenarios" data-n="12.1"><span lang="es">Deseable, tendencial y no deseado</span><span lang="en">Desirable, trend and undesired</span></h3>
+  <p lang="es">Cada escenario combina el precio del producto, el costo de los insumos, el calentamiento, la frecuencia de años extremos, la mano de obra familiar disponible y la adopción de tus actividades innovadas. La app grafica diez indicadores con marcas en los años 2, 5 y 10: rendimiento, precio, costo, ingreso bruto ÷ costo, ingreso neto, mano de obra, adopción, sostenibilidad, regeneración y riesgo. Debajo, las <b>potencialidades</b> y las <b>perspectivas no deseadas</b> se escriben solas con tus resultados.</p>
+  <p lang="en">Each scenario combines product price, input cost, warming, frequency of extreme years, available family labour and adoption of your innovated activities. The app plots ten indicators marked at years 2, 5 and 10: yield, price, cost, gross income ÷ cost, net income, labour, adoption, sustainability, regeneration and risk. Below, the <b>potentials</b> and <b>undesired prospects</b> are written from your results.</p>
+  <figure data-fig="prospectiva"><figcaption><span class="fn"></span><span lang="es"><b>Bloque 12.</b> Ingreso bruto ÷ costo a 10 años en los tres escenarios.</span><span lang="en"><b>Block 12.</b> Gross income ÷ cost at 10 years in the three scenarios.</span></figcaption></figure>
+  <div class="box farm"><span class="bi">◆</span><span class="bt" lang="es">En Calpan</span><span class="bt" lang="en">In Calpan</span>
+    <p lang="es">Con los supuestos iniciales y hoy = 100, a 10 años la relación ingreso bruto ÷ costo queda en <b>96</b> (deseable), <b>74</b> (tendencial) y <b>48</b> (no deseado); el rendimiento, en 96, 90 y 82; la mano de obra familiar disponible, en 95, 86 y 74. Como el caso aún no tiene actividades innovadas, la adopción no cambia los resultados: agrégalas en el Bloque 4 para ver su potencial.</p>
+    <p lang="en">With the default assumptions and today = 100, at 10 years the gross income ÷ cost ratio is <b>96</b> (desirable), <b>74</b> (trend) and <b>48</b> (undesired); yield, 96, 90 and 82; available family labour, 95, 86 and 74. Since the case has no innovated activities yet, adoption does not change the results: add them in Block 4 to see their potential.</p></div>
+  <h3 id="b12-supuestos" data-n="12.2"><span lang="es">Los supuestos</span><span lang="en">The assumptions</span></h3>
+  <p lang="es">La tabla de supuestos es editable. Lo que tiene base publicada lleva su fuente (calentamiento, IPCC 2018; pérdida de rendimiento por grado, Zhao y colaboradores 2017; curva de adopción, Rogers 2003); el resto lleva la etiqueta ◆ de supuesto. Contrasta precios y mano de obra con el Censo Agropecuario y la ENOE del INEGI y con los precios del SIAP de tu municipio.</p>
+  <p lang="en">The assumptions table is editable. What has a published basis carries its source (warming, IPCC 2018; yield loss per degree, Zhao and colleagues 2017; adoption curve, Rogers 2003); the rest is flagged ◆ as an assumption. Check prices and labour against INEGI’s Agricultural Census and ENOE and SIAP prices for your municipality.</p>
+  <figure data-fig="supuestos">
+    <figcaption><span class="fn"></span><span lang="es"><b>Supuestos de cada escenario.</b></span><span lang="en"><b>Assumptions for each scenario.</b></span></figcaption>
+    <ol class="legend"><li><span lang="es">Cada fila es un supuesto; cada columna, un escenario.</span><span lang="en">Each row is an assumption; each column, a scenario.</span></li><li><span lang="es"><span class="ui">Volver a los valores iniciales</span>.</span><span lang="en"><span class="ui">Reset to defaults</span>.</span></li></ol>
+  </figure>
+</section>
+
+<!-- ============================ 13 · INFORME ============================ -->
+<section class="chap" id="b13" data-toc="13" style="--c:var(--b13)">
+  <div class="chap-head"><span class="big">13</span>
+    <div class="eyebrow" lang="es">Bloque 13 · Informe</div><div class="eyebrow" lang="en">Block 13 · Report</div>
+    <h2 lang="es">Todo tu sistema en un documento</h2><h2 lang="en">Your whole system in one document</h2>
+    <p lang="es">Resumen redactado, territorio, calendario, elementos clave, cladograma, regeneración, riesgos, prospectiva y ODS, listo para imprimir.</p>
+    <p lang="en">Written summary, territory, calendar, key elements, cladogram, regeneration, risks, outlook and SDGs, ready to print.</p>
+    <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4h18l8 8v32H12z"/><path d="M30 4v8h8M18 24h14M18 31h14M18 38h8"/></svg>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="b13-exportar" data-n="13.1"><span lang="es">Imprimir, exportar y guardar</span><span lang="en">Print, export and save</span></h3>
+  <figure data-fig="informe">
+    <figcaption><span class="fn"></span><span lang="es"><b>Bloque 13.</b></span><span lang="en"><b>Block 13.</b></span></figcaption>
+    <ol class="legend"><li><span lang="es"><span class="ui pri">Imprimir o guardar PDF</span>: en el cuadro de impresión elige «Guardar como PDF». La impresión sigue la vista activa.</span><span lang="en"><span class="ui pri">Print or save PDF</span>: in the print dialog choose “Save as PDF”. Printing follows the active view.</span></li><li><span lang="es"><span class="ui">Guardar proyecto</span>: un archivo .json con todo lo que capturaste.</span><span lang="en"><span class="ui">Save project</span>: a .json file with everything you entered.</span></li><li><span lang="es"><span class="ui">Abrir proyecto</span>: carga un archivo guardado.</span><span lang="en"><span class="ui">Open project</span>: loads a saved file.</span></li></ol>
+  </figure>
+  <p lang="es">Los botones de CSV descargan las tablas de actividades, nodos, vínculos, calendario, ODS y cladograma para trabajarlas en una hoja de cálculo. <span class="ui">Empezar de nuevo</span> borra el proyecto de este navegador: guárdalo antes.</p>
+  <p lang="en">The CSV buttons download the activities, nodes, links, calendar, SDG and cladogram tables for use in a spreadsheet. <span class="ui">Start over</span> erases the project from this browser: save it first.</p>
+  <div class="box tip"><span class="bi">✓</span><span class="bt" lang="es">La impresión ya viene cuidada</span><span class="bt" lang="en">Printing is already looked after</span>
+    <p lang="es">Al imprimir, la app usa siempre el tema claro, despliega el marco teórico, quita las animaciones y ajusta las tablas al ancho de la hoja, aunque estés en modo noche.</p>
+    <p lang="en">When printing, the app always uses the light theme, expands the theory, drops animations and fits tables to the page width, even in night mode.</p></div>
+  <figure data-fig="oscuro"><figcaption><span class="fn"></span><span lang="es"><b>Modo noche.</b> En pantalla puedes trabajar de noche; el informe impreso sale en claro.</span><span lang="en"><b>Night mode.</b> On screen you can work at night; the printed report comes out light.</span></figcaption></figure>
+</section>
+
+<!-- ============================ D · DOCUMENTAR ============================ -->
+<section class="chap" id="documentar" data-toc="D" style="--c:var(--acc)">
+  <div class="chap-head"><span class="big">D</span>
+    <div class="eyebrow" lang="es">Consulta</div><div class="eyebrow" lang="en">Reference</div>
+    <h2 lang="es">Documentar un cultivo nuevo</h2><h2 lang="en">Documenting a new crop</h2>
+    <p lang="es">La ruta completa para tejer un cultivo que aún no tiene Stack, como la uva de Mata de Zarza o el agave del bacanora en Sonora.</p>
+    <p lang="en">The full route to weave a crop that has no Stack yet, such as Mata de Zarza grapes or the bacanora agave in Sonora.</p>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="d-ruta" data-n="D.1"><span lang="es">Diez pasos</span><span lang="en">Ten steps</span></h3>
+  <ol>
+    <li lang="es"><b>Reúne a la gente.</b> Productores con experiencia, quien hereda la parcela, el asesor técnico. El Stack de Calpan se armó con 100 informantes en tres ciclos.</li><li lang="en"><b>Bring people together.</b> Experienced farmers, whoever will inherit the plot, the technical adviser. Calpan’s Stack was built with 100 informants over three cycles.</li>
+    <li lang="es"><b>Bloque 1.</b> Elige el cultivo (o agrégalo), su variedad y el sistema; anota la superficie.</li><li lang="en"><b>Block 1.</b> Choose the crop (or add it), its variety and system; enter the area.</li>
+    <li lang="es"><b>Bloque 2.</b> Ubica la localidad.</li><li lang="en"><b>Block 2.</b> Locate the locality.</li>
+    <li lang="es"><b>Bloque 3.</b> Pregunta: «¿qué se necesita para que este cultivo salga bien?». Agrupa las respuestas en pocas reglas, como las 5B.</li><li lang="en"><b>Block 3.</b> Ask: “what does this crop need to do well?”. Group the answers into a few rules, like the 5B.</li>
+    <li lang="es"><b>Bloque 4.</b> Lista los pasos del ciclo en orden, las actividades de cada paso, quién participa y las fechas principales.</li><li lang="en"><b>Block 4.</b> List the cycle’s steps in order, each step’s activities, who takes part and the main dates.</li>
+    <li lang="es"><b>Bloques 5 y 6.</b> Ajusta las perillas de regeneración y de riesgo con lo que vive la localidad; guarda la línea base.</li><li lang="en"><b>Blocks 5 and 6.</b> Adjust the regeneration and risk knobs to what the locality lives; save the baseline.</li>
+    <li lang="es"><b>Bloque 7.</b> Revisa que estén todos los elementos; agrega los que falten y elígelos en sus actividades.</li><li lang="en"><b>Block 7.</b> Check all elements are there; add the missing ones and choose them in their activities.</li>
+    <li lang="es"><b>Bloque 8.</b> Anota precios, costos e ingresos por hectárea y califica el valor.</li><li lang="en"><b>Block 8.</b> Enter prices, costs and income per hectare and rate value.</li>
+    <li lang="es"><b>Bloque 9.</b> Teje el sistema y léelo en los bloques 10 a 12 con la gente que lo vive.</li><li lang="en"><b>Block 9.</b> Weave the system and read it in blocks 10–12 with the people who live it.</li>
+    <li lang="es"><b>Bloque 13.</b> Imprime el informe, guarda el proyecto y regresa en el siguiente ciclo.</li><li lang="en"><b>Block 13.</b> Print the report, save the project and come back next cycle.</li>
+  </ol>
+  <div class="box why"><span class="bi">?</span><span class="bt" lang="es">Tu registro es conocimiento</span><span class="bt" lang="en">Your record is knowledge</span>
+    <p lang="es">Un proyecto bien documentado de una localidad es el primer paso para publicar su Stack, como se hizo en Calpan. Guarda las fuentes de cada dato.</p>
+    <p lang="en">A well-documented project from a locality is the first step to publishing its Stack, as was done in Calpan. Keep the sources of every figure.</p></div>
+  <h3 id="d-entrevista" data-n="D.2"><span lang="es">Guía de entrevista, bloque por bloque</span><span lang="en">Interview guide, block by block</span></h3>
+  <p lang="es">Preguntas abiertas para una plática con productores. No hace falta seguir el orden; lo importante es que cada respuesta quede anotada con quién la dijo y cuándo.</p>
+  <p lang="en">Open questions for a conversation with farmers. The order is not important; what matters is that every answer is written down with who said it and when.</p>
+  <div class="tbl"><table>
+    <thead><tr><th lang="es">Bloque</th><th lang="en">Block</th><th lang="es">Preguntas</th><th lang="en">Questions</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td lang="es">¿Qué siembran o crían? ¿Qué variedad o raza, y de dónde viene la semilla o el pie de cría? ¿Siembran solo o asociado? ¿Cuántas hectáreas, colmenas o cabezas?</td><td lang="en">What do you grow or raise? Which variety or breed, and where do the seed or breeding stock come from? Sole crop or intercropped? How many hectares, hives or head?</td></tr>
+      <tr><td>2</td><td lang="es">¿En qué localidad y municipio está la parcela? ¿Hay riego o es de temporal?</td><td lang="en">In which locality and municipality is the plot? Irrigated or rainfed?</td></tr>
+      <tr><td>3</td><td lang="es">¿Qué necesita este cultivo para que salga bien? ¿Qué cosas nunca se deben hacer? ¿Qué han cambiado en los últimos años y por qué?</td><td lang="en">What does this crop need to do well? What must never be done? What have you changed in recent years and why?</td></tr>
+      <tr><td>4</td><td lang="es">¿Cuáles son los pasos del ciclo, del primero al último? ¿Qué se hace en cada uno, con qué herramientas y quién lo hace? ¿En qué meses?</td><td lang="en">What are the cycle’s steps, first to last? What is done in each, with which tools and by whom? In which months?</td></tr>
+      <tr><td>5</td><td lang="es">¿Cuántas veces mueven la tierra? ¿Queda cubierta todo el año? ¿Dejan el rastrojo? ¿Usan abono o estiércol? ¿Hay animales en la parcela? ¿Han analizado el suelo?</td><td lang="en">How many times is the soil worked? Is it covered all year? Is stubble left? Manure or compost? Animals on the plot? Has the soil been tested?</td></tr>
+      <tr><td>6</td><td lang="es">¿Qué fue lo peor que les pasó en los últimos diez años? ¿Cada cuánto pasa? ¿Cuánto perdieron? ¿Qué hacen para evitarlo?</td><td lang="en">What was the worst thing that happened in the last ten years? How often does it happen? How much was lost? What do you do to prevent it?</td></tr>
+      <tr><td>7</td><td lang="es">¿Quién más participa: familia, jornaleros, asesores, compradores, programas, instituciones?</td><td lang="en">Who else takes part: family, day labourers, advisers, buyers, programmes, institutions?</td></tr>
+      <tr><td>8</td><td lang="es">¿Cuánto les cuesta producir una hectárea y cuánto les pagan? ¿Qué vale este elemento para ustedes, además del dinero?</td><td lang="en">How much does a hectare cost to produce and what are you paid? What is this element worth to you, beyond money?</td></tr>
+      <tr><td>12</td><td lang="es">¿Quién va a sembrar dentro de diez años? ¿Qué les gustaría que cambiara y qué no?</td><td lang="en">Who will be farming in ten years? What would you like to change and what not?</td></tr>
+    </tbody></table></div>
+  <div class="box tip"><span class="bi">✓</span><span class="bt" lang="es">Consentimiento</span><span class="bt" lang="en">Consent</span>
+    <p lang="es">Explica para qué se usarán los datos y pide permiso antes de anotar nombres. En el informe basta con la localidad y el número de informantes.</p>
+    <p lang="en">Explain what the data will be used for and ask permission before writing down names. In the report the locality and the number of informants are enough.</p></div>
+
+  <h3 id="d-hoja1" data-n="D.3" style="break-before:page"><span lang="es">Hoja de campo 1: pasos y actividades</span><span lang="en">Field sheet 1: steps and activities</span></h3>
+  <p lang="es">Imprime esta página y llénala a mano en la parcela; luego pásala al Bloque 4.</p>
+  <p lang="en">Print this page and fill it in by hand on the plot; then transfer it to Block 4.</p>
+  <p lang="es">Cultivo o especie: ______________________ &nbsp; Localidad: ______________________ &nbsp; Fecha: ___________</p>
+  <p lang="en">Crop or species: ______________________ &nbsp; Locality: ______________________ &nbsp; Date: ___________</p>
+  <div class="tbl"><table class="hoja">
+    <thead><tr><th>#</th><th lang="es">Paso</th><th lang="en">Step</th><th lang="es">Actividad</th><th lang="en">Activity</th><th lang="es">Quién · con qué</th><th lang="en">Who · with what</th><th lang="es">Mes</th><th lang="en">Month</th><th lang="es">T / I</th><th lang="en">T / I</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>2</td><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>3</td><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>4</td><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>5</td><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>6</td><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>7</td><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>8</td><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>9</td><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>10</td><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>11</td><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>12</td><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>13</td><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>14</td><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>15</td><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>16</td><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>17</td><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>18</td><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>
+    </tbody></table></div>
+  <p class="where" lang="es">T = tradicional, I = innovada.</p><p class="where" lang="en">T = traditional, I = innovated.</p>
+
+  <h3 id="d-hoja2" data-n="D.4" style="break-before:page"><span lang="es">Hoja de campo 2: regeneración</span><span lang="en">Field sheet 2: regeneration</span></h3>
+  <p lang="es">Marca con la gente un número del 0 al 4 en cada fila y anota por qué; luego pásalo a las perillas del Bloque 5.</p>
+  <p lang="en">Mark a number from 0 to 4 on each row with the people and write why; then transfer it to the Block 5 knobs.</p>
+  <div class="tbl"><table class="hoja">
+    <thead><tr><th lang="es">Indicador</th><th lang="en">Indicator</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th lang="es">¿Por qué?</th><th lang="en">Why?</th></tr></thead>
+    <tbody>
+      <tr><td lang="es">Labranza mínima</td><td lang="en">Minimal tillage</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Suelo cubierto</td><td lang="en">Soil cover</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Diversidad</td><td lang="en">Diversity</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Raíces vivas</td><td lang="en">Living roots</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Integración animal</td><td lang="en">Livestock integration</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Menos insumos de síntesis</td><td lang="en">Fewer synthetic inputs</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Materia orgánica</td><td lang="en">Organic matter</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Saber local</td><td lang="en">Local knowledge</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>&nbsp;</td></tr>
+    </tbody></table></div>
+  <p lang="es">Suma: ______ ÷ 32 = IR ______ &nbsp; Materia orgánica del análisis de suelo: ______ % &nbsp; Año: ______</p>
+  <p lang="en">Sum: ______ ÷ 32 = IR ______ &nbsp; Organic matter from soil test: ______ % &nbsp; Year: ______</p>
+
+  <h3 id="d-hoja3" data-n="D.5" style="break-before:page"><span lang="es">Hoja de campo 3: riesgos</span><span lang="en">Field sheet 3: risks</span></h3>
+  <p lang="es">Para cada amenaza: probabilidad (1 rara vez … 5 casi cada año), impacto (1 casi nada … 5 se pierde todo) y control (0 nada … 3 bien controlado). Tacha las que no aplican.</p>
+  <p lang="en">For each hazard: likelihood (1 rarely … 5 almost every year), impact (1 almost nothing … 5 everything lost) and control (0 none … 3 well controlled). Cross out those that do not apply.</p>
+  <div class="tbl"><table class="hoja">
+    <thead><tr><th lang="es">Amenaza</th><th lang="en">Hazard</th><th lang="es">Prob.</th><th lang="en">Lik.</th><th lang="es">Impacto</th><th lang="en">Impact</th><th>Control</th><th lang="es">Qué hacemos</th><th lang="en">What we do</th></tr></thead>
+    <tbody>
+      <tr><td lang="es">Sequía o lluvias tardías</td><td lang="en">Drought or late rains</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Helada</td><td lang="en">Frost</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Granizo</td><td lang="en">Hail</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Lluvias intensas o inundación</td><td lang="en">Heavy rain or flooding</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Ola de calor</td><td lang="en">Heatwave</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Ciclones y huracanes</td><td lang="en">Cyclones and hurricanes</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Plagas</td><td lang="en">Pests</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Enfermedades</td><td lang="en">Diseases</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Malezas resistentes o invasoras</td><td lang="en">Resistant or invasive weeds</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Caída del precio de venta</td><td lang="en">Fall in sale price</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Alza de insumos y servicios</td><td lang="en">Rise in input and service costs</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Intermediarismo o falta de comprador</td><td lang="en">Middlemen or no buyer</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Falta de mano de obra y de relevo</td><td lang="en">Labour shortage and no succession</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Pérdida del saber local</td><td lang="en">Loss of local knowledge</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Inseguridad o robo</td><td lang="en">Insecurity or theft</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Retiro de programas y apoyos</td><td lang="en">Withdrawal of programmes and support</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Conflictos de tenencia de la tierra</td><td lang="en">Land tenure conflicts</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Erosión y pérdida de fertilidad</td><td lang="en">Erosion and fertility loss</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Escasez de agua</td><td lang="en">Water scarcity</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+    </tbody></table></div>
+
+  <h3 id="d-hoja4" data-n="D.6" style="break-before:page"><span lang="es">Hoja de campo 4: costos, precio y valor</span><span lang="en">Field sheet 4: costs, price and value</span></h3>
+  <p lang="es">Por hectárea (o por colmena, o por cabeza) y por ciclo. Luego pásalo al Bloque 8.</p>
+  <p lang="en">Per hectare (or per hive, or per head) and per cycle. Then transfer it to Block 8.</p>
+  <div class="tbl"><table class="hoja">
+    <thead><tr><th lang="es">Concepto</th><th lang="en">Item</th><th lang="es">Cantidad</th><th lang="en">Quantity</th><th lang="es">Precio unitario</th><th lang="en">Unit price</th><th>$</th></tr></thead>
+    <tbody>
+      <tr><td lang="es">Semilla o pie de cría</td><td lang="en">Seed or breeding stock</td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Fertilizantes y abonos</td><td lang="en">Fertilisers and manure</td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Plaguicidas y herbicidas</td><td lang="en">Pesticides and herbicides</td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Maquinaria y diésel (litros)</td><td lang="en">Machinery and diesel (litres)</td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Jornales (familiares y pagados)</td><td lang="en">Labour days (family and paid)</td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Agua, renta, flete, otros</td><td lang="en">Water, rent, freight, other</td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es"><b>Costo total</b></td><td lang="en"><b>Total cost</b></td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Producción vendida</td><td lang="en">Production sold</td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es">Autoconsumo y subproductos (rastrojo, totomoxtle…)</td><td lang="en">Own use and by-products (stubble, husks…)</td><td></td><td></td><td>&nbsp;</td></tr>
+      <tr><td lang="es"><b>Ingreso total</b></td><td lang="en"><b>Total income</b></td><td></td><td></td><td>&nbsp;</td></tr>
+    </tbody></table></div>
+  <p lang="es">Valor de los elementos principales, del 0 al 5:</p>
+  <p lang="en">Value of the main elements, from 0 to 5:</p>
+  <div class="tbl"><table class="hoja">
+    <thead><tr><th lang="es">Elemento</th><th lang="en">Element</th><th lang="es">Económico</th><th lang="en">Economic</th><th lang="es">De uso</th><th lang="en">Use</th><th>Cultural</th><th lang="es">Ecológico</th><th lang="en">Ecological</th></tr></thead>
+    <tbody>
+      <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr><tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>
+    </tbody></table></div>
+</section>
+
+<!-- ============================ E · PROBLEMAS ============================ -->
+<section class="chap" id="problemas" data-toc="E" style="--c:var(--acc)">
+  <div class="chap-head"><span class="big">E</span>
+    <div class="eyebrow" lang="es">Consulta</div><div class="eyebrow" lang="en">Reference</div>
+    <h2 lang="es">Problemas frecuentes</h2><h2 lang="en">Troubleshooting</h2>
+    <p lang="es">Si algo no se ve como esperas, busca aquí.</p>
+    <p lang="en">If something does not look as you expect, look here.</p>
+    <span class="rule"></span></div>
+  <div class="tbl"><table>
+    <thead><tr><th lang="es">Veo esto</th><th lang="en">I see this</th><th lang="es">Haz esto</th><th lang="en">Do this</th></tr></thead>
+    <tbody>
+      <tr><td lang="es">El Tablero dice «Aún no tejes el sistema».</td><td lang="en">The Dashboard says “You have not woven the system yet”.</td><td lang="es">Ve al Bloque 9 y toca <span class="ui pri">Tejer el sistema</span>.</td><td lang="en">Go to Block 9 and tap <span class="ui pri">Weave the system</span>.</td></tr>
+      <tr><td lang="es">Mi cultivo nuevo no tiene red.</td><td lang="en">My new crop has no network.</td><td lang="es">Agrega pasos y actividades en el Bloque 4 y elige sus elementos; sin actividades no hay vínculos.</td><td lang="en">Add steps and activities in Block 4 and choose their elements; no activities, no links.</td></tr>
+      <tr><td lang="es">Un elemento que agregué no aparece en la red.</td><td lang="en">An element I added is not in the network.</td><td lang="es">Elígelo en al menos una actividad.</td><td lang="en">Choose it in at least one activity.</td></tr>
+      <tr><td lang="es">El ingreso neto dice «sin dato».</td><td lang="en">Net income says “no data”.</td><td lang="es">Captura el ingreso y el costo por hectárea en <span class="path">Bloque 8<i>›</i>Recursos financieros</span>.</td><td lang="en">Enter income and cost per hectare in <span class="path">Block 8<i>›</i>Financial resources</span>.</td></tr>
+      <tr><td lang="es">La huella de carbono dice «—».</td><td lang="en">The carbon footprint says “—”.</td><td lang="es">Captura diésel, nitrógeno, urea y rendimiento en el Bloque 11.</td><td lang="en">Enter diesel, nitrogen, urea and yield in Block 11.</td></tr>
+      <tr><td lang="es">La adopción de innovaciones queda en 0 %.</td><td lang="en">Innovation adoption stays at 0 %.</td><td lang="es">Agrega actividades innovadoras en el Bloque 4.</td><td lang="en">Add innovative activities in Block 4.</td></tr>
+      <tr><td lang="es">Cambié de computadora y no están mis datos.</td><td lang="en">I changed computer and my data is gone.</td><td lang="es">Los datos viven en cada navegador: usa <span class="path">Informe<i>›</i>Guardar proyecto</span> y <span class="path">Abrir proyecto</span>.</td><td lang="en">Data lives in each browser: use <span class="path">Report<i>›</i>Save project</span> and <span class="path">Open project</span>.</td></tr>
+      <tr><td lang="es">No veo los cambios de una nueva versión.</td><td lang="en">I do not see a new version’s changes.</td><td lang="es">Recarga con <kbd>Ctrl</kbd> + <kbd>F5</kbd>.</td><td lang="en">Reload with <kbd>Ctrl</kbd> + <kbd>F5</kbd>.</td></tr>
+    </tbody></table></div>
+</section>
+
+<!-- ============================ F · GLOSARIO ============================ -->
+<section class="chap" id="glosario" data-toc="F" style="--c:var(--acc)">
+  <div class="chap-head"><span class="big">F</span>
+    <div class="eyebrow" lang="es">Consulta</div><div class="eyebrow" lang="en">Reference</div>
+    <h2 lang="es">Glosario</h2><h2 lang="en">Glossary</h2>
+    <p lang="es">Las palabras de la app, en lenguaje sencillo.</p>
+    <p lang="en">The app’s words, in plain language.</p>
+    <span class="rule"></span></div>
+  <dl class="glos" id="glos"></dl>
+</section>
+
+<!-- ============================ G · UNA PÁGINA ============================ -->
+<section class="chap" id="unapagina" data-toc="G" style="--c:var(--acc)">
+  <div class="chap-head"><span class="big">G</span>
+    <div class="eyebrow" lang="es">Consulta</div><div class="eyebrow" lang="en">Reference</div>
+    <h2 lang="es">Ratio Telar en una página</h2><h2 lang="en">Ratio Telar on one page</h2>
+    <p lang="es">Recórtala y llévala a la parcela.</p>
+    <p lang="en">Cut it out and take it to the field.</p>
+    <span class="rule"></span></div>
+  <ol class="quick">{{RAPIDO}}</ol>
+  <div class="qrbox">{{QR}}<p lang="es">Escanea para abrir Ratio Telar:<br><b>hectortecumshe-ai.github.io/RatioTelar</b></p><p lang="en">Scan to open Ratio Telar:<br><b>hectortecumshe-ai.github.io/RatioTelar</b></p></div>
+</section>
+
+<!-- ============================ H · CRÉDITOS ============================ -->
+<section class="chap" id="creditos" data-toc="H" style="--c:var(--acc)">
+  <div class="chap-head"><span class="big">H</span>
+    <div class="eyebrow" lang="es">Consulta</div><div class="eyebrow" lang="en">Reference</div>
+    <h2 lang="es">Cómo citar, fuentes y créditos</h2><h2 lang="en">How to cite, sources and credits</h2>
+    <span class="rule"></span></div>
+  <h3 id="h-citar"><span lang="es">Cómo citar</span><span lang="en">How to cite</span></h3>
+  <p lang="es">Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. A., y Velázquez-Vázquez, G. (2026). <i>Ratio Telar: el conocimiento agrícola local como sistema complejo adaptativo</i> (Versión {{VERSION}}) [Software]. Zenodo. https://doi.org/{{DOIAPP}}</p>
+  <p lang="en">Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. A., &amp; Velázquez-Vázquez, G. (2026). <i>Ratio Telar: local farming knowledge as a complex adaptive system</i> (Version {{VERSION}}) [Software]. Zenodo. https://doi.org/{{DOIAPP}}</p>
+  <h3 id="h-fuentes"><span lang="es">Fuentes principales</span><span lang="en">Main sources</span></h3>
+  <ul style="font-size:16px">
+    <li>Díaz-José O, Mojica-Zárate HT, Díaz-José J, Vilaboa-Arróniz J. 2026. El conocimiento agrícola local: el stack del maíz criollo en Calpan, Puebla. <i>Agricultura, Sociedad y Desarrollo</i> 23(3). https://doi.org/10.22231/asyd.v23i3.1822</li>
+    <li>Mojica Zárate HT. 2017. <i>Modelo y procedimiento para la gestión estratégica integrada de los recursos naturales en territorios áridos con orientación agroproductiva</i>. Tesis doctoral, Universidad Central «Marta Abreu» de Las Villas.</li>
+    <li>CONABIO. 2020. Razas de maíz de México. · INEGI. 2020. Censo de Población y Vivienda; Catálogo Único de Claves Geoestadísticas.</li>
+    <li>Sarandón SJ. 2002. El desarrollo y uso de indicadores para evaluar la sustentabilidad de los agroecosistemas. En: Sarandón SJ (ed.), <i>Agroecología: el camino hacia una agricultura sustentable</i>. Ediciones Científicas Americanas, La Plata: 393–414.</li>
+    <li>Newton P, et al. 2020. What is regenerative agriculture? <i>Frontiers in Sustainable Food Systems</i> 4: 577723. · Schreefel L, et al. 2020. Regenerative agriculture – the soil is the base. <i>Global Food Security</i> 26: 100404.</li>
+    <li>IPCC. 2014. Climate Change 2014: Impacts, Adaptation, and Vulnerability (SPM). · IPCC. 2018. Global Warming of 1.5 °C (SPM). · ISO 31000:2018 · IEC 31010:2019.</li>
+    <li>Zhao C, et al. 2017. Temperature increase reduces global yields of major crops in four independent estimates. <i>PNAS</i> 114(35): 9326–9331. · Rogers EM. 2003. <i>Diffusion of innovations</i>, 5.ª ed.</li>
+  </ul>
+  <h3 id="h-legal"><span lang="es">Página legal</span><span lang="en">Legal page</span></h3>
+  {{LEGAL}}
+</section>
+
+</div>

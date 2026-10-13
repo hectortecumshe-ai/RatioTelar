@@ -1,0 +1,462 @@
+<!-- ============================ PORTADA ============================ -->
+<style>@media print{#portada{height:297mm;overflow:hidden}#portada .in{flex:none;height:262mm;overflow:hidden;align-content:start;padding:20mm 18mm 4mm}#portada h1{font-size:31pt}#portada .sub{font-size:13pt;margin:10px 0 14px}#portada .who{margin-top:14px;padding-top:12px}#portada .art{min-height:78mm}}</style>
+<section class="cover" id="portada">
+  <div class="band">{{BANDA}}</div>
+  <div class="in">
+    <div>
+      <div class="kick"><img src="logo.svg" alt="Ratio Telar"><div><div class="eyebrow" lang="es">Instructivo del Científico</div><div class="eyebrow" lang="en">Scientist Guide</div><div style="font-size:15px;color:var(--muted)">Ratio Telar {{VERSION}} · Ratio Complexus</div></div></div>
+      <h1 lang="es">El saber local como <em>sistema complejo adaptativo</em>: <span class="a">modelo, ecuaciones y evidencia</span></h1>
+      <h1 lang="en">Local knowledge as a <em>complex adaptive system</em>: <span class="a">model, equations and evidence</span></h1>
+      <p class="sub" lang="es">Documentación técnica de Ratio Telar para investigación y docencia: el modelo de datos, la red ponderada y su estadística, el cladograma, los índices de sostenibilidad, regeneración y riesgo, la prospectiva, la validación frente a NetworkX y SciPy, y cómo reproducir cada número.</p>
+      <p class="sub" lang="en">Technical documentation of Ratio Telar for research and teaching: the data model, the weighted network and its statistics, the cladogram, the sustainability, regeneration and risk indices, the outlook, validation against NetworkX and SciPy, and how to reproduce every number.</p>
+      <div class="meta">
+        <div lang="es"><b>1.ª edición</b> · octubre de 2026 · describe Ratio Telar {{VERSION}}</div>
+        <div lang="en"><b>1st edition</b> · October 2026 · covers Ratio Telar {{VERSION}}</div>
+        <div>{{DOI}}<span lang="es">Texto CC BY 4.0 · app MIT</span><span lang="en">Text CC BY 4.0 · app MIT</span></div>
+      </div>
+      <div class="who">{{AUTORES}}<br><span lang="es">Para el uso paso a paso, consulta el <a href="instructivo-productor.html">Instructivo del Productor</a>.</span><span lang="en">For step-by-step use, see the <a href="instructivo-productor.html">Producer Guide</a>.</span></div>
+    </div>
+    <div class="art" aria-hidden="true">
+      <div class="frame"><img lang="es" src="instructivo/img/validacion-es.jpg" alt=""><img lang="en" src="instructivo/img/validacion-en.jpg" alt=""></div>
+      <div class="frame b"><img lang="es" src="instructivo/img/vistas-es.jpg" alt="" style="height:300px;object-fit:cover;object-position:top"><img lang="en" src="instructivo/img/vistas-en.jpg" alt="" style="height:300px;object-fit:cover;object-position:top"></div>
+    </div>
+  </div>
+  <div class="steps">{{PASOS}}</div>
+</section>
+
+<div class="doc">
+
+<!-- ============================ P · PRELIMINARES ============================ -->
+<section class="chap" id="leer" data-toc="P" style="--c:var(--acc)">
+  <div class="chap-head"><span class="big">P</span>
+    <div class="eyebrow" lang="es">Preliminares</div><div class="eyebrow" lang="en">Front matter</div>
+    <h2 lang="es">Alcance, procedencia de los datos y convenciones</h2><h2 lang="en">Scope, data provenance and conventions</h2>
+    <span class="rule"></span></div>
+  <p class="lead" lang="es">Ratio Telar representa una unidad de producción agrícola o pecuaria como un sistema complejo adaptativo (Holland, 1995): sus elementos son nodos y sus actividades de manejo, los vínculos. Sobre esa red calcula centralidades, comunidades, correlaciones y un cladograma; evalúa la sostenibilidad, la regeneración y el riesgo; y proyecta escenarios a 2, 5 y 10 años. Todo ocurre en el navegador, en un solo archivo HTML sin dependencias externas.</p>
+  <p class="lead" lang="en">Ratio Telar represents a crop or livestock farm as a complex adaptive system (Holland, 1995): its elements are nodes and its management activities, the links. On that network it computes centralities, communities, correlations and a cladogram; assesses sustainability, regeneration and risk; and projects scenarios at 2, 5 and 10 years. Everything runs in the browser, in a single HTML file with no external dependencies.</p>
+  {{FIG_TUBO}}
+  <h3 id="p-procedencia"><span lang="es">Procedencia de cada valor</span><span lang="en">Provenance of every value</span></h3>
+  <div class="tbl"><table>
+    <thead><tr><th lang="es">Etiqueta</th><th lang="en">Label</th><th lang="es">Significado</th><th lang="en">Meaning</th></tr></thead>
+    <tbody>
+      <tr><td><b>● Dato publicado</b></td><td lang="es">Tomado de una fuente citada: Díaz-José et al. (2026), Mojica Zárate (2017), INEGI (2020), CONABIO (2020), IPCC (2006, 2018, 2019), Zhao et al. (2017).</td><td lang="en">Taken from a cited source: Díaz-José et al. (2026), Mojica Zárate (2017), INEGI (2020), CONABIO (2020), IPCC (2006, 2018, 2019), Zhao et al. (2017).</td></tr>
+      <tr><td><b>◆ Lectura de Ratio Telar</b></td><td lang="es">Regla, agrupación o valor propuesto por la app (por ejemplo, el vínculo actividad–elemento, los perfiles de impacto, los cortes de clase). Editable.</td><td lang="en">Rule, grouping or value proposed by the app (for example, activity–element links, impact profiles, class cut-offs). Editable.</td></tr>
+      <tr><td><b>Supuesto</b></td><td lang="es">Parámetro de escenario sin base publicada (precios, costos, mano de obra, factores de reducción del riesgo). Editable y marcado.</td><td lang="en">Scenario parameter with no published basis (prices, costs, labour, risk reduction factors). Editable and flagged.</td></tr>
+      <tr><td><b>Sin dato</b></td><td lang="es">El dato no existe en las fuentes ni lo capturó el usuario. La app no lo imputa.</td><td lang="en">The value is not in the sources and was not entered by the user. The app does not impute it.</td></tr>
+    </tbody></table></div>
+  <div class="spec">
+    <div><span lang="es">Caso de referencia</span><span lang="en">Reference case</span><p lang="es">Maíz criollo, San Andrés Calpan, Puebla (21026). 38 pasos, 83 actividades, 5 reglas; 100 informantes, 2022–2024.</p><p lang="en">Landrace maize, San Andrés Calpan, Puebla (21026). 38 steps, 83 activities, 5 rules; 100 informants, 2022–2024.</p></div>
+    <div><span lang="es">Elementos</span><span lang="en">Elements</span><p lang="es">63 en 10 categorías, tomados del artículo; los inferidos de una actividad se marcan.</p><p lang="en">63 in 10 categories, from the paper; those inferred from an activity are flagged.</p></div>
+    <div><span lang="es">Territorio</span><span lang="en">Territory</span><p lang="es">32 estados, 2,478 municipios, 54,357 localidades (INEGI, 2020).</p><p lang="en">32 states, 2,478 municipalities, 54,357 localities (INEGI, 2020).</p></div>
+    <div><span lang="es">Implementación</span><span lang="en">Implementation</span><p lang="es">JavaScript sin bibliotecas; un archivo armado desde <code>src/</code> con <code>armar.py</code>.</p><p lang="en">Library-free JavaScript; one file built from <code>src/</code> with <code>armar.py</code>.</p></div>
+  </div>
+</section>
+
+<!-- ============================ 1 · DATOS ============================ -->
+<section class="chap" id="datos" data-toc="1" style="--c:var(--b1)">
+  <div class="chap-head"><span class="big">1</span>
+    <div class="eyebrow" lang="es">Método</div><div class="eyebrow" lang="en">Method</div>
+    <h2 lang="es">Modelo de datos</h2><h2 lang="en">Data model</h2>
+    <p lang="es">Actividades, elementos, valor e impacto: los insumos de todo el cálculo.</p>
+    <p lang="en">Activities, elements, value and impact: the inputs to every computation.</p>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="d-actividades" data-n="1.1"><span lang="es">Actividades e incidencia</span><span lang="en">Activities and incidence</span></h3>
+  <p lang="es">Cada actividad <i>a</i> pertenece a un paso <i>p</i> y, cuando hay Stack, a una regla 5B. Tiene un tipo (tradicional o innovada) y un conjunto de elementos <i>E<sub>a</sub></i>. La matriz de incidencia <i>X</i> (elementos × actividades) vale 1 si el elemento participa. Las actividades tradicionales desmarcadas por el usuario salen del cálculo. En el caso de Calpan la app activa 85 actividades.</p>
+  <p lang="en">Each activity <i>a</i> belongs to a step <i>p</i> and, when there is a Stack, to a 5B rule. It has a type (traditional or innovated) and an element set <i>E<sub>a</sub></i>. The incidence matrix <i>X</i> (elements × activities) is 1 if the element takes part. Traditional activities unticked by the user leave the computation. In the Calpan case the app activates 85 activities.</p>
+  <h3 id="d-valor" data-n="1.2"><span lang="es">Valor de un elemento</span><span lang="en">Element value</span></h3>
+  <p lang="es">El usuario califica cada elemento en cuatro dimensiones <i>k</i> ∈ {económica, de uso, cultural, ecológica}, de 0 a 5, con pesos <i>ω<sub>k</sub></i> ∈ [0, 3]. Si no hay calificación se usa el valor estructural, la participación relativa:</p>
+  <p lang="en">The user rates each element on four dimensions <i>k</i> ∈ {economic, use, cultural, ecological}, from 0 to 5, with weights <i>ω<sub>k</sub></i> ∈ [0, 3]. Without a rating the structural value, relative participation, is used:</p>
+  <div class="eq"><span><i>v<sub>i</sub></i> = Σ<sub>k</sub> ω<sub>k</sub> · c<sub>ik</sub> ⁄ Σ<sub>k</sub> 5 ω<sub>k</sub> &nbsp; o bien &nbsp; <i>v<sub>i</sub></i> = n<sub>i</sub> ⁄ max<sub>j</sub> n<sub>j</sub></span><span class="no">(1)</span></div>
+  <p class="where" lang="es">donde <i>c<sub>ik</sub></i> es la calificación y <i>n<sub>i</sub></i> el número de actividades en que participa el elemento <i>i</i>.</p>
+  <p class="where" lang="en">where <i>c<sub>ik</sub></i> is the rating and <i>n<sub>i</sub></i> the number of activities element <i>i</i> takes part in.</p>
+  <h3 id="d-impacto" data-n="1.3"><span lang="es">Impacto por compartimento</span><span lang="en">Impact by compartment</span></h3>
+  <p lang="es">Cinco compartimentos <i>c</i>: suelo, agua, atmósfera, vegetación y fauna. Cada elemento tiene un perfil de impacto (lectura de Ratio Telar con su justificación); el impacto de la actividad es la suma recortada, o el valor que edite el usuario:</p>
+  <p lang="en">Five compartments <i>c</i>: soil, water, atmosphere, vegetation and fauna. Each element has an impact profile (a Ratio Telar reading with its rationale); the activity’s impact is the clipped sum, or the value edited by the user:</p>
+  <div class="eq"><span><i>s<sub>ac</sub></i> = min(2, max(−2, Σ<sub>i ∈ E<sub>a</sub></sub> π<sub>ic</sub>))</span><span class="no">(2)</span></div>
+</section>
+
+<!-- ============================ 2 · RED ============================ -->
+<section class="chap" id="red" data-toc="2" style="--c:var(--b2)">
+  <div class="chap-head"><span class="big">2</span>
+    <div class="eyebrow" lang="es">Método</div><div class="eyebrow" lang="en">Method</div>
+    <h2 lang="es">La red ponderada y su estadística</h2><h2 lang="en">The weighted network and its statistics</h2>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="r-peso" data-n="2.1"><span lang="es">Construcción de la red</span><span lang="en">Network construction</span></h3>
+  <p lang="es">Dos elementos se vinculan cuando concurren en una actividad; el peso acumula la media geométrica de sus valores en todas las actividades compartidas, más los lazos estructurales documentados en el artículo (por ejemplo, la academia local con los actores):</p>
+  <p lang="en">Two elements are linked when they co-occur in an activity; the weight accumulates the geometric mean of their values over all shared activities, plus the structural ties documented in the paper (for example, local academia with the actors):</p>
+  <div class="eq"><span><i>w<sub>ij</sub></i> = Σ<sub>a : i, j ∈ E<sub>a</sub></sub> √(<i>v<sub>i</sub></i> · <i>v<sub>j</sub></i>)</span><span class="no">(3)</span></div>
+  <p class="where" lang="es">Un valor nulo se sustituye por 0.05 para no anular el vínculo. La opción «ocultar al nodo omnipresente» excluye a los productores (PM), que participan en casi todas las actividades.</p>
+  <p class="where" lang="en">A zero value is replaced by 0.05 so the link is not cancelled. The “hide the omnipresent node” option excludes farmers (PM), who take part in almost every activity.</p>
+  <h3 id="r-centralidad" data-n="2.2"><span lang="es">Centralidades</span><span lang="en">Centralities</span></h3>
+  <div class="tbl"><table>
+    <thead><tr><th lang="es">Medida</th><th lang="en">Measure</th><th lang="es">Definición en la app</th><th lang="en">Definition in the app</th></tr></thead>
+    <tbody>
+      <tr><td lang="es">Grado ponderado</td><td lang="en">Weighted degree</td><td>s<sub>i</sub> = Σ<sub>j</sub> w<sub>ij</sub></td></tr>
+      <tr><td lang="es">Intermediación</td><td lang="en">Betweenness</td><td lang="es">Brandes (2001) con Dijkstra y longitud 1/w<sub>ij</sub>; sin normalizar (Freeman, 1978).</td><td lang="en">Brandes (2001) with Dijkstra and length 1/w<sub>ij</sub>; unnormalised (Freeman, 1978).</td></tr>
+      <tr><td lang="es">Cercanía</td><td lang="en">Closeness</td><td lang="es">Inverso de la distancia media 1/w a los nodos alcanzables, escalado por la fracción alcanzable (Wasserman y Faust, 1994).</td><td lang="en">Inverse of mean 1/w distance to reachable nodes, scaled by the reachable fraction (Wasserman & Faust, 1994).</td></tr>
+      <tr><td lang="es">Vector propio</td><td lang="en">Eigenvector</td><td lang="es">Iteración de potencias sobre la matriz ponderada (200 iteraciones, normalización por el máximo).</td><td lang="en">Power iteration on the weighted matrix (200 iterations, max normalisation).</td></tr>
+      <tr><td lang="es">Agrupamiento</td><td lang="en">Clustering</td><td lang="es">Coeficiente local no ponderado; camino medio y diámetro por BFS (Watts y Strogatz, 1998).</td><td lang="en">Unweighted local coefficient; mean path and diameter by BFS (Watts & Strogatz, 1998).</td></tr>
+    </tbody></table></div>
+  <h3 id="r-comunidades" data-n="2.3"><span lang="es">Comunidades y modularidad</span><span lang="en">Communities and modularity</span></h3>
+  <p lang="es">Las comunidades se detectan con el método de Louvain (Blondel et al., 2008), determinista: movimientos locales que maximizan ΔQ y agregación, repetidos hasta que Q no mejora. La modularidad (Newman, 2006):</p>
+  <p lang="en">Communities are detected with the Louvain method (Blondel et al., 2008), deterministic: local moves maximising ΔQ and aggregation, repeated until Q stops improving. Modularity (Newman, 2006):</p>
+  <div class="eq"><span><i>Q</i> = (1 ⁄ 2<i>m</i>) Σ<sub>ij</sub> [ <i>w<sub>ij</sub></i> − <i>s<sub>i</sub> s<sub>j</sub></i> ⁄ 2<i>m</i> ] δ(<i>c<sub>i</sub></i>, <i>c<sub>j</sub></i>)</span><span class="no">(4)</span></div>
+  <h3 id="r-phi" data-n="2.4"><span lang="es">Correlación φ</span><span lang="en">φ correlation</span></h3>
+  <p lang="es">Correlación de Pearson entre los vectores de incidencia de dos elementos en las <i>N</i> actividades (equivalente al coeficiente φ de una tabla 2 × 2):</p>
+  <p lang="en">Pearson correlation between two elements’ incidence vectors across the <i>N</i> activities (equivalent to the φ coefficient of a 2 × 2 table):</p>
+  <div class="eq"><span>φ<sub>ij</sub> = Σ<sub>a</sub>(<i>x<sub>ia</sub></i> − <i>x̄<sub>i</sub></i>)(<i>x<sub>ja</sub></i> − <i>x̄<sub>j</sub></i>) ⁄ (<i>N σ<sub>i</sub> σ<sub>j</sub></i>)</span><span class="no">(5)</span></div>
+  <figure data-fig="vistas"><figcaption><span class="fn"></span><span lang="es"><b>Matriz φ</b> de los 14 elementos de mayor grado (vista científica).</span><span lang="en"><b>φ matrix</b> of the 14 highest-degree elements (scientist view).</span></figcaption></figure>
+  <div class="box farm"><span class="bi">◆</span><span class="bt" lang="es">Calpan</span><span class="bt" lang="en">Calpan</span>
+    <p lang="es">Red completa: 61 nodos, 209 vínculos, densidad 0.114, Q = 0.038 (4 comunidades). Sin PM: 60 nodos, 158 vínculos, Q = 0.4496 con 7 comunidades, agrupamiento medio 0.5252 y camino medio 2.9017. La mayor intermediación sin PM corresponde a asesores técnicos, conocimiento técnico, conocimiento tácito y suelo.</p>
+    <p lang="en">Full network: 61 nodes, 209 links, density 0.114, Q = 0.038 (4 communities). Without PM: 60 nodes, 158 links, Q = 0.4496 with 7 communities, mean clustering 0.5252 and mean path 2.9017. The highest betweenness without PM belongs to technical advisers, technical knowledge, tacit knowledge and soil.</p></div>
+</section>
+
+<!-- ============================ 3 · CLADOGRAMA ============================ -->
+<section class="chap" id="clado" data-toc="3" style="--c:var(--b3)">
+  <div class="chap-head"><span class="big">3</span>
+    <div class="eyebrow" lang="es">Método</div><div class="eyebrow" lang="en">Method</div>
+    <h2 lang="es">Cladograma del vecino más cercano</h2><h2 lang="en">Nearest-neighbour cladogram</h2>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="c-dist" data-n="3.1"><span lang="es">Distancia en la red</span><span lang="en">Network distance</span></h3>
+  <p lang="es">La distancia entre dos elementos es la longitud del camino más corto en la red completa, con longitud 1/w<sub>ij</sub> por vínculo (la misma métrica que la intermediación y la cercanía). El camino puede pasar por cualquier elemento aunque el árbol muestre un subconjunto (actores; actores e instituciones; todos). Los pares sin camino reciben 1.15 veces la mayor distancia observada.</p>
+  <p lang="en">The distance between two elements is the shortest-path length in the full network, with length 1/w<sub>ij</sub> per link (the same metric as betweenness and closeness). The path may pass through any element even if the tree shows a subset (actors; actors and institutions; all). Pairs with no path get 1.15 times the largest observed distance.</p>
+  <div class="eq"><span><i>d<sub>ij</sub></i> = min<sub>caminos i→j</sub> Σ<sub>(u,v)</sub> 1 ⁄ <i>w<sub>uv</sub></i></span><span class="no">(6)</span></div>
+  <h3 id="c-enlace" data-n="3.2"><span lang="es">Enlace simple y correlación cofenética</span><span lang="en">Single linkage and cophenetic correlation</span></h3>
+  <p lang="es">Agrupamiento jerárquico aglomerativo por enlace simple (Sneath, 1957; Sokal y Sneath, 1963): en cada paso se unen los dos grupos con el par de miembros más próximo, <i>D</i>(<i>A</i>, <i>B</i>) = min<sub>i∈A, j∈B</sub> <i>d<sub>ij</sub></i>. La fidelidad del árbol se mide con la correlación cofenética de Sokal y Rohlf (1962), la correlación de Pearson entre <i>d<sub>ij</sub></i> y la altura a la que <i>i</i> y <i>j</i> se unen.</p>
+  <p lang="en">Agglomerative hierarchical clustering by single linkage (Sneath, 1957; Sokal & Sneath, 1963): at each step the two groups with the closest pair of members merge, <i>D</i>(<i>A</i>, <i>B</i>) = min<sub>i∈A, j∈B</sub> <i>d<sub>ij</sub></i>. Tree fidelity is measured with Sokal and Rohlf’s (1962) cophenetic correlation, the Pearson correlation between <i>d<sub>ij</sub></i> and the height at which <i>i</i> and <i>j</i> merge.</p>
+  <figure data-fig="clado"><figcaption><span class="fn"></span><span lang="es"><b>Cladograma de actores e instituciones de Calpan.</b> Eje en raíz cuadrada; correlación cofenética 0.853.</span><span lang="en"><b>Calpan actors and institutions cladogram.</b> Square-root axis; cophenetic correlation 0.853.</span></figcaption></figure>
+  <div class="tbl"><table>
+    <thead><tr><th lang="es">Subconjunto</th><th lang="en">Subset</th><th class="r">n</th><th class="r" lang="es">r cofenética</th><th class="r" lang="en">Cophenetic r</th><th class="r" lang="es">|Δ| frente a SciPy</th><th class="r" lang="en">|Δ| vs SciPy</th></tr></thead>
+    <tbody>
+      <tr><td lang="es">Actores</td><td lang="en">Actors</td><td class="r">7</td><td class="r">0.9917</td><td class="r">1.1 × 10⁻¹⁶</td></tr>
+      <tr><td lang="es">Actores e instituciones</td><td lang="en">Actors and institutions</td><td class="r">15</td><td class="r">0.8526</td><td class="r">1.0 × 10⁻¹⁵</td></tr>
+      <tr><td lang="es">Todos los elementos</td><td lang="en">All elements</td><td class="r">61</td><td class="r">0.9103</td><td class="r">2.1 × 10⁻¹⁵</td></tr>
+    </tbody></table></div>
+  <div class="box why"><span class="bi">?</span><span class="bt" lang="es">¿Por qué enlace simple?</span><span class="bt" lang="en">Why single linkage?</span>
+    <p lang="es">Porque responde directamente a la pregunta «¿quién es el vecino más cercano de quién?»: la primera unión de cada elemento es con su vecino más cercano, y el árbol coincide con el árbol de expansión mínima de las distancias.</p>
+    <p lang="en">Because it directly answers “who is whose nearest neighbour?”: each element’s first merge is with its nearest neighbour, and the tree matches the minimum spanning tree of the distances.</p></div>
+</section>
+
+<!-- ============================ 4 · SOSTENIBILIDAD ============================ -->
+<section class="chap" id="sost" data-toc="4" style="--c:var(--b11)">
+  <div class="chap-head"><span class="big">4</span>
+    <div class="eyebrow" lang="es">Método</div><div class="eyebrow" lang="en">Method</div>
+    <h2 lang="es">Sostenibilidad, ODS y huella de carbono</h2><h2 lang="en">Sustainability, SDGs and carbon footprint</h2>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="s-is" data-n="4.1"><span lang="es">Índice de sostenibilidad de una actividad</span><span lang="en">Activity sustainability index</span></h3>
+  <div class="eq"><span>IS<sub>a</sub> = (1 ⁄ 5) Σ<sub>c</sub> (<i>s<sub>ac</sub></i> + 2) ⁄ 4 &nbsp; ∈ [0, 1]</span><span class="no">(7)</span></div>
+  <p class="where" lang="es">0.5 es neutra. El IS del sistema es la media de sus actividades; también se reporta por paso y por tipo (tradicional o innovada). En Calpan: 0.51.</p>
+  <p class="where" lang="en">0.5 is neutral. The system IS is the mean of its activities; it is also reported by step and by type (traditional or innovated). In Calpan: 0.51.</p>
+  <h3 id="s-sarandon" data-n="4.2"><span lang="es">Índice general de Sarandón</span><span lang="en">Sarandón’s general index</span></h3>
+  <p lang="es">Siguiendo a Sarandón (2002), cada dimensión se expresa en 0–4 con subindicadores; su traducción a datos de la app es una lectura de Ratio Telar:</p>
+  <p lang="en">Following Sarandón (2002), each dimension is expressed on 0–4 through sub-indicators; their translation into app data is a Ratio Telar reading:</p>
+  <div class="tbl"><table>
+    <thead><tr><th lang="es">Dimensión</th><th lang="en">Dimension</th><th lang="es">Subindicadores (0–4)</th><th lang="en">Sub-indicators (0–4)</th><th class="r">Calpan</th></tr></thead>
+    <tbody>
+      <tr><td>IK</td><td lang="es">A margen 4(I − C)/I · B productos distintos (tope 4) · C 4(1 − pasos con insumos externos ⁄ pasos)</td><td lang="en">A margin 4(I − C)/I · B distinct products (cap 4) · C 4(1 − steps with external inputs ⁄ steps)</td><td class="r">3.11</td></tr>
+      <tr><td>IE</td><td lang="es">Media de (<i>s<sub>ac</sub></i> + 2) en actividades y compartimentos</td><td lang="en">Mean of (<i>s<sub>ac</sub></i> + 2) across activities and compartments</td><td class="r">2.05</td></tr>
+      <tr><td>ISC</td><td lang="es">A reglas con saber local · B reglas con conocimiento técnico · C instituciones vinculadas</td><td lang="en">A rules with local knowledge · B rules with technical knowledge · C linked institutions</td><td class="r">2.67</td></tr>
+    </tbody></table></div>
+  <div class="eq"><span>ISGen = (IK + IE + ISC) ⁄ 3 ; &nbsp; sostenible si ISGen &gt; 2 y min(IK, IE, ISC) ≥ 2</span><span class="no">(8)</span></div>
+  <p class="where" lang="es">En Calpan, ISGen = 2.61: sostenible. El margen (IK-A) queda sin dato hasta capturar ingresos y costos; IK se promedia con los subindicadores disponibles.</p>
+  <p class="where" lang="en">In Calpan, ISGen = 2.61: sustainable. The margin (IK-A) stays as no data until income and costs are entered; IK averages the available sub-indicators.</p>
+  <h3 id="s-ods" data-n="4.3"><span lang="es">Cumplimiento de los ODS</span><span lang="en">SDG attainment</span></h3>
+  <p lang="es">Para cada ODS se promedian las evidencias disponibles: ambientales (media de (<i>s<sub>ac</sub></i> + 2)/4 en los compartimentos ligados: ODS 2, 6, 12, 13 y 15) y estructurales (actividades con conocimiento técnico o asesoría, ODS 4; instituciones vinculadas, ODS 17; margen, ODS 1 y 8). Sin evidencia, «sin dato». La relación compartimento–ODS es una lectura de Ratio Telar. En Calpan hay evidencia para 7 de los 17.</p>
+  <p lang="en">For each SDG the available evidence is averaged: environmental (mean of (<i>s<sub>ac</sub></i> + 2)/4 over the linked compartments: SDGs 2, 6, 12, 13 and 15) and structural (activities with technical knowledge or advice, SDG 4; linked institutions, SDG 17; margin, SDGs 1 and 8). Without evidence, “no data”. The compartment–SDG mapping is a Ratio Telar reading. In Calpan 7 of the 17 have evidence.</p>
+  <h3 id="s-huella" data-n="4.4"><span lang="es">Huella de carbono por hectárea</span><span lang="en">Carbon footprint per hectare</span></h3>
+  <div class="eq"><span>CO₂e = 2.68 <i>D</i> + <i>N</i> (0.010 + 0.11 × 0.010 + 0.24 × 0.011) × 44⁄28 × 273 + 0.20 <i>U</i> × 44⁄12</span><span class="no">(9)</span></div>
+  <p class="where" lang="es"><i>D</i>: litros de diésel; <i>N</i>: kg de N aplicado; <i>U</i>: kg de urea. Factores por defecto del IPCC (2006; refinamiento 2019): EF1, FracGASF × EF4 y FracLEACH × EF5; GWP100 del N₂O = 273 (AR6, Forster et al., 2021). Dividido entre el rendimiento da kg CO₂e por tonelada.</p>
+  <p class="where" lang="en"><i>D</i>: litres of diesel; <i>N</i>: kg of N applied; <i>U</i>: kg of urea. IPCC default factors (2006; 2019 refinement): EF1, FracGASF × EF4 and FracLEACH × EF5; N₂O GWP100 = 273 (AR6, Forster et al., 2021). Divided by yield it gives kg CO₂e per tonne.</p>
+</section>
+
+<!-- ============================ 5 · REGENERACIÓN ============================ -->
+<section class="chap" id="regen" data-toc="5" style="--c:var(--b5)">
+  <div class="chap-head"><span class="big">5</span>
+    <div class="eyebrow" lang="es">Método</div><div class="eyebrow" lang="en">Method</div>
+    <h2 lang="es">Índice de regeneración</h2><h2 lang="en">Regeneration index</h2>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <p lang="es">Ocho indicadores ordinales <i>s<sub>k</sub></i> ∈ {0, …, 4} agrupan los cuatro principios de salud del suelo del USDA-NRCS (mínima perturbación, suelo cubierto, diversidad, raíces vivas) y los procesos que la literatura de agricultura regenerativa añade (integración animal, menos insumos de síntesis, materia orgánica; Newton et al., 2020; Schreefel et al., 2020), más el saber local del Stack.</p>
+  <p lang="en">Eight ordinal indicators <i>s<sub>k</sub></i> ∈ {0, …, 4} group the four USDA-NRCS soil health principles (minimal disturbance, soil cover, diversity, living roots) and the processes the regenerative agriculture literature adds (livestock integration, fewer synthetic inputs, organic matter; Newton et al., 2020; Schreefel et al., 2020), plus the Stack’s local knowledge.</p>
+  <div class="eq"><span>IR = Σ<sub>k=1</sub><sup>8</sup> <i>s<sub>k</sub></i> ⁄ 32 &nbsp; ∈ [0, 1]</span><span class="no">(10)</span></div>
+  <h3 id="g-reglas" data-n="5.1"><span lang="es">Reglas de los valores sugeridos</span><span lang="en">Suggested-value rules</span></h3>
+  <div class="tbl"><table>
+    <thead><tr><th lang="es">Indicador</th><th lang="en">Indicator</th><th lang="es">Regla (lectura de Ratio Telar)</th><th lang="en">Rule (Ratio Telar reading)</th><th class="r">Calpan</th></tr></thead>
+    <tbody>
+      <tr><td lang="es">Labranza mínima</td><td lang="en">Minimal tillage</td><td lang="es">n actividades con arado, subsuelo o rastra (excluye decisiones): 0→4, 1→3, 2→2, 3–4→1, ≥5→0</td><td lang="en">n activities with plough, subsoiler or harrow (decisions excluded): 0→4, 1→3, 2→2, 3–4→1, ≥5→0</td><td class="r">1 (n = 4)</td></tr>
+      <tr><td lang="es">Suelo cubierto</td><td lang="en">Soil cover</td><td lang="es">2 si hay actividades con rastrojo de impacto positivo en suelo; si no, 1</td><td lang="en">2 if there are stubble activities with positive soil impact; otherwise 1</td><td class="r">2</td></tr>
+      <tr><td lang="es">Diversidad</td><td lang="en">Diversity</td><td lang="es">especies según el sistema (milpa 3, MIAF 4…): 1→0, 2→1, 3→2, 4–5→3, ≥6→4</td><td lang="en">species by system (milpa 3, MIAF 4…): 1→0, 2→1, 3→2, 4–5→3, ≥6→4</td><td class="r">2</td></tr>
+      <tr><td lang="es">Raíces vivas</td><td lang="en">Living roots</td><td lang="es">3 si el sistema tiene perennes; si no, 2</td><td lang="en">3 if the system has perennials; otherwise 2</td><td class="r">2</td></tr>
+      <tr><td lang="es">Integración animal</td><td lang="en">Livestock integration</td><td lang="es">3 si hay animales; 2 si se produce forraje; si no, 0</td><td lang="en">3 with animals; 2 if fodder is produced; otherwise 0</td><td class="r">2</td></tr>
+      <tr><td lang="es">Menos síntesis</td><td lang="en">Fewer synthetics</td><td>round(4 (1 − S ⁄ (S + B)))</td><td class="r">0 (S = 16, B = 1)</td></tr>
+      <tr><td lang="es">Materia orgánica</td><td lang="en">Organic matter</td><td lang="es">1, 2 o 3 según actividades que devuelven residuos (0, 1, ≥2), +1 con análisis de suelo</td><td lang="en">1, 2 or 3 by residue-returning activities (0, 1, ≥2), +1 with soil testing</td><td class="r">4</td></tr>
+      <tr><td lang="es">Saber local</td><td lang="en">Local knowledge</td><td lang="es">min(4, round(8 f)), f = fracción de actividades con saber tácito, cultural, familia o semilla propia</td><td lang="en">min(4, round(8 f)), f = share of activities with tacit or cultural knowledge, family or own seed</td><td class="r">2 (f = 0.19)</td></tr>
+    </tbody></table></div>
+  <p lang="es">Con los valores sugeridos, IR = 15/32 = 0.469 (47, convencional). Clases: &lt; 0.25 degradante; 0.25–0.49 convencional; 0.50–0.74 en transición regenerativa; ≥ 0.75 regenerativo. La trayectoria se mide como ΔIR frente a una línea base guardada y, si hay análisis de suelo, como Δ% de materia orgánica.</p>
+  <p lang="en">With the suggested values, IR = 15/32 = 0.469 (47, conventional). Classes: &lt; 0.25 degrading; 0.25–0.49 conventional; 0.50–0.74 regenerative transition; ≥ 0.75 regenerative. Trajectory is measured as ΔIR from a saved baseline and, with soil tests, as Δ% organic matter.</p>
+  <figure data-fig="perillas"><figcaption><span class="fn"></span><span lang="es"><b>Los ocho indicadores</b> con su valor sugerido y su motivo.</span><span lang="en"><b>The eight indicators</b> with their suggested value and reason.</span></figcaption></figure>
+</section>
+
+<!-- ============================ 6 · RIESGO ============================ -->
+<section class="chap" id="riesgo" data-toc="6" style="--c:var(--b6)">
+  <div class="chap-head"><span class="big">6</span>
+    <div class="eyebrow" lang="es">Método</div><div class="eyebrow" lang="en">Method</div>
+    <h2 lang="es">Riesgo y capacidad adaptativa</h2><h2 lang="en">Risk and adaptive capacity</h2>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <p lang="es">Diecinueve amenazas <i>h</i> en seis categorías. Cada una tiene probabilidad <i>P<sub>h</sub></i> e impacto <i>I<sub>h</sub></i> en 1–5 (matriz de 5 × 5; IEC 31010:2019, dentro del proceso de ISO 31000:2018) y un control <i>c<sub>h</sub></i> ∈ {0, 1, 2, 3}. Siguiendo el marco del IPCC (2014), el riesgo depende de la amenaza y de la vulnerabilidad, que la capacidad adaptativa reduce:</p>
+  <p lang="en">Nineteen hazards <i>h</i> in six categories. Each has likelihood <i>P<sub>h</sub></i> and impact <i>I<sub>h</sub></i> on 1–5 (5 × 5 matrix; IEC 31010:2019, within the ISO 31000:2018 process) and a control <i>c<sub>h</sub></i> ∈ {0, 1, 2, 3}. Following the IPCC (2014) framework, risk depends on the hazard and on vulnerability, which adaptive capacity reduces:</p>
+  <div class="eq"><span><i>r<sub>h</sub></i> = <i>P<sub>h</sub> I<sub>h</sub></i> (1 − 0.4 CA)(1 − 0.15 <i>c<sub>h</sub></i>) ; &nbsp; índice = Σ<sub>h</sub> <i>r<sub>h</sub></i> ⁄ 25<i>H</i></span><span class="no">(11)</span></div>
+  <div class="eq"><span>CA = mean(IR, IK<sub>B</sub>⁄4, ISC<sub>B</sub>⁄4, ISC<sub>C</sub>⁄4)</span><span class="no">(12)</span></div>
+  <p class="where" lang="es">Los factores 0.4 y 0.15 son supuestos de Ratio Telar. Niveles de <i>r</i>: ≤ 4 bajo, 5–9 medio, 10–15 alto, ≥ 16 muy alto. Los valores sugeridos derivan del escenario tendencial (calentamiento, costos, precio, mano de obra) y de la fracción de actividades con insumos comprados o con saber local; lo demás queda en 3.</p>
+  <p class="where" lang="en">The 0.4 and 0.15 factors are Ratio Telar assumptions. Levels of <i>r</i>: ≤ 4 low, 5–9 medium, 10–15 high, ≥ 16 very high. Suggested values derive from the trend scenario (warming, costs, price, labour) and the share of activities with purchased inputs or local knowledge; the rest stays at 3.</p>
+  <h3 id="k-catalogo" data-n="6.1"><span lang="es">Catálogo de amenazas</span><span lang="en">Hazard catalogue</span></h3>
+  <p lang="es">Cada amenaza se liga a los elementos del Stack que la transmiten; la liga es una lectura de Ratio Telar y sirve para mostrar el riesgo en los bloques de Elementos y Tablero.</p>
+  <p lang="en">Each hazard is linked to the Stack elements that transmit it; the link is a Ratio Telar reading and is used to show risk in the Elements and Dashboard blocks.</p>
+  <div class="tbl"><table>
+    <thead><tr><th lang="es">Categoría</th><th lang="en">Category</th><th lang="es">Amenazas</th><th lang="en">Hazards</th><th lang="es">Elementos ligados</th><th lang="en">Linked elements</th></tr></thead>
+    <tbody>
+      <tr><td lang="es">Climáticas (6)</td><td lang="en">Climatic (6)</td><td lang="es">Sequía o lluvias tardías · helada · granizo · lluvias intensas o inundación · ola de calor · ciclones y huracanes</td><td lang="en">Drought or late rains · frost · hail · heavy rain or flooding · heatwave · cyclones and hurricanes</td><td>HUM, CLIMA, ENSO, CICL, MJO</td></tr>
+      <tr><td lang="es">Biológicas (3)</td><td lang="en">Biological (3)</td><td lang="es">Plagas · enfermedades · malezas resistentes o invasoras</td><td lang="en">Pests · diseases · resistant or invasive weeds</td><td>PLAGA, ARV, HERB</td></tr>
+      <tr><td lang="es">Mercado (3)</td><td lang="en">Market (3)</td><td lang="es">Caída del precio · alza de insumos y servicios · intermediarismo o falta de comprador</td><td lang="en">Price fall · rise in input and service costs · middlemen or no buyer</td><td>PRECIO, COMP, GRANO, COSTOS, FERTG, PI, TRANS</td></tr>
+      <tr><td lang="es">Sociales (3)</td><td lang="en">Social (3)</td><td lang="es">Falta de mano de obra y de relevo · pérdida del saber local · inseguridad o robo</td><td lang="en">Labour shortage and no succession · loss of local knowledge · insecurity or theft</td><td>PM, FAM, KTAC, KCUL</td></tr>
+      <tr><td lang="es">Institucionales (2)</td><td lang="en">Institutional (2)</td><td lang="es">Retiro de programas y apoyos · conflictos de tenencia</td><td lang="en">Withdrawal of programmes and support · tenure conflicts</td><td>AT, SDR</td></tr>
+      <tr><td lang="es">Recursos naturales (2)</td><td lang="en">Natural resources (2)</td><td lang="es">Erosión y pérdida de fertilidad · escasez de agua</td><td lang="en">Erosion and fertility loss · water scarcity</td><td>SUELO, HUM</td></tr>
+    </tbody></table></div>
+  <h3 id="k-sugerencia" data-n="6.2"><span lang="es">Reglas de los valores sugeridos</span><span lang="en">Suggested-value rules</span></h3>
+  <div class="tbl"><table>
+    <thead><tr><th lang="es">Amenaza</th><th lang="en">Hazard</th><th lang="es">Regla</th><th lang="en">Rule</th></tr></thead>
+    <tbody>
+      <tr><td lang="es">Sequía, ola de calor</td><td lang="en">Drought, heatwave</td><td lang="es"><i>P</i> = 4 si el calentamiento tendencial es ≥ 0.2 °C por década; si no, 3</td><td lang="en"><i>P</i> = 4 if trend warming is ≥ 0.2 °C per decade; otherwise 3</td></tr>
+      <tr><td lang="es">Alza de insumos</td><td lang="en">Input cost rise</td><td lang="es"><i>P</i> = 4 si el costo tendencial crece ≥ 2 %/año; <i>I</i> = 1 + round(4 min(1, 2<i>f<sub>s</sub></i>)), <i>f<sub>s</sub></i> = fracción de actividades con insumos comprados</td><td lang="en"><i>P</i> = 4 if trend cost grows ≥ 2 %/yr; <i>I</i> = 1 + round(4 min(1, 2<i>f<sub>s</sub></i>)), <i>f<sub>s</sub></i> = share of activities with purchased inputs</td></tr>
+      <tr><td lang="es">Mano de obra</td><td lang="en">Labour</td><td lang="es"><i>P</i> = 4 si <i>g<sub>L</sub></i> ≤ −1.5 %; 3 si <i>g<sub>L</sub></i> &lt; 0; si no, 2</td><td lang="en"><i>P</i> = 4 if <i>g<sub>L</sub></i> ≤ −1.5 %; 3 if <i>g<sub>L</sub></i> &lt; 0; otherwise 2</td></tr>
+      <tr><td lang="es">Caída del precio</td><td lang="en">Price fall</td><td lang="es"><i>P</i> = 4 si el precio tendencial baja; si no, 3</td><td lang="en"><i>P</i> = 4 if the trend price falls; otherwise 3</td></tr>
+      <tr><td lang="es">Pérdida del saber</td><td lang="en">Knowledge loss</td><td lang="es"><i>I</i> = 1 + round(4 min(1, 2<i>f<sub>k</sub></i>)), <i>f<sub>k</sub></i> = fracción de actividades con saber tácito, cultural o familiar</td><td lang="en"><i>I</i> = 1 + round(4 min(1, 2<i>f<sub>k</sub></i>)), <i>f<sub>k</sub></i> = share of activities with tacit, cultural or family knowledge</td></tr>
+      <tr><td lang="es">Las demás</td><td lang="en">All others</td><td lang="es"><i>P</i> = 3, <i>I</i> = 3 (moderado; se ajusta a la localidad)</td><td lang="en"><i>P</i> = 3, <i>I</i> = 3 (moderate; adjust to the locality)</td></tr>
+    </tbody></table></div>
+  <p class="where" lang="es">El usuario puede desactivar una amenaza que no aplica (sale de <i>H</i>) o sobrescribir <i>P</i>, <i>I</i> y el control; la app marca qué valores fueron ajustados.</p>
+  <p class="where" lang="en">The user can switch off a hazard that does not apply (it leaves <i>H</i>) or overwrite <i>P</i>, <i>I</i> and control; the app flags which values were adjusted.</p>
+  <figure data-fig="riesgos"><figcaption><span class="fn"></span><span lang="es"><b>Índice y matriz de riesgos de Calpan.</b> Índice 27, CA = 0.701.</span><span lang="en"><b>Calpan risk index and matrix.</b> Index 27, CA = 0.701.</span></figcaption></figure>
+  <div class="box farm"><span class="bi">◆</span><span class="bt" lang="es">Calpan</span><span class="bt" lang="en">Calpan</span>
+    <p lang="es">CA = (0.47 + 1.00 + 0.83 + 0.50)/4 = 0.70. Las cuatro amenazas mayores (sequía, ola de calor, alza de insumos, falta de mano de obra) tienen <i>P</i> = 4, <i>I</i> = 3 y <i>r</i> = 12 × 0.72 = 8.6.</p>
+    <p lang="en">CA = (0.47 + 1.00 + 0.83 + 0.50)/4 = 0.70. The four highest hazards (drought, heatwave, input cost rise, labour shortage) have <i>P</i> = 4, <i>I</i> = 3 and <i>r</i> = 12 × 0.72 = 8.6.</p></div>
+</section>
+
+<!-- ============================ 7 · PROSPECTIVA ============================ -->
+<section class="chap" id="prosp" data-toc="7" style="--c:var(--b12)">
+  <div class="chap-head"><span class="big">7</span>
+    <div class="eyebrow" lang="es">Método</div><div class="eyebrow" lang="en">Method</div>
+    <h2 lang="es">Modelo de escenarios</h2><h2 lang="en">Scenario model</h2>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <p lang="es">Tres escenarios exploratorios (Godet y Durance, 2011) se simulan año por año, <i>t</i> = 0…10. La adopción de las actividades innovadas sigue una logística (Rogers, 2003) que parte de la fracción actual <i>a</i><sub>0</sub>:</p>
+  <p lang="en">Three exploratory scenarios (Godet & Durance, 2011) are simulated year by year, <i>t</i> = 0…10. Adoption of innovated activities follows a logistic curve (Rogers, 2003) starting from the current share <i>a</i><sub>0</sub>:</p>
+  <div class="eq"><span><i>A</i>(<i>t</i>) = <i>a</i><sub>0</sub> + (<i>A</i><sub>máx</sub> − <i>a</i><sub>0</sub>) [σ(<i>t</i> − <i>t</i><sub>50</sub>) − σ(−<i>t</i><sub>50</sub>)] ⁄ [1 − σ(−<i>t</i><sub>50</sub>)]</span><span class="no">(13)</span></div>
+  <div class="eq"><span><i>Y</i>(<i>t</i>) = 100 [1 + β ΔT <i>t</i>⁄10] · (1 − <i>p</i>(<i>t</i>) <i>L</i><sub>ef</sub>)⁄(1 − <i>p</i><sub>0</sub> <i>L</i><sub>ef</sub>) · [1 + <i>e<sub>Y</sub></i>(<i>A</i> − <i>a</i><sub>0</sub>)] · [1 − 0.5 déficit(<i>t</i>)]</span><span class="no">(14)</span></div>
+  <div class="eq"><span><i>L</i><sub>ef</sub> = <i>L</i><sub>ext</sub>(1 − 0.5 IR<sub>0</sub>) ; &nbsp; IR(<i>t</i>) = IR<sub>0</sub> + 0.5 (1 − IR<sub>0</sub>)(<i>A</i> − <i>a</i><sub>0</sub>)</span><span class="no">(15)</span></div>
+  <p class="where" lang="es">β: cambio de rendimiento por °C (maíz −7.4 %, trigo −6.0 %; Zhao et al., 2017; −4.9 % como supuesto para otros); ΔT: calentamiento por década (0.1, 0.2 y 0.3 °C; intervalo probable de IPCC, 2018); <i>p</i>(<i>t</i>): probabilidad de año extremo, lineal de <i>p</i><sub>0</sub> a <i>p</i><sub>ext</sub>. Precio y costo crecen a tasas constantes; la mano de obra disponible decrece a tasa <i>g<sub>L</sub></i> y la requerida baja con la adopción. El riesgo en <i>t</i> recalcula (11) con <i>P</i><sub>clima</sub> + 5(<i>p</i>(<i>t</i>) − <i>p</i><sub>0</sub>) y CA con IR(<i>t</i>). Los coeficientes 0.5 son supuestos.</p>
+  <p class="where" lang="en">β: yield change per °C (maize −7.4 %, wheat −6.0 %; Zhao et al., 2017; −4.9 % assumed for others); ΔT: warming per decade (0.1, 0.2 and 0.3 °C; IPCC, 2018 likely range); <i>p</i>(<i>t</i>): extreme-year probability, linear from <i>p</i><sub>0</sub> to <i>p</i><sub>ext</sub>. Price and cost grow at constant rates; available labour declines at rate <i>g<sub>L</sub></i> and required labour falls with adoption. Risk at <i>t</i> recomputes (11) with <i>P</i><sub>climate</sub> + 5(<i>p</i>(<i>t</i>) − <i>p</i><sub>0</sub>) and CA with IR(<i>t</i>). The 0.5 coefficients are assumptions.</p>
+  <h3 id="e-resto" data-n="7.1"><span lang="es">Precio, costo, mano de obra y sostenibilidad</span><span lang="en">Price, cost, labour and sustainability</span></h3>
+  <div class="eq"><span><i>Pr</i>(<i>t</i>) = 100 (1 + <i>g<sub>P</sub></i>)<sup><i>t</i></sup> ; &nbsp; <i>C</i>(<i>t</i>) = 100 (1 + <i>g<sub>C</sub></i>)<sup><i>t</i></sup> (1 − <i>s<sub>C</sub></i> Δ<i>A</i>) ; &nbsp; rel = 100 (<i>Pr</i> · <i>Y</i>⁄100) ⁄ <i>C</i></span><span class="no">(16)</span></div>
+  <div class="eq"><span><i>L<sub>d</sub></i>(<i>t</i>) = (1 + <i>g<sub>L</sub></i>)<sup><i>t</i></sup> ; &nbsp; <i>L<sub>n</sub></i>(<i>t</i>) = 1 − <i>r<sub>L</sub></i> Δ<i>A</i> ; &nbsp; déficit = max(0, <i>L<sub>n</sub></i> − <i>L<sub>d</sub></i>) ⁄ <i>L<sub>n</sub></i></span><span class="no">(17)</span></div>
+  <div class="eq"><span>IS(<i>t</i>) = IS<sub>trad</sub> (1 − <i>A</i>) + IS<sub>inn</sub> <i>A</i></span><span class="no">(18)</span></div>
+  <p class="where" lang="es">Δ<i>A</i> = <i>A</i>(<i>t</i>) − <i>a</i><sub>0</sub>, y es 0 cuando no hay actividades innovadas. Si el usuario capturó ingreso <i>I</i><sub>0</sub> y costo <i>C</i><sub>0</sub> por hectárea (Bloque 8), el ingreso neto es <i>I</i><sub>0</sub> (<i>Pr</i> · <i>Y</i>⁄100)⁄100 − <i>C</i><sub>0</sub> <i>C</i>⁄100.</p>
+  <p class="where" lang="en">Δ<i>A</i> = <i>A</i>(<i>t</i>) − <i>a</i><sub>0</sub>, and it is 0 when there are no innovated activities. If the user entered income <i>I</i><sub>0</sub> and cost <i>C</i><sub>0</sub> per hectare (Block 8), net income is <i>I</i><sub>0</sub> (<i>Pr</i> · <i>Y</i>⁄100)⁄100 − <i>C</i><sub>0</sub> <i>C</i>⁄100.</p>
+  <h3 id="e-param" data-n="7.2"><span lang="es">Parámetros por omisión</span><span lang="en">Default parameters</span></h3>
+  <div class="tbl"><table>
+    <thead><tr><th lang="es">Parámetro</th><th lang="en">Parameter</th><th class="r" lang="es">Deseable</th><th class="r" lang="en">Desirable</th><th class="r" lang="es">Tendencial</th><th class="r" lang="en">Trend</th><th class="r" lang="es">No deseado</th><th class="r" lang="en">Undesired</th><th lang="es">Base</th><th lang="en">Basis</th></tr></thead>
+    <tbody>
+      <tr><td lang="es"><i>g<sub>P</sub></i> precio real (%/año)</td><td lang="en"><i>g<sub>P</sub></i> real price (%/yr)</td><td class="r">+1</td><td class="r">0</td><td class="r">−1.5</td><td lang="es">supuesto</td><td lang="en">assumption</td></tr>
+      <tr><td lang="es"><i>g<sub>C</sub></i> costo real (%/año)</td><td lang="en"><i>g<sub>C</sub></i> real cost (%/yr)</td><td class="r">+1</td><td class="r">+2</td><td class="r">+4</td><td lang="es">supuesto</td><td lang="en">assumption</td></tr>
+      <tr><td lang="es">ΔT (°C por década)</td><td lang="en">ΔT (°C per decade)</td><td class="r">0.1</td><td class="r">0.2</td><td class="r">0.3</td><td>IPCC (2018)</td></tr>
+      <tr><td lang="es"><i>p</i><sub>ext</sub> año extremo a 10 años</td><td lang="en"><i>p</i><sub>ext</sub> extreme year by year 10</td><td class="r">0.12</td><td class="r">0.18</td><td class="r">0.25</td><td lang="es">supuesto</td><td lang="en">assumption</td></tr>
+      <tr><td lang="es"><i>g<sub>L</sub></i> mano de obra (%/año)</td><td lang="en"><i>g<sub>L</sub></i> labour (%/yr)</td><td class="r">−0.5</td><td class="r">−1.5</td><td class="r">−3</td><td lang="es">supuesto</td><td lang="en">assumption</td></tr>
+      <tr><td lang="es"><i>A</i><sub>máx</sub> adopción máxima</td><td lang="en"><i>A</i><sub>max</sub> maximum adoption</td><td class="r">0.9</td><td class="r">0.5</td><td class="r">0.15</td><td lang="es">supuesto</td><td lang="en">assumption</td></tr>
+      <tr><td lang="es"><i>t</i><sub>50</sub> año de media adopción</td><td lang="en"><i>t</i><sub>50</sub> half-adoption year</td><td class="r">4</td><td class="r">6</td><td class="r">9</td><td>Rogers (2003)</td></tr>
+    </tbody></table></div>
+  <p class="where" lang="es">Comunes a los tres escenarios: <i>p</i><sub>0</sub> = 0.10; <i>L</i><sub>ext</sub> = 30 % de pérdida en un año extremo; efecto de la adopción en el rendimiento <i>e<sub>Y</sub></i> = 10 %, en el costo <i>s<sub>C</sub></i> = 5 % y en la mano de obra requerida <i>r<sub>L</sub></i> = 15 %. Todos son supuestos editables en la tabla de supuestos del Bloque 12.</p>
+  <p class="where" lang="en">Common to the three scenarios: <i>p</i><sub>0</sub> = 0.10; <i>L</i><sub>ext</sub> = 30 % loss in an extreme year; adoption effect on yield <i>e<sub>Y</sub></i> = 10 %, on cost <i>s<sub>C</sub></i> = 5 % and on required labour <i>r<sub>L</sub></i> = 15 %. All are editable assumptions in the Block 12 assumptions table.</p>
+  <figure data-fig="supuestos"><figcaption><span class="fn"></span><span lang="es"><b>Tabla de supuestos</b> con su base: IPCC, Rogers o supuesto.</span><span lang="en"><b>Assumptions table</b> with its basis: IPCC, Rogers or assumption.</span></figcaption></figure>
+  <div class="tbl"><table>
+    <thead><tr><th lang="es">Calpan, t = 10 (hoy = 100)</th><th lang="en">Calpan, t = 10 (today = 100)</th><th class="r" lang="es">Deseable</th><th class="r" lang="en">Desirable</th><th class="r" lang="es">Tendencial</th><th class="r" lang="en">Trend</th><th class="r" lang="es">No deseado</th><th class="r" lang="en">Undesired</th></tr></thead>
+    <tbody>
+      <tr><td lang="es">Rendimiento</td><td lang="en">Yield</td><td class="r">96</td><td class="r">90</td><td class="r">82</td></tr>
+      <tr><td lang="es">Ingreso bruto ÷ costo</td><td lang="en">Gross income ÷ cost</td><td class="r">96</td><td class="r">74</td><td class="r">48</td></tr>
+      <tr><td lang="es">Mano de obra disponible</td><td lang="en">Available labour</td><td class="r">95</td><td class="r">86</td><td class="r">74</td></tr>
+      <tr><td lang="es">Índice de riesgo (0–100)</td><td lang="en">Risk index (0–100)</td><td class="r">28</td><td class="r">28</td><td class="r">29</td></tr>
+    </tbody></table></div>
+</section>
+
+<!-- ============================ 8 · TERRITORIO ============================ -->
+<section class="chap" id="territorio" data-toc="8" style="--c:var(--b2)">
+  <div class="chap-head"><span class="big">8</span>
+    <div class="eyebrow" lang="es">Método</div><div class="eyebrow" lang="en">Method</div>
+    <h2 lang="es">Territorio y mapa</h2><h2 lang="en">Territory and map</h2>
+    <span class="rule"></span></div>
+  <p lang="es">Estados, municipios y localidades provienen del Catálogo Único de Claves Geoestadísticas y del Censo de Población y Vivienda 2020 del INEGI, con población, altitud y coordenadas. Las regiones son las del Banco de México (Norte, Centro norte, Centro y Sur). Los contornos son de Natural Earth (dominio público). Para ubicar cada localidad en el mapa se ajustó una proyección:</p>
+  <p lang="en">States, municipalities and localities come from INEGI’s Geostatistical Catalogue and 2020 Population and Housing Census, with population, altitude and coordinates. Regions are Banco de México’s (North, North-central, Central and South). Outlines are from Natural Earth (public domain). To place each locality on the map a projection was fitted:</p>
+  <div class="eq"><span><i>x</i> = 32.355 (λ + 102) cos<sup>0.4375</sup> φ + 514.57 ; &nbsp; <i>y</i> = −34.346 φ + 1122.86</span><span class="no">(19)</span></div>
+  <p class="where" lang="es">El 95.4 % de las localidades cae dentro del contorno de su estado; el punto es aproximado.</p>
+  <p class="where" lang="en">95.4 % of localities fall inside their state outline; the point is approximate.</p>
+</section>
+
+<!-- ============================ 9 · VALIDACIÓN ============================ -->
+<section class="chap" id="validacion" data-toc="9" style="--c:var(--b10)">
+  <div class="chap-head"><span class="big">9</span>
+    <div class="eyebrow" lang="es">Evidencia y uso</div><div class="eyebrow" lang="en">Evidence and use</div>
+    <h2 lang="es">Validación</h2><h2 lang="en">Validation</h2>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="v-caso" data-n="9.1"><span lang="es">Reproducción del caso publicado</span><span lang="en">Reproduction of the published case</span></h3>
+  <p lang="es">La app comprueba que el caso cargado coincide con el artículo: 38 pasos y 5 reglas, 38 hojas en el dendrograma de la Figura 3, 100 participantes del Cuadro 1 y 11 valores publicados del índice de intensidad de conocimiento.</p>
+  <p lang="en">The app checks that the loaded case matches the paper: 38 steps and 5 rules, 38 leaves in the Figure 3 dendrogram, 100 Table 1 participants and 11 published knowledge-intensity values.</p>
+  <figure data-fig="validacion"><figcaption><span class="fn"></span><span lang="es"><b>Bloque de validación</b> de la app.</span><span lang="en"><b>The app’s validation block.</b></span></figcaption></figure>
+  <h3 id="v-redes" data-n="9.2"><span lang="es">Motor de redes frente a NetworkX</span><span lang="en">Network engine against NetworkX</span></h3>
+  <div class="tbl"><table>
+    <thead><tr><th lang="es">Prueba</th><th lang="en">Test</th><th class="r" lang="es">Diferencia máxima</th><th class="r" lang="en">Maximum difference</th></tr></thead>
+    <tbody>
+      <tr><td lang="es">Red de Krackhardt (1990): intermediación, cercanía, agrupamiento, vector propio, camino medio</td><td lang="en">Krackhardt (1990) kite: betweenness, closeness, clustering, eigenvector, mean path</td><td class="r">&lt; 0.00005</td></tr>
+      <tr><td lang="es">Red del maíz sin PM (60 nodos, 158 vínculos): intermediación ponderada</td><td lang="en">Maize network without PM (60 nodes, 158 links): weighted betweenness</td><td class="r">0</td></tr>
+      <tr><td lang="es">Q de la partición (0.4496), agrupamiento medio (0.5252), camino medio (2.9017)</td><td lang="en">Partition Q (0.4496), mean clustering (0.5252), mean path (2.9017)</td><td class="r">0</td></tr>
+    </tbody></table></div>
+  <p lang="es">Como referencia, el Louvain aleatorizado de NetworkX (semilla 1) encuentra una partición de 5 comunidades con Q = 0.4422; la de Ratio Telar (7 comunidades, Q = 0.4496) tiene mayor modularidad.</p>
+  <p lang="en">For reference, NetworkX’s randomised Louvain (seed 1) finds a 5-community partition with Q = 0.4422; Ratio Telar’s (7 communities, Q = 0.4496) has higher modularity.</p>
+  <h3 id="v-clado" data-n="9.3"><span lang="es">Cladograma frente a SciPy</span><span lang="en">Cladogram against SciPy</span></h3>
+  <p lang="es">Las alturas de unión y la correlación cofenética de los tres subconjuntos coinciden con <code>scipy.cluster.hierarchy.linkage(method='single')</code> y <code>cophenet</code> (SciPy 1.18) sobre distancias de NetworkX con diferencias menores que 10⁻¹⁴ (tabla del capítulo 3).</p>
+  <p lang="en">Merge heights and cophenetic correlation for the three subsets match <code>scipy.cluster.hierarchy.linkage(method='single')</code> and <code>cophenet</code> (SciPy 1.18) on NetworkX distances with differences below 10⁻¹⁴ (chapter 3 table).</p>
+</section>
+
+<!-- ============================ 10 · REPRODUCIBILIDAD ============================ -->
+<section class="chap" id="reproducir" data-toc="10" style="--c:var(--b9)">
+  <div class="chap-head"><span class="big">10</span>
+    <div class="eyebrow" lang="es">Evidencia y uso</div><div class="eyebrow" lang="en">Evidence and use</div>
+    <h2 lang="es">Reproducibilidad y exportación</h2><h2 lang="en">Reproducibility and export</h2>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="x-codigo" data-n="10.1"><span lang="es">Código y pruebas</span><span lang="en">Code and tests</span></h3>
+  <div class="code"><div class="bar"><span>bash</span></div><pre>git clone https://github.com/hectortecumshe-ai/RatioTelar
+cd RatioTelar
+python armar.py                     # arma index.html desde src/
+python pruebas/verificar_red.py     # red frente a NetworkX
+python pruebas/verificar_clado.py   # cladograma frente a SciPy</pre></div>
+  <h3 id="x-exportar" data-n="10.2"><span lang="es">Datos para análisis</span><span lang="en">Data for analysis</span></h3>
+  <p lang="es">Desde el Bloque 13 se exportan en CSV las actividades (con sus cinco impactos e IS), los nodos (valor, participación, vecinos, grado ponderado, intermediación, cercanía, vector propio, agrupamiento, comunidad), los vínculos (peso y número de actividades), el calendario, los ODS y el cladograma (uniones y vecinos más cercanos). <span class="ui">Guardar proyecto</span> produce un JSON con el estado completo, que permite reproducir cualquier resultado.</p>
+  <p lang="en">Block 13 exports to CSV the activities (with their five impacts and IS), nodes (value, participation, neighbours, weighted degree, betweenness, closeness, eigenvector, clustering, community), links (weight and number of activities), calendar, SDGs and cladogram (merges and nearest neighbours). <span class="ui">Save project</span> produces a JSON with the full state, which reproduces any result.</p>
+  <h3 id="x-enlaces" data-n="10.3"><span lang="es">Enlaces directos</span><span lang="en">Deep links</span></h3>
+  <p lang="es">La dirección acepta <code>#bloque/vista/idioma</code>, por ejemplo <code>…/RatioTelar/#tablero/cien/en</code>. Las capturas de este instructivo se tomaron así, de forma automática.</p>
+  <p lang="en">The address accepts <code>#block/view/language</code>, for example <code>…/RatioTelar/#tablero/cien/en</code>. This guide’s screenshots were taken this way, automatically.</p>
+  <h3 id="x-limites" data-n="10.4"><span lang="es">Alcances y límites</span><span lang="en">Scope and limits</span></h3>
+  <ul>
+    <li lang="es">El único caso con Stack documentado es el maíz criollo de Calpan; los demás cultivos se documentan con datos del usuario.</li><li lang="en">The only case with a documented Stack is Calpan landrace maize; other crops are documented with user data.</li>
+    <li lang="es">Los vínculos actividad–elemento, los perfiles de impacto, la relación con los ODS, las reglas de regeneración y los factores de riesgo son lecturas de Ratio Telar, marcadas y editables.</li><li lang="en">Activity–element links, impact profiles, the SDG mapping, regeneration rules and risk factors are Ratio Telar readings, flagged and editable.</li>
+    <li lang="es">Los escenarios no son pronósticos; su valor está en comparar supuestos explícitos.</li><li lang="en">Scenarios are not forecasts; their value lies in comparing explicit assumptions.</li>
+    <li lang="es">La producción agrícola municipal del SIAP se integrará cuando su servicio de datos abiertos esté disponible.</li><li lang="en">SIAP municipal crop production will be added when its open-data service is available.</li>
+  </ul>
+  <figure data-fig="teoria"><figcaption><span class="fn"></span><span lang="es"><b>Marco teórico</b> dentro de la app, con su bibliografía.</span><span lang="en"><b>Theoretical framework</b> inside the app, with its bibliography.</span></figcaption></figure>
+</section>
+
+<!-- ============================ 11 · EJEMPLO RESUELTO ============================ -->
+<section class="chap" id="ejemplo" data-toc="11" style="--c:var(--b6)">
+  <div class="chap-head"><span class="big">11</span>
+    <div class="eyebrow" lang="es">Evidencia y uso</div><div class="eyebrow" lang="en">Evidence and use</div>
+    <h2 lang="es">Ejemplo resuelto: Calpan a mano</h2><h2 lang="en">Worked example: Calpan by hand</h2>
+    <p lang="es">Cada número de este capítulo puede rehacerse con calculadora y coincide con lo que muestra la app 0.4.0.</p>
+    <p lang="en">Every number in this chapter can be redone with a calculator and matches what app 0.4.0 shows.</p>
+    <span class="rule"></span></div>
+  <nav class="inchap"></nav>
+  <h3 id="w-ir" data-n="11.1"><span lang="es">Regeneración</span><span lang="en">Regeneration</span></h3>
+  <div class="eq"><span>IR = (1 + 2 + 2 + 2 + 2 + 0 + 4 + 2) ⁄ 32 = 15 ⁄ 32 = 0.469</span><span class="no">(10)</span></div>
+  <p lang="es">Clase: convencional (0.25–0.49). Subir «menos síntesis» de 0 a 2 y «labranza» de 1 a 2 llevaría el IR a 18/32 = 0.56, en transición.</p>
+  <p lang="en">Class: conventional (0.25–0.49). Raising “fewer synthetics” from 0 to 2 and “tillage” from 1 to 2 would take IR to 18/32 = 0.56, in transition.</p>
+  <h3 id="w-ca" data-n="11.2"><span lang="es">Capacidad adaptativa y riesgo de sequía</span><span lang="en">Adaptive capacity and drought risk</span></h3>
+  <div class="eq"><span>CA = (0.469 + 4⁄4 + 3.33⁄4 + 2⁄4) ⁄ 4 = (0.469 + 1.00 + 0.833 + 0.50) ⁄ 4 = 0.7005</span><span class="no">(12)</span></div>
+  <div class="eq"><span><i>r</i><sub>sequía</sub> = 4 × 3 × (1 − 0.4 × 0.7005) × (1 − 0.15 × 0) = 12 × 0.7198 = 8.64</span><span class="no">(11)</span></div>
+  <p lang="es">Nivel medio (5–9). Con las 19 amenazas activas, Σ<i>r</i> ⁄ (25 × 19) = 0.273: índice 27. Un control parcial (<i>c</i> = 2) sobre la sequía bajaría su <i>r</i> a 8.64 × 0.70 = 6.05.</p>
+  <p lang="en">Medium level (5–9). With the 19 hazards active, Σ<i>r</i> ⁄ (25 × 19) = 0.273: index 27. Partial control (<i>c</i> = 2) of drought would lower its <i>r</i> to 8.64 × 0.70 = 6.05.</p>
+  <h3 id="w-sar" data-n="11.3"><span lang="es">Índice general de Sarandón</span><span lang="en">Sarandón general index</span></h3>
+  <div class="eq"><span>ISGen = (3.11 + 2.05 + 2.67) ⁄ 3 = 2.61 &nbsp; &gt; 2 y min = 2.05 ≥ 2 &nbsp;⇒&nbsp; sostenible</span><span class="no">(8)</span></div>
+  <p lang="es">La dimensión ecológica (2.05) es la que está más cerca del umbral: es la palanca principal, y coincide con el bajo puntaje de «menos síntesis» del IR.</p>
+  <p lang="en">The ecological dimension (2.05) is the closest to the threshold: it is the main lever, and it matches the low “fewer synthetics” score in IR.</p>
+  <h3 id="w-prosp" data-n="11.4"><span lang="es">Escenario tendencial a 10 años</span><span lang="en">Trend scenario at 10 years</span></h3>
+  <p lang="es">En el caso base de Calpan no hay actividades innovadas activas, así que <i>a</i><sub>0</sub> = 0 y Δ<i>A</i> = 0 en todo el horizonte.</p>
+  <p lang="en">In the Calpan base case there are no active innovated activities, so <i>a</i><sub>0</sub> = 0 and Δ<i>A</i> = 0 throughout.</p>
+  <div class="tbl"><table>
+    <thead><tr><th lang="es">Término</th><th lang="en">Term</th><th lang="es">Cálculo</th><th lang="en">Computation</th><th class="r" lang="es">Valor</th><th class="r" lang="en">Value</th></tr></thead>
+    <tbody>
+      <tr><td lang="es">Clima</td><td lang="en">Climate</td><td>1 − 0.074 × 0.2 × 10⁄10</td><td class="r">0.9852</td></tr>
+      <tr><td lang="es">Pérdida efectiva</td><td lang="en">Effective loss</td><td>30 × (1 − 0.5 × 0.469)</td><td class="r">22.97 %</td></tr>
+      <tr><td lang="es">Año extremo</td><td lang="en">Extreme year</td><td>(1 − 0.18 × 0.2297) ⁄ (1 − 0.10 × 0.2297)</td><td class="r">0.9812</td></tr>
+      <tr><td lang="es">Mano de obra disponible</td><td lang="en">Available labour</td><td>(1 − 0.015)<sup>10</sup></td><td class="r">0.8597</td></tr>
+      <tr><td lang="es">Factor por déficit</td><td lang="en">Shortfall factor</td><td>1 − 0.5 × (1 − 0.8597)</td><td class="r">0.9299</td></tr>
+      <tr><td lang="es"><b>Rendimiento</b> <i>Y</i></td><td lang="en"><b>Yield</b> <i>Y</i></td><td>100 × 0.9852 × 0.9812 × 0.9299</td><td class="r"><b>89.9</b></td></tr>
+      <tr><td lang="es">Costo <i>C</i></td><td lang="en">Cost <i>C</i></td><td>100 × 1.02<sup>10</sup></td><td class="r">121.9</td></tr>
+      <tr><td lang="es"><b>Ingreso ÷ costo</b></td><td lang="en"><b>Income ÷ cost</b></td><td>100 × (100 × 0.899) ⁄ 121.9</td><td class="r"><b>73.7</b></td></tr>
+    </tbody></table></div>
+  <p lang="es">La app reporta 90 y 74, que son estos valores redondeados. El riesgo a 10 años es 28: la probabilidad climática sube 5 × (0.18 − 0.10) = 0.4 puntos, pero la capacidad adaptativa no cambia porque no hay adopción.</p>
+  <p lang="en">The app reports 90 and 74, these values rounded. Risk at 10 years is 28: climate likelihood rises 5 × (0.18 − 0.10) = 0.4 points, but adaptive capacity does not change because there is no adoption.</p>
+  <h3 id="w-huella" data-n="11.5"><span lang="es">Huella de carbono (ejemplo ilustrativo)</span><span lang="en">Carbon footprint (illustrative example)</span></h3>
+  <p lang="es">Valores hipotéticos, no de Calpan: 60 L de diésel y 100 kg de N por hectárea, todo como urea (217 kg; 46 % de N).</p>
+  <p lang="en">Hypothetical values, not from Calpan: 60 L of diesel and 100 kg of N per hectare, all as urea (217 kg; 46 % N).</p>
+  <div class="eq"><span>2.68 × 60 + 100 × 0.01374 × 44⁄28 × 273 + 0.20 × 217 × 44⁄12 = 160.8 + 589.4 + 159.1 = 909 kg CO₂e ⁄ ha</span><span class="no">(9)</span></div>
+  <p class="where" lang="es">0.01374 = 0.010 + 0.11 × 0.010 + 0.24 × 0.011. Con 3 t de grano por hectárea serían 303 kg CO₂e por tonelada. El N₂O del fertilizante aporta casi dos tercios.</p>
+  <p class="where" lang="en">0.01374 = 0.010 + 0.11 × 0.010 + 0.24 × 0.011. With 3 t of grain per hectare this is 303 kg CO₂e per tonne. Fertiliser N₂O contributes almost two thirds.</p>
+</section>
+
+<!-- ============================ A · GLOSARIO ============================ -->
+<section class="chap" id="glosario" data-toc="A" style="--c:var(--acc)">
+  <div class="chap-head"><span class="big">A</span>
+    <div class="eyebrow" lang="es">Consulta</div><div class="eyebrow" lang="en">Reference</div>
+    <h2 lang="es">Glosario técnico</h2><h2 lang="en">Technical glossary</h2>
+    <span class="rule"></span></div>
+  <dl class="glos" id="glos"></dl>
+</section>
+
+<!-- ============================ B · REFERENCIAS ============================ -->
+<section class="chap" id="referencias" data-toc="B" style="--c:var(--acc)">
+  <div class="chap-head"><span class="big">B</span>
+    <div class="eyebrow" lang="es">Consulta</div><div class="eyebrow" lang="en">Reference</div>
+    <h2 lang="es">Referencias, cómo citar y página legal</h2><h2 lang="en">References, how to cite and legal page</h2>
+    <span class="rule"></span></div>
+  <ol style="font-size:15.5px;line-height:1.55">
+    <li>Blondel VD, Guillaume J-L, Lambiotte R, Lefebvre E. 2008. Fast unfolding of communities in large networks. <i>Journal of Statistical Mechanics</i> P10008.</li>
+    <li>Brandes U. 2001. A faster algorithm for betweenness centrality. <i>Journal of Mathematical Sociology</i> 25(2): 163–177.</li>
+    <li>CONABIO. 2020. Razas de maíz de México. Comisión Nacional para el Conocimiento y Uso de la Biodiversidad.</li>
+    <li>Díaz-José O, Mojica-Zárate HT, Díaz-José J, Vilaboa-Arróniz J. 2026. El conocimiento agrícola local: el stack del maíz criollo en Calpan, Puebla. <i>Agricultura, Sociedad y Desarrollo</i> 23(3). https://doi.org/10.22231/asyd.v23i3.1822</li>
+    <li>Forster P, et al. 2021. The Earth’s energy budget, climate feedbacks, and climate sensitivity. En: <i>Climate Change 2021: The Physical Science Basis</i>. Cambridge University Press.</li>
+    <li>Freeman LC. 1978. Centrality in social networks: conceptual clarification. <i>Social Networks</i> 1(3): 215–239.</li>
+    <li>Godet M, Durance P. 2011. <i>La prospectiva estratégica para las empresas y los territorios</i>. Dunod/UNESCO.</li>
+    <li>Hagberg AA, Schult DA, Swart PJ. 2008. Exploring network structure, dynamics, and function using NetworkX. <i>Proceedings of the 7th Python in Science Conference</i>: 11–15.</li>
+    <li>Holland JH. 1995. <i>Hidden order: how adaptation builds complexity</i>. Addison-Wesley.</li>
+    <li>IEC. 2019. IEC 31010:2019 Risk management — Risk assessment techniques.</li>
+    <li>INEGI. 2020. Censo de Población y Vivienda 2020; Catálogo Único de Claves Geoestadísticas.</li>
+    <li>IPCC. 2006, 2019. Guidelines for National Greenhouse Gas Inventories, vol. 4, y su refinamiento de 2019.</li>
+    <li>IPCC. 2014. Summary for Policymakers. En: <i>Climate Change 2014: Impacts, Adaptation, and Vulnerability</i>. Cambridge University Press.</li>
+    <li>IPCC. 2018. Summary for Policymakers. En: <i>Global Warming of 1.5 °C</i>.</li>
+    <li>ISO. 2018. ISO 31000:2018 Risk management — Guidelines.</li>
+    <li>Krackhardt D. 1990. Assessing the political landscape: structure, cognition, and power in organizations. <i>Administrative Science Quarterly</i> 35(2): 342–369.</li>
+    <li>Mojica Zárate HT. 2017. <i>Modelo y procedimiento para la gestión estratégica integrada de los recursos naturales en territorios áridos con orientación agroproductiva</i>. Tesis doctoral, Universidad Central «Marta Abreu» de Las Villas.</li>
+    <li>Newman MEJ. 2006. Modularity and community structure in networks. <i>PNAS</i> 103(23): 8577–8582.</li>
+    <li>Newton P, Civita N, Frankel-Goldwater L, Bartel K, Johns C. 2020. What is regenerative agriculture? <i>Frontiers in Sustainable Food Systems</i> 4: 577723.</li>
+    <li>Rogers EM. 2003. <i>Diffusion of innovations</i>, 5.ª ed. Free Press.</li>
+    <li>Sarandón SJ. 2002. El desarrollo y uso de indicadores para evaluar la sustentabilidad de los agroecosistemas. En: Sarandón SJ (ed.), <i>Agroecología: el camino hacia una agricultura sustentable</i>. Ediciones Científicas Americanas: 393–414.</li>
+    <li>Schreefel L, Schulte RPO, de Boer IJM, Schrijver AP, van Zanten HHE. 2020. Regenerative agriculture – the soil is the base. <i>Global Food Security</i> 26: 100404.</li>
+    <li>Sneath PHA. 1957. The application of computers to taxonomy. <i>Journal of General Microbiology</i> 17(1): 201–226.</li>
+    <li>Sokal RR, Rohlf FJ. 1962. The comparison of dendrograms by objective methods. <i>Taxon</i> 11(2): 33–40.</li>
+    <li>Sokal RR, Sneath PHA. 1963. <i>Principles of numerical taxonomy</i>. W. H. Freeman.</li>
+    <li>Virtanen P, et al. 2020. SciPy 1.0: fundamental algorithms for scientific computing in Python. <i>Nature Methods</i> 17: 261–272.</li>
+    <li>Wasserman S, Faust K. 1994. <i>Social network analysis: methods and applications</i>. Cambridge University Press.</li>
+    <li>Watts DJ, Strogatz SH. 1998. Collective dynamics of ‘small-world’ networks. <i>Nature</i> 393: 440–442.</li>
+    <li>Zhao C, et al. 2017. Temperature increase reduces global yields of major crops in four independent estimates. <i>PNAS</i> 114(35): 9326–9331.</li>
+  </ol>
+  <h3 id="b-citar"><span lang="es">Cómo citar el software</span><span lang="en">How to cite the software</span></h3>
+  <p lang="es">Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. A., y Velázquez-Vázquez, G. (2026). <i>Ratio Telar: el conocimiento agrícola local como sistema complejo adaptativo</i> (Versión {{VERSION}}) [Software]. Zenodo. https://doi.org/{{DOIAPP}}</p>
+  <p lang="en">Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. A., &amp; Velázquez-Vázquez, G. (2026). <i>Ratio Telar: local farming knowledge as a complex adaptive system</i> (Version {{VERSION}}) [Software]. Zenodo. https://doi.org/{{DOIAPP}}</p>
+  <div class="qrbox">{{QR}}<p lang="es">Aplicación: <b>hectortecumshe-ai.github.io/RatioTelar</b><br>Código: github.com/hectortecumshe-ai/RatioTelar</p><p lang="en">App: <b>hectortecumshe-ai.github.io/RatioTelar</b><br>Code: github.com/hectortecumshe-ai/RatioTelar</p></div>
+  {{LEGAL}}
+</section>
+
+</div>

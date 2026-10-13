@@ -48,6 +48,15 @@ Además: **Validación** (caso publicado, motor de redes frente a NetworkX, clad
 - Bloque de prospectiva a 2, 5 y 10 años, con su marco teórico.
 - Impresión revisada en todos los bloques; enlaces directos `#bloque/vista/idioma`; enlaces a las demás aplicaciones de la familia Ratio.
 
+## Instructivos
+
+| | Español | English |
+|---|---|---|
+| **Productor** · paso a paso, con el caso de Calpan, guía de entrevista y hojas de campo | [web](https://hectortecumshe-ai.github.io/RatioTelar/instructivo-productor.html) · [PDF](instructivo/RatioTelar-Instructivo-Productor.pdf) | [web](https://hectortecumshe-ai.github.io/RatioTelar/instructivo-productor.html?lang=en) · [PDF](instructivo/RatioTelar-Producer-Guide.pdf) |
+| **Científico** · modelo, ecuaciones, validación y ejemplo resuelto | [web](https://hectortecumshe-ai.github.io/RatioTelar/instructivo-cientifico.html) · [PDF](instructivo/RatioTelar-Instructivo-Cientifico.pdf) | [web](https://hectortecumshe-ai.github.io/RatioTelar/instructivo-cientifico.html?lang=en) · [PDF](instructivo/RatioTelar-Scientist-Guide.pdf) |
+
+Texto bajo licencia CC BY 4.0. Se arman con `python instructivo/fuente/armar.py`; las capturas se toman en automático con `instructivo/fuente/capturar.py`.
+
 ## Rigor
 
 Cada cifra muestra su fuente. Lo que es agrupación o lectura de la app se marca como **«Lectura de Ratio Telar»**. Lo que no está documentado aparece como **«sin dato»**: la aplicación no inventa valores.
