@@ -7,13 +7,15 @@
 const todosElem = ()=> ELEM.concat(S.elemExtra||[]);
 const elemPorId = (id)=> todosElem().find(e=>e.id===id);
 const nombreEl = (id)=> { const e=elemPorId(id); return e ? tx(e.n) : id; };
-const manejoDe = (n)=> (S.manejo[n] = S.manejo[n] || {off:{}, inn:[], imp:{}});
+const manejoDe = (n)=>{ const m = S.manejo[n] = S.manejo[n] || {resp:{}, inn:[], imp:{}}; m.resp=m.resp||{}; m.inn=m.inn||[]; m.imp=m.imp||{}; return m; };
+const N_ACT_STACK = ()=> PASOS.reduce((s,p)=>s+p.a.length,0);
 
-/* Actividades del sistema: tradicionales (Figura 4) que se practican + innovadoras agregadas */
+/* Actividades del sistema: las tradicionales del Stack publicado SOLO si el usuario respondió «sí, la practico»
+   (sin respuesta no cuentan: nada se precarga) + las innovadoras o propias que agregó */
 function actividades(){
   const out=[];
   if(conStack()) PASOS.forEach(p=>{ const m=manejoDe(p.n);
-    p.a.forEach(a=>{ if(m.off[a[0]]) return; out.push({paso:p.n, b:p.b, cod:a[0], n:E(a[1],a[2]), tipo:'trad', el:(ACT_EL[a[0]]||'').split(' ').filter(Boolean), imp:m.imp[a[0]]||null}); });
+    p.a.forEach(a=>{ if(m.resp[a[0]]!=='si') return; out.push({paso:p.n, b:p.b, cod:a[0], n:E(a[1],a[2]), tipo:'trad', el:(ACT_EL[a[0]]||'').split(' ').filter(Boolean), imp:m.imp[a[0]]||null}); });
     (m.inn||[]).forEach((x,i)=> out.push({paso:p.n, b:p.b, cod:'N'+p.n+'.'+(i+1), n:E(x.t,x.t), tipo:'inn', el:x.el||[], imp:x.imp||null})); });
   else Object.entries(S.manejo).forEach(([n,m])=> (m.inn||[]).forEach((x,i)=> out.push({paso:+n, b:'', cod:'N'+n+'.'+(i+1), n:E(x.t,x.t), tipo:'inn', el:x.el||[], imp:x.imp||null})));
   return out;
@@ -31,7 +33,10 @@ function construirRed(sinPM){
   const acts=actividades(), part=participacion(); const val={}; todosElem().forEach(e=>val[e.id]=valorEl(e.id,part).v);
   const W=new Map(), key=(a,b)=>a<b?a+'|'+b:b+'|'+a, add=(a,b,w,act)=>{ if(a===b) return; const k=key(a,b); const o=W.get(k)||{a:a<b?a:b, b:a<b?b:a, w:0, n:0, acts:[]}; o.w+=w; o.n++; if(act) o.acts.push(act); W.set(k,o); };
   acts.forEach(x=>{ const el=[...new Set(x.el)].filter(id=>val[id]!=null && !(sinPM&&id==='PM')); for(let i=0;i<el.length;i++) for(let j=i+1;j<el.length;j++) add(el[i],el[j],Math.sqrt((val[el[i]]||0.05)*(val[el[j]]||0.05)),x.cod); });
-  if(conStack()) LAZOS.forEach(([a,b])=>{ if(sinPM&&(a==='PM'||b==='PM')) return; add(a,b,Math.sqrt((val[a]||0.05)*(val[b]||0.05)),null); });
+  // Lazos estructurales documentados en Calpan: en el ejemplo publicado entran todos (red validada);
+  // en tu proyecto, solo los que tocan un elemento de tus actividades, para no traer actores de otra localidad.
+  const enActs=new Set(acts.flatMap(x=>x.el));
+  if(conStack() && acts.length) LAZOS.forEach(([a,b])=>{ if(sinPM&&(a==='PM'||b==='PM')) return; if(!EJ && !enActs.has(a) && !enActs.has(b)) return; add(a,b,Math.sqrt((val[a]||0.05)*(val[b]||0.05)),null); });
   const usados=new Set(); W.forEach(o=>{ usados.add(o.a); usados.add(o.b); });
   const nodos=todosElem().filter(e=>usados.has(e.id)).map(e=>({id:e.id, nombre:tx(e.n), cat:e.cat, col:CATS[e.cat].col, val:val[e.id], part:part[e.id]||0}));
   const aristas=[...W.values()];

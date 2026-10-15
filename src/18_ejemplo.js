@@ -155,19 +155,22 @@ const EJEMPLO = {
       T('Imprime o guarda en PDF, y exporta en JSON o CSV para compartirlo sin conexión.','Print or save as PDF, and export JSON or CSV to share offline.')
     ])})
 };
+/* Botón discreto en cada bloque: el ejemplo NUNCA se mezcla con los campos del usuario; se abre en una ventana aparte */
 function ejemploCalpan(id){
-  if(conStack() || !EJEMPLO[id]) return '';
-  const e=EJEMPLO[id]();
+  if(EJ || !EJEMPLO[id]) return '';
   return `<div class="ejemplo-calpan aparece no-print"><span class="ej-ico">${ill('c-maiz')}</span><div class="ej-txt">
-    <div class="ej-k">${T('Así se hizo con el maíz criollo de Calpan, Puebla','How it was done with landrace maize in Calpan, Puebla')}</div>
-    <p>${e.corto}</p>
-    <button class="btn ghost sm" data-ejemplo="${id}">${T('Abrir el ejemplo y los pasos para llenarlo','Open the example and how to fill it in')} →</button></div></div>`; }
+    <div class="ej-k">${T('¿No sabes cómo llenarlo? Mira un caso publicado','Not sure how to fill it in? See a published case')}</div>
+    <p class="nota" style="margin:2px 0 6px">${T('Maíz criollo de Calpan, Puebla (Díaz-José et al., 2026). Se abre en una ventana aparte y no cambia tus datos.','Landrace maize in Calpan, Puebla (Díaz-José et al., 2026). It opens in a separate window and does not change your data.')}</p>
+    <button class="btn ghost sm" data-ejemplo="${id}">${T('Ver el ejemplo publicado','See the published example')} →</button></div></div>`; }
 function abrirEjemplo(id){ const e=EJEMPLO[id](); let d=$('#dlgEjemplo');
-  if(!d){ d=document.createElement('dialog'); d.id='dlgEjemplo'; document.body.appendChild(d); d.addEventListener('click',ev=>{ if(ev.target===d) d.close(); }); }
-  d.innerHTML=`<div class="dh"><h2>${ill('c-maiz','','width:30px;height:36px;vertical-align:middle;margin-right:6px')}${T('Ejemplo: maíz criollo, Calpan','Example: landrace maize, Calpan')} · ${esc(tx(B(id).corto))}</h2><button class="ibtn round" onclick="this.closest('dialog').close()" aria-label="×">✕</button></div>
-   <div class="db ej-dlg"><h3>${T('Lo que se registró en Calpan','What was recorded in Calpan')} ${marcaDato()}</h3>${e.hecho}
-   <h3>${T('Cómo llenarlo para','How to fill it in for')} ${esc(tx(cultivoSel().n))}</h3>${e.pasos}
-   ${fuenteArt()}</div>`;
+  if(!d){ d=document.createElement('dialog'); d.id='dlgEjemplo'; d.className='dlg-ejemplo'; document.body.appendChild(d); d.addEventListener('click',ev=>{ if(ev.target===d) d.close(); }); }
+  d.innerHTML=`<div class="marca-agua" aria-hidden="true">${T('EJEMPLO · NO SON TUS DATOS','EXAMPLE · NOT YOUR DATA')}</div>
+   <div class="dh"><h2>${ill('c-maiz','','width:30px;height:36px;vertical-align:middle;margin-right:6px')}${T('Ejemplo publicado: maíz criollo, Calpan, Puebla','Published example: landrace maize, Calpan, Puebla')} · ${esc(tx(B(id).corto))}</h2><button class="ibtn round" onclick="this.closest('dialog').close()" aria-label="×">✕</button></div>
+   <div class="db ej-dlg"><p class="ej-aviso">${T('Esto es solo de consulta: son los datos de otra localidad. Al cerrar esta ventana, tus campos siguen exactamente como los dejaste.','This is for reference only: these are another locality’s data. When you close this window your fields stay exactly as you left them.')}</p>
+   <h3>${T('Lo que se registró en Calpan','What was recorded in Calpan')} ${marcaDato()}</h3>${e.hecho}
+   <h3>${T('Cómo llenarlo con tus propios datos','How to fill it in with your own data')}</h3>${e.pasos}
+   ${fuenteArt()}
+   <div class="row" style="gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn" onclick="this.closest('dialog').close()">${T('Cerrar y volver a mis datos','Close and return to my data')}</button><button class="btn ghost" data-entrar-ej>${T('Explorar el ejemplo completo en la app','Explore the full example in the app')}</button></div></div>`;
   d.showModal(); }
 document.addEventListener('click',ev=>{ const t=ev.target.closest('[data-ejemplo]'); if(t) abrirEjemplo(t.dataset.ejemplo); });
 function ponerEjemplo(id, el){ const h=ejemploCalpan(id); if(!h) return; const cab=$('.bhead',el); if(cab) cab.insertAdjacentHTML('afterend',h); else el.insertAdjacentHTML('afterbegin',h); }

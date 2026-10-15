@@ -4,6 +4,7 @@
    ===================================================================== */
 const REG_BX = {N:{n:E('Norte','North'),col:'#b05434'}, CN:{n:E('Centro norte','Centre-north'),col:'#c27c0e'}, C:{n:E('Centro','Centre'),col:'#2f7d8a'}, S:{n:E('Sur','South'),col:'#5f8f3e'}};
 const edoDe = (c)=> TERR.estados.find(e=>e[0]===c);
+const EDO_VACIO = ['', '—', '', '', null, ''];   // estado sin elegir
 const isoA = (c)=> (edoDe(c)||[])[5];
 const proyecta = (lon,lat)=> [PROY.a*(lon+102)*Math.pow(Math.cos(lat*Math.PI/180),PROY.k)+PROY.b, PROY.c*lat+PROY.d];
 

@@ -110,10 +110,10 @@ let S;
 function estadoInicial(){ return {
   bloque:'inicio', visitados:{},
   proyecto:{nombre:'', productor:'', fecha:new Date().toISOString().slice(0,10), notas:''},
-  cultivo:'maiz', sistema:'milpa', tipoUP:0, superficie:1.5,
-  edo:'21', mun:'026', loc:'0001',
+  cultivo:'', sistema:'', tipoUP:'', superficie:'',   // todo empieza vacío: nada se precarga
+  edo:'', mun:'', loc:'',
   granja:[],                       // especies de la granja de traspatio
-  maizTipo:'nativo', maizRaza:'', maizVar:'',   // subcategoría del maíz
+  maizTipo:'', maizRaza:'', maizVar:'',   // subcategoría del maíz
   bovProp:'carne', bovSis:'vacabecerro', bovRaza:'',   // subcategoría de bovinos
   catExtra:[],                     // cultivos y especies agregados por el usuario {id, tipo, n, sci, col}
   variedad:{},                     // cultivo -> variedad, tipo o raza elegida o escrita
@@ -123,22 +123,33 @@ function estadoInicial(){ return {
   riesgo:{},                       // riesgo -> {p, i, c, off}
   prosp:null,                      // supuestos editados de la prospectiva (null = valores iniciales)
   reqInn:[],                       // [{t, b, d, fuente}]
-  manejo:{},                       // n paso -> {off:{codigo:true}, inn:[{t, el:[ids], imp:[5], nota}], imp:{codigo:[5]}}
+  manejo:{},                       // n paso -> {resp:{codigo:'si'|'no'}, inn:[{t, el:[ids], imp:[5], nota}], imp:{codigo:[5]}}; sin respuesta no cuenta
   elemExtra:[],                    // elementos agregados por el usuario {id,cat,n}
   precio:{},                       // id -> {p:precio unitario, u:unidad, q:cantidad por ha}
   valor:{},                        // id -> {eco,uso,cul,eia} 0..5
   pesosValor:{eco:1,uso:1,cul:1,eia:1},
   carbono:{diesel:'', nKg:'', urea:'', rend:''},
-  siembraDia:79,                  // fecha de siembra (día del año; 79 = 21 de marzo)
+  siembraDia:null,                // fecha de siembra (día del año); null = sin capturar
   fechas:{},                       // n paso -> {ini, fin, ev}
+  revisado:{},                     // bloques sin campos propios que el usuario marcó como revisados
   formulado:false
 }; }
-function guardar(){ try{ localStorage.setItem('telar_v2', JSON.stringify(S)); }catch(e){} }
-function cargar(){ try{ const g=JSON.parse(localStorage.getItem('telar_v2')||'null'); if(g && g.manejo) return Object.assign(estadoInicial(), g); }catch(e){} return estadoInicial(); }
+/* EJ = modo ejemplo (caso publicado de Calpan): nunca se guarda y no toca el proyecto del usuario */
+let EJ = false, S_USUARIO = null;
+function guardar(){ if(EJ) return; try{ localStorage.setItem('telar_v3', JSON.stringify(S)); }catch(e){} }
+function cargar(){ try{ const g=JSON.parse(localStorage.getItem('telar_v3')||'null'); if(g && g.manejo) return Object.assign(estadoInicial(), g); }catch(e){} return estadoInicial(); }
+/* Proyecto de la versión anterior (telar_v2): ahí las actividades del Stack contaban como practicadas salvo las desmarcadas.
+   Solo se recupera si el usuario lo pide; «off» se convierte en respuestas «sí» y «no». */
+function proyectoAnterior(){ try{ const g=JSON.parse(localStorage.getItem('telar_v2')||'null'); return g && g.manejo ? g : null; }catch(e){ return null; } }
+function migrarV2(g){ const s=Object.assign(estadoInicial(), g);
+  if((catalogoTodos().find(c=>c.id===s.cultivo)||{}).doc==='stack') PASOS.forEach(p=>{ const m=s.manejo[p.n]=s.manejo[p.n]||{inn:[], imp:{}}; const off=m.off||{}; m.resp={}; p.a.forEach(a=>{ m.resp[a[0]]=off[a[0]]?'no':'si'; }); m.off={}; });
+  return s; }
 const sistemasTodos = ()=> SISTEMAS.concat((S.sisExtra||[]).map(x=>({id:x.id, n:x.n, d:x.d, doc:false, usuario:true})));
-const sistemaSel = ()=> sistemasTodos().find(s=>s.id===S.sistema) || SISTEMAS[0];
-const tipoUPTexto = ()=> +S.tipoUP===-1 ? (S.upOtro||T('Otro','Other')) : tx(TIPOS_UP[S.tipoUP]||TIPOS_UP[0]);
-const cultivoSel = ()=> catalogoTodos().find(c=>c.id===S.cultivo) || CATALOGO[0];
+const SIS_VACIO = {id:'', n:E('Sin elegir','Not chosen'), doc:false, vacio:true};
+const CULT_VACIO = {id:'', tipo:'cultivo', ico:'i-telar', n:E('Cultivo sin elegir','Crop not chosen'), sci:'', doc:'base', col:'#9a9a9a', vacio:true};
+const sistemaSel = ()=> sistemasTodos().find(s=>s.id===S.sistema) || SIS_VACIO;
+const tipoUPTexto = ()=> S.tipoUP===''||S.tipoUP==null ? '—' : +S.tipoUP===-1 ? (S.upOtro||T('Otro','Other')) : (TIPOS_UP[S.tipoUP] ? tx(TIPOS_UP[S.tipoUP]) : '—');
+const cultivoSel = ()=> catalogoTodos().find(c=>c.id===S.cultivo) || CULT_VACIO;
 const conStack = ()=> cultivoSel().doc==='stack';
 /* Lugares de trabajo del autor (accesos directos del Bloque 2) */
 const LUGARES = [

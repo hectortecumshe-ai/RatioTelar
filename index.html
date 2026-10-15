@@ -753,6 +753,76 @@ table.tbl.riesgos-t{display:table;width:100%;table-layout:fixed}
 .riesgos-t td small.muted{font-size:11.5px;line-height:1.3;display:block}
 @media(max-width:760px){table.tbl.riesgos-t{display:block;table-layout:auto}}
 
+/* ================= Lo tuyo frente a lo sugerido y al ejemplo publicado ================= */
+::placeholder{color:var(--field);opacity:.75;font-style:italic}
+select.vacio{color:var(--field);font-style:italic;border-style:dashed}
+select.vacio option{color:var(--text);font-style:normal}
+.sin-llenar{display:inline-block;font-size:12px;font-style:italic;color:var(--warn-text);background:var(--warn-soft);border:1px dashed var(--warn);border-radius:var(--r-pill);padding:0 8px;font-weight:400;vertical-align:middle}
+input[type=range].fantasma{opacity:.4;filter:grayscale(1)}
+/* franja de avance bajo el título del bloque */
+.avance{display:flex;align-items:center;gap:10px;margin:10px 0 0;font-size:13px;color:var(--muted);max-width:560px}
+.avance .av-barra{flex:0 0 140px;height:7px;border-radius:7px;background:var(--bg-soft);overflow:hidden;border:1px solid var(--border)}
+.avance .av-barra i{display:block;height:100%;background:var(--warn);transition:width .4s var(--ease)}
+.avance.est-ok .av-barra i{background:var(--ok)} .avance.est-ok{color:var(--ok-text)}
+.avance.est-pend .av-barra i{width:0!important}
+.avance.ej{color:#7a5a12;background:#f6ecd2;border:1px dashed #c9a24a;border-radius:var(--r-md);padding:6px 10px}
+/* marcas del menú: pendiente, en proceso, completo */
+.steps-nav .nav-est{width:9px;height:9px;border-radius:50%;border:1.6px solid var(--field);display:inline-block;margin-left:2px}
+.steps-nav .est-proc .nav-est{border-color:var(--warn);background:linear-gradient(90deg,var(--warn) 50%,transparent 50%)}
+.steps-nav .est-ok .nav-est{border-color:var(--ok);background:var(--ok)}
+.steps-nav button.est-ok:not(.act) .n{background:var(--ok-soft);color:var(--ok-text);border-color:transparent}
+/* perillas: sugerido (punteado, gris) frente a confirmado */
+.perilla.sin-confirmar{border-style:dashed;background:repeating-linear-gradient(135deg,var(--bg),var(--bg) 8px,var(--bg-soft) 8px,var(--bg-soft) 16px)}
+.perilla.sin-confirmar .pv{color:var(--muted);font-style:italic}
+.perilla.sin-confirmar input[type=range]{filter:grayscale(1);opacity:.55}
+.perilla.confirmada{border-left-width:6px}
+.estado-p{display:inline-block;font-size:11.5px;color:var(--muted);font-style:italic;margin:2px 0}
+.perilla.confirmada .estado-p,.estado-p.ok{color:var(--ok-text);font-style:normal;font-weight:700}
+.badge.provisional{background:var(--warn-soft);color:var(--warn-text);border:1px dashed var(--warn)}
+.riesgos-t tr.r-sinconf td{background:repeating-linear-gradient(135deg,transparent,transparent 8px,var(--bg-soft) 8px,var(--bg-soft) 16px)}
+.riesgos-t tr.r-sinconf input[type=range]{filter:grayscale(1);opacity:.5}
+.riesgos-t tr.r-sinconf .btn.sm{padding:1px 8px;font-size:12px}
+/* Bloque 4: respuesta Sí / No por actividad */
+.resp-sn{display:flex;flex-direction:column;gap:4px;flex:0 0 auto}
+.resp-sn button{font:inherit;font-size:12px;padding:3px 9px;border-radius:var(--r-pill);border:1px dashed var(--field);background:var(--card);color:var(--muted);cursor:pointer;white-space:nowrap}
+.resp-sn button.si.on{background:var(--ok);border:1px solid var(--ok);color:#fff;font-weight:700}
+.resp-sn button.no.on{background:var(--bad-soft);border:1px solid var(--bad);color:var(--bad-text);font-weight:700}
+.actrow.resp-vacia{background:repeating-linear-gradient(135deg,transparent,transparent 8px,var(--bg-soft) 8px,var(--bg-soft) 16px)}
+.actrow.resp-no{opacity:.5}
+.resp-todas{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:0 0 10px}
+.resp-ok{color:var(--ok-text);font-weight:700} .resp-parcial{color:var(--warn-text);font-weight:700} .resp-no{color:var(--muted);font-style:italic}
+.ej-pista{font-style:italic;color:#8a6a1e}
+/* ventana del ejemplo publicado: sepia, marca de agua, solo lectura */
+dialog.dlg-ejemplo{background:#f7efdc;color:#3b3020;border:2px solid #c9a24a;position:relative;overflow:auto}
+dialog.dlg-ejemplo .dh{background:#efe1bd;border-bottom:1px dashed #c9a24a}
+dialog.dlg-ejemplo .marca-agua{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;font-size:clamp(28px,6vw,64px);font-weight:700;letter-spacing:.06em;color:rgba(150,110,30,.12);transform:rotate(-18deg);white-space:nowrap;z-index:0}
+dialog.dlg-ejemplo .db,dialog.dlg-ejemplo .dh{position:relative;z-index:1}
+dialog.dlg-ejemplo h3{color:#7a5a12}
+dialog.dlg-ejemplo a{color:#7a4a10}
+.ej-aviso{background:#fff7e3;border:1px dashed #c9a24a;border-radius:var(--r-md);padding:8px 12px;font-size:14px}
+/* franja fija del modo ejemplo */
+.franja-ej{position:sticky;top:0;z-index:60;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;padding:9px 16px;background:#c4661c;color:#fff;font-size:14.5px;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+.franja-ej .btn{background:#fff;color:#8a3a1f;border-color:#fff}
+html.modo-ejemplo main{outline:4px solid rgba(224,128,42,.55);outline-offset:-4px;background:repeating-linear-gradient(135deg,transparent,transparent 22px,rgba(224,128,42,.035) 22px,rgba(224,128,42,.035) 44px)}
+/* bloques de resultados sin datos */
+.vacio-res h2{margin-top:0}
+.vacio-lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:10px}
+.vacio-item{font:inherit;text-align:left;display:grid;grid-template-columns:auto 1fr;gap:2px 8px;align-items:center;padding:8px 10px;border-radius:var(--r-md);border:1px dashed var(--field);background:var(--card);cursor:pointer;color:var(--text)}
+.vacio-item .n{grid-row:span 2;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--bg-soft);font-size:12px;font-weight:700}
+.vacio-item small{color:var(--muted)}
+.vacio-item.est-ok{border:1px solid var(--ok)} .vacio-item.est-ok .n{background:var(--ok);color:#fff}
+.vacio-item.est-proc{border-color:var(--warn)}
+/* Inicio: cómo distinguir lo tuyo */
+.como-llenar .muestra{display:inline-block;padding:6px 12px;border-radius:var(--r-md);font-size:13.5px}
+.como-llenar .muestra.vacia{border:1px solid var(--border-strong);color:var(--field);font-style:italic;background:var(--card);min-width:150px}
+.como-llenar .muestra.sugerida{border:1.5px dashed var(--field);color:var(--muted);font-style:italic;background:repeating-linear-gradient(135deg,var(--bg),var(--bg) 8px,var(--bg-soft) 8px,var(--bg-soft) 16px)}
+.como-llenar .muestra.ejemplo{border:2px solid #c9a24a;background:#f7efdc;color:#7a5a12;font-weight:700}
+.revisado.on{border-color:var(--ok)}
+@media print{.franja-ej,.avance,.resp-todas,.resp-sn{display:none!important} html.modo-ejemplo main{outline:none;background:none}}
+.actrow:has(.resp-sn){grid-template-columns:118px minmax(0,1fr) 210px;padding:8px 6px;border-radius:8px}
+.resp-sn button{width:100%;text-align:center}
+@media(max-width:720px){.actrow:has(.resp-sn){grid-template-columns:104px 1fr}}
+
 </style>
 </head>
 <body>
@@ -1290,10 +1360,10 @@ let S;
 function estadoInicial(){ return {
   bloque:'inicio', visitados:{},
   proyecto:{nombre:'', productor:'', fecha:new Date().toISOString().slice(0,10), notas:''},
-  cultivo:'maiz', sistema:'milpa', tipoUP:0, superficie:1.5,
-  edo:'21', mun:'026', loc:'0001',
+  cultivo:'', sistema:'', tipoUP:'', superficie:'',   // todo empieza vacío: nada se precarga
+  edo:'', mun:'', loc:'',
   granja:[],                       // especies de la granja de traspatio
-  maizTipo:'nativo', maizRaza:'', maizVar:'',   // subcategoría del maíz
+  maizTipo:'', maizRaza:'', maizVar:'',   // subcategoría del maíz
   bovProp:'carne', bovSis:'vacabecerro', bovRaza:'',   // subcategoría de bovinos
   catExtra:[],                     // cultivos y especies agregados por el usuario {id, tipo, n, sci, col}
   variedad:{},                     // cultivo -> variedad, tipo o raza elegida o escrita
@@ -1303,22 +1373,33 @@ function estadoInicial(){ return {
   riesgo:{},                       // riesgo -> {p, i, c, off}
   prosp:null,                      // supuestos editados de la prospectiva (null = valores iniciales)
   reqInn:[],                       // [{t, b, d, fuente}]
-  manejo:{},                       // n paso -> {off:{codigo:true}, inn:[{t, el:[ids], imp:[5], nota}], imp:{codigo:[5]}}
+  manejo:{},                       // n paso -> {resp:{codigo:'si'|'no'}, inn:[{t, el:[ids], imp:[5], nota}], imp:{codigo:[5]}}; sin respuesta no cuenta
   elemExtra:[],                    // elementos agregados por el usuario {id,cat,n}
   precio:{},                       // id -> {p:precio unitario, u:unidad, q:cantidad por ha}
   valor:{},                        // id -> {eco,uso,cul,eia} 0..5
   pesosValor:{eco:1,uso:1,cul:1,eia:1},
   carbono:{diesel:'', nKg:'', urea:'', rend:''},
-  siembraDia:79,                  // fecha de siembra (día del año; 79 = 21 de marzo)
+  siembraDia:null,                // fecha de siembra (día del año); null = sin capturar
   fechas:{},                       // n paso -> {ini, fin, ev}
+  revisado:{},                     // bloques sin campos propios que el usuario marcó como revisados
   formulado:false
 }; }
-function guardar(){ try{ localStorage.setItem('telar_v2', JSON.stringify(S)); }catch(e){} }
-function cargar(){ try{ const g=JSON.parse(localStorage.getItem('telar_v2')||'null'); if(g && g.manejo) return Object.assign(estadoInicial(), g); }catch(e){} return estadoInicial(); }
+/* EJ = modo ejemplo (caso publicado de Calpan): nunca se guarda y no toca el proyecto del usuario */
+let EJ = false, S_USUARIO = null;
+function guardar(){ if(EJ) return; try{ localStorage.setItem('telar_v3', JSON.stringify(S)); }catch(e){} }
+function cargar(){ try{ const g=JSON.parse(localStorage.getItem('telar_v3')||'null'); if(g && g.manejo) return Object.assign(estadoInicial(), g); }catch(e){} return estadoInicial(); }
+/* Proyecto de la versión anterior (telar_v2): ahí las actividades del Stack contaban como practicadas salvo las desmarcadas.
+   Solo se recupera si el usuario lo pide; «off» se convierte en respuestas «sí» y «no». */
+function proyectoAnterior(){ try{ const g=JSON.parse(localStorage.getItem('telar_v2')||'null'); return g && g.manejo ? g : null; }catch(e){ return null; } }
+function migrarV2(g){ const s=Object.assign(estadoInicial(), g);
+  if((catalogoTodos().find(c=>c.id===s.cultivo)||{}).doc==='stack') PASOS.forEach(p=>{ const m=s.manejo[p.n]=s.manejo[p.n]||{inn:[], imp:{}}; const off=m.off||{}; m.resp={}; p.a.forEach(a=>{ m.resp[a[0]]=off[a[0]]?'no':'si'; }); m.off={}; });
+  return s; }
 const sistemasTodos = ()=> SISTEMAS.concat((S.sisExtra||[]).map(x=>({id:x.id, n:x.n, d:x.d, doc:false, usuario:true})));
-const sistemaSel = ()=> sistemasTodos().find(s=>s.id===S.sistema) || SISTEMAS[0];
-const tipoUPTexto = ()=> +S.tipoUP===-1 ? (S.upOtro||T('Otro','Other')) : tx(TIPOS_UP[S.tipoUP]||TIPOS_UP[0]);
-const cultivoSel = ()=> catalogoTodos().find(c=>c.id===S.cultivo) || CATALOGO[0];
+const SIS_VACIO = {id:'', n:E('Sin elegir','Not chosen'), doc:false, vacio:true};
+const CULT_VACIO = {id:'', tipo:'cultivo', ico:'i-telar', n:E('Cultivo sin elegir','Crop not chosen'), sci:'', doc:'base', col:'#9a9a9a', vacio:true};
+const sistemaSel = ()=> sistemasTodos().find(s=>s.id===S.sistema) || SIS_VACIO;
+const tipoUPTexto = ()=> S.tipoUP===''||S.tipoUP==null ? '—' : +S.tipoUP===-1 ? (S.upOtro||T('Otro','Other')) : (TIPOS_UP[S.tipoUP] ? tx(TIPOS_UP[S.tipoUP]) : '—');
+const cultivoSel = ()=> catalogoTodos().find(c=>c.id===S.cultivo) || CULT_VACIO;
 const conStack = ()=> cultivoSel().doc==='stack';
 /* Lugares de trabajo del autor (accesos directos del Bloque 2) */
 const LUGARES = [
@@ -1826,12 +1907,15 @@ const isoDeDia = (d)=>{ const t=new Date(Date.UTC(2026,0,1+Math.round(((d%365)+3
 const diaDeIso = (s)=>{ const t=new Date(s+'T00:00:00Z'); return Math.round((t-Date.UTC(t.getUTCFullYear(),0,1))/864e5); };
 /* Ventana por omisión de un paso del maíz */
 function ventanaPaso(p){ const s=S.siembraDia;
+  if((p.dds||p.n===18) && s==null) return {ini:null, fin:null, origen:'sin'};
   if(p.dds){ const a=s+p.dds[0], b=s+p.dds[p.dds.length-1]+(p.dds.length>1?0:6); return {ini:a%365, fin:b%365, origen:'dds'}; }
   if(p.n===18) return {ini:s, fin:(s+6)%365, origen:'siembra'};
   const v=p.v; return {ini:MES_DIA[v[0]-1], fin:(v[v.length-1]===12?364:MES_DIA[v[v.length-1]]-1), origen:'fig4'}; }
 /* Fechas efectivas de todos los pasos (con las ediciones del usuario) */
 function calendarioPasos(){ const out=[];
-  if(conStack()) PASOS.forEach(p=>{ const f=S.fechas[p.n]||{}, w=ventanaPaso(p);
+  if(conStack()) PASOS.forEach(p=>{ const f=S.fechas[p.n]||{}, w=ventanaPaso(p), m=manejoDe(p.n);
+    if(!p.a.some(a=>m.resp[a[0]]==='si') && !(m.inn||[]).length) return;           // paso sin actividades practicadas
+    if(f.ini==null && (w.ini==null || (w.origen==='fig4' && !EJ))) return;           // sin fecha propia (la ventana de Calpan solo en el ejemplo)
     out.push({n:p.n, nombre:E(p.es,p.en), b:p.b, ev:f.ev||EV_PASO[p.n]||'otro', ini:f.ini!=null?f.ini:w.ini, fin:f.fin!=null?f.fin:w.fin, origen:f.ini!=null?'usuario':w.origen,
       inn:(manejoDe(p.n).inn||[]).length}); });
   else Object.entries(S.manejo).forEach(([n,m])=>{ const f=S.fechas[n]||{}; if(f.ini==null) return; out.push({n:+n, nombre:E(m.nombre||'',m.nombre||''), b:'', ev:f.ev||'otro', ini:f.ini, fin:f.fin!=null?f.fin:f.ini, origen:'usuario', inn:(m.inn||[]).length}); });
@@ -2124,22 +2208,97 @@ const EJEMPLO = {
       T('Imprime o guarda en PDF, y exporta en JSON o CSV para compartirlo sin conexión.','Print or save as PDF, and export JSON or CSV to share offline.')
     ])})
 };
+/* Botón discreto en cada bloque: el ejemplo NUNCA se mezcla con los campos del usuario; se abre en una ventana aparte */
 function ejemploCalpan(id){
-  if(conStack() || !EJEMPLO[id]) return '';
-  const e=EJEMPLO[id]();
+  if(EJ || !EJEMPLO[id]) return '';
   return `<div class="ejemplo-calpan aparece no-print"><span class="ej-ico">${ill('c-maiz')}</span><div class="ej-txt">
-    <div class="ej-k">${T('Así se hizo con el maíz criollo de Calpan, Puebla','How it was done with landrace maize in Calpan, Puebla')}</div>
-    <p>${e.corto}</p>
-    <button class="btn ghost sm" data-ejemplo="${id}">${T('Abrir el ejemplo y los pasos para llenarlo','Open the example and how to fill it in')} →</button></div></div>`; }
+    <div class="ej-k">${T('¿No sabes cómo llenarlo? Mira un caso publicado','Not sure how to fill it in? See a published case')}</div>
+    <p class="nota" style="margin:2px 0 6px">${T('Maíz criollo de Calpan, Puebla (Díaz-José et al., 2026). Se abre en una ventana aparte y no cambia tus datos.','Landrace maize in Calpan, Puebla (Díaz-José et al., 2026). It opens in a separate window and does not change your data.')}</p>
+    <button class="btn ghost sm" data-ejemplo="${id}">${T('Ver el ejemplo publicado','See the published example')} →</button></div></div>`; }
 function abrirEjemplo(id){ const e=EJEMPLO[id](); let d=$('#dlgEjemplo');
-  if(!d){ d=document.createElement('dialog'); d.id='dlgEjemplo'; document.body.appendChild(d); d.addEventListener('click',ev=>{ if(ev.target===d) d.close(); }); }
-  d.innerHTML=`<div class="dh"><h2>${ill('c-maiz','','width:30px;height:36px;vertical-align:middle;margin-right:6px')}${T('Ejemplo: maíz criollo, Calpan','Example: landrace maize, Calpan')} · ${esc(tx(B(id).corto))}</h2><button class="ibtn round" onclick="this.closest('dialog').close()" aria-label="×">✕</button></div>
-   <div class="db ej-dlg"><h3>${T('Lo que se registró en Calpan','What was recorded in Calpan')} ${marcaDato()}</h3>${e.hecho}
-   <h3>${T('Cómo llenarlo para','How to fill it in for')} ${esc(tx(cultivoSel().n))}</h3>${e.pasos}
-   ${fuenteArt()}</div>`;
+  if(!d){ d=document.createElement('dialog'); d.id='dlgEjemplo'; d.className='dlg-ejemplo'; document.body.appendChild(d); d.addEventListener('click',ev=>{ if(ev.target===d) d.close(); }); }
+  d.innerHTML=`<div class="marca-agua" aria-hidden="true">${T('EJEMPLO · NO SON TUS DATOS','EXAMPLE · NOT YOUR DATA')}</div>
+   <div class="dh"><h2>${ill('c-maiz','','width:30px;height:36px;vertical-align:middle;margin-right:6px')}${T('Ejemplo publicado: maíz criollo, Calpan, Puebla','Published example: landrace maize, Calpan, Puebla')} · ${esc(tx(B(id).corto))}</h2><button class="ibtn round" onclick="this.closest('dialog').close()" aria-label="×">✕</button></div>
+   <div class="db ej-dlg"><p class="ej-aviso">${T('Esto es solo de consulta: son los datos de otra localidad. Al cerrar esta ventana, tus campos siguen exactamente como los dejaste.','This is for reference only: these are another locality’s data. When you close this window your fields stay exactly as you left them.')}</p>
+   <h3>${T('Lo que se registró en Calpan','What was recorded in Calpan')} ${marcaDato()}</h3>${e.hecho}
+   <h3>${T('Cómo llenarlo con tus propios datos','How to fill it in with your own data')}</h3>${e.pasos}
+   ${fuenteArt()}
+   <div class="row" style="gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn" onclick="this.closest('dialog').close()">${T('Cerrar y volver a mis datos','Close and return to my data')}</button><button class="btn ghost" data-entrar-ej>${T('Explorar el ejemplo completo en la app','Explore the full example in the app')}</button></div></div>`;
   d.showModal(); }
 document.addEventListener('click',ev=>{ const t=ev.target.closest('[data-ejemplo]'); if(t) abrirEjemplo(t.dataset.ejemplo); });
 function ponerEjemplo(id, el){ const h=ejemploCalpan(id); if(!h) return; const cab=$('.bhead',el); if(cab) cab.insertAdjacentHTML('afterend',h); else el.insertAdjacentHTML('afterbegin',h); }
+
+</script>
+<script>
+"use strict";
+/* =====================================================================
+   Llenado por el usuario, modo ejemplo y bloques sin datos.
+   - avance(id): cuántos campos de un bloque llenó la persona (nunca cuenta
+     sugerencias ni el ejemplo publicado) → Pendiente / En proceso / Completo.
+   - Modo ejemplo: carga el caso publicado de Calpan (Díaz-José et al., 2026)
+     en un estado aparte que no se guarda; una franja fija lo anuncia y el
+     proyecto del usuario queda intacto.
+   - Los bloques de resultados sin actividades muestran qué falta en vez de
+     resultados vacíos.
+   ===================================================================== */
+const BLOQUES_LLENAR = ['cultivo','region','requerimientos','manejo','regeneracion','riesgos','elementos','precios'];
+const BLOQUES_RESULTADO = ['formulacion','tablero','sostenible','prospectiva','informe'];
+function avance(id){ let h=0, t=0, nota='';
+  if(id==='cultivo'){ const c=[!!S.cultivo, !!S.sistema, S.tipoUP!==''&&S.tipoUP!=null, +S.superficie>0]; t=c.length; h=c.filter(Boolean).length; }
+  else if(id==='region'){ const c=[!!S.edo, !!S.mun, !!S.loc]; t=3; h=c.filter(Boolean).length; }
+  else if(id==='requerimientos'){ if(conStack()){ t=REQ_TRAD.length; h=REQ_TRAD.filter((r,i)=>(S.reqEst||{})[i]).length; } else { t=1; h=S.reqInn.length?1:0; } }
+  else if(id==='manejo'){ if(conStack()){ t=N_ACT_STACK(); h=PASOS.reduce((s,p)=>s+p.a.filter(a=>manejoDe(p.n).resp[a[0]]).length,0); }
+    else { t=1; h=actividades().length?1:0; } }
+  else if(id==='regeneracion'){ t=REGEN_IND.length; h=Object.keys(S.regen||{}).filter(k=>S.regen[k]!==''&&S.regen[k]!=null).length; }
+  else if(id==='riesgos'){ t=RIESGOS.length; const U=S.riesgo||{}; h=RIESGOS.filter(d=>{ const u=U[d.id]||{}; return u.off===true||u.ok===true||(u.p!=null&&u.i!=null); }).length; }
+  else if(id==='elementos'){ t=1; h=(S.revisado||{}).elementos?1:0; }
+  else if(id==='precios'){ const ids=Object.keys(participacion()); t=ids.length; h=ids.filter(k=>{ const v=S.valor[k]||{}, p=S.precio[k]||{}; return ['eco','uso','cul','eia'].some(d=>v[d]!==''&&v[d]!=null) || (p.p!==''&&p.p!=null); }).length;
+    if(!t) nota=T('primero responde el Bloque 4','first answer Block 4'); }
+  else return null;
+  const f=t?h/t:0, estado=!h?'pend':h>=t?'ok':'proc';
+  return {h, t, f, estado, nota, txt:{pend:T('Pendiente','Pending'), proc:T('En proceso','In progress'), ok:T('Completo','Complete')}[estado]}; }
+function avanceTotal(){ const l=BLOQUES_LLENAR.map(avance).filter(Boolean); return l.reduce((s,a)=>s+a.f,0)/l.length; }
+/* Franja de avance bajo el título de cada bloque que se llena */
+function franjaAvance(id){ if(EJ) return `<div class="avance ej"><b>${T('Ejemplo publicado','Published example')}</b> · ${T('estos datos son del caso de Calpan, Puebla; no son tuyos','these data are from the Calpan, Puebla case; they are not yours')}</div>`;
+  const a=avance(id); if(!a) return '';
+  return `<div class="avance est-${a.estado}"><div class="av-barra"><i style="width:${100*a.f}%"></i></div><span><b>${a.h} ${T('de','of')} ${a.t}</b> ${T('llenados por ti','filled in by you')} · ${a.txt}${a.nota?' · '+esc(a.nota):''}</span></div>`; }
+
+/* ---------- Modo ejemplo (caso publicado de Calpan) ---------- */
+function estadoCalpan(){ const s=estadoInicial();
+  Object.assign(s, {cultivo:'maiz', sistema:'milpa', tipoUP:0, edo:'21', mun:'026', loc:'0001', maizTipo:'nativo', siembraDia:79, formulado:true,
+    proyecto:{nombre:T('Ejemplo publicado: maíz criollo, Calpan, Puebla','Published example: landrace maize, Calpan, Puebla'), productor:T('Díaz-José et al. (2026)','Díaz-José et al. (2026)'), fecha:'2026-01-01', notas:''}});
+  PASOS.forEach(p=>{ s.manejo[p.n]={resp:Object.fromEntries(p.a.map(a=>[a[0],'si'])), inn:[], imp:{}}; });
+  return s; }
+function entrarEjemplo(){ if(EJ) return; S_USUARIO=S; const b=S.bloque; S=estadoCalpan(); S.bloque=b==='inicio'?'tablero':b; EJ=true; document.documentElement.classList.add('modo-ejemplo'); render(); scrollTo(0,0);
+  toast(T('Modo ejemplo: tus datos no cambian','Example mode: your data stay unchanged')); }
+function salirEjemplo(){ if(!EJ) return; const b=S.bloque; S=S_USUARIO; S_USUARIO=null; EJ=false; S.bloque=b; document.documentElement.classList.remove('modo-ejemplo'); render(); scrollTo(0,0);
+  toast(T('De vuelta a tu proyecto','Back to your project')); }
+function franjaEjemplo(){ let f=$('#franjaEj'); if(!EJ){ if(f) f.remove(); return; }
+  if(!f){ f=document.createElement('div'); f.id='franjaEj'; f.className='franja-ej no-print'; document.body.prepend(f); }
+  f.innerHTML=`<span>⚑ <b>${T('Estás viendo el EJEMPLO publicado de Calpan, Puebla.','You are viewing the published EXAMPLE of Calpan, Puebla.')}</b> ${T('Tus datos no han cambiado y nada de esto se guarda.','Your data have not changed and nothing here is saved.')}</span><button class="btn sm" data-salir-ej>${T('Salir del ejemplo','Leave the example')} ✕</button>`; }
+document.addEventListener('click',ev=>{ if(ev.target.closest('[data-entrar-ej]')){ const d=ev.target.closest('dialog'); if(d) d.close(); entrarEjemplo(); } if(ev.target.closest('[data-salir-ej]')) salirEjemplo(); });
+
+/* ---------- Bloques de resultados sin datos ---------- */
+function renderVacio(el, id){
+  el.innerHTML=`${cabecera(id,'')}<div class="card vacio-res"><h2>${T('Todavía no hay datos tuyos para calcular este bloque','There are no data of yours to compute this block yet')}</h2>
+   <p>${T('Los resultados se calculan solo con lo que tú llenas. Para empezar, responde en el Bloque 4 qué actividades practicas o agrega las tuyas.','Results are computed only from what you fill in. To start, answer in Block 4 which activities you practise or add your own.')}</p>
+   <div class="vacio-lista">${BLOQUES_LLENAR.map(k=>{ const a=avance(k), b=B(k); return `<button class="vacio-item est-${a.estado}" data-ir="${k}"><span class="n">${b.n}</span><b>${esc(tx(b.corto))}</b><small>${a.h} / ${a.t} · ${a.txt}</small></button>`; }).join('')}</div>
+   <div class="row" style="gap:10px;flex-wrap:wrap;margin-top:14px"><button class="btn" data-ir="manejo">${T('Ir al Bloque 4 · Manejo','Go to Block 4 · Management')} →</button><button class="btn ghost" data-entrar-ej>${T('Ver cómo se ve con el ejemplo publicado','See how it looks with the published example')}</button></div></div>${siguiente(id)}`; }
+
+/* ---------- Bloque sin campos propios: «ya lo revisé» ---------- */
+function ponerRevisado(id, el){ if(id!=='elementos'||EJ) return; const ok=(S.revisado||{}).elementos, nx=$('.next',el);
+  const h=`<div class="card revisado ${ok?'on':''} no-print"><label class="row" style="gap:10px;align-items:center;cursor:pointer"><input type="checkbox" id="chkRev" ${ok?'checked':''}><span><b>${T('Ya revisé los elementos de mi sistema','I have reviewed my system’s elements')}</b><br><small class="muted">${T('Márcalo cuando hayas agregado los que faltan; así este bloque cuenta como completo.','Tick it once you have added the missing ones; this block then counts as complete.')}</small></span></label></div>`;
+  if(nx) nx.insertAdjacentHTML('beforebegin',h); else el.insertAdjacentHTML('beforeend',h);
+  $('#chkRev',el).onchange=e=>{ S.revisado=S.revisado||{}; S.revisado.elementos=e.target.checked; guardar(); render(); }; }
+
+/* ---------- Proyecto de la versión anterior ---------- */
+function tarjetaAnterior(){ let visto=false; try{ visto=localStorage.getItem('telar_v2_visto')==='1' || avanceTotal()>0; }catch(e){}
+  const g=!EJ&&!visto?proyectoAnterior():null; if(!g) return '';
+  return `<div class="alert warn" id="tAnterior"><p><b>${T('Hay un proyecto guardado con la versión anterior de Ratio Telar.','There is a project saved with the previous version of Ratio Telar.')}</b> ${T('En esa versión las actividades del caso de Calpan venían marcadas como practicadas. Si tú las revisaste, recupéralo; si no, empieza en blanco.','In that version the Calpan case activities came ticked as practised. If you reviewed them, recover it; if not, start blank.')}</p>
+    <div class="row" style="gap:8px"><button class="btn sm" id="bRecup">${T('Recuperar mi proyecto','Recover my project')}</button><button class="btn sm ghost" id="bBlanco">${T('Empezar en blanco','Start blank')}</button></div></div>`; }
+function enlazarAnterior(el){ const r=$('#bRecup',el), b=$('#bBlanco',el); if(!r) return;
+  r.onclick=()=>{ S=migrarV2(proyectoAnterior()); S.bloque='inicio'; guardar(); try{ localStorage.setItem('telar_v2_visto','1'); }catch(e){} render(); toast(T('Proyecto recuperado','Project recovered')); };
+  b.onclick=()=>{ try{ localStorage.setItem('telar_v2_visto','1'); }catch(e){} guardar(); render(); }; }
 
 </script>
 <script>
@@ -2357,13 +2516,15 @@ function diaPaso(p, siembraDia){ if(p.dds){ const m = p.dds.length>1 ? (p.dds[0]
 const todosElem = ()=> ELEM.concat(S.elemExtra||[]);
 const elemPorId = (id)=> todosElem().find(e=>e.id===id);
 const nombreEl = (id)=> { const e=elemPorId(id); return e ? tx(e.n) : id; };
-const manejoDe = (n)=> (S.manejo[n] = S.manejo[n] || {off:{}, inn:[], imp:{}});
+const manejoDe = (n)=>{ const m = S.manejo[n] = S.manejo[n] || {resp:{}, inn:[], imp:{}}; m.resp=m.resp||{}; m.inn=m.inn||[]; m.imp=m.imp||{}; return m; };
+const N_ACT_STACK = ()=> PASOS.reduce((s,p)=>s+p.a.length,0);
 
-/* Actividades del sistema: tradicionales (Figura 4) que se practican + innovadoras agregadas */
+/* Actividades del sistema: las tradicionales del Stack publicado SOLO si el usuario respondió «sí, la practico»
+   (sin respuesta no cuentan: nada se precarga) + las innovadoras o propias que agregó */
 function actividades(){
   const out=[];
   if(conStack()) PASOS.forEach(p=>{ const m=manejoDe(p.n);
-    p.a.forEach(a=>{ if(m.off[a[0]]) return; out.push({paso:p.n, b:p.b, cod:a[0], n:E(a[1],a[2]), tipo:'trad', el:(ACT_EL[a[0]]||'').split(' ').filter(Boolean), imp:m.imp[a[0]]||null}); });
+    p.a.forEach(a=>{ if(m.resp[a[0]]!=='si') return; out.push({paso:p.n, b:p.b, cod:a[0], n:E(a[1],a[2]), tipo:'trad', el:(ACT_EL[a[0]]||'').split(' ').filter(Boolean), imp:m.imp[a[0]]||null}); });
     (m.inn||[]).forEach((x,i)=> out.push({paso:p.n, b:p.b, cod:'N'+p.n+'.'+(i+1), n:E(x.t,x.t), tipo:'inn', el:x.el||[], imp:x.imp||null})); });
   else Object.entries(S.manejo).forEach(([n,m])=> (m.inn||[]).forEach((x,i)=> out.push({paso:+n, b:'', cod:'N'+n+'.'+(i+1), n:E(x.t,x.t), tipo:'inn', el:x.el||[], imp:x.imp||null})));
   return out;
@@ -2381,7 +2542,10 @@ function construirRed(sinPM){
   const acts=actividades(), part=participacion(); const val={}; todosElem().forEach(e=>val[e.id]=valorEl(e.id,part).v);
   const W=new Map(), key=(a,b)=>a<b?a+'|'+b:b+'|'+a, add=(a,b,w,act)=>{ if(a===b) return; const k=key(a,b); const o=W.get(k)||{a:a<b?a:b, b:a<b?b:a, w:0, n:0, acts:[]}; o.w+=w; o.n++; if(act) o.acts.push(act); W.set(k,o); };
   acts.forEach(x=>{ const el=[...new Set(x.el)].filter(id=>val[id]!=null && !(sinPM&&id==='PM')); for(let i=0;i<el.length;i++) for(let j=i+1;j<el.length;j++) add(el[i],el[j],Math.sqrt((val[el[i]]||0.05)*(val[el[j]]||0.05)),x.cod); });
-  if(conStack()) LAZOS.forEach(([a,b])=>{ if(sinPM&&(a==='PM'||b==='PM')) return; add(a,b,Math.sqrt((val[a]||0.05)*(val[b]||0.05)),null); });
+  // Lazos estructurales documentados en Calpan: en el ejemplo publicado entran todos (red validada);
+  // en tu proyecto, solo los que tocan un elemento de tus actividades, para no traer actores de otra localidad.
+  const enActs=new Set(acts.flatMap(x=>x.el));
+  if(conStack() && acts.length) LAZOS.forEach(([a,b])=>{ if(sinPM&&(a==='PM'||b==='PM')) return; if(!EJ && !enActs.has(a) && !enActs.has(b)) return; add(a,b,Math.sqrt((val[a]||0.05)*(val[b]||0.05)),null); });
   const usados=new Set(); W.forEach(o=>{ usados.add(o.a); usados.add(o.b); });
   const nodos=todosElem().filter(e=>usados.has(e.id)).map(e=>({id:e.id, nombre:tx(e.n), cat:e.cat, col:CATS[e.cat].col, val:val[e.id], part:part[e.id]||0}));
   const aristas=[...W.values()];
@@ -2636,6 +2800,7 @@ function lineas(series, opt={}){ const W=620,H=330,L=56,B=40,R=110,Tp=16; const 
    ===================================================================== */
 const REG_BX = {N:{n:E('Norte','North'),col:'#b05434'}, CN:{n:E('Centro norte','Centre-north'),col:'#c27c0e'}, C:{n:E('Centro','Centre'),col:'#2f7d8a'}, S:{n:E('Sur','South'),col:'#5f8f3e'}};
 const edoDe = (c)=> TERR.estados.find(e=>e[0]===c);
+const EDO_VACIO = ['', '—', '', '', null, ''];   // estado sin elegir
 const isoA = (c)=> (edoDe(c)||[])[5];
 const proyecta = (lon,lat)=> [PROY.a*(lon+102)*Math.pow(Math.cos(lat*Math.PI/180),PROY.k)+PROY.b, PROY.c*lat+PROY.d];
 
@@ -3039,40 +3204,45 @@ function informeProspectiva(){ const sim=simularProspectiva(), lec=lecturaProsp(
 const NIVEL04 = [E('Nulo','None'),E('Bajo','Low'),E('Medio','Medium'),E('Alto','High'),E('Muy alto','Very high')];
 const NIVEL15 = [null,E('Muy bajo','Very low'),E('Bajo','Low'),E('Medio','Medium'),E('Alto','High'),E('Muy alto','Very high')];
 const _tiene = (a, ids)=> a.el.some(id=>ids.includes(id));
+const SIN_SUG = (m)=>({s:null, m:m||T('sin datos todavía: responde el Bloque 4 o mueve la perilla','no data yet: answer Block 4 or move the knob')});
 const DIV_SIS = {milpa:3, miaf:4, vinedo:1, mono:1, agrofor:4, traspatio:5, pastoreo:1, apiario:1, cinegetico:3, confinado:1};
 const REGEN_IND = [
   {id:'labranza', pr:E('Mínima perturbación','Minimal disturbance'), n:E('Labranza mínima','Minimal tillage'), col:'#9a6a3a',
    q:E('¿Cuántos pasos de maquinaria o arado mueven el suelo en cada ciclo? Menos pasos, menos erosión y más vida en el suelo.','How many machinery or plough passes move the soil each cycle? Fewer passes, less erosion and more soil life.'),
-   auto:(acts)=>{ const n=acts.filter(a=>_tiene(a,['ARADO','SUBS','RASTRA'])&&!/decisi|determinaci|evaluaci|decision/i.test(a.n.es||'')).length; return {s:n===0?4:n===1?3:n===2?2:n<=4?1:0, m:T(`${n} actividades de labranza practicadas`,`${n} tillage activities practised`)}; }},
+   auto:(acts)=>{ if(!acts.length) return SIN_SUG(); const n=acts.filter(a=>_tiene(a,['ARADO','SUBS','RASTRA'])&&!/decisi|determinaci|evaluaci|decision/i.test(a.n.es||'')).length; return {s:n===0?4:n===1?3:n===2?2:n<=4?1:0, m:T(`${n} actividades de labranza practicadas`,`${n} tillage activities practised`)}; }},
   {id:'cobertura', pr:E('Suelo cubierto','Soil cover'), n:E('Suelo cubierto todo el año','Soil covered all year'), col:'#7a9a3a',
    q:E('¿Cuántos meses del año el suelo está cubierto por el cultivo, rastrojo, acolchado o abono verde?','How many months a year is the soil covered by crop, stubble, mulch or green manure?'),
-   auto:(acts)=>{ const r=acts.some(a=>_tiene(a,['RAST'])&&a.v&&a.v[0]>0); return {s:r?2:1, m:r?T('el rastrojo se deja o se incorpora; ajusta según los meses de cobertura','stubble is left or incorporated; adjust to months of cover'):T('sin dato de cobertura: ajústalo','no cover data: adjust it')}; }},
+   auto:(acts)=>{ if(!acts.length) return SIN_SUG(); const r=acts.some(a=>_tiene(a,['RAST'])&&a.v&&a.v[0]>0); return {s:r?2:1, m:r?T('el rastrojo se deja o se incorpora; ajusta según los meses de cobertura','stubble is left or incorporated; adjust to months of cover'):T('sin dato de cobertura: ajústalo','no cover data: adjust it')}; }},
   {id:'diversidad', pr:E('Diversidad','Diversity'), n:E('Diversidad de especies','Species diversity'), col:'#2f8f6a',
    q:E('¿Cuántas especies se cultivan o crían juntas en la unidad (incluidos árboles y animales)?','How many species are grown or raised together in the unit (including trees and animals)?'),
-   auto:()=>{ const k=S.cultivo==='granja'?Math.max(1,S.granja.length):(DIV_SIS[S.sistema]||1); return {s:k<=1?0:k===2?1:k===3?2:k<=5?3:4, m:T(`${k} especies según el sistema elegido`,`${k} species according to the chosen system`)}; }},
+   auto:()=>{ if(!S.sistema && S.cultivo!=='granja') return SIN_SUG(T('elige el sistema de producción (Bloque 1) o mueve la perilla','choose the production system (Block 1) or move the knob')); const k=S.cultivo==='granja'?Math.max(1,S.granja.length):(DIV_SIS[S.sistema]||1); return {s:k<=1?0:k===2?1:k===3?2:k<=5?3:4, m:T(`${k} especies según el sistema elegido`,`${k} species according to the chosen system`)}; }},
   {id:'raices', pr:E('Raíces vivas','Living roots'), n:E('Raíces vivas el mayor tiempo','Living roots as long as possible'), col:'#5f8f3e',
    q:E('¿Cuántos meses al año hay plantas vivas en la parcela (cultivo, cobertera, árboles, pastos)?','How many months a year are there living plants on the plot (crop, cover crop, trees, pasture)?'),
-   auto:()=>{ const perenne=['miaf','agrofor','vinedo','pastoreo','traspatio'].includes(S.sistema); return {s:perenne?3:2, m:perenne?T('sistema con plantas perennes','system with perennial plants'):T('cultivo de un ciclo: ajusta según los meses con plantas vivas','single-cycle crop: adjust to months with living plants')}; }},
+   auto:()=>{ if(!S.sistema) return SIN_SUG(T('elige el sistema de producción (Bloque 1) o mueve la perilla','choose the production system (Block 1) or move the knob')); const perenne=['miaf','agrofor','vinedo','pastoreo','traspatio'].includes(S.sistema); return {s:perenne?3:2, m:perenne?T('sistema con plantas perennes','system with perennial plants'):T('cultivo de un ciclo: ajusta según los meses con plantas vivas','single-cycle crop: adjust to months with living plants')}; }},
   {id:'animales', pr:E('Integración animal','Livestock integration'), n:E('Animales integrados al sistema','Animals integrated into the system'), col:'#b0703e',
    q:E('¿Hay animales que pastorean el rastrojo, aportan estiércol o conviven en la unidad?','Are there animals grazing stubble, providing manure or living in the unit?'),
-   auto:(acts)=>{ const esp=cultivoSel().tipo==='especie'||['pastoreo','traspatio'].includes(S.sistema); const forr=acts.some(a=>_tiene(a,['FORR'])); return {s:esp?3:forr?2:0, m:esp?T('unidad con animales','unit with animals'):forr?T('se produce forraje para animales','fodder is produced for animals'):T('sin animales registrados','no animals recorded')}; }},
+   auto:(acts)=>{ if(!acts.length && !S.cultivo && !S.sistema) return SIN_SUG(); const esp=cultivoSel().tipo==='especie'||['pastoreo','traspatio'].includes(S.sistema); const forr=acts.some(a=>_tiene(a,['FORR'])); return {s:esp?3:forr?2:0, m:esp?T('unidad con animales','unit with animals'):forr?T('se produce forraje para animales','fodder is produced for animals'):T('sin animales registrados','no animals recorded')}; }},
   {id:'insumos', pr:E('Menos síntesis','Fewer synthetics'), n:E('Menos agroquímicos de síntesis','Fewer synthetic agrochemicals'), col:'#2f7d8a',
    q:E('¿Qué parte de las actividades con insumos usa agroquímicos de síntesis frente a bioinsumos?','What share of input activities uses synthetic agrochemicals versus bio-inputs?'),
-   auto:(acts)=>{ const s=acts.filter(a=>_tiene(a,['INSEC','HERB','FERTG','FOLIAR'])).length, b=acts.filter(a=>_tiene(a,['BIOI'])).length; if(!s&&!b) return {s:4, m:T('sin insumos registrados','no inputs recorded')}; const r=s/(s+b); return {s:Math.round(4*(1-r)), m:T(`${s} actividades con agroquímicos y ${b} con bioinsumos`,`${s} activities with agrochemicals and ${b} with bio-inputs`)}; }},
+   auto:(acts)=>{ if(!acts.length) return SIN_SUG(); const s=acts.filter(a=>_tiene(a,['INSEC','HERB','FERTG','FOLIAR'])).length, b=acts.filter(a=>_tiene(a,['BIOI'])).length; if(!s&&!b) return {s:4, m:T('sin insumos registrados','no inputs recorded')}; const r=s/(s+b); return {s:Math.round(4*(1-r)), m:T(`${s} actividades con agroquímicos y ${b} con bioinsumos`,`${s} activities with agrochemicals and ${b} with bio-inputs`)}; }},
   {id:'mo', pr:E('M. orgánica','Org. matter'), n:E('Materia orgánica y residuos','Organic matter and residues'), col:'#7a4f9a',
    q:E('¿Se incorporan rastrojo, estiércol o composta, y se mide la materia orgánica del suelo?','Are stubble, manure or compost incorporated, and is soil organic matter measured?'),
-   auto:(acts)=>{ const r=acts.filter(a=>_tiene(a,['RAST'])&&a.v&&a.v[0]>0).length, lab=acts.some(a=>_tiene(a,['LAB'])); const s=Math.min(4,(r===0?1:r===1?2:3)+(lab?1:0)); return {s, m:T(`${r} actividades que devuelven residuos al suelo${lab?'; con análisis de suelo':''}`,`${r} activities returning residues to soil${lab?'; with soil testing':''}`)}; }},
+   auto:(acts)=>{ if(!acts.length) return SIN_SUG(); const r=acts.filter(a=>_tiene(a,['RAST'])&&a.v&&a.v[0]>0).length, lab=acts.some(a=>_tiene(a,['LAB'])); const s=Math.min(4,(r===0?1:r===1?2:3)+(lab?1:0)); return {s, m:T(`${r} actividades que devuelven residuos al suelo${lab?'; con análisis de suelo':''}`,`${r} activities returning residues to soil${lab?'; with soil testing':''}`)}; }},
   {id:'saber', pr:E('Saber local','Local knowledge'), n:E('Saber local y semilla propia','Local knowledge and own seed'), col:'#d9a441',
    q:E('¿Qué tanto se apoya el manejo en el saber tácito y cultural, la selección de semilla propia y la familia?','How much does management rely on tacit and cultural knowledge, own seed selection and the family?'),
-   auto:(acts)=>{ if(!acts.length) return {s:2, m:T('sin actividades: ajústalo','no activities: adjust it')}; const f=acts.filter(a=>_tiene(a,['KTAC','KCUL','LUNA','FAM','SEMS'])).length/acts.length; return {s:Math.min(4,Math.round(8*f)), m:T(`${Math.round(100*f)} % de las actividades usan saber local o semilla propia`,`${Math.round(100*f)} % of activities use local knowledge or own seed`)}; }}
+   auto:(acts)=>{ if(!acts.length) return SIN_SUG(); const f=acts.filter(a=>_tiene(a,['KTAC','KCUL','LUNA','FAM','SEMS'])).length/acts.length; return {s:Math.min(4,Math.round(8*f)), m:T(`${Math.round(100*f)} % de las actividades usan saber local o semilla propia`,`${Math.round(100*f)} % of activities use local knowledge or own seed`)}; }}
 ];
-const CLASE_IR = v=> v==null?null : v<0.25?{n:E('Degradante','Degrading'),c:'bad'} : v<0.5?{n:E('Convencional','Conventional'),c:'warn'} : v<0.75?{n:E('En transición regenerativa','In regenerative transition'),c:'info'} : {n:E('Regenerativo','Regenerative'),c:'ok'};
+const SIN_DATO_CL = {n:E('Sin dato','No data'), c:'info'};
+const CLASE_IR = v=> v==null?SIN_DATO_CL : v<0.25?{n:E('Degradante','Degrading'),c:'bad'} : v<0.5?{n:E('Convencional','Conventional'),c:'warn'} : v<0.75?{n:E('En transición regenerativa','In regenerative transition'),c:'info'} : {n:E('Regenerativo','Regenerative'),c:'ok'};
+/* Cada perilla: confirmada por el usuario (la movió o aceptó la sugerencia) o, si no, sugerida (punteada) o sin dato.
+   IR se calcula con los valores disponibles; es «provisional» mientras alguna perilla no esté confirmada. */
 function regeneracion(){ const acts=sostenibilidad().acts, R=S.regen||{};
-  const ind=REGEN_IND.map(d=>{ const a=d.auto(acts), u=R[d.id]; const s=(u!=null&&u!=='')?+u:a.s; return {...d, sug:a.s, motivo:a.m, s, ajustado:(u!=null&&u!=='')}; });
-  const IR=ind.reduce((t,x)=>t+x.s,0)/(4*ind.length);
+  const ind=REGEN_IND.map(d=>{ const a=d.auto(acts), u=R[d.id], conf=(u!=null&&u!==''); const s=conf?+u:a.s; return {...d, sug:a.s, motivo:a.m, s, conf, ajustado:conf&&+u!==a.s}; });
+  const conV=ind.filter(x=>x.s!=null), nConf=ind.filter(x=>x.conf).length;
+  const IR=conV.length?conV.reduce((t,x)=>t+x.s,0)/(4*conV.length):null;
   const regenAct=acts.map(a=>({a, r:(a.v[0]+a.v[1]+a.v[3]+a.v[4])})).sort((x,y)=>y.r-x.r);
   const base=S.regenBase||null, IRb=base?base.IR:null;
-  return {ind, IR, clase:CLASE_IR(IR), sube:regenAct.filter(x=>x.r>0).slice(0,6), baja:regenAct.filter(x=>x.r<0).reverse().slice(0,6), base, dIR:IRb!=null?IR-IRb:null, mo:S.regenMO||{}}; }
+  return {ind, IR, nConf, provisional:nConf<ind.length, faltan:ind.length-nConf, clase:CLASE_IR(IR), sube:regenAct.filter(x=>x.r>0).slice(0,6), baja:regenAct.filter(x=>x.r<0).reverse().slice(0,6), base, dIR:IRb!=null&&IR!=null?IR-IRb:null, mo:S.regenMO||{}}; }
 
 /* ---------------- RIESGOS ---------------- */
 const CAT_R = {clima:{n:E('Climáticos','Climatic'),col:'#2d78b0'}, bio:{n:E('Biológicos','Biological'),col:'#5f8f3e'}, mercado:{n:E('Mercado','Market'),col:'#c98b21'}, social:{n:E('Sociales','Social'),col:'#b05434'}, inst:{n:E('Institucionales','Institutional'),col:'#5a6b8a'}, recursos:{n:E('Recursos naturales','Natural resources'),col:'#7a4f9a'}};
@@ -3106,20 +3276,21 @@ function sugerenciaRiesgo(id, acts, P){ const e=P.esc.ten; let p=3, i=3, m=T('mo
   if(id==='saber'){ i=1+Math.round(4*Math.min(1,kt*2)); m=T(`impacto según el ${Math.round(100*kt)} % de actividades que dependen del saber local`,`impact from the ${Math.round(100*kt)} % of activities relying on local knowledge`); }
   if(['sequia','calor'].includes(id)){ p=e.dT>=0.2?4:3; m=T(`calentamiento del escenario tendencial (${e.dT} °C por década; IPCC, 2018)`,`trend-scenario warming (${e.dT} °C per decade; IPCC, 2018)`); }
   return {p, i, m}; }
-function capacidadAdaptativa(rg){ const sos=sostenibilidad(), sar=sarandon(sos); const parts=[{n:E('Regeneración','Regeneration'), v:rg.IR}];
+function capacidadAdaptativa(rg){ const sos=sostenibilidad(), sar=sarandon(sos); const parts=rg.IR!=null?[{n:E('Regeneración','Regeneration'), v:rg.IR}]:[];
   if(sar){ const B=sar.IKs.find(x=>x.k==='B'), K=sar.ISCs.find(x=>x.k==='B'), I=sar.ISCs.find(x=>x.k==='C');
     if(B&&B.v!=null) parts.push({n:E('Diversificación de productos','Product diversification'), v:B.v/4});
     if(K&&K.v!=null) parts.push({n:E('Acceso a conocimiento técnico','Access to technical knowledge'), v:K.v/4});
     if(I&&I.v!=null) parts.push({n:E('Integración institucional','Institutional integration'), v:I.v/4}); }
-  return {CA:parts.reduce((t,x)=>t+x.v,0)/parts.length, parts}; }
+  return {CA:parts.length?parts.reduce((t,x)=>t+x.v,0)/parts.length:0, parts, sinDato:!parts.length}; }
 function riesgos(opt={}){ const acts=sostenibilidad().acts, P=prosp(), U=S.riesgo||{}, rg=opt.rg||regeneracion(), cap=opt.CA!=null?{CA:opt.CA,parts:[]}:capacidadAdaptativa(rg), dP=opt.dClima||0;
   const L=RIESGOS.map(d=>{ const sg=sugerenciaRiesgo(d.id, acts, P), u=U[d.id]||{};
     const off=u.off===true, p0=u.p!=null?+u.p:sg.p, i=u.i!=null?+u.i:sg.i, ctl=u.c!=null?+u.c:0;
     const p=d.cat==='clima'?Math.min(5,p0+dP):p0, bruto=p*i, r=bruto*(1-0.4*cap.CA)*(1-0.15*ctl);
-    return {...d, sug:sg, p, i, ctl, off, bruto, r, nivel:NIVEL_R(r), ajustado:(u.p!=null||u.i!=null)}; });
-  const act=L.filter(x=>!x.off), idx=act.length?act.reduce((t,x)=>t+x.r,0)/(25*act.length):0;
+    const conf=off || u.ok===true || (u.p!=null && u.i!=null);   // confirmado: lo desmarcó, aceptó la sugerencia o movió sus perillas
+    return {...d, sug:sg, p, i, ctl, off, bruto, r, nivel:NIVEL_R(r), conf, ajustado:(u.p!=null||u.i!=null)}; });
+  const act=L.filter(x=>!x.off), idx=act.length?act.reduce((t,x)=>t+x.r,0)/(25*act.length):0, nConf=L.filter(x=>x.conf).length;
   const porCat=Object.keys(CAT_R).map(k=>{ const l=act.filter(x=>x.cat===k); return {k, v:l.length?l.reduce((t,x)=>t+x.r,0)/(25*l.length):null, n:l.length}; });
-  return {L, act, idx, porCat, CA:cap.CA, partsCA:cap.parts, top:[...act].sort((a,b)=>b.r-a.r)}; }
+  return {L, act, idx, nConf, provisional:nConf<L.length, porCat, CA:cap.CA, sinCA:!!cap.sinDato, partsCA:cap.parts, top:[...act].sort((a,b)=>b.r-a.r)}; }
 const CLASE_RG = v=> v<0.16?{n:E('Bajo','Low'),c:'ok'} : v<0.36?{n:E('Medio','Medium'),c:'warn'} : v<0.6?{n:E('Alto','High'),c:'bad'} : {n:E('Muy alto','Very high'),c:'bad'};
 
 /* ---------------- Gráficas ---------------- */
@@ -3133,8 +3304,9 @@ function matrizRiesgo(rs, opt={}){ const c=opt.celda||64, L=86, Tp=16, W=L+5*c+2
   for(let i=1;i<=5;i++) s+=`<text x="${L+(i-1)*c+c/2-1}" y="${Tp+5*c+14}" text-anchor="middle" font-size="11.5" class="m">${i}</text>`;
   s+=`<text x="${L+2.5*c}" y="${H-8}" text-anchor="middle" font-size="12" font-weight="700">${T('Impacto','Impact')} →</text><text x="14" y="${Tp+2.5*c}" text-anchor="middle" font-size="12" font-weight="700" transform="rotate(-90 14 ${Tp+2.5*c})">${T('Probabilidad','Likelihood')} →</text>`;
   return s+'</svg>'; }
-const radarRegen = rg => radar(rg.ind.map(x=>x.s/4), rg.ind.map(x=>tx(x.pr)), rg.ind.map(x=>x.col), {w:440});
-function medidorIR(v, clase, etq){ const W=260, H=186, C=130, R=100, a0=Math.PI, ang=a0-Math.PI*Math.max(0,Math.min(1,v)), x=C+0.78*R*Math.cos(ang), y=130-0.78*R*Math.sin(ang);
+const radarRegen = rg => radar(rg.ind.map(x=>(x.s??0)/4), rg.ind.map(x=>tx(x.pr)), rg.ind.map(x=>x.col), {w:440});
+function medidorIR(v, clase, etq){ if(v==null) return `<svg class="chart medidor" viewBox="0 0 260 186" role="img"><path d="M30,130 A100,100 0 0 1 230,130" stroke="var(--border)" stroke-width="18" fill="none" stroke-dasharray="6 6"/><text x="130" y="150" text-anchor="middle" font-size="28" font-weight="700" class="m">—</text><text x="130" y="176" text-anchor="middle" font-size="11.5" class="m">${esc(T('sin dato','no data'))}</text></svg>`;
+  const W=260, H=186, C=130, R=100, a0=Math.PI, ang=a0-Math.PI*Math.max(0,Math.min(1,v)), x=C+0.78*R*Math.cos(ang), y=130-0.78*R*Math.sin(ang);
   const arco=(f0,f1,col)=>{ const s0=a0-Math.PI*f0, s1=a0-Math.PI*f1; return `<path d="M${C+R*Math.cos(s0)},${130-R*Math.sin(s0)} A${R},${R} 0 0 1 ${C+R*Math.cos(s1)},${130-R*Math.sin(s1)}" stroke="${col}" stroke-width="18" fill="none"/>`; };
   return `<svg class="chart medidor" viewBox="0 0 ${W} ${H}" role="img">${arco(0,.25,'#c43a2f')}${arco(.25,.5,'#e0a33a')}${arco(.5,.75,'#7fb35a')}${arco(.75,1,'#2f8f6a')}
     <line x1="${C}" y1="130" x2="${x}" y2="${y}" stroke="var(--text)" stroke-width="3.5" stroke-linecap="round"/><circle cx="${C}" cy="130" r="7" fill="var(--text)"/>
@@ -3142,15 +3314,18 @@ function medidorIR(v, clase, etq){ const W=260, H=186, C=130, R=100, a0=Math.PI,
 
 /* ---------------- Bloque 5 · Regeneración ---------------- */
 function renderRegeneracion(el){ const rg=regeneracion();
-  const perilla=(x)=>`<div class="perilla ${x.ajustado?'ajustada':''}" style="--pc:${x.col}"><div class="row between"><b>${esc(tx(x.n))}</b><span class="pv">${x.s} · ${esc(tx(NIVEL04[x.s]))}</span></div>
-    <input type="range" min="0" max="4" step="1" value="${x.s}" data-regen="${x.id}" aria-label="${esc(tx(x.n))}">
+  const perilla=(x)=>`<div class="perilla ${x.conf?'confirmada':'sin-confirmar'} ${x.ajustado?'ajustada':''}" style="--pc:${x.col}"><div class="row between"><b>${esc(tx(x.n))}</b><span class="pv">${x.s==null?'—':x.s+' · '+esc(tx(NIVEL04[x.s]))}</span></div>
+    <span class="estado-p">${x.conf?'✓ '+T('Confirmado por ti','Confirmed by you'):x.s==null?T('Sin dato: mueve la perilla','No data: move the knob'):T('Sugerido, sin confirmar','Suggested, not confirmed')}</span>
+    <input type="range" min="0" max="4" step="1" value="${x.s??2}" data-regen="${x.id}" aria-label="${esc(tx(x.n))}">
     <div class="marcas"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span></div>
-    <p class="nota">${esc(tx(x.q))}</p><p class="nota sug">${T('Sugerido','Suggested')}: <b>${x.sug}</b> · ${esc(x.motivo)}${x.ajustado?` · <button type="button" class="link" data-regen-reset="${x.id}">${T('volver al sugerido','back to suggested')}</button>`:''}</p></div>`;
+    <p class="nota">${esc(tx(x.q))}</p><p class="nota sug">${T('Sugerido','Suggested')}: <b>${x.sug??'—'}</b> · ${esc(x.motivo)}</p>
+    <div class="row" style="gap:6px;flex-wrap:wrap">${!x.conf&&x.sug!=null?`<button type="button" class="btn sm" data-regen-ok="${x.id}">✓ ${T('Aceptar sugerencia','Accept suggestion')}</button>`:''}${x.conf?`<button type="button" class="btn sm ghost" data-regen-reset="${x.id}">${T('Quitar mi respuesta','Clear my answer')}</button>`:''}</div></div>`;
   el.innerHTML=`${cabecera('regeneracion',T('¿Tu sistema se regenera o se desgasta con cada ciclo? Aquí se mide si las prácticas devuelven al suelo, al agua y a la biodiversidad más de lo que toman. Cada perilla va de 0 a 4: empieza con un valor sugerido a partir de tus actividades y la ajustas a lo que pasa en tu parcela.','Does your system regenerate or wear out with each cycle? This measures whether practices give back to soil, water and biodiversity more than they take. Each knob goes from 0 to 4: it starts at a value suggested by your activities and you adjust it to what happens on your plot.'))}
   ${consejo(T('Mueve las perillas como si ajustaras el volumen: 0 es nada, 4 es lo máximo. Guarda una línea base hoy y vuelve en el próximo ciclo para ver si tu sistema se está regenerando.','Move the knobs like a volume control: 0 is nothing, 4 is the maximum. Save a baseline today and come back next cycle to see whether your system is regenerating.'),
     T('Ocho indicadores en escala ordinal 0–4 basados en los principios de salud del suelo (USDA-NRCS) y en las definiciones de agricultura regenerativa por procesos y resultados (Newton et al., 2020; Schreefel et al., 2020). IR = Σs/(4n). Los valores sugeridos y los cortes de clase son lectura de Ratio Telar.','Eight ordinal 0–4 indicators based on soil health principles (USDA-NRCS) and process- and outcome-based definitions of regenerative agriculture (Newton et al., 2020; Schreefel et al., 2020). IR = Σs/(4n). Suggested values and class cut-offs are Ratio Telar readings.'))}
   <div class="grid g2"><div class="card" style="text-align:center"><h3>${T('Índice de regeneración','Regeneration index')}${ayuda('regen')}</h3>${medidorIR(rg.IR, rg.clase, tx(rg.clase.n))}
-     <p><span class="badge ${rg.clase.c}" style="font-size:14px">${esc(tx(rg.clase.n))}</span></p>
+     <p><span class="badge ${rg.clase.c}" style="font-size:14px">${esc(tx(rg.clase.n))}</span>${rg.provisional&&rg.IR!=null?` <span class="badge provisional">${T('provisional','provisional')}</span>`:''}</p>
+     ${rg.provisional?`<p class="nota">${T(`Confirmaste ${rg.nConf} de 8 perillas. Mientras falten, el índice usa los valores sugeridos y es provisional.`,`You confirmed ${rg.nConf} of 8 knobs. Until all are confirmed the index uses suggested values and is provisional.`)}</p>`:''}
      ${rg.dIR!=null?`<p>${T('Cambio frente a la línea base','Change from baseline')} (${esc(rg.base.fecha)}): <b style="color:var(--${rg.dIR>=0?'ok':'bad'}-text)">${rg.dIR>=0?'+':''}${fmt(100*rg.dIR,0)}</b> ${rg.dIR>0.005?T('· el sistema se regenera','· the system is regenerating'):rg.dIR<-0.005?T('· el sistema se desgasta','· the system is wearing out'):T('· sin cambio','· no change')}</p>`:''}
      <div class="row" style="justify-content:center;gap:8px;flex-wrap:wrap"><button class="btn sm" id="rgBase">${rg.base?T('Actualizar línea base','Update baseline'):T('Guardar como línea base','Save as baseline')}</button>${rg.base?`<button class="btn ghost sm" id="rgBaseX">${T('Quitar línea base','Remove baseline')}</button>`:''}</div>
      <p class="nota">${T('Clases (lectura de Ratio Telar): < 25 degradante · 25–49 convencional · 50–74 en transición regenerativa · ≥ 75 regenerativo.','Classes (Ratio Telar reading): < 25 degrading · 25–49 conventional · 50–74 regenerative transition · ≥ 75 regenerative.')}</p></div>
@@ -3168,15 +3343,16 @@ function renderRegeneracion(el){ const rg=regeneracion();
   $$('[data-regen]',el).forEach(i=>i.oninput=()=>{ const v=+i.value; i.closest('.perilla').querySelector('.pv').textContent=v+' · '+tx(NIVEL04[v]); });
   $$('[data-regen]',el).forEach(i=>i.onchange=()=>{ S.regen=S.regen||{}; S.regen[i.dataset.regen]=+i.value; guardar(); render(); });
   $$('[data-regen-reset]',el).forEach(b=>b.onclick=()=>{ delete S.regen[b.dataset.regenReset]; guardar(); render(); });
-  $('#rgBase',el).onclick=()=>{ S.regenBase={fecha:new Date().toISOString().slice(0,10), IR:rg.IR, ind:rg.ind.map(x=>({id:x.id,s:x.s}))}; guardar(); render(); toast(T('Línea base guardada','Baseline saved')); };
+  $$('[data-regen-ok]',el).forEach(b=>b.onclick=()=>{ const x=rg.ind.find(y=>y.id===b.dataset.regenOk); S.regen=S.regen||{}; S.regen[x.id]=x.sug; guardar(); render(); });
+  $('#rgBase',el).onclick=()=>{ if(rg.IR==null) return toast(T('Primero mueve o acepta las perillas','First move or accept the knobs')); S.regenBase={fecha:new Date().toISOString().slice(0,10), IR:rg.IR, ind:rg.ind.map(x=>({id:x.id,s:x.s}))}; guardar(); render(); toast(T('Línea base guardada','Baseline saved')); };
   if($('#rgBaseX',el)) $('#rgBaseX',el).onclick=()=>{ if(confirm(T('¿Quitar la línea base?','Remove the baseline?'))){ S.regenBase=null; guardar(); render(); } };
   ['moB','moA'].forEach(k=>$('#'+k,el).onchange=e=>{ S.regenMO=S.regenMO||{}; S.regenMO[k==='moB'?'b':'a']=e.target.value; guardar(); render(); });
   enlazarTips(el); }
 
 /* ---------------- Bloque 6 · Riesgos ---------------- */
 function renderRiesgos(el){ const rs=riesgos(), cls=CLASE_RG(rs.idx), filtro=renderRiesgos.cat||'todos';
-  const fila=x=>`<tr class="${x.off?'r-off':''}"><td><input type="checkbox" data-roff="${x.id}" ${x.off?'':'checked'} aria-label="${T('Aplica','Applies')}"></td>
-    <td><span class="punto" style="background:${CAT_R[x.cat].col}"></span>${esc(tx(x.n))}<br><small class="muted">${T('Sugerido','Suggested')}: P ${x.sug.p} · I ${x.sug.i} — ${esc(x.sug.m)}</small></td>
+  const fila=x=>`<tr class="${x.off?'r-off':''} ${x.conf?'r-conf':'r-sinconf'}"><td><input type="checkbox" data-roff="${x.id}" ${x.off?'':'checked'} aria-label="${T('Aplica','Applies')}"></td>
+    <td><span class="punto" style="background:${CAT_R[x.cat].col}"></span>${esc(tx(x.n))} ${x.off?'':x.conf?`<span class="estado-p ok">✓ ${T('confirmado','confirmed')}</span>`:`<span class="estado-p">${T('sugerido, sin confirmar','suggested, not confirmed')}</span> <button type="button" class="btn sm" data-rok="${x.id}">✓ ${T('Aceptar','Accept')}</button>`}<br><small class="muted">${T('Sugerido','Suggested')}: P ${x.sug.p} · I ${x.sug.i} — ${esc(x.sug.m)}</small></td>
     <td class="perilla-c"><input type="range" min="1" max="5" step="1" value="${Math.round(x.p)}" data-rp="${x.id}" ${x.off?'disabled':''}><small>${Math.round(x.p)} · ${esc(tx(NIVEL15[Math.round(x.p)]))}</small></td>
     <td class="perilla-c"><input type="range" min="1" max="5" step="1" value="${x.i}" data-ri="${x.id}" ${x.off?'disabled':''}><small>${x.i} · ${esc(tx(NIVEL15[x.i]))}</small></td>
     <td class="perilla-c"><input type="range" min="0" max="3" step="1" value="${x.ctl}" data-rc="${x.id}" ${x.off?'disabled':''}><small>${[T('ninguno','none'),T('bajo','low'),T('medio','medium'),T('alto','high')][x.ctl]}</small></td>
@@ -3185,8 +3361,9 @@ function renderRiesgos(el){ const rs=riesgos(), cls=CLASE_RG(rs.idx), filtro=ren
   el.innerHTML=`${cabecera('riesgos',T('¿Qué puede salir mal y qué tan grave sería? Cada riesgo se mide con dos perillas: qué tan probable es (1 a 5) y qué tanto daño haría (1 a 5). La capacidad de adaptación de tu sistema —su regeneración, diversificación, conocimiento técnico e instituciones— lo reduce.','What could go wrong and how serious would it be? Each risk is measured with two knobs: how likely it is (1 to 5) and how much damage it would do (1 to 5). Your system’s adaptive capacity —its regeneration, diversification, technical knowledge and institutions— reduces it.'))}
   ${consejo(T('Empieza por los riesgos que ya viviste en tu localidad. Si un riesgo no aplica, desmárcalo. La tercera perilla es el control que ya tienes (seguro, reserva de semilla, bordo, venta anticipada…).','Start with the risks you have already lived through. If a risk does not apply, untick it. The third knob is the control you already have (insurance, seed reserve, contour bund, forward sale…).'),
     T('Matriz de probabilidad × impacto de 5 × 5 (IEC 31010:2019; ISO 31000:2018) dentro del marco de riesgo del IPCC (2014): amenaza, exposición y vulnerabilidad. r = P·I·(1 − 0.4·CA)·(1 − 0.15·control); índice = media de r / 25. Los factores 0.4 y 0.15 son supuestos de Ratio Telar.','5 × 5 likelihood × impact matrix (IEC 31010:2019; ISO 31000:2018) within the IPCC (2014) risk framework: hazard, exposure and vulnerability. r = P·I·(1 − 0.4·CA)·(1 − 0.15·control); index = mean r / 25. The 0.4 and 0.15 factors are Ratio Telar assumptions.'))}
-  <div class="kpis"><div class="kpi" style="border-top:4px solid var(--${cls.c})"><div class="l">${T('Índice de riesgo','Risk index')}${ayuda('riesgo')}</div><div class="v">${fmt(100*rs.idx,0)}</div><div class="s"><span class="badge ${cls.c}">${esc(tx(cls.n))}</span> ${T('de 0 a 100','from 0 to 100')}</div></div>
-   <div class="kpi"><div class="l">${T('Capacidad adaptativa','Adaptive capacity')}${ayuda('CA')}</div><div class="v">${fmt(100*rs.CA,0)}</div><div class="s">${rs.partsCA.map(p=>esc(tx(p.n))+' '+fmt(100*p.v,0)).join(' · ')}</div></div>
+  ${rs.provisional?`<div class="alert info no-print"><p><b>${T(`Confirmaste ${rs.nConf} de ${rs.L.length} riesgos.`,`You confirmed ${rs.nConf} of ${rs.L.length} risks.`)}</b> ${T('Los demás muestran valores sugeridos (en gris): no son tus respuestas. Mueve sus perillas, pulsa «Aceptar» o desmarca los que no aplican. Mientras falten, el índice es provisional.','The rest show suggested values (in grey): they are not your answers. Move their knobs, press “Accept” or untick those that do not apply. Until then the index is provisional.')}</p></div>`:''}
+  <div class="kpis"><div class="kpi" style="border-top:4px solid var(--${cls.c})"><div class="l">${T('Índice de riesgo','Risk index')}${ayuda('riesgo')}</div><div class="v">${fmt(100*rs.idx,0)}</div><div class="s"><span class="badge ${cls.c}">${esc(tx(cls.n))}</span>${rs.provisional?` <span class="badge provisional">${T('provisional','provisional')}</span>`:''} ${T('de 0 a 100','from 0 to 100')}</div></div>
+   <div class="kpi"><div class="l">${T('Capacidad adaptativa','Adaptive capacity')}${ayuda('CA')}</div><div class="v">${rs.sinCA?'—':fmt(100*rs.CA,0)}</div><div class="s">${rs.partsCA.map(p=>esc(tx(p.n))+' '+fmt(100*p.v,0)).join(' · ')}</div></div>
    <div class="kpi"><div class="l">${T('Riesgos altos o muy altos','High or very high risks')}</div><div class="v">${rs.act.filter(x=>x.r>9).length}</div><div class="s">${T('de','of')} ${rs.act.length} ${T('que aplican','that apply')}</div></div>
    <div class="kpi"><div class="l">${T('Mayor riesgo','Highest risk')}</div><div class="v" style="font-size:18px">${rs.top[0]?esc(tx(rs.top[0].n)):'—'}</div><div class="s">${rs.top[0]?fmt(rs.top[0].r,1)+' / 25':''}</div></div></div>
   <div class="grid g2"><div class="card"><h3>${T('Matriz de riesgos','Risk matrix')}</h3>${matrizRiesgo(rs)}<p class="nota">${T('Cada círculo indica cuántos riesgos caen en esa celda; pasa el cursor para ver cuáles.','Each circle shows how many risks fall in that cell; hover to see which.')}</p></div>
@@ -3194,16 +3371,18 @@ function renderRiesgos(el){ const rs=riesgos(), cls=CLASE_RG(rs.idx), filtro=ren
      <h4 style="margin:10px 0 4px">${T('Los cinco riesgos mayores','The five highest risks')}</h4><ol>${rs.top.slice(0,5).map(x=>`<li>${esc(tx(x.n))} <b style="color:${x.nivel.c}">${fmt(x.r,1)}</b></li>`).join('')}</ol></div></div>
   <div class="card"><div class="row between"><h3 style="margin:0">${T('Perillas de cada riesgo','Knobs for each risk')}</h3><div class="basesw">${[['todos',T('Todos','All')],...Object.entries(CAT_R).map(([k,c])=>[k,tx(c.n)])].map(([k,n])=>`<button data-rcat="${k}" class="${k===filtro?'on':''}">${esc(n)}</button>`).join('')}</div></div>
    <div class="tbl-c"><table class="tbl riesgos-t"><thead><tr><th>${T('Aplica','Applies')}</th><th>${T('Riesgo','Risk')}</th><th>${T('Probabilidad','Likelihood')}</th><th>${T('Impacto','Impact')}</th><th>${T('Control','Control')}</th><th class="r">${T('Riesgo','Risk')} /25</th></tr></thead><tbody>${lista.map(fila).join('')}</tbody></table></div>
-   <div class="row" style="gap:8px;margin-top:8px"><button class="btn ghost sm" id="rReset">${T('Volver a los valores sugeridos','Back to suggested values')}</button></div>
+   <div class="row" style="gap:8px;margin-top:8px"><button class="btn ghost sm" id="rReset">${T('Borrar mis respuestas','Clear my answers')}</button></div>
    ${conStack()?`<p class="nota">${T('En Calpan, el Stack registra como perturbaciones del entorno El Niño y La Niña, la temporada de ciclones del Atlántico, la Oscilación Madden-Julian y la Oscilación Ártica','In Calpan, the Stack records as environmental disturbances El Niño and La Niña, the Atlantic hurricane season, the Madden-Julian Oscillation and the Arctic Oscillation')} ${marcaDato()}; ${T('el artículo no publica probabilidades: se dejan como sugerencias editables.','the paper publishes no probabilities: they are left as editable suggestions.')}</p>`:''}</div>
   ${siguiente('riesgos')}`;
-  const U=()=>{ S.riesgo=S.riesgo||{}; return S.riesgo; }, set=(id,k,v)=>{ const u=U(); u[id]=u[id]||{}; u[id][k]=v; guardar(); render(); };
+  // mover cualquier perilla de un riesgo confirma también las otras dos tal como se ven
+  const U=()=>{ S.riesgo=S.riesgo||{}; return S.riesgo; }, set=(id,k,v)=>{ const u=U(), x=rs.L.find(y=>y.id===id); u[id]=u[id]||{}; if(k!=='off'){ if(u[id].p==null) u[id].p=x.sug.p; if(u[id].i==null) u[id].i=x.sug.i; } u[id][k]=v; guardar(); render(); };
+  $$('[data-rok]',el).forEach(b=>b.onclick=()=>{ const u=U(), x=rs.L.find(y=>y.id===b.dataset.rok); u[x.id]=Object.assign(u[x.id]||{}, {p:x.sug.p, i:x.sug.i, ok:true}); guardar(); render(); });
   $$('[data-rp]',el).forEach(i=>i.onchange=()=>set(i.dataset.rp,'p',+i.value));
   $$('[data-ri]',el).forEach(i=>i.onchange=()=>set(i.dataset.ri,'i',+i.value));
   $$('[data-rc]',el).forEach(i=>i.onchange=()=>set(i.dataset.rc,'c',+i.value));
   $$('[data-roff]',el).forEach(i=>i.onchange=()=>set(i.dataset.roff,'off',!i.checked));
   $$('[data-rcat]',el).forEach(b=>b.onclick=()=>{ renderRiesgos.cat=b.dataset.rcat; render(); });
-  $('#rReset',el).onclick=()=>{ if(confirm(T('¿Volver a los valores sugeridos en todos los riesgos?','Return all risks to suggested values?'))){ S.riesgo={}; guardar(); render(); } };
+  $('#rReset',el).onclick=()=>{ if(confirm(T('¿Borrar tus respuestas en todos los riesgos? Volverán a verse los valores sugeridos, sin confirmar.','Clear your answers on all risks? Suggested, unconfirmed values will show again.'))){ S.riesgo={}; guardar(); render(); } };
   enlazarTips(el); }
 
 /* ---------------- Tarjetas para los bloques siguientes ---------------- */
@@ -3223,7 +3402,7 @@ function tarjetaRegenRiesgo(id){ const rg=regeneracion(), rs=riesgos({rg}), crg=
       <div class="grid g2"><div>${radarRegen(rg)}</div><div>${matrizRiesgo(rs,{celda:54})}</div></div></div>`;
   if(id==='sostenible') return `<div class="card rr-card"><h3>${T('Regeneración, riesgo y sostenibilidad','Regeneration, risk and sustainability')}</h3>${k2}
       <p>${T('Un sistema sostenible se mantiene; uno regenerativo, además, mejora sus recursos con cada ciclo. Un riesgo alto amenaza ambos.','A sustainable system maintains itself; a regenerative one also improves its resources each cycle. High risk threatens both.')} ${T('Relación con los ODS (lectura de Ratio Telar): la regeneración aporta a los ODS 2, 13 y 15; la gestión del riesgo, a los ODS 1, 2 y 13.','SDG links (Ratio Telar reading): regeneration contributes to SDGs 2, 13 and 15; risk management to SDGs 1, 2 and 13.')}</p>
-      ${barrasH(rg.ind.map(x=>({l:tx(x.n), v:x.s, c:x.col, vl:x.s+' / 4'})),{max:4, izq:240})}</div>`;
+      ${barrasH(rg.ind.map(x=>({l:tx(x.n), v:x.s??0, c:x.col, vl:x.s==null?'—':x.s+' / 4'+(x.conf?'':' *')})),{max:4, izq:240})}${rg.provisional?`<p class="nota">* ${T('sugerido, sin confirmar','suggested, not confirmed')}</p>`:''}</div>`;
   return ''; }
 function ponerRegenRiesgo(id, el){ if(!['elementos','formulacion','tablero','sostenible'].includes(id)) return; const h=tarjetaRegenRiesgo(id); if(!h) return;
   const nx=$('.next',el); if(id==='tablero'){ const t=$('.tablero',el); if(t){ t.insertAdjacentHTML('afterbegin',h); return; } }
@@ -3231,7 +3410,7 @@ function ponerRegenRiesgo(id, el){ if(!['elementos','formulacion','tablero','sos
 function informeRegenRiesgo(){ const rg=regeneracion(), rs=riesgos({rg}), crg=CLASE_RG(rs.idx);
   return `<div class="card"><h3>${T('Regeneración del sistema','System regeneration')}</h3>
      <div class="grid g2"><div style="text-align:center">${medidorIR(rg.IR, rg.clase, tx(rg.clase.n))}<p><span class="badge ${rg.clase.c}">${esc(tx(rg.clase.n))}</span>${rg.dIR!=null?` · ${T('cambio frente a la línea base','change from baseline')} ${rg.dIR>=0?'+':''}${fmt(100*rg.dIR,0)}`:''}</p></div><div>${radarRegen(rg)}</div></div>
-     <table class="tbl"><tbody>${rg.ind.map(x=>`<tr><td>${esc(tx(x.n))}</td><td class="r"><b>${x.s}</b> / 4</td><td class="muted">${esc(tx(NIVEL04[x.s]))}${x.ajustado?' · '+T('ajustado','adjusted'):''}</td></tr>`).join('')}</tbody></table></div>
+     <table class="tbl"><tbody>${rg.ind.map(x=>`<tr><td>${esc(tx(x.n))}</td><td class="r"><b>${x.s??'—'}</b> / 4</td><td class="muted">${x.s!=null?esc(tx(NIVEL04[x.s])):''}${x.conf?'':' · '+T('sugerido, sin confirmar','suggested, not confirmed')}</td></tr>`).join('')}</tbody></table></div>
    <div class="card"><h3>${T('Riesgos del sistema','System risks')}</h3>
      <p>${T('Índice de riesgo','Risk index')}: <b>${fmt(100*rs.idx,0)}</b> / 100 · <span class="badge ${crg.c}">${esc(tx(crg.n))}</span> · ${T('capacidad adaptativa','adaptive capacity')} ${fmt(100*rs.CA,0)}</p>
      <div class="grid g2"><div>${matrizRiesgo(rs,{celda:54})}</div><div><table class="tbl"><thead><tr><th>${T('Riesgo','Risk')}</th><th class="r">P</th><th class="r">I</th><th class="r">r</th></tr></thead><tbody>${rs.top.slice(0,8).map(x=>`<tr><td>${esc(tx(x.n))}</td><td class="r">${fmt(x.p,0)}</td><td class="r">${x.i}</td><td class="r"><b style="color:${x.nivel.c}">${fmt(x.r,1)}</b></td></tr>`).join('')}</tbody></table></div></div></div>`; }
@@ -3276,7 +3455,7 @@ const fuenteInegi = ()=>`<div class="fuente">${T('Fuente','Source')}: INEGI, ${T
 function cabecera(id, lead){ const b=B(id);
   const et = /^\d+$/.test(b.n) ? T(`Bloque ${b.n} de ${NUMERADOS}`,`Block ${b.n} of ${NUMERADOS}`) : (id==='validacion'?T('Evaluación de la plataforma','Platform evaluation'):T('Fundamentos','Foundations'));
   const ic = b.ill==='cult' ? cultivoSel().ico : b.ill;
-  return `<div class="bhead"><div><div class="eyebrow">${et}</div><h1>${esc(tx(b.titulo))}</h1>${lead?`<p class="lead">${lead}</p>`:''}</div>${ic?`<div class="bill" style="--anim:running">${ill(ic)}</div>`:''}</div>`; }
+  return `<div class="bhead"><div><div class="eyebrow">${et}</div><h1>${esc(tx(b.titulo))}</h1>${lead?`<p class="lead">${lead}</p>`:''}${franjaAvance(id)}</div>${ic?`<div class="bill" style="--anim:running">${ill(ic)}</div>`:''}</div>`; }
 function siguiente(id){ const i=BLOQUES.findIndex(b=>b.id===id), p=BLOQUES[i-1], n=BLOQUES[i+1];
   return `<div class="next no-print">${p?`<button class="btn ghost" data-ir="${p.id}">← ${esc(tx(p.corto))}</button>`:'<span></span>'}
     ${n?`<button class="btn big-next" data-ir="${n.id}"><small>${T('Siguiente','Next')}</small><span>${/^\d+$/.test(n.n)?n.n+' · ':''}${esc(tx(n.titulo))} →</span></button>`:''}</div>`; }
@@ -3314,7 +3493,7 @@ function renderInicio(el){
       <h1>${T('Ratio <em>Telar</em>: el saber local como <span class="acc">sistema vivo</span>','Ratio <em>Telar</em>: local knowledge as a <span class="acc">living system</span>')}</h1>
       <p class="big">${T('Una milpa, una parcela o una unidad pecuaria es un <b>sistema complejo adaptativo</b>: personas, semillas, suelo, agua, saberes, instituciones y mercados que interactúan, aprenden y se transforman. Ratio Telar lo <b>teje bloque a bloque</b> con datos de tu localidad y te muestra quién sostiene el sistema, cuánto vale cada hilo y qué tan sostenible es cada paso.','A milpa, a plot or a livestock farm is a <b>complex adaptive system</b>: people, seeds, soil, water, knowledge, institutions and markets that interact, learn and change. Ratio Telar <b>weaves it block by block</b> with your locality’s data and shows who holds the system together, what each thread is worth and how sustainable each step is.')}</p>
       <div class="ctas"><button class="btn lg" data-ir="cultivo">${T('Empezar a tejer →','Start weaving →')}</button>
-        <button class="btn ghost lg" data-ir="tablero">${T('Ver el ejemplo del maíz de Calpan','See the Calpan maize example')}</button>
+        <button class="btn ghost lg" data-entrar-ej>${T('Ver el ejemplo publicado (Calpan)','See the published example (Calpan)')}</button>
         <button class="btn link" data-ir="teoria">${T('Leer la teoría','Read the theory')}</button></div>
       <div class="chips"><span class="chip">${T('Todo el cálculo ocurre en tu navegador','All calculations run in your browser')}</span><span class="chip">${T('Sin cookies ni recursos de terceros','No cookies or third-party resources')}</span><span class="chip">${T('Español e inglés','Spanish and English')}</span><span class="chip">${T('Libre (MIT)','Free (MIT)')}</span></div></div>
     <div class="art" aria-hidden="true" style="--anim:running"><div class="stage"></div>${telarVivo()}
@@ -3322,8 +3501,14 @@ function renderInicio(el){
       <svg class="big float d2" style="right:0;top:6%;width:20%;height:26%"><use href="#c-frijol"/></svg>
       <svg class="big float d3" style="right:4%;bottom:4%;width:24%;height:26%"><use href="#c-calabaza"/></svg>
       <svg class="big float d2" style="left:0;bottom:8%;width:24%;height:22%"><use href="#a-abeja"/></svg>
-      <div class="chip-n" style="left:30%;top:0">${T('Paso de mayor intensidad','Most knowledge-intensive step')}<b>${T('Siembra · IIC 100','Sowing · IIC 100')}</b></div>
-      <div class="chip-n" style="right:18%;bottom:0">${T('Nodo articulador','Weaving node')}<b>${T('Academia local','Local academia')}</b></div></div></section>
+      <div class="chip-n" style="left:30%;top:0">${T('Ejemplo publicado · paso más intenso','Published example · most intensive step')}<b>${T('Siembra · IIC 100','Sowing · IIC 100')}</b></div>
+      <div class="chip-n" style="right:18%;bottom:0">${T('Ejemplo publicado · nodo articulador','Published example · weaving node')}<b>${T('Academia local','Local academia')}</b></div></div></section>
+  ${tarjetaAnterior()}
+  <div class="card como-llenar"><h3>${T('Así distingues lo tuyo de lo demás','How to tell your data from the rest')}</h3><div class="grid g3">
+    <div><span class="muestra vacia">${T('Escribe aquí…','Type here…')}</span><p class="nota">${T('Campo vacío: texto gris de ayuda. La aplicación empieza en blanco; nada viene llenado.','Empty field: grey help text. The app starts blank; nothing comes filled in.')}</p></div>
+    <div><span class="muestra sugerida">${T('Sugerido, sin confirmar','Suggested, not confirmed')}</span><p class="nota">${T('Perilla punteada: es una sugerencia. Cuenta solo cuando la mueves o pulsas «Aceptar».','Dashed knob: it is a suggestion. It counts only when you move it or press “Accept”.')}</p></div>
+    <div><span class="muestra ejemplo">${T('Ejemplo publicado','Published example')}</span><p class="nota">${T('Ventana sepia con marca de agua: datos de Calpan para consultar. Nunca se copian a tus campos.','Sepia window with a watermark: Calpan data for reference. Never copied into your fields.')}</p></div></div>
+    <p class="nota">${T('Arriba, la barra «Llenado por ti» y las marcas del menú (○ pendiente, ◐ en proceso, ● completo) cuentan solo lo que tú llenaste.','Above, the “Filled in by you” bar and the menu marks (○ pending, ◐ in progress, ● complete) count only what you filled in.')}</p></div>
   <div class="stats">
     <div class="stat"><div class="v">${CATALOGO.length}</div><div class="l">${T('cultivos y especies en el catálogo','crops and species in the catalogue')}</div></div>
     <div class="stat"><div class="v">${fmt(nl,0)}</div><div class="l">${T('localidades de México','Mexican localities')}</div></div>
@@ -3344,7 +3529,7 @@ function renderInicio(el){
 /* ================= BLOQUE 1 · CULTIVO ================= */
 function renderCultivo(el){ const tipo=renderCultivo.tipo||cultivoSel().tipo; const c=cultivoSel();
   el.innerHTML = `${cabecera('cultivo',T('Todo sistema se teje alrededor de algo que se siembra o se cría. Elige el cultivo o la especie doméstica y la forma en que se produce. El maíz criollo tiene su Stack de conocimiento local documentado en Calpan, Puebla; los demás están listos para que documentes el tuyo.','Every system is woven around something sown or raised. Choose the crop or livestock species and how it is produced. Landrace maize has its local-knowledge Stack documented in Calpan, Puebla; the others are ready for you to document yours.'))}
-  ${consejo(T('Si es tu primera vez, deja el maíz criollo: verás el sistema completo de Calpan y luego podrás adaptarlo a tu parcela.','If this is your first time, keep landrace maize: you will see the full Calpan system and can then adapt it to your plot.'),T('El catálogo separa lo documentado (Stack publicado) de lo que está por documentar; en estos últimos el manejo se captura desde cero.','The catalogue separates documented (published Stack) from to-be-documented; for the latter, management is entered from scratch.'))}
+  ${consejo(T('Elige tu cultivo o especie, el sistema y la unidad. Si quieres ver primero cómo queda un sistema completo, abre el ejemplo publicado de Calpan: se ve aparte y no llena tus campos.','Choose your crop or species, the system and the unit. To first see what a complete system looks like, open the published Calpan example: it is shown separately and does not fill your fields.'),T('El catálogo separa lo documentado (Stack publicado) de lo que está por documentar; en estos últimos el manejo se captura desde cero.','The catalogue separates documented (published Stack) from to-be-documented; for the latter, management is entered from scratch.'))}
   <div class="card"><div class="row between"><h3 style="margin:0">${T('Catálogo','Catalogue')}${ayuda('cultivo')}</h3>
     <div class="tipo-tabs"><button data-tipo="cultivo" class="${tipo==='cultivo'?'on':''}">${T('Cultivos','Crops')}</button><button data-tipo="especie" class="${tipo==='especie'?'on':''}">${T('Especies animales','Livestock species')}</button></div></div>
     <div class="cat-grid">${catalogoTodos().filter(x=>x.tipo===tipo).map((x,i)=>`<div class="cat-card aparece ${x.id===S.cultivo?'sel':''} ${x.usuario?'cat-usuario':''}" data-cult="${x.id}" style="--cc:${x.col};animation-delay:${i*40}ms" tabindex="0" role="button">
@@ -3358,7 +3543,8 @@ function renderCultivo(el){ const tipo=renderCultivo.tipo||cultivoSel().tipo; co
      <label class="f"><span>${T('Raza','Race')}</span><select id="mRaza"><option value="">${T('— Sin especificar —','— Not specified —')}</option>${RAZAS_MAIZ.map(g=>`<optgroup label="${esc(T('Grupo','Group')+' '+tx(g.g))}">${g.r.map(r=>`<option value="${esc(r)}" ${S.maizRaza===r?'selected':''}>${esc(r)}${RAZAS_EXT.includes(r)?' °':''}</option>`).join('')}</optgroup>`).join('')}</select></label>
      <div class="razas">${RAZAS_MAIZ.map(g=>`<div><b>${esc(tx(g.g))}</b> <span class="muted">(${g.r.length})</span><div class="elchips">${g.r.map(r=>`<button type="button" class="elchip ${S.maizRaza===r?'on':''}" style="--ec:#c98b21" data-raza="${esc(r)}">${esc(r)}${RAZAS_EXT.includes(r)?' °':''}</button>`).join('')}</div></div>`).join('')}</div>
      <div class="fuente">${T('Fuente','Source')}: CONABIO (2020), ${T('Razas de maíz de México; clasificación de Sánchez et al. (2000)','Maize races of Mexico; classification by Sánchez et al. (2000)')}. ${T('El artículo de Calpan trata maíces criollos sin especificar raza; en Puebla se reportan cerca de 22.','The Calpan paper covers landraces without specifying race; about 22 are reported in Puebla.')}</div>`
-    :`<label class="f"><span>${T('Nombre de la variedad o del híbrido','Variety or hybrid name')}</span><input id="mVar" value="${esc(S.maizVar)}" placeholder="${T('escríbelo tal como lo compras o lo nombra la institución','as you buy it or as the institution names it')}"></label>`}</div>`:''}
+    :S.maizTipo==='mejorado'?`<label class="f"><span>${T('Nombre de la variedad o del híbrido','Variety or hybrid name')}</span><input id="mVar" value="${esc(S.maizVar)}" placeholder="${T('escríbelo tal como lo compras o lo nombra la institución','as you buy it or as the institution names it')}"></label>`
+    :`<p class="nota"><span class="sin-llenar">${T('Sin elegir','Not chosen')}</span> ${T('Elige arriba si tu maíz es nativo (criollo) o mejorado (híbrido o variedad).','Choose above whether your maize is native (landrace) or improved (hybrid or variety).')}</p>`}</div>`:''}
   ${S.cultivo==='bovino'?(()=>{ const P=BOV.find(x=>x.id===S.bovProp)||BOV[0], s=bovSisSel(); return `<div class="card aparece" style="border-top:4px solid ${P.col}"><div class="row between"><h3 style="margin:0">${ill('i-steer','','width:52px;height:38px;vertical-align:middle;margin-right:6px')}${T('Tipo de ganado bovino','Cattle type')}</h3>
      <div class="tipo-tabs" style="margin:0">${BOV.map(p=>`<button data-bprop="${p.id}" class="${p.id===P.id?'on':''}">${esc(tx(p.n))}</button>`).join('')}</div></div>
     <p class="nota">${T('Elige el propósito y el sistema de producción; cada sistema indica si es extensivo, semiintensivo, intensivo o de traspatio, y ajusta el sistema y el tipo de unidad de abajo.','Choose the purpose and production system; each states whether it is extensive, semi-intensive, intensive or backyard, and sets the system and unit type below.')}</p>
@@ -3377,9 +3563,9 @@ function renderCultivo(el){ const tipo=renderCultivo.tipo||cultivoSel().tipo; co
      <label class="f"><span>${T('Descripción breve (opcional)','Short description (optional)')}</span><input id="sisD" maxlength="160" placeholder="${T('cómo se organiza, qué se combina','how it is organised, what is combined')}"></label>
      <button type="button" class="btn sm" id="sisAdd">${T('Agregar y elegir','Add and select')}</button></details></div>
    <div class="card"><h3>${T('Unidad de producción','Production unit')}</h3>
-    <label class="f"><span>${T('Tipo de unidad','Unit type')}</span><select id="tUP">${TIPOS_UP.map((t,i)=>`<option value="${i}" ${+S.tipoUP===i?'selected':''}>${esc(tx(t))}</option>`).join('')}<option value="-1" ${+S.tipoUP===-1?'selected':''}>${T('Otro (escríbelo)…','Other (type it)…')}</option></select></label>
+    <label class="f"><span>${T('Tipo de unidad','Unit type')}</span><select id="tUP" class="${S.tipoUP===''||S.tipoUP==null?'vacio':''}"><option value="" ${S.tipoUP===''||S.tipoUP==null?'selected':''} disabled>${T('— Elige el tipo de unidad —','— Choose the unit type —')}</option>${TIPOS_UP.map((t,i)=>`<option value="${i}" ${S.tipoUP!==''&&S.tipoUP!=null&&+S.tipoUP===i?'selected':''}>${esc(tx(t))}</option>`).join('')}<option value="-1" ${S.tipoUP!==''&&+S.tipoUP===-1?'selected':''}>${T('Otro (escríbelo)…','Other (type it)…')}</option></select></label>
     ${+S.tipoUP===-1?`<label class="f"><span>${T('¿Qué tipo de unidad es?','What kind of unit is it?')}</span><input id="upOtro" maxlength="90" value="${esc(S.upOtro||'')}" placeholder="${T('p. ej., ejido, cooperativa, huerto escolar, rancho ganadero','e.g., ejido, cooperative, school garden, cattle ranch')}"></label>`:''}
-    <label class="f"><span>${T('Superficie (ha)','Area (ha)')}${ayuda('superficie')}</span><input type="number" id="sup" min="0" step="0.1" value="${S.superficie}"></label>
+    <label class="f"><span>${T('Superficie (ha)','Area (ha)')}${ayuda('superficie')}</span><input type="number" id="sup" min="0" step="0.1" value="${S.superficie===''||S.superficie==null?'':S.superficie}" placeholder="${T('p. ej., 2.5','e.g., 2.5')}"></label>
     <label class="f"><span>${T('Nombre del proyecto o de la parcela','Project or plot name')}</span><input id="pNom" value="${esc(S.proyecto.nombre)}" placeholder="${T('p. ej., Parcela El Llano','e.g., El Llano plot')}"></label>
     <label class="f"><span>${T('Productor o productora','Farmer')}</span><input id="pProd" value="${esc(S.proyecto.productor)}"></label>
     <div class="kpis" style="margin-top:10px"><div class="kpi"><div class="l">${T('Seleccionado','Selected')}</div><div class="v" style="font-size:20px">${esc(tx(c.n))}</div><div class="s"><i>${esc(tx(c.sci))}</i></div></div>
@@ -3411,14 +3597,14 @@ function renderCultivo(el){ const tipo=renderCultivo.tipo||cultivoSel().tipo; co
     const id='u'+Date.now().toString(36); S.sisExtra.push({id, n, d}); S.sistema=id; guardar(); render(); toast(T('Sistema agregado: ','System added: ')+n); };
   $$('[data-sisq]',el).forEach(b=>b.onclick=e=>{ e.preventDefault(); e.stopPropagation(); const s=(S.sisExtra||[]).find(x=>x.id===b.dataset.sisq); if(!s||!confirm(T(`¿Quitar «${s.n}» de la lista?`,`Remove “${s.n}” from the list?`))) return;
     S.sisExtra=S.sisExtra.filter(x=>x.id!==s.id); if(S.sistema===s.id) S.sistema=SISTEMAS[0].id; guardar(); render(); });
-  $('#tUP',el).onchange=e=>{ S.tipoUP=+e.target.value; guardar(); render(); };
+  $('#tUP',el).onchange=e=>{ S.tipoUP=e.target.value===''?'':+e.target.value; guardar(); render(); };
   if($('#upOtro',el)) $('#upOtro',el).onchange=e=>{ S.upOtro=e.target.value.trim(); guardar(); };
-  $('#sup',el).onchange=e=>{ S.superficie=+e.target.value||0; guardar(); };
+  $('#sup',el).onchange=e=>{ S.superficie=e.target.value===''?'':(+e.target.value||0); guardar(); render(); };
   $('#pNom',el).onchange=e=>{ S.proyecto.nombre=e.target.value; guardar(); actualizarPill(); };
   $('#pProd',el).onchange=e=>{ S.proyecto.productor=e.target.value; guardar(); }; }
 
 /* ================= BLOQUE 2 · REGIÓN ================= */
-function renderRegion(el){ const e=edoDe(S.edo), muns=TERR.municipios[S.edo]||[], m=munSel(), locs=TERR.localidades[S.edo+S.mun]||[], l=locSel();
+function renderRegion(el){ if(!S.edo) return renderRegionVacia(el); const e=edoDe(S.edo), muns=TERR.municipios[S.edo]||[], m=munSel(), locs=TERR.localidades[S.edo+S.mun]||[], l=locSel();
   const pobE=muns.reduce((s,x)=>s+(x[2]||0),0);
   el.innerHTML = `${cabecera('region',T('Cada productor cultiva a su manera y cada lugar tiene su propio clima, altitud y gente. Elige tu estado en el mapa y baja hasta el municipio y la localidad: Ratio Telar ubica tu punto y trae los datos oficiales del INEGI.','Every farmer works their own way and every place has its own climate, altitude and people. Pick your state on the map and go down to municipality and locality: Ratio Telar places your point and loads official INEGI data.'))}
   <div class="card"><div class="mapa-wrap"><div>${mapaTelar(S.edo, l?[l[4],l[5]]:null)}
@@ -3426,8 +3612,8 @@ function renderRegion(el){ const e=edoDe(S.edo), muns=TERR.municipios[S.edo]||[]
       <p class="tiny muted">${T('Contornos: Natural Earth (dominio público). Regiones: Banco de México. El punto de la localidad usa sus coordenadas del INEGI (posición aproximada sobre contornos simplificados).','Outlines: Natural Earth (public domain). Regions: Banco de México. The locality dot uses its INEGI coordinates (approximate position on simplified outlines).')}</p></div>
     <div class="rinfo"><div class="eyebrow">${esc(tx(REG_BX[e[3]].n))}</div><h2 style="margin:4px 0 8px">${esc(e[1])}</h2>
       <label class="f"><span>${T('Estado','State')}</span><select id="zEst">${TERR.estados.map(x=>`<option value="${x[0]}" ${x[0]===S.edo?'selected':''}>${esc(x[1])}</option>`).join('')}</select></label>
-      <label class="f"><span>${T('Municipio','Municipality')}</span><select id="zMun">${muns.map(x=>`<option value="${x[0]}" ${x[0]===S.mun?'selected':''}>${esc(x[1])}</option>`).join('')}</select></label>
-      <label class="f"><span>${T('Localidad','Locality')}${ayuda('localidad')}</span><select id="zLoc">${locs.map(x=>`<option value="${x[0]}" ${x[0]===S.loc?'selected':''}>${esc(x[1])}${x[2]!=null?' · '+fmt(x[2],0)+' hab.':''}</option>`).join('')}</select></label>
+      <label class="f"><span>${T('Municipio','Municipality')}</span><select id="zMun" class="${S.mun?'':'vacio'}"><option value="" ${S.mun?'':'selected'} disabled>${T('— Elige el municipio —','— Choose the municipality —')}</option>${muns.map(x=>`<option value="${x[0]}" ${x[0]===S.mun?'selected':''}>${esc(x[1])}</option>`).join('')}</select></label>
+      <label class="f"><span>${T('Localidad','Locality')}${ayuda('localidad')}</span><select id="zLoc" class="${S.loc?'':'vacio'}" ${S.mun?'':'disabled'}><option value="" ${S.loc?'':'selected'} disabled>${S.mun?T('— Elige la localidad —','— Choose the locality —'):T('— primero el municipio —','— municipality first —')}</option>${locs.map(x=>`<option value="${x[0]}" ${x[0]===S.loc?'selected':''}>${esc(x[1])}${x[2]!=null?' · '+fmt(x[2],0)+' hab.':''}</option>`).join('')}</select></label>
       <div class="lugares"><span class="nota">${T('Lugares de trabajo','Work places')}:</span>${LUGARES.map((p,i)=>`<button class="chip ${S.edo===p.edo&&S.mun===p.mun&&S.loc===p.loc?'on':''}" data-lugar="${i}">📍 ${esc(tx(p.n))}</button>`).join('')}</div>
       <div class="ruta"><span>${T('México','Mexico')}</span><i>›</i><span>${esc(tx(REG_BX[e[3]].n))}</span><i>›</i><span>${esc(e[1])}</span><i>›</i><span>${esc(m?m[1]:'')}</span><i>›</i><span>${esc(l?l[1]:'')}</span></div></div></div></div>
   <div class="kpis">
@@ -3443,15 +3629,28 @@ function renderRegion(el){ const e=edoDe(S.edo), muns=TERR.municipios[S.edo]||[]
     <ul><li>${T('PEA de 4,882 personas: 50 % sector primario, 15 % transformación, ~35 % comercio y servicios.','EAP of 4,882 people: 50 % primary, 15 % processing, ~35 % trade and services.')}</li>
      <li>${T('Milpa y MIAF; unidades menores a 5 ha; rendimiento de maíz de 5 a 6 t.','Milpa and MIAF; farms under 5 ha; maize yield of 5–6 t.')}</li>
      <li>${T('Frutales: tejocote, pera lechera, nuez de castilla, manzana panochera, durazno y capulín.','Fruit: tejocote, pear, walnut, apple, peach and capulin cherry.')}</li></ul></div>${fuenteArt()}</div>`
-   :`<div class="alert info"><p><b>${T('Sin caso documentado en este municipio.','No documented case in this municipality.')}</b> ${T('El catálogo oficial está listo; documenta tu sistema en los bloques siguientes o revisa el ejemplo de Calpan.','The official catalogue is ready; document your system in the next blocks or review the Calpan example.')}</p><button class="btn sm ghost" id="aCalpan">${T('Ir a Calpan, Puebla','Go to Calpan, Puebla')}</button></div>`}
+   :`<div class="alert info"><p><b>${T('Sin caso publicado en este municipio.','No published case in this municipality.')}</b> ${T('El catálogo oficial está listo; documenta tu sistema en los bloques siguientes.','The official catalogue is ready; document your system in the next blocks.')}</p></div>`}
   ${siguiente('region')}`;
-  const ponEdo=(c)=>{ S.edo=c; S.mun=TERR.municipios[c][0][0]; S.loc=(TERR.localidades[S.edo+S.mun]||[[null]])[0][0]; guardar(); render(); };
+  enlazarRegion(el);
+  $('#zMun',el).onchange=ev=>{ S.mun=ev.target.value; S.loc=''; guardar(); render(); };
+  $('#zLoc',el).onchange=ev=>{ S.loc=ev.target.value; guardar(); render(); };
+}
+/* Estado y lugares de trabajo: comunes a la vista vacía y a la llena */
+function enlazarRegion(el){ const ponEdo=(c)=>{ S.edo=c; S.mun=''; S.loc=''; guardar(); render(); };
   $$('[data-edo]',el).forEach(p=>p.onclick=()=>ponEdo(p.dataset.edo));
   $('#zEst',el).onchange=ev=>ponEdo(ev.target.value);
-  $('#zMun',el).onchange=ev=>{ S.mun=ev.target.value; S.loc=(TERR.localidades[S.edo+S.mun]||[[null]])[0][0]; guardar(); render(); };
-  $('#zLoc',el).onchange=ev=>{ S.loc=ev.target.value; guardar(); render(); };
-  $$('[data-lugar]',el).forEach(b=>b.onclick=()=>{ const p=LUGARES[+b.dataset.lugar]; S.edo=p.edo; S.mun=p.mun; S.loc=p.loc; guardar(); render(); toast(tx(p.n)); });
-  const ac=$('#aCalpan',el); if(ac) ac.onclick=()=>{ S.edo='21'; S.mun='026'; S.loc='0001'; guardar(); render(); }; }
+  $$('[data-lugar]',el).forEach(b=>b.onclick=()=>{ const p=LUGARES[+b.dataset.lugar]; S.edo=p.edo; S.mun=p.mun; S.loc=p.loc; guardar(); render(); toast(tx(p.n)); }); }
+function renderRegionVacia(el){
+  el.innerHTML = `${cabecera('region',T('Cada lugar tiene su propio clima, altitud y gente. Toca tu estado en el mapa o elígelo de la lista; luego baja hasta el municipio y la localidad.','Every place has its own climate, altitude and people. Tap your state on the map or pick it from the list; then go down to municipality and locality.'))}
+  <div class="card"><div class="mapa-wrap"><div>${mapaTelar('', null)}
+      <div class="chips" style="margin-top:8px">${Object.entries(REG_BX).map(([k,r])=>`<span class="chip rchip" style="--rc:${r.col}"><i></i>${esc(tx(r.n))}</span>`).join('')}</div></div>
+    <div class="rinfo"><div class="eyebrow"><span class="sin-llenar">${T('Sin elegir','Not chosen')}</span></div><h2 style="margin:4px 0 8px">${T('¿Dónde está tu unidad?','Where is your farm?')}</h2>
+      <label class="f"><span>${T('Estado','State')}</span><select id="zEst" class="vacio"><option value="" selected disabled>${T('— Elige el estado —','— Choose the state —')}</option>${TERR.estados.map(x=>`<option value="${x[0]}">${esc(x[1])}</option>`).join('')}</select></label>
+      <label class="f"><span>${T('Municipio','Municipality')}</span><select disabled class="vacio"><option>${T('— primero el estado —','— state first —')}</option></select></label>
+      <label class="f"><span>${T('Localidad','Locality')}</span><select disabled class="vacio"><option>${T('— primero el municipio —','— municipality first —')}</option></select></label>
+      <div class="lugares"><span class="nota">${T('Lugares de trabajo','Work places')}:</span>${LUGARES.map((p,i)=>`<button class="chip" data-lugar="${i}">📍 ${esc(tx(p.n))}</button>`).join('')}</div></div></div></div>
+  ${fuenteInegi()}${siguiente('region')}`;
+  enlazarRegion(el); }
 
 /* ================= BLOQUE 3 · REQUERIMIENTOS ================= */
 const REQ_TRAD = [
@@ -3496,25 +3695,27 @@ function impCeldas(v, data){ return `<div class="imps">${COMP.map((c,i)=>`<div><
 
 /* ================= BLOQUE 4 · MANEJO ================= */
 function renderManejo(el){ const fb=renderManejo.fb||null; const pasos = conStack()?PASOS.filter(p=>!fb||p.b===fb):[];
-  const nInn=Object.values(S.manejo).reduce((s,m)=>s+(m.inn||[]).length,0), nOff=Object.values(S.manejo).reduce((s,m)=>s+Object.values(m.off||{}).filter(Boolean).length,0);
-  el.innerHTML = `${cabecera('manejo',T('Cada paso del ciclo tiene actividades que el saber local ha probado durante años. Marca las que practicas, corrige su impacto si hace falta y agrega las actividades innovadoras de tu localidad: son los hilos nuevos del telar.','Each step of the cycle has activities local knowledge has tested for years. Tick those you practise, correct their impact if needed and add your locality’s innovative activities: they are the loom’s new threads.'))}
-  ${consejo(T('Abre un paso, revisa sus actividades y usa «+ Actividad innovadora» para lo que hoy haces diferente. Los cuadros de colores muestran si la actividad suma (verde) o resta (rojo) al suelo, el agua, la atmósfera, la vegetación y la fauna.','Open a step, review its activities and use “+ Innovative activity” for what you now do differently. Coloured boxes show whether the activity adds (green) or subtracts (red) for soil, water, air, vegetation and fauna.'),T('El impacto por omisión es la suma, recortada a ±2, de los perfiles de los elementos que intervienen (Bloque 7); es una lectura editable, no una medición.','Default impact is the sum, clipped to ±2, of the profiles of the elements involved (Block 7); an editable reading, not a measurement.'))}
-  <div class="kpis"><div class="kpi"><div class="l">${T('Actividades activas','Active activities')}</div><div class="v">${actividades().length}</div><div class="s">${T('tradicionales e innovadas','traditional and innovated')}</div></div>
-   <div class="kpi"><div class="l">${T('Innovadas','Innovated')}</div><div class="v" style="color:var(--accent-text)">${nInn}</div><div class="s">${T('agregadas por la localidad','added by the locality')}</div></div>
-   <div class="kpi"><div class="l">${T('No practicadas','Not practised')}</div><div class="v">${nOff}</div><div class="s">${T('salen de la red','leave the network')}</div></div></div>
-  ${conStack()?`<div class="card"><div class="row between"><h3 style="margin:0">${T('Fecha de siembra','Sowing date')}: <b style="color:var(--ok-text)">${diaFecha(S.siembraDia)}</b></h3><span class="nota">${T('Mueve la fecha y los pasos con días después de la siembra se recorren solos.','Move the date and steps set in days after sowing follow.')}</span></div>
-   <input type="range" min="59" max="119" value="${S.siembraDia}" id="rSiem" style="width:100%">
-   <p class="nota">${T('El artículo señala dos posibles fechas de siembra, entre marzo y abril, según la lluvia y fenómenos como El Niño y La Niña. Abre cada paso para fijar las fechas de sus actividades principales (siembra, deshierbe, corte, poda, cosecha…); con ellas se arma el calendario circular del Tablero y del Informe.','The paper reports two possible sowing dates in March–April depending on rain and phenomena such as El Niño/La Niña. Open each step to set its main-activity dates (sowing, weeding, cutting, pruning, harvest…); they build the circular calendar in the Dashboard and Report.')}</p>${fuenteArt()}</div>`:''}
+  const nInn=Object.values(S.manejo).reduce((s,m)=>s+(m.inn||[]).length,0), resps=conStack()?PASOS.flatMap(p=>p.a.map(a=>manejoDe(p.n).resp[a[0]])):[], nSi=resps.filter(r=>r==='si').length, nNo=resps.filter(r=>r==='no').length, nTot=resps.length;
+  el.innerHTML = `${cabecera('manejo',T('Cada paso del ciclo tiene actividades. Si tu cultivo tiene un Stack publicado, aquí aparecen sus actividades como preguntas: responde para cada una si la practicas o no; las que no respondas no cuentan. Después agrega las actividades innovadoras o propias de tu localidad: son los hilos nuevos del telar.','Each step of the cycle has activities. If your crop has a published Stack, its activities appear here as questions: answer for each whether you practise it or not; unanswered ones do not count. Then add your locality’s innovative or own activities: they are the loom’s new threads.'))}
+  ${consejo(T('Abre un paso y contesta «Sí la practico» o «No» en cada actividad; con «Todas sí» o «Todas no» vas más rápido. Usa «+ Actividad innovadora» para lo que haces diferente. Los cuadros de colores muestran si la actividad suma (verde) o resta (rojo) al suelo, el agua, la atmósfera, la vegetación y la fauna.','Open a step and answer “Yes, I practise it” or “No” for each activity; “All yes” or “All no” is faster. Use “+ Innovative activity” for what you do differently. Coloured boxes show whether the activity adds (green) or subtracts (red) for soil, water, air, vegetation and fauna.'),T('El impacto por omisión es la suma, recortada a ±2, de los perfiles de los elementos que intervienen (Bloque 7); es una lectura editable, no una medición. Solo las actividades respondidas «sí» entran a la red.','Default impact is the sum, clipped to ±2, of the profiles of the elements involved (Block 7); an editable reading, not a measurement. Only activities answered “yes” enter the network.'))}
+  <div class="kpis">${conStack()?`<div class="kpi"><div class="l">${T('Respondidas por ti','Answered by you')}</div><div class="v">${nSi+nNo} <small style="font-size:15px;color:var(--muted)">/ ${nTot}</small></div><div class="s">${T('actividades del Stack publicado','activities of the published Stack')}</div></div>`:''}
+   <div class="kpi"><div class="l">${T('Practicadas (entran a la red)','Practised (enter the network)')}</div><div class="v">${actividades().length}</div><div class="s">${conStack()?nSi+' '+T('del Stack','from the Stack')+' · ':''}${nInn} ${T('innovadas o propias','innovated or own')}</div></div>
+   ${conStack()?`<div class="kpi"><div class="l">${T('No practicadas','Not practised')}</div><div class="v">${nNo}</div><div class="s">${T('quedan fuera de la red','stay out of the network')}</div></div>`:''}</div>
+  ${conStack()?`<div class="card"><div class="row between"><h3 style="margin:0">${T('Fecha de siembra','Sowing date')}: ${S.siembraDia==null?`<b class="sin-llenar">${T('sin capturar','not entered')}</b>`:`<b style="color:var(--ok-text)">${diaFecha(S.siembraDia)}</b>`}</h3><span class="nota">${T('Mueve la fecha y los pasos con días después de la siembra se recorren solos.','Move the date and steps set in days after sowing follow.')}</span></div>
+   <input type="range" min="0" max="364" value="${S.siembraDia==null?79:S.siembraDia}" id="rSiem" style="width:100%" class="${S.siembraDia==null?'fantasma':''}" aria-label="${T('Fecha de siembra','Sowing date')}">
+   <p class="nota">${T('Ejemplo publicado: en Calpan el artículo señala dos posibles fechas de siembra, entre marzo y abril, según la lluvia y fenómenos como El Niño y La Niña; tu fecha depende de tu localidad. Abre cada paso para fijar las fechas de sus actividades principales (siembra, deshierbe, corte, poda, cosecha…); con ellas se arma el calendario circular del Tablero y del Informe.','The paper reports two possible sowing dates in March–April depending on rain and phenomena such as El Niño/La Niña. Open each step to set its main-activity dates (sowing, weeding, cutting, pruning, harvest…); they build the circular calendar in the Dashboard and Report.')}</p>${fuenteArt()}</div>`:''}
   ${conStack()?`<div class="filtro5b">${B5.map(b=>`<button style="--fc:${b.col}" class="${fb===b.id?'on':''}" data-fb="${b.id}">${esc(tx(b))}</button>`).join('')}${fb?`<button style="--fc:var(--muted)" data-fb="">${T('Todos','All')}</button>`:''}</div>
    <p class="nota">${marcaInterp()} ${T('La asignación de cada paso a una regla es una lectura de Ratio Telar; el artículo define las 5B pero no las asigna paso por paso.','Assigning each step to a rule is a Ratio Telar reading; the paper defines the 5B but not step by step.')}</p>`:''}
-  ${pasos.map(p=>{ const m=manejoDe(p.n), b=B5.find(x=>x.id===p.b);
-    return `<details class="pacc" style="--pc:${b.col}" ${renderManejo.abierto===p.n?'open':''} data-paso="${p.n}"><summary><span class="num">${p.n}</span><div><h4>${esc(T(p.es,p.en))}</h4><small>${esc(tx(b))} · ${p.dds?p.dds.join('–')+' DDS':MESES()[p.v[0]-1]+(p.v.length>1?'–'+MESES()[p.v[p.v.length-1]-1]:'')} · ${p.a.length} ${T('tradicionales','traditional')}${m.inn.length?' · <b style="color:var(--accent-text)">'+m.inn.length+' '+T('innovadas','innovated')+'</b>':''}</small></div>${p.iic?`<span class="badge pri">IIC ${fmt(p.iic,1)}${ayuda('iic')}</span>`:'<span></span>'}</summary>
-    <div class="cuerpo">${(()=>{ const f=S.fechas[p.n]||{}, w=ventanaPaso(p), ev=f.ev||EV_PASO[p.n], ini=f.ini!=null?f.ini:w.ini, fin=f.fin!=null?f.fin:w.fin;
+  ${pasos.map(p=>{ const m=manejoDe(p.n), b=B5.find(x=>x.id===p.b), nR=p.a.filter(a=>m.resp[a[0]]).length, nS=p.a.filter(a=>m.resp[a[0]]==='si').length;
+    return `<details class="pacc" style="--pc:${b.col}" ${renderManejo.abierto===p.n?'open':''} data-paso="${p.n}"><summary><span class="num">${p.n}</span><div><h4>${esc(T(p.es,p.en))}</h4><small>${esc(tx(b))} · ${p.a.length} ${p.a.length===1?T('actividad publicada','published activity'):T('actividades publicadas','published activities')} ·<span class="${nR===p.a.length?'resp-ok':nR?'resp-parcial':'resp-no'}">${nR===p.a.length?'✓ ':''}${nR} ${T('de','of')} ${p.a.length} ${T('respondidas','answered')}</span>${nS?' · '+nS+' '+T('sí','yes'):''}${m.inn.length?' · <b style="color:var(--accent-text)">'+m.inn.length+' '+T('innovadas','innovated')+'</b>':''}</small></div>${p.iic?`<span class="badge pri">IIC ${fmt(p.iic,1)}${ayuda('iic')}</span>`:'<span></span>'}</summary>
+    <div class="cuerpo"><div class="resp-todas"><span class="nota">${T('Responder todo el paso:','Answer the whole step:')}</span><button class="btn sm ghost" data-rtodas="${p.n}|si">✓ ${T('Todas sí','All yes')}</button><button class="btn sm ghost" data-rtodas="${p.n}|no">✕ ${T('Todas no','All no')}</button>${nR?`<button class="btn sm ghost" data-rtodas="${p.n}|">${T('Borrar respuestas','Clear answers')}</button>`:''}</div>
+      ${(()=>{ const f=S.fechas[p.n]||{}, w=ventanaPaso(p), ev=f.ev||EV_PASO[p.n];
+      const pub=p.dds?p.dds.join('–')+' '+T('días después de la siembra','days after sowing'):p.v.map(x=>MESES()[x-1]).filter((x,i,a)=>i===0||i===a.length-1).join('–');
       return `<div class="fechas-paso"><label><span>${T('Actividad principal','Main activity')}</span><select data-fev="${p.n}">${Object.entries(EVENTOS).map(([k,e])=>`<option value="${k}" ${k===ev?'selected':''}>${esc(tx(e.n))}${EV_PRINCIPALES.includes(k)?' ★':''}</option>`).join('')}</select></label>
-       <label><span>${T('Desde','From')}</span><input type="date" data-fini="${p.n}" value="${isoDeDia(ini)}"></label><label><span>${T('Hasta','To')}</span><input type="date" data-ffin="${p.n}" value="${isoDeDia(fin)}"></label>
-       <span class="nota">${f.ini!=null?`<button class="btn sm ghost" data-frst="${p.n}">${T('Restablecer','Reset')}</button>`:(w.origen==='dds'?T('según DDS','from DAS'):w.origen==='siembra'?T('fecha de siembra','sowing date'):marcaInterp(T('Ventana aproximada leída de la Figura 4','Approximate window read from Figure 4')))}</span></div>`; })()}
-      ${p.a.map(a=>{ const off=!!m.off[a[0]], v=m.imp[a[0]]||impactoAct({el:(ACT_EL[a[0]]||'').split(' '), imp:null});
-      return `<div class="actrow ${off?'off':''}"><input type="checkbox" ${off?'':'checked'} data-act="${p.n}|${a[0]}" title="${T('Se practica','Practised')}"><div><code>${a[0]}</code>${esc(T(a[1],a[2]))}${m.imp[a[0]]?' <span class="badge acc">'+T('impacto editado','edited impact')+'</span>':''}
+       <label><span>${T('Desde','From')}</span><input type="date" data-fini="${p.n}" value="${f.ini!=null?isoDeDia(f.ini):''}"></label><label><span>${T('Hasta','To')}</span><input type="date" data-ffin="${p.n}" value="${f.fin!=null?isoDeDia(f.fin):''}"></label>
+       <span class="nota">${f.ini!=null?`<button class="btn sm ghost" data-frst="${p.n}">${T('Borrar fechas','Clear dates')}</button>`:(w.origen==='dds'||w.origen==='siembra')?T('Sin fecha propia: se calcula con tu fecha de siembra','No own date: computed from your sowing date')+` (${diaFecha(w.ini)}–${diaFecha(w.fin)})`:`<span class="ej-pista">${T('Ejemplo publicado (Calpan)','Published example (Calpan)')}: ${esc(pub)} · ${T('no es tu fecha','not your date')}</span>`}</span></div>`; })()}
+      ${p.a.map(a=>{ const r=m.resp[a[0]]||'', v=m.imp[a[0]]||impactoAct({el:(ACT_EL[a[0]]||'').split(' '), imp:null});
+      return `<div class="actrow resp-${r||'vacia'}"><div class="resp-sn" role="group" aria-label="${T('¿La practicas?','Do you practise it?')}"><button type="button" class="si ${r==='si'?'on':''}" data-act="${p.n}|${a[0]}|si">${T('Sí la practico','Yes, I do')}</button><button type="button" class="no ${r==='no'?'on':''}" data-act="${p.n}|${a[0]}|no">${T('No','No')}</button></div><div><code>${a[0]}</code>${esc(T(a[1],a[2]))}${m.imp[a[0]]?' <span class="badge acc">'+T('impacto editado','edited impact')+'</span>':''}${r?'':` <span class="sin-llenar">${T('sin responder','not answered')}</span>`}
         <div class="elchips">${(ACT_EL[a[0]]||'').split(' ').filter(Boolean).map(id=>chipEl(id)).join('')}</div></div>${impCeldas(v, p.n+'|'+a[0])}</div>`; }).join('')}
       ${m.inn.map((x,i)=>`<div class="actrow inn"><span title="${T('Innovada','Innovated')}">✦</span><div><b>${esc(x.t)}</b>${x.nota?`<div class="nota">${esc(x.nota)}</div>`:''}<div class="elchips">${(x.el||[]).map(id=>chipEl(id)).join('')}</div>
         <button class="btn sm ghost" data-qinn="${p.n}|${i}" style="margin-top:4px">${T('Quitar','Remove')}</button></div>${impCeldas(x.imp||impactoAct({el:x.el||[],imp:null}), p.n+'|N'+i)}</div>`).join('')}
@@ -3531,13 +3732,14 @@ function renderManejo(el){ const fb=renderManejo.fb||null; const pasos = conStac
   $$('[data-fb]',el).forEach(b=>b.onclick=()=>{ renderManejo.fb=b.dataset.fb||null; render(); });
   const rs=$('#rSiem',el); if(rs){ rs.oninput=()=>{ rs.closest('.card').querySelector('h3 b').textContent=diaFecha(+rs.value); }; rs.onchange=()=>{ S.siembraDia=+rs.value; guardar(); render(); }; }
   const fset=(n,k,v)=>{ S.fechas[n]=S.fechas[n]||{}; S.fechas[n][k]=v; guardar(); renderManejo.abierto=+n; render(); };
-  const wdef=(n)=> PASOS[n-1] ? ventanaPaso(PASOS[n-1]) : {ini:0, fin:0};
+  const wdef=(n)=>{ const w=PASOS[n-1]&&conStack() ? ventanaPaso(PASOS[n-1]) : null; return {ini:w&&w.ini!=null&&w.origen!=='fig4'?w.ini:null, fin:w&&w.fin!=null&&w.origen!=='fig4'?w.fin:null}; };
   $$('[data-fev]',el).forEach(s=>s.onchange=()=>fset(s.dataset.fev,'ev',s.value));
-  $$('[data-fini]',el).forEach(s=>s.onchange=()=>{ if(!s.value) return; const n=s.dataset.fini; S.fechas[n]=S.fechas[n]||{}; if(S.fechas[n].fin==null) S.fechas[n].fin=wdef(n).fin; fset(n,'ini',diaDeIso(s.value)); });
-  $$('[data-ffin]',el).forEach(s=>s.onchange=()=>{ if(!s.value) return; const n=s.dataset.ffin; S.fechas[n]=S.fechas[n]||{}; if(S.fechas[n].ini==null) S.fechas[n].ini=wdef(n).ini; fset(n,'fin',diaDeIso(s.value)); });
+  $$('[data-fini]',el).forEach(s=>s.onchange=()=>{ if(!s.value) return; const n=s.dataset.fini; S.fechas[n]=S.fechas[n]||{}; if(S.fechas[n].fin==null) S.fechas[n].fin=wdef(n).fin??diaDeIso(s.value); fset(n,'ini',diaDeIso(s.value)); });
+  $$('[data-ffin]',el).forEach(s=>s.onchange=()=>{ if(!s.value) return; const n=s.dataset.ffin; S.fechas[n]=S.fechas[n]||{}; if(S.fechas[n].ini==null) S.fechas[n].ini=wdef(n).ini??diaDeIso(s.value); fset(n,'fin',diaDeIso(s.value)); });
   $$('[data-frst]',el).forEach(b=>b.onclick=()=>{ const n=b.dataset.frst; const ev=(S.fechas[n]||{}).ev; S.fechas[n]=ev?{ev}:{}; guardar(); renderManejo.abierto=+n; render(); });
   $$('details.pacc',el).forEach(d=>d.addEventListener('toggle',()=>{ if(d.open) renderManejo.abierto=+d.dataset.paso; }));
-  $$('[data-act]',el).forEach(c=>c.onchange=()=>{ const [n,cod]=c.dataset.act.split('|'); manejoDe(+n).off[cod]=!c.checked; S.formulado=false; guardar(); renderManejo.abierto=+n; render(); });
+  $$('[data-act]',el).forEach(c=>c.onclick=()=>{ const [n,cod,v]=c.dataset.act.split('|'), m=manejoDe(+n); if(m.resp[cod]===v) delete m.resp[cod]; else m.resp[cod]=v; S.formulado=false; guardar(); renderManejo.abierto=+n; render(); });
+  $$('[data-rtodas]',el).forEach(c=>c.onclick=()=>{ const [n,v]=c.dataset.rtodas.split('|'), m=manejoDe(+n), p=PASOS[+n-1]; p.a.forEach(a=>{ if(v) m.resp[a[0]]=v; else delete m.resp[a[0]]; }); S.formulado=false; guardar(); renderManejo.abierto=+n; render(); });
   $$('[data-imp]',el).forEach(c=>c.onclick=()=>{ const [n,cod]=c.dataset.imp.split('|'), k=+c.dataset.c, m=manejoDe(+n);
     if(cod.startsWith('N')){ const x=m.inn[+cod.slice(1)]; x.imp=x.imp||impactoAct({el:x.el||[],imp:null}); x.imp[k]=x.imp[k]>=2?-2:x.imp[k]+1; }
     else { m.imp[cod]=m.imp[cod]||impactoAct({el:(ACT_EL[cod]||'').split(' '),imp:null}); m.imp[cod][k]=m.imp[cod][k]>=2?-2:m.imp[cod][k]+1; }
@@ -3547,7 +3749,7 @@ function renderManejo(el){ const fb=renderManejo.fb||null; const pasos = conStac
   $$('[data-addinn]',el).forEach(b=>b.onclick=()=>{ const n=+b.dataset.addinn, t=$(`[data-nt="${n}"]`,el).value.trim(); if(!t) return toast(T('Escribe la actividad','Write the activity'));
     const els=$$(`[data-nel="${n}"] .elchip.on`,el).map(x=>x.dataset.chip); manejoDe(n).inn.push({t, el:els, nota:$(`[data-nn="${n}"]`,el).value.trim()}); S.formulado=false; guardar(); renderManejo.abierto=n; render(); toast(T('Actividad innovadora agregada','Innovative activity added')); });
   $$('[data-qinn]',el).forEach(b=>b.onclick=()=>{ const [n,i]=b.dataset.qinn.split('|').map(Number); manejoDe(n).inn.splice(i,1); guardar(); renderManejo.abierto=n; render(); });
-  const np=$('#npAdd',el); if(np) np.onclick=()=>{ const nom=$('#npN',el).value.trim(), a=$('#npA',el).value.trim(); if(!nom) return; const n=Object.keys(S.manejo).length+1; S.manejo[n]={off:{}, imp:{}, nombre:nom, inn:a?[{t:a, el:[]}]:[]}; const fi=$('#npI',el).value, ff=$('#npF',el).value; if(fi) S.fechas[n]={ev:$('#npE',el).value, ini:diaDeIso(fi), fin:ff?diaDeIso(ff):diaDeIso(fi)}; guardar(); render(); }; }
+  const np=$('#npAdd',el); if(np) np.onclick=()=>{ const nom=$('#npN',el).value.trim(), a=$('#npA',el).value.trim(); if(!nom) return; const n=Object.keys(S.manejo).length+1; S.manejo[n]={resp:{}, imp:{}, nombre:nom, inn:a?[{t:a, el:[]}]:[]}; const fi=$('#npI',el).value, ff=$('#npF',el).value; if(fi) S.fechas[n]={ev:$('#npE',el).value, ini:diaDeIso(fi), fin:ff?diaDeIso(ff):diaDeIso(fi)}; guardar(); render(); }; }
 
 /* ================= BLOQUE 5 · ELEMENTOS ================= */
 function renderElementos(el){ const part=participacion(); const mx=Math.max(1,...Object.values(part));
@@ -3770,12 +3972,12 @@ function renderSostenible(el){ const R=construirRed(), sos=sostenibilidad(), cum
 /* =====================================================================
    7. INFORME · VALIDACIÓN · TEORÍA · NAVEGACIÓN
    ===================================================================== */
-function resumenTexto(R, st, sos, cum){ const c=cultivoSel(), e=edoDe(S.edo), m=munSel(), l=locSel(); const top=[...st.nodos].sort((a,b)=>b.grado-a.grado).slice(0,3).map(d=>d.nombre);
+function resumenTexto(R, st, sos, cum){ const c=cultivoSel(), e=edoDe(S.edo)||EDO_VACIO, m=munSel(), l=locSel(); const top=[...st.nodos].sort((a,b)=>b.grado-a.grado).slice(0,3).map(d=>d.nombre);
   const odsV=Object.entries(cum).filter(([,x])=>x.v!=null); const odsBajo=odsV.filter(([,x])=>x.v<40).map(([o])=>o), odsAlto=odsV.filter(([,x])=>x.v>=70).map(([o])=>o);
   const nInn=R.acts.filter(a=>a.tipo==='inn').length;
   return T(`El sistema de ${tx(c.n).toLowerCase()} (${tx(sistemaSel().n)}) de ${l?l[1]+', ':''}${m?m[1]:''}, ${e[1]}, se tejió con ${R.acts.length} actividades activas${nInn?`, de ellas ${nInn} innovadas por la localidad`:''}. La red resultante tiene ${st.n} elementos y ${st.m} vínculos (densidad ${fmt(st.densidad,3)}, modularidad ${fmt(st.Q,2)}, ${st.com.length} comunidades). Los elementos más relacionados son ${top.join(', ')}. El índice de sostenibilidad medio de las actividades es ${fmt(sos.global,2)} (0.5 = neutro)${sos.inn!=null?`; las innovadas promedian ${fmt(sos.inn,2)} frente a ${fmt(sos.trad,2)} de las tradicionales`:''}. ${odsAlto.length?`ODS con avance alto: ${odsAlto.join(', ')}. `:''}${odsBajo.length?`ODS con avance bajo: ${odsBajo.join(', ')}.`:''}`,
    `The ${tx(c.n).toLowerCase()} system (${tx(sistemaSel().n)}) of ${l?l[1]+', ':''}${m?m[1]:''}, ${e[1]}, was woven from ${R.acts.length} active activities${nInn?`, ${nInn} of them innovated by the locality`:''}. The resulting network has ${st.n} elements and ${st.m} links (density ${fmt(st.densidad,3)}, modularity ${fmt(st.Q,2)}, ${st.com.length} communities). The most related elements are ${top.join(', ')}. Mean activity sustainability index is ${fmt(sos.global,2)} (0.5 = neutral)${sos.inn!=null?`; innovated activities average ${fmt(sos.inn,2)} versus ${fmt(sos.trad,2)} for traditional ones`:''}. ${odsAlto.length?`SDGs with high progress: ${odsAlto.join(', ')}. `:''}${odsBajo.length?`SDGs with low progress: ${odsBajo.join(', ')}.`:''}`); }
-function renderInforme(el){ const R=construirRed(), st=estadisticaRed(R), sos=sostenibilidad(), cum=cumplimientoODS(sos,R), hc=huellaCarbono(); const c=cultivoSel(), e=edoDe(S.edo), m=munSel(), l=locSel();
+function renderInforme(el){ const R=construirRed(), st=estadisticaRed(R), sos=sostenibilidad(), cum=cumplimientoODS(sos,R), hc=huellaCarbono(); const c=cultivoSel(), e=edoDe(S.edo)||EDO_VACIO, m=munSel(), l=locSel();
   const top=[...st.nodos].sort((a,b)=>b.grado-a.grado).slice(0,10);
   el.innerHTML = `${cabecera('informe',T('Todo tu sistema en un documento: resumen redactado, territorio, elementos clave, sostenibilidad y ODS. Imprímelo o guárdalo en PDF, descarga las tablas en CSV o guarda el proyecto para seguir después.','Your whole system in one document: written summary, territory, key elements, sustainability and SDGs. Print or save as PDF, download the tables as CSV or save the project to continue later.'))}
   <div class="card no-print"><div class="row" style="gap:8px;flex-wrap:wrap">
@@ -3789,11 +3991,11 @@ function renderInforme(el){ const R=construirRed(), st=estadisticaRed(R), sos=so
    <p style="font-size:17px">${esc(resumenTexto(R,st,sos,cum))}</p>
    <div class="grid g2"><table class="tbl"><tbody>
      <tr><td>${T('Cultivo o especie','Crop or species')}</td><td><b>${esc(tx(c.n))}</b> <i>${esc(tx(c.sci))}</i>${S.cultivo==='maiz'?' · '+(S.maizTipo==='nativo'?(S.maizRaza?T('raza ','race ')+esc(S.maizRaza):T('nativo, raza sin especificar','native, race not specified')):esc(S.maizVar||T('mejorado','improved'))):''}${S.cultivo==='bovino'?' · '+esc(bovTexto()):''}${variedadTexto()?' · '+esc(variedadTexto()):''}${S.cultivo==='granja'&&S.granja.length?' · '+S.granja.map(id=>esc(tx(CATALOGO.find(x=>x.id===id).n))).join(', '):''}</td></tr><tr><td>${T('Sistema','System')}</td><td>${esc(tx(sistemaSel().n))}</td></tr><tr><td>${T('Tipo de unidad','Unit type')}</td><td>${esc(tipoUPTexto())}</td></tr>
-     <tr><td>${T('Superficie','Area')}</td><td>${fmt(S.superficie,1)} ha</td></tr><tr><td>${T('Región','Region')}</td><td>${esc(tx(REG_BX[e[3]].n))}</td></tr>
+     <tr><td>${T('Superficie','Area')}</td><td>${S.superficie===''?T('sin capturar','not entered'):fmt(S.superficie,1)+' ha'}</td></tr><tr><td>${T('Región','Region')}</td><td>${REG_BX[e[3]]?esc(tx(REG_BX[e[3]].n)):'—'}</td></tr>
      <tr><td>${T('Estado · municipio','State · municipality')}</td><td>${esc(e[1])} · ${esc(m?m[1]:'')}</td></tr><tr><td>${T('Localidad','Locality')}</td><td>${esc(l?l[1]:'')}${l&&l[3]!=null?' · '+fmt(l[3],0)+' m':''}</td></tr></tbody></table>
     <div class="kpis" style="margin:0"><div class="kpi"><div class="l">${T('Actividades','Activities')}</div><div class="v">${R.acts.length}</div></div><div class="kpi"><div class="l">${T('Elementos · vínculos','Elements · links')}</div><div class="v">${st.n} · ${st.m}</div></div>
      <div class="kpi"><div class="l">${T('Sostenibilidad','Sustainability')}</div><div class="v">${fmt(sos.global,2)}</div></div><div class="kpi"><div class="l">${T('Huella de carbono','Carbon footprint')}</div><div class="v">${hc?fmt(hc.tot,0):'—'}</div><div class="s">kg CO₂e/ha</div></div></div></div></div>
-  <div class="card"><h3>${T('Calendario de actividades','Activity calendar')}</h3><div class="grid g2"><div>${calendarioPasos().length?calendarioCircular({w:560})+leyendaEventos(null):`<p class="sindato">—</p>`}</div><div>${tablaFechas()}<p class="nota">${T('Fecha de siembra','Sowing date')}: <b>${diaFecha(S.siembraDia)}</b></p></div></div></div>
+  <div class="card"><h3>${T('Calendario de actividades','Activity calendar')}</h3><div class="grid g2"><div>${calendarioPasos().length?calendarioCircular({w:560})+leyendaEventos(null):`<p class="sindato">—</p>`}</div><div>${tablaFechas()}<p class="nota">${T('Fecha de siembra','Sowing date')}: <b>${S.siembraDia==null?T('sin capturar','not entered'):diaFecha(S.siembraDia)}</b></p></div></div></div>
   <div class="grid g2"><div class="card"><h3>${T('Diez elementos más relacionados','Ten most related elements')}</h3><table class="tbl"><tbody>${top.map((d,i)=>`<tr><td>${i+1}</td><td><span style="color:${d.col}">${CATS[d.cat].sym}</span> ${esc(d.nombre)}</td><td class="r">${fmt(d.grado,2)}</td></tr>`).join('')}</tbody></table></div>
    <div class="card"><h3>${T('ODS','SDGs')}</h3><div class="ods-grid">${ODS.map(([o,es,en,col])=>`<div class="ods-c ${cum[o].v==null?'sd':''}" style="background:${col};min-height:60px"><b>${o}</b><span class="pc">${cum[o].v!=null?fmt(cum[o].v,0)+' %':'—'}</span></div>`).join('')}</div></div></div>
   ${informeCladograma(R)}
@@ -3818,7 +4020,7 @@ function renderInforme(el){ const R=construirRed(), st=estadisticaRed(R), sos=so
   $('#iOds',el).onclick=()=>descargar(slug()+'_ods.csv', csv([['ODS','cumplimiento_%','evidencias']].concat(ODS.map(([o])=>[o, cum[o].v!=null?cum[o].v.toFixed(1):'', cum[o].fuentes.join(' ')]))), 'text/csv');
   $('#iGuar',el).onclick=()=>descargar(slug()+'.telar.json', JSON.stringify({app:'Ratio Telar', version:CONFIG.version, estado:S},null,1), 'application/json');
   $('#iCarg',el).onclick=()=>$('#fProy',el).click();
-  $('#fProy',el).onchange=ev=>{ const f=ev.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{ try{ const d=JSON.parse(r.result); if(d.estado&&d.estado.manejo){ S=Object.assign(estadoInicial(), d.estado); guardar(); render(); toast(T('Proyecto abierto','Project opened')); } }catch(e){ toast(T('Archivo no válido','Invalid file')); } }; r.readAsText(f); };
+  $('#fProy',el).onchange=ev=>{ const f=ev.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{ try{ const d=JSON.parse(r.result); if(d.estado&&d.estado.manejo){ const viejo=/^0\.[234]\./.test(d.version||'') || Object.values(d.estado.manejo).some(m=>m&&m.off&&!m.resp); S=viejo?migrarV2(d.estado):Object.assign(estadoInicial(), d.estado); guardar(); render(); toast(T('Proyecto abierto','Project opened')); } }catch(e){ toast(T('Archivo no válido','Invalid file')); } }; r.readAsText(f); };
   $('#iReset',el).onclick=()=>{ if(confirm(T('¿Borrar los datos de este proyecto en este navegador?','Delete this project’s data in this browser?'))){ S=estadoInicial(); guardar(); render(); } }; }
 
 /* ================= VALIDACIÓN ================= */
@@ -3923,11 +4125,14 @@ function renderTeoria(el){
   ${siguiente('teoria')}`; }
 
 /* ================= NAVEGACIÓN ================= */
-function renderNav(){ $('#nav').innerHTML = BLOQUES.map(b=>`<button class="${S.bloque===b.id?'act':''} ${S.visitados[b.id]&&S.bloque!==b.id&&/^\d+$/.test(b.n)?'done':''}" data-ir="${b.id}"><span class="n">${b.n}</span>${esc(tx(b.corto))}</button>`).join('');
+/* La barra de avance y las marcas del menú cuentan SOLO lo que llenó el usuario (no las visitas, ni sugerencias, ni el ejemplo) */
+function renderNav(){ $('#nav').innerHTML = BLOQUES.map(b=>{ const a=EJ?null:avance(b.id);
+    return `<button class="${S.bloque===b.id?'act':''} ${a?'est-'+a.estado:''}" data-ir="${b.id}" ${a?`title="${esc(a.h+' / '+a.t+' · '+a.txt)}"`:''}><span class="n">${b.n}</span>${esc(tx(b.corto))}${a?`<i class="nav-est" aria-hidden="true"></i>`:''}</button>`; }).join('');
   const a=$('#nav .act'); if(a&&a.scrollIntoView) a.scrollIntoView({block:'nearest',inline:'center'});
-  const hechos=BLOQUES.filter(b=>/^\d+$/.test(b.n)&&(S.visitados[b.id]||S.bloque===b.id)).length;
-  $('#progTxt').textContent=T(`Avance: ${hechos} de ${NUMERADOS} bloques`,`Progress: ${hechos} of ${NUMERADOS} blocks`); $('#progFill').style.width=(100*hechos/NUMERADOS)+'%'; }
-function actualizarPill(){ const l=locSel(); $('#pillTxt').textContent=`${tx(cultivoSel().n)}${S.cultivo==='maiz'&&(S.maizTipo==='nativo'?S.maizRaza:S.maizVar)?' '+(S.maizTipo==='nativo'?S.maizRaza:S.maizVar):''}${S.cultivo==='bovino'?' '+(S.bovRaza||tx(bovSisSel().n)):''}${variedadTexto()?' '+variedadTexto():''}${S.cultivo==='granja'&&S.granja.length?' ('+S.granja.length+')':''} · ${l?l[1]:''}`; }
+  if(EJ){ $('#progTxt').textContent=T('Ejemplo publicado · no son tus datos','Published example · not your data'); $('#progFill').style.width='0%'; return; }
+  const f=avanceTotal(), hechos=BLOQUES_LLENAR.filter(k=>avance(k).estado==='ok').length;
+  $('#progTxt').textContent=T(`Llenado por ti: ${Math.round(100*f)} % · ${hechos} de ${BLOQUES_LLENAR.length} bloques completos`,`Filled in by you: ${Math.round(100*f)} % · ${hechos} of ${BLOQUES_LLENAR.length} blocks complete`); $('#progFill').style.width=(100*f)+'%'; }
+function actualizarPill(){ const l=locSel(); $('#pillTxt').textContent=EJ?T('EJEMPLO · Maíz criollo · Calpan','EXAMPLE · Landrace maize · Calpan'):!S.cultivo&&!l?T('Proyecto nuevo · sin datos aún','New project · no data yet'):`${tx(cultivoSel().n)}${S.cultivo==='maiz'&&(S.maizTipo==='nativo'?S.maizRaza:S.maizVar)?' '+(S.maizTipo==='nativo'?S.maizRaza:S.maizVar):''}${S.cultivo==='bovino'?' '+(S.bovRaza||tx(bovSisSel().n)):''}${variedadTexto()?' '+variedadTexto():''}${S.cultivo==='granja'&&S.granja.length?' ('+S.granja.length+')':''} · ${l?l[1]:''}`; }
 function renderAyuda(){ $('#dlgAyuda').innerHTML=`<div class="dh"><h2>${T('Cómo usar Ratio Telar','How to use Ratio Telar')}</h2><button class="ibtn round" onclick="this.closest('dialog').close()" aria-label="×">✕</button></div>
   <div class="db"><ol><li>${T('<b>Avanza en orden</b>: cultivo, región, requerimientos, manejo, elementos y precio-valor.','<b>Move in order</b>: crop, region, requirements, management, elements and price-value.')}</li>
   <li>${T('En <b>Formulación</b> presiona <i>Tejer el sistema</i>; en <b>Tablero</b> ves la red y su estadística; en <b>Sostenibilidad</b>, los ODS y la huella.','In <b>Formulation</b> press <i>Weave the system</i>; <b>Dashboard</b> shows the network and its statistics; <b>Sustainability</b> shows SDGs and footprint.')}</li>
@@ -3937,7 +4142,11 @@ function renderAyuda(){ $('#dlgAyuda').innerHTML=`<div class="dh"><h2>${T('Cómo
 function render(){ document.documentElement.lang=LANG; $$('.langsw button[data-lang]').forEach(b=>b.classList.toggle('on',b.dataset.lang===LANG));
   document.documentElement.setAttribute('data-modo',MODO); $$('.modesw button').forEach(b=>{ const on=b.dataset.vista===MODO; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); });
   $('#lblProd').textContent=T('Productor','Producer'); $('#lblCien').textContent=T('Científico','Scientist'); $('#brandSub').textContent=T('· lo que está tejido junto','· what is woven together');
-  const b=B(S.bloque)||BLOQUES[0]; b.render()($('#main')); ponerEjemplo(b.id, $('#main')); ponerRegenRiesgo(b.id, $('#main')); enlazarTips($('#main'));
+  document.documentElement.classList.toggle('modo-ejemplo', EJ); franjaEjemplo();
+  const b=B(S.bloque)||BLOQUES[0];
+  if(BLOQUES_RESULTADO.includes(b.id) && !actividades().length) renderVacio($('#main'), b.id);
+  else { b.render()($('#main')); ponerRegenRiesgo(b.id, $('#main')); ponerRevisado(b.id, $('#main')); }
+  ponerEjemplo(b.id, $('#main')); enlazarAnterior($('#main')); enlazarTips($('#main'));
   $('#pie').innerHTML=`<svg style="width:26px;height:26px;vertical-align:middle;margin-right:6px"><use href="#i-logo"/></svg><b>Ratio Telar</b> ${CONFIG.version} · Ratio Complexus · ${esc(CONFIG.autores)} · ${CONFIG.anio}<br><span class="tiny">${T('Herramienta de apoyo a la decisión: los resultados dependen de los datos capturados. Licencia MIT.','Decision-support tool: results depend on the data entered. MIT licence.')} · <a href="https://hectortecumshe-ai.github.io/">hectortecumshe-ai.github.io</a></span>`;
   renderNav(); actualizarPill(); renderAyuda(); }
 function irA(id){ S.visitados[S.bloque]=true; S.bloque=id; guardar(); render(); scrollTo({top:0,behavior:'smooth'}); }

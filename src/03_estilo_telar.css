@@ -274,3 +274,73 @@ table.tbl.riesgos-t{display:table;width:100%;table-layout:fixed}
 .riesgos-t th:nth-child(6),.riesgos-t td:nth-child(6){width:80px}
 .riesgos-t td small.muted{font-size:11.5px;line-height:1.3;display:block}
 @media(max-width:760px){table.tbl.riesgos-t{display:block;table-layout:auto}}
+
+/* ================= Lo tuyo frente a lo sugerido y al ejemplo publicado ================= */
+::placeholder{color:var(--field);opacity:.75;font-style:italic}
+select.vacio{color:var(--field);font-style:italic;border-style:dashed}
+select.vacio option{color:var(--text);font-style:normal}
+.sin-llenar{display:inline-block;font-size:12px;font-style:italic;color:var(--warn-text);background:var(--warn-soft);border:1px dashed var(--warn);border-radius:var(--r-pill);padding:0 8px;font-weight:400;vertical-align:middle}
+input[type=range].fantasma{opacity:.4;filter:grayscale(1)}
+/* franja de avance bajo el título del bloque */
+.avance{display:flex;align-items:center;gap:10px;margin:10px 0 0;font-size:13px;color:var(--muted);max-width:560px}
+.avance .av-barra{flex:0 0 140px;height:7px;border-radius:7px;background:var(--bg-soft);overflow:hidden;border:1px solid var(--border)}
+.avance .av-barra i{display:block;height:100%;background:var(--warn);transition:width .4s var(--ease)}
+.avance.est-ok .av-barra i{background:var(--ok)} .avance.est-ok{color:var(--ok-text)}
+.avance.est-pend .av-barra i{width:0!important}
+.avance.ej{color:#7a5a12;background:#f6ecd2;border:1px dashed #c9a24a;border-radius:var(--r-md);padding:6px 10px}
+/* marcas del menú: pendiente, en proceso, completo */
+.steps-nav .nav-est{width:9px;height:9px;border-radius:50%;border:1.6px solid var(--field);display:inline-block;margin-left:2px}
+.steps-nav .est-proc .nav-est{border-color:var(--warn);background:linear-gradient(90deg,var(--warn) 50%,transparent 50%)}
+.steps-nav .est-ok .nav-est{border-color:var(--ok);background:var(--ok)}
+.steps-nav button.est-ok:not(.act) .n{background:var(--ok-soft);color:var(--ok-text);border-color:transparent}
+/* perillas: sugerido (punteado, gris) frente a confirmado */
+.perilla.sin-confirmar{border-style:dashed;background:repeating-linear-gradient(135deg,var(--bg),var(--bg) 8px,var(--bg-soft) 8px,var(--bg-soft) 16px)}
+.perilla.sin-confirmar .pv{color:var(--muted);font-style:italic}
+.perilla.sin-confirmar input[type=range]{filter:grayscale(1);opacity:.55}
+.perilla.confirmada{border-left-width:6px}
+.estado-p{display:inline-block;font-size:11.5px;color:var(--muted);font-style:italic;margin:2px 0}
+.perilla.confirmada .estado-p,.estado-p.ok{color:var(--ok-text);font-style:normal;font-weight:700}
+.badge.provisional{background:var(--warn-soft);color:var(--warn-text);border:1px dashed var(--warn)}
+.riesgos-t tr.r-sinconf td{background:repeating-linear-gradient(135deg,transparent,transparent 8px,var(--bg-soft) 8px,var(--bg-soft) 16px)}
+.riesgos-t tr.r-sinconf input[type=range]{filter:grayscale(1);opacity:.5}
+.riesgos-t tr.r-sinconf .btn.sm{padding:1px 8px;font-size:12px}
+/* Bloque 4: respuesta Sí / No por actividad */
+.resp-sn{display:flex;flex-direction:column;gap:4px;flex:0 0 auto}
+.resp-sn button{font:inherit;font-size:12px;padding:3px 9px;border-radius:var(--r-pill);border:1px dashed var(--field);background:var(--card);color:var(--muted);cursor:pointer;white-space:nowrap}
+.resp-sn button.si.on{background:var(--ok);border:1px solid var(--ok);color:#fff;font-weight:700}
+.resp-sn button.no.on{background:var(--bad-soft);border:1px solid var(--bad);color:var(--bad-text);font-weight:700}
+.actrow.resp-vacia{background:repeating-linear-gradient(135deg,transparent,transparent 8px,var(--bg-soft) 8px,var(--bg-soft) 16px)}
+.actrow.resp-no{opacity:.5}
+.resp-todas{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:0 0 10px}
+.resp-ok{color:var(--ok-text);font-weight:700} .resp-parcial{color:var(--warn-text);font-weight:700} .resp-no{color:var(--muted);font-style:italic}
+.ej-pista{font-style:italic;color:#8a6a1e}
+/* ventana del ejemplo publicado: sepia, marca de agua, solo lectura */
+dialog.dlg-ejemplo{background:#f7efdc;color:#3b3020;border:2px solid #c9a24a;position:relative;overflow:auto}
+dialog.dlg-ejemplo .dh{background:#efe1bd;border-bottom:1px dashed #c9a24a}
+dialog.dlg-ejemplo .marca-agua{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;font-size:clamp(28px,6vw,64px);font-weight:700;letter-spacing:.06em;color:rgba(150,110,30,.12);transform:rotate(-18deg);white-space:nowrap;z-index:0}
+dialog.dlg-ejemplo .db,dialog.dlg-ejemplo .dh{position:relative;z-index:1}
+dialog.dlg-ejemplo h3{color:#7a5a12}
+dialog.dlg-ejemplo a{color:#7a4a10}
+.ej-aviso{background:#fff7e3;border:1px dashed #c9a24a;border-radius:var(--r-md);padding:8px 12px;font-size:14px}
+/* franja fija del modo ejemplo */
+.franja-ej{position:sticky;top:0;z-index:60;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;padding:9px 16px;background:#c4661c;color:#fff;font-size:14.5px;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+.franja-ej .btn{background:#fff;color:#8a3a1f;border-color:#fff}
+html.modo-ejemplo main{outline:4px solid rgba(224,128,42,.55);outline-offset:-4px;background:repeating-linear-gradient(135deg,transparent,transparent 22px,rgba(224,128,42,.035) 22px,rgba(224,128,42,.035) 44px)}
+/* bloques de resultados sin datos */
+.vacio-res h2{margin-top:0}
+.vacio-lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:10px}
+.vacio-item{font:inherit;text-align:left;display:grid;grid-template-columns:auto 1fr;gap:2px 8px;align-items:center;padding:8px 10px;border-radius:var(--r-md);border:1px dashed var(--field);background:var(--card);cursor:pointer;color:var(--text)}
+.vacio-item .n{grid-row:span 2;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--bg-soft);font-size:12px;font-weight:700}
+.vacio-item small{color:var(--muted)}
+.vacio-item.est-ok{border:1px solid var(--ok)} .vacio-item.est-ok .n{background:var(--ok);color:#fff}
+.vacio-item.est-proc{border-color:var(--warn)}
+/* Inicio: cómo distinguir lo tuyo */
+.como-llenar .muestra{display:inline-block;padding:6px 12px;border-radius:var(--r-md);font-size:13.5px}
+.como-llenar .muestra.vacia{border:1px solid var(--border-strong);color:var(--field);font-style:italic;background:var(--card);min-width:150px}
+.como-llenar .muestra.sugerida{border:1.5px dashed var(--field);color:var(--muted);font-style:italic;background:repeating-linear-gradient(135deg,var(--bg),var(--bg) 8px,var(--bg-soft) 8px,var(--bg-soft) 16px)}
+.como-llenar .muestra.ejemplo{border:2px solid #c9a24a;background:#f7efdc;color:#7a5a12;font-weight:700}
+.revisado.on{border-color:var(--ok)}
+@media print{.franja-ej,.avance,.resp-todas,.resp-sn{display:none!important} html.modo-ejemplo main{outline:none;background:none}}
+.actrow:has(.resp-sn){grid-template-columns:118px minmax(0,1fr) 210px;padding:8px 6px;border-radius:8px}
+.resp-sn button{width:100%;text-align:center}
+@media(max-width:720px){.actrow:has(.resp-sn){grid-template-columns:104px 1fr}}
