@@ -108,6 +108,7 @@ const bovTexto = ()=>{ const p=BOV.find(b=>b.id===S.bovProp)||BOV[0], s=bovSisSe
 /* ---------- Estado / state ---------- */
 let S;
 function estadoInicial(){ return {
+  formato:2,                       // 2 = respuestas sí/no (sin precarga); los archivos sin «formato» son de la versión anterior
   bloque:'inicio', visitados:{},
   proyecto:{nombre:'', productor:'', fecha:new Date().toISOString().slice(0,10), notas:''},
   cultivo:'', sistema:'', tipoUP:'', superficie:'',   // todo empieza vacío: nada se precarga
