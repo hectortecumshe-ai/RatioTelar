@@ -33,7 +33,7 @@ function franjaAvance(id){ if(EJ) return `<div class="avance ej"><b>${T('Ejemplo
 
 /* ---------- Modo ejemplo (caso publicado de Calpan) ---------- */
 function estadoCalpan(){ const s=estadoInicial();
-  Object.assign(s, {cultivo:'maiz', sistema:'milpa', tipoUP:0, edo:'21', mun:'026', loc:'0001', maizTipo:'nativo', siembraDia:79, formulado:true,
+  Object.assign(s, {cultivo:'maiz', sistema:'milpa', tipoUP:0, superficie:1.5,   /* parcela «Contigua», 1.5 ha (Díaz-José et al., 2026) */ edo:'21', mun:'026', loc:'0001', maizTipo:'nativo', siembraDia:79, formulado:true,
     proyecto:{nombre:T('Ejemplo publicado: maíz criollo, Calpan, Puebla','Published example: landrace maize, Calpan, Puebla'), productor:T('Díaz-José et al. (2026)','Díaz-José et al. (2026)'), fecha:'2026-01-01', notas:''}});
   PASOS.forEach(p=>{ s.manejo[p.n]={resp:Object.fromEntries(p.a.map(a=>[a[0],'si'])), inn:[], imp:{}}; });
   return s; }
