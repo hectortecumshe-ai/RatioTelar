@@ -2,7 +2,7 @@
 
 # Ratio Telar
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23309505.svg)](https://doi.org/10.5281/zenodo.23309505)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23290103.svg)](https://doi.org/10.5281/zenodo.23290103)
 
 👉 **https://hectortecumshe-ai.github.io/RatioTelar/**
 
@@ -10,7 +10,7 @@
 
 Ratio Telar teje en un solo tablero el territorio, los pasos y actividades del cultivo, los actores que sostienen el conocimiento, los recursos naturales y la sostenibilidad. Está hecha para productores y para científicos, en español y en inglés.
 
-## Qué contiene (versión 0.4.0)
+## Qué contiene (versión 0.5.0)
 
 Trece bloques que se alimentan con los datos de la localidad, como en RatioBos:
 
@@ -31,6 +31,15 @@ Trece bloques que se alimentan con los datos de la localidad, como en RatioBos:
 | 13 · Informe | Resumen redactado, calendario, cladograma, prospectiva, tablas, CSV, impresión o PDF y proyecto completo |
 
 Además: **Validación** (caso publicado, motor de redes frente a NetworkX, cladograma frente a SciPy, cálculo de control de la huella), **Teoría** y, en cada bloque, la ventana **«Así se hizo con el maíz criollo de Calpan»** para los cultivos aún por documentar.
+
+## Novedades de la versión 0.5.0
+
+- **La aplicación arranca en blanco.** El caso de Calpan ya no viene precargado: se consulta en una ventana aparte, con marca de agua, o en un «modo ejemplo» con una franja fija que lo anuncia. Nunca se copia a los campos del usuario ni se guarda.
+- **Bloque 4:** las actividades del Stack publicado se responden «Sí la practico» o «No»; sin respuesta no cuentan.
+- **Perillas de regeneración y de riesgo:** el valor sugerido se ve punteado hasta que la persona lo mueve o lo acepta; mientras falten, el índice es provisional.
+- **«Llenado por ti»:** la barra y las marcas del menú (pendiente, en proceso, completo) cuentan solo lo que llenó la persona.
+- Los bloques de resultados sin datos dicen qué falta. Los proyectos de versiones anteriores se recuperan o se convierten al abrirlos.
+- Instructivos del Productor y del Científico (2.ª edición) actualizados.
 
 ## Novedades de la versión 0.4.0
 

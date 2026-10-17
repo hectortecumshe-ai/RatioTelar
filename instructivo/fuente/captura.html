@@ -26,7 +26,7 @@ const app = document.getElementById('app'), capa = document.getElementById('capa
 app.width = W; app.height = H; capa.style.width = W + 'px'; capa.style.height = H + 'px';
 try { localStorage.clear(); localStorage.setItem('telar_lang', P.get('l') || 'es'); localStorage.setItem('telar_modo', P.get('v') || 'prod'); localStorage.setItem('telar_tema', 'light'); } catch (e) {}
 const espera = ms => new Promise(r => setTimeout(r, ms));
-const PREP = {   // código que se ejecuta dentro de la app (S, LANG y las funciones de la app)
+const PREP = {   // código que se ejecuta dentro de la app (S, LANG y las funciones de la app), después del caso base
   uva: "S.cultivo='uva'; S.sistema='vinedo';",
   bovino: "S.cultivo='bovino'; renderCultivo.tipo='especie'; S.sistema='pastoreo'; S.tipoUP=3;",
   abeja: "S.cultivo='abeja'; renderCultivo.tipo='especie'; S.sistema='apiario'; S.tipoUP=TIPOS_UP.length-1;",
@@ -44,7 +44,12 @@ const PREP = {   // código que se ejecuta dentro de la app (S, LANG y las funci
   oscuro: "window.__oscuro=true;",
   clado_todos: "renderTablero.clado='todos';",
   precio_fin: "renderPrecios.cat='financieros';",
-  riesgo_clima: "renderRiesgos.cat='clima';"
+  riesgo_clima: "renderRiesgos.cat='clima';",
+  vacio: "",
+  mixto: "renderManejo.abierto=18; const _p=PASOS[17]; manejoDe(18).resp[_p.a[1][0]]='no'; delete manejoDe(18).resp[_p.a[2][0]];",
+  sinconf: "['diversidad','raices','animales','insumos','mo','saber'].forEach(k=>{ delete S.regen[k]; });",
+  parcial: "S.cultivo='maiz'; S.maizTipo='nativo'; S.sistema='milpa'; S.edo='21'; PASOS.slice(0,10).forEach(p=>p.a.forEach(a=>{ manejoDe(p.n).resp[a[0]]='si'; })); S.regen={labranza:2,cobertura:3};",
+  modoej: "entrarEjemplo(); S.bloque='tablero'; S.formulado=true;"
 };
 app.addEventListener('load', async () => {
   const w = app.contentWindow, d = app.contentDocument;
@@ -52,7 +57,11 @@ app.addEventListener('load', async () => {
   st.textContent = '*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent}.aparece,main>*{opacity:1!important;transform:none!important}.dibuja,.clado .rama,.prosp-g .linea-p{stroke-dashoffset:0!important}.toast{display:none!important}';
   d.head.appendChild(st); d.documentElement.style.scrollBehavior = 'auto';
   await espera(400);
-  const codigo = (P.get('prep') || '').split(',').filter(Boolean).map(k => PREP[k] || '').join(';') + ';' + (P.get('js') || '');
+  // Caso resuelto: el ejemplo publicado de Calpan en modo ejemplo, con las sugerencias aceptadas (cifras validadas).
+  // Con «vacio» la captura muestra la app como la ve una persona nueva.
+  const preps = (P.get('prep') || '').split(',').filter(Boolean), vacio = preps.includes('vacio');
+  const base = vacio ? '' : "const _b=S.bloque; entrarEjemplo(); S.bloque=_b; regeneracion().ind.forEach(x=>{ if(x.sug!=null) S.regen[x.id]=x.sug; }); riesgos().L.forEach(x=>{ S.riesgo[x.id]={p:x.sug.p,i:x.sug.i,ok:true}; }); S.revisado={elementos:true}; S.formulado=false;";
+  const codigo = base + ';' + preps.map(k => PREP[k] || '').join(';') + ';' + (P.get('js') || '');
   try { w.eval(codigo + ';guardar(); render();'); } catch (e) { document.title = 'error: ' + e.message; }
   if (w.__oscuro) w.aplicarTema('dark'); else w.aplicarTema('light');
   await espera(300);

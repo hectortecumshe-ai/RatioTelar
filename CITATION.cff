@@ -1,9 +1,9 @@
 cff-version: 1.2.0
 message: "Si usas este software, cítalo como se indica. / If you use this software, please cite it as below."
 title: "Ratio Telar: el conocimiento agrícola local como sistema complejo adaptativo"
-version: 0.4.0
-doi: "10.5281/zenodo.23309505"
-date-released: 2026-10-11
+version: 0.5.0
+doi: "10.5281/zenodo.23290103"
+date-released: 2026-10-16
 type: software
 license: MIT
 authors:
