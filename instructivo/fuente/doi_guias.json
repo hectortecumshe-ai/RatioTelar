@@ -1,0 +1,12 @@
+{
+ "productor": {
+  "id": 23433185,
+  "doi": "10.5281/zenodo.23433185",
+  "bucket": "https://zenodo.org/api/files/7331e4dc-4cfc-474a-9465-c025fad9b2da"
+ },
+ "cientifico": {
+  "id": 23433187,
+  "doi": "10.5281/zenodo.23433187",
+  "bucket": "https://zenodo.org/api/files/5a8a4abe-7f1e-4d77-b37a-635fb10da283"
+ }
+}
