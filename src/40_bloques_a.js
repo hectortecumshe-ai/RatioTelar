@@ -2,6 +2,9 @@
 /* =====================================================================
    6. BLOQUES · base, Inicio, 1 Cultivo, 2 Región, 3 Requerimientos
    ===================================================================== */
+/* Referencia del software en formato APA (7.ª ed.): Autores (año). Título (Versión) [Software]. Editorial. DOI */
+const citaAPA = ()=> `${esc(tx(CONFIG.citaAutores))} (${CONFIG.anio}). <i>${CONFIG.app}: ${esc(tx(CONFIG.titulo))}</i> (${T('Versión','Version')} ${CONFIG.version}) [Software]. Zenodo. ${CONFIG.doi?`https://doi.org/${CONFIG.doi}`:esc(CONFIG.repo||'')}`;
+document.addEventListener('click',ev=>{ if(!ev.target.closest('[data-copiar-cita]')) return; const t=document.getElementById('citaTxt'); try{ navigator.clipboard.writeText(t.innerText); toast(T('Referencia copiada','Reference copied')); }catch(e){} });
 const BLOQUES = [
   {id:'inicio',      n:'⌂', ill:null,       corto:E('Inicio','Home'),                 titulo:E('Inicio','Home'), render:()=>renderInicio},
   {id:'cultivo',     n:'1', ill:'cult',     corto:E('Cultivo','Crop'),                titulo:E('Cultivo o especie y sistema','Crop or species and system'), render:()=>renderCultivo},
@@ -105,6 +108,10 @@ function renderInicio(el){
    <p>${marcaDato()} ${T('Cifras tomadas de una fuente citada (artículo, tesis, INEGI, IPCC).','Figures from a cited source (paper, thesis, INEGI, IPCC).')}</p>
    <p>${marcaInterp()} ${T('Relaciones y perfiles que propone Ratio Telar para leer los datos; todos son editables.','Links and profiles proposed by Ratio Telar to read the data; all are editable.')}</p>
    <p class="nota">${T('Lo que no está documentado aparece como «sin dato». Ratio Telar no inventa valores.','What is undocumented appears as “no data”. Ratio Telar does not invent values.')}</p></div>
+  <div class="card cita-card"><h2>${T('¿Cómo citarla?','How to cite it?')}</h2>
+   <p class="nota">${T(`Si usas ${CONFIG.app} en un artículo, una tesis, un informe o una clase, cítala así (APA, 7.ª ed.):`,`If you use ${CONFIG.app} in a paper, thesis, report or class, cite it as follows (APA 7th ed.):`)}</p>
+   <p id="citaTxt" class="cita-apa">${citaAPA()}</p>
+   <div class="row" style="gap:10px;flex-wrap:wrap;align-items:center"><button class="btn ghost sm" data-copiar-cita>⧉ ${T('Copiar referencia','Copy reference')}</button>${CONFIG.doi?`<a class="btn link sm" href="https://doi.org/${CONFIG.doi}" target="_blank" rel="noopener">DOI ${CONFIG.doi} ↗</a>`:''}</div></div>
   ${siguiente('inicio')}`; }
 
 /* ================= BLOQUE 1 · CULTIVO ================= */

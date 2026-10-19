@@ -7,7 +7,7 @@ const CONFIG = {
   app:'Ratio Telar', version:'0.5.0', anio:2026, doi:'10.5281/zenodo.23290103',
   repo:'https://github.com/hectortecumshe-ai/RatioTelar',
   autores:'Héctor Tecumshé Mojica-Zárate · Óscar Díaz-José · Luis Ángel Barrera-Guzmán · Guadalupe Velázquez-Vázquez',
-  citaAutores:{es:'Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. A., y Velázquez-Vázquez, G.',en:'Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. A., & Velázquez-Vázquez, G.'},
+  citaAutores:{es:'Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. Á., y Velázquez-Vázquez, G.',en:'Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. Á., & Velázquez-Vázquez, G.'},
   titulo:{es:'El conocimiento agrícola local como sistema complejo adaptativo',en:'Local farming knowledge as a complex adaptive system'}
 };
 let LANG = 'es', MODO = 'prod';
