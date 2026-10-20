@@ -3424,7 +3424,7 @@ function informeRegenRiesgo(){ const rg=regeneracion(), rs=riesgos({rg}), crg=CL
    ===================================================================== */
 /* Referencia del software en formato APA (7.ª ed.): Autores (año). Título (Versión) [Software]. Editorial. DOI */
 const citaAPA = ()=> `${esc(tx(CONFIG.citaAutores))} (${CONFIG.anio}). <i>${CONFIG.app}: ${esc(tx(CONFIG.titulo))}</i> (${T('Versión','Version')} ${CONFIG.version}) [Software]. Zenodo. ${CONFIG.doi?`https://doi.org/${CONFIG.doi}`:esc(CONFIG.repo||'')}`;
-document.addEventListener('click',ev=>{ if(!ev.target.closest('[data-copiar-cita]')) return; const t=document.getElementById('citaTxt'); try{ navigator.clipboard.writeText(t.innerText); toast(T('Referencia copiada','Reference copied')); }catch(e){} });
+document.addEventListener('click',ev=>{ if(ev.target.closest('[data-ver-cita]')){ const c=document.querySelector('.cita-card'); if(c) c.scrollIntoView({behavior:'smooth',block:'center'}); return; } if(!ev.target.closest('[data-copiar-cita]')) return; const t=document.getElementById('citaTxt'); try{ navigator.clipboard.writeText(t.innerText); toast(T('Referencia copiada','Reference copied')); }catch(e){} });
 const BLOQUES = [
   {id:'inicio',      n:'⌂', ill:null,       corto:E('Inicio','Home'),                 titulo:E('Inicio','Home'), render:()=>renderInicio},
   {id:'cultivo',     n:'1', ill:'cult',     corto:E('Cultivo','Crop'),                titulo:E('Cultivo o especie y sistema','Crop or species and system'), render:()=>renderCultivo},
@@ -3498,7 +3498,7 @@ function renderInicio(el){
       <p class="big">${T('Una milpa, una parcela o una unidad pecuaria es un <b>sistema complejo adaptativo</b>: personas, semillas, suelo, agua, saberes, instituciones y mercados que interactúan, aprenden y se transforman. Ratio Telar lo <b>teje bloque a bloque</b> con datos de tu localidad y te muestra quién sostiene el sistema, cuánto vale cada hilo y qué tan sostenible es cada paso.','A milpa, a plot or a livestock farm is a <b>complex adaptive system</b>: people, seeds, soil, water, knowledge, institutions and markets that interact, learn and change. Ratio Telar <b>weaves it block by block</b> with your locality’s data and shows who holds the system together, what each thread is worth and how sustainable each step is.')}</p>
       <div class="ctas"><button class="btn lg" data-ir="cultivo">${T('Empezar a tejer →','Start weaving →')}</button>
         <button class="btn ghost lg" data-entrar-ej>${T('Ver el ejemplo publicado (Calpan)','See the published example (Calpan)')}</button>
-        <button class="btn link" data-ir="teoria">${T('Leer la teoría','Read the theory')}</button><a class="btn link" href="instructivo-productor.html" target="_blank" rel="noopener">${T('Instructivo del Productor','Producer Guide')} ↗</a><a class="btn link" href="instructivo-cientifico.html" target="_blank" rel="noopener">${T('Instructivo del Científico','Scientist Guide')} ↗</a></div>
+        <button class="btn link" data-ir="teoria">${T('Leer la teoría','Read the theory')}</button><button class="btn link" data-ver-cita>${T('¿Cómo citarla?','How to cite it?')}</button><a class="btn link" href="instructivo-productor.html" target="_blank" rel="noopener">${T('Instructivo del Productor','Producer Guide')} ↗</a><a class="btn link" href="instructivo-cientifico.html" target="_blank" rel="noopener">${T('Instructivo del Científico','Scientist Guide')} ↗</a></div>
       <div class="chips"><span class="chip">${T('Todo el cálculo ocurre en tu navegador','All calculations run in your browser')}</span><span class="chip">${T('Sin cookies ni recursos de terceros','No cookies or third-party resources')}</span><span class="chip">${T('Español e inglés','Spanish and English')}</span><span class="chip">${T('Libre (MIT)','Free (MIT)')}</span></div></div>
     <div class="art" aria-hidden="true" style="--anim:running"><div class="stage"></div>${telarVivo()}
       <svg class="big float" style="left:2%;top:2%;width:22%;height:30%"><use href="#c-maiz"/></svg>
@@ -3513,6 +3513,10 @@ function renderInicio(el){
     <div><span class="muestra sugerida">${T('Sugerido, sin confirmar','Suggested, not confirmed')}</span><p class="nota">${T('Perilla punteada: es una sugerencia. Cuenta solo cuando la mueves o pulsas «Aceptar».','Dashed knob: it is a suggestion. It counts only when you move it or press “Accept”.')}</p></div>
     <div><span class="muestra ejemplo">${T('Ejemplo publicado','Published example')}</span><p class="nota">${T('Ventana sepia con marca de agua: datos de Calpan para consultar. Nunca se copian a tus campos.','Sepia window with a watermark: Calpan data for reference. Never copied into your fields.')}</p></div></div>
     <p class="nota">${T('Arriba, la barra «Llenado por ti» y las marcas del menú (○ pendiente, ◐ en proceso, ● completo) cuentan solo lo que tú llenaste.','Above, the “Filled in by you” bar and the menu marks (○ pending, ◐ in progress, ● complete) count only what you filled in.')}</p></div>
+  <div class="card cita-card"><h2>${T('¿Cómo citarla?','How to cite it?')}</h2>
+   <p class="nota">${T(`Si usas ${CONFIG.app} en un artículo, una tesis, un informe o una clase, cítala así (APA, 7.ª ed.):`,`If you use ${CONFIG.app} in a paper, thesis, report or class, cite it as follows (APA 7th ed.):`)}</p>
+   <p id="citaTxt" class="cita-apa">${citaAPA()}</p>
+   <div class="row" style="gap:10px;flex-wrap:wrap;align-items:center"><button class="btn ghost sm" data-copiar-cita>⧉ ${T('Copiar referencia','Copy reference')}</button>${CONFIG.doi?`<a class="btn link sm" href="https://doi.org/${CONFIG.doi}" target="_blank" rel="noopener">DOI ${CONFIG.doi} ↗</a>`:''}</div></div>
   <div class="stats">
     <div class="stat"><div class="v">${CATALOGO.length}</div><div class="l">${T('cultivos y especies en el catálogo','crops and species in the catalogue')}</div></div>
     <div class="stat"><div class="v">${fmt(nl,0)}</div><div class="l">${T('localidades de México','Mexican localities')}</div></div>
@@ -3528,10 +3532,6 @@ function renderInicio(el){
    <p>${marcaDato()} ${T('Cifras tomadas de una fuente citada (artículo, tesis, INEGI, IPCC).','Figures from a cited source (paper, thesis, INEGI, IPCC).')}</p>
    <p>${marcaInterp()} ${T('Relaciones y perfiles que propone Ratio Telar para leer los datos; todos son editables.','Links and profiles proposed by Ratio Telar to read the data; all are editable.')}</p>
    <p class="nota">${T('Lo que no está documentado aparece como «sin dato». Ratio Telar no inventa valores.','What is undocumented appears as “no data”. Ratio Telar does not invent values.')}</p></div>
-  <div class="card cita-card"><h2>${T('¿Cómo citarla?','How to cite it?')}</h2>
-   <p class="nota">${T(`Si usas ${CONFIG.app} en un artículo, una tesis, un informe o una clase, cítala así (APA, 7.ª ed.):`,`If you use ${CONFIG.app} in a paper, thesis, report or class, cite it as follows (APA 7th ed.):`)}</p>
-   <p id="citaTxt" class="cita-apa">${citaAPA()}</p>
-   <div class="row" style="gap:10px;flex-wrap:wrap;align-items:center"><button class="btn ghost sm" data-copiar-cita>⧉ ${T('Copiar referencia','Copy reference')}</button>${CONFIG.doi?`<a class="btn link sm" href="https://doi.org/${CONFIG.doi}" target="_blank" rel="noopener">DOI ${CONFIG.doi} ↗</a>`:''}</div></div>
   ${siguiente('inicio')}`; }
 
 /* ================= BLOQUE 1 · CULTIVO ================= */
