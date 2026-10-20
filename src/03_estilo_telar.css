@@ -344,3 +344,9 @@ html.modo-ejemplo main{outline:4px solid rgba(224,128,42,.55);outline-offset:-4p
 .actrow:has(.resp-sn){grid-template-columns:118px minmax(0,1fr) 210px;padding:8px 6px;border-radius:8px}
 .resp-sn button{width:100%;text-align:center}
 @media(max-width:720px){.actrow:has(.resp-sn){grid-template-columns:104px 1fr}}
+
+/* Código QR de la app (tarjeta «¿Cómo citarla?») */
+.qr-app{display:flex;gap:14px;align-items:center;margin-top:14px;font-size:13px;line-height:1.45;color:var(--muted)}
+.qr-app .qr-img{flex:none;width:104px;height:104px;border-radius:8px;overflow:hidden;border:1px solid var(--line, #dcd9cd);background:#fff}
+.qr-app .qr-img svg{width:100%;height:100%;display:block}
+.qr-app b{color:var(--text, inherit);overflow-wrap:anywhere}
