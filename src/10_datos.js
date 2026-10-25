@@ -4,7 +4,7 @@
    Ratio Telar — Ratio Complexus («lo que está tejido junto»)
    ===================================================================== */
 const CONFIG = {
-  app:'Ratio Telar', version:'0.5.0', anio:2026, doi:'10.5281/zenodo.23290103',
+  app:'Ratio Telar', version:'0.6.0', anio:2026, doi:'10.5281/zenodo.23290103',
   repo:'https://github.com/hectortecumshe-ai/RatioTelar',
   autores:'Héctor Tecumshé Mojica-Zárate · Óscar Díaz-José · Luis Ángel Barrera-Guzmán · Guadalupe Velázquez-Vázquez',
   citaAutores:{es:'Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. Á., y Velázquez-Vázquez, G.',en:'Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. Á., & Velázquez-Vázquez, G.'},

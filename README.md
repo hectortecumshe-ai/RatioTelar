@@ -10,7 +10,7 @@
 
 Ratio Telar teje en un solo tablero el territorio, los pasos y actividades del cultivo, los actores que sostienen el conocimiento, los recursos naturales y la sostenibilidad. Está hecha para productores y para científicos, en español y en inglés.
 
-## Qué contiene (versión 0.5.0)
+## Qué contiene (versión 0.6.0)
 
 Trece bloques que se alimentan con los datos de la localidad, como en RatioBos:
 
@@ -31,6 +31,13 @@ Trece bloques que se alimentan con los datos de la localidad, como en RatioBos:
 | 13 · Informe | Resumen redactado, calendario, cladograma, prospectiva, tablas, CSV, impresión o PDF y proyecto completo |
 
 Además: **Validación** (caso publicado, motor de redes frente a NetworkX, cladograma frente a SciPy, cálculo de control de la huella), **Teoría** y, en cada bloque, la ventana **«Así se hizo con el maíz criollo de Calpan»** para los cultivos aún por documentar.
+
+## Novedades de la versión 0.6.0
+
+- **Modelo 3D del sistema complejo adaptativo** en el Bloque 9 (Formulación): capas apiladas de abajo arriba (entorno, entradas, agentes y conocimiento, manejo con los 5B y salidas) con el halo de la emergencia encima. Los nodos y vínculos son los de la red real del proyecto, y las líneas punteadas son las retroalimentaciones del ciclo. Se gira arrastrando o con el teclado, se acerca con botones, Ctrl + rueda o pellizco, y al tocar un nodo se resaltan sus vecinos. La perspectiva se calcula en la app, sin bibliotecas. El esquema 2D queda como segunda pestaña.
+- **Importancia de cada nodo (0–100)** respecto del máximo de la red, por grado ponderado (por omisión), intermediación, vector propio o valor del elemento, con el ranking de los 10 elementos más importantes. Por omisión se oculta el nodo omnipresente de los productores.
+- Código QR de la app en la tarjeta «¿Cómo citarla?».
+- Instructivos actualizados con el modelo 3D y la importancia de los nodos, con el caso de Calpan.
 
 ## Novedades de la versión 0.5.0
 
