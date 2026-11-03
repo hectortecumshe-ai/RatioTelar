@@ -62,7 +62,7 @@ function histograma(vals, opt={}){ const W=opt.w||460, H=230, L=40, B=34; if(!va
     `<text x="${L+i*bw+bw/2}" y="${H-B+14}" text-anchor="middle" font-size="10.5" class="m">${f0(i*ancho)}</text>${v?`<text x="${L+i*bw+bw/2}" y="${H-B-h-4}" text-anchor="middle" font-size="10.5">${v}</text>`:''}`; });
   return s+`<text x="${(L+W)/2}" y="${H-4}" text-anchor="middle" font-size="12" class="m">${T('vecinos por elemento','neighbours per element')}</text></svg>`; }
 
-/* Modelo esquemático del sistema complejo adaptativo (Bloque 9) */
+/* Modelo esquemático del sistema complejo adaptativo (Bloque 8) */
 function modeloSCA(R){ const W=980, H=560; const cnt=(c)=>R.nodos.filter(d=>d.cat===c).length;
   const caja=(x,y,w,h,col,tit,sub,cl='')=>`<g class="caja ${cl}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="14" fill="${col}" fill-opacity=".13" stroke="${col}" stroke-width="2"/><text x="${x+w/2}" y="${y+24}" text-anchor="middle" font-size="15" font-weight="700" style="fill:${col}">${esc(tit)}</text><text x="${x+w/2}" y="${y+44}" text-anchor="middle" font-size="12" class="m">${esc(sub)}</text></g>`;
   const fl=(d,col='var(--border-strong)',das='',cl='flujo')=>`<path d="${d}" fill="none" stroke="${col}" stroke-width="2.6" ${das?`stroke-dasharray="${das}"`:''} marker-end="url(#fl)" class="${cl}"/>`;
@@ -108,7 +108,7 @@ function sumaResta(comp){ const W=620, fila=44, L=120, H=COMP.length*fila+40, mx
 /* Barras por paso: índice de sostenibilidad tradicional e innovado */
 function barrasPasos(pp){ const W=980, H=280, L=40, B=40, n=pp.length, bw=(W-L-10)/n; const Y=(v)=>H-B-(H-B-14)*v;
   let s=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img">`; [0,.4,.5,.6,1].forEach(t=>{ s+=`<line class="grid" x1="${L}" y1="${Y(t)}" x2="${W-6}" y2="${Y(t)}" ${t===.5?'stroke-dasharray="4 4"':''}/><text x="${L-6}" y="${Y(t)+4}" text-anchor="end" font-size="10.5" class="m">${f1(t,1)}</text>`; });
-  pp.forEach((p,i)=>{ const x=L+i*bw; const b=PASOS[i]?colB(PASOS[i].b):'var(--primary)';
+  pp.forEach((p,i)=>{ const x=L+i*bw; const b=p.b?colB(p.b):'var(--primary)';
     if(p.trad!=null) s+=`<rect class="creceV" x="${x+2}" y="${Y(p.trad)}" width="${p.inn!=null?bw/2-3:bw-4}" height="${H-B-Y(p.trad)}" rx="2" fill="${b}" style="animation-delay:${i*12}ms" data-tip="${esc('<b>'+T('Paso','Step')+' '+p.n+'</b><br>'+T('Tradicional','Traditional')+': IS '+f1(p.trad,2)+(p.inn!=null?'<br>'+T('Innovado','Innovated')+': IS '+f1(p.inn,2):''))}"/>`;
     if(p.inn!=null) s+=`<rect class="creceV" x="${x+bw/2}" y="${Y(p.inn)}" width="${bw/2-3}" height="${H-B-Y(p.inn)}" rx="2" fill="var(--accent)" style="animation-delay:${i*12}ms"/>`;
     s+=`<text x="${x+bw/2}" y="${H-B+14}" text-anchor="middle" font-size="9.5" class="m">${p.n}</text>`; });

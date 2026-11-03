@@ -9,19 +9,18 @@
    - Los bloques de resultados sin actividades muestran qué falta en vez de
      resultados vacíos.
    ===================================================================== */
-const BLOQUES_LLENAR = ['cultivo','region','requerimientos','manejo','regeneracion','riesgos','elementos','precios'];
+const BLOQUES_LLENAR = ['cultivo','region','manejo','regeneracion','riesgos','elementos','precios'];
 const BLOQUES_RESULTADO = ['formulacion','tablero','sostenible','prospectiva','informe'];
 function avance(id){ let h=0, t=0, nota='';
   if(id==='cultivo'){ const c=[!!S.cultivo, !!S.sistema, S.tipoUP!==''&&S.tipoUP!=null, +S.superficie>0]; t=c.length; h=c.filter(Boolean).length; }
   else if(id==='region'){ const c=[!!S.edo, !!S.mun, !!S.loc]; t=3; h=c.filter(Boolean).length; }
-  else if(id==='requerimientos'){ if(conStack()){ t=REQ_TRAD.length; h=REQ_TRAD.filter((r,i)=>(S.reqEst||{})[i]).length; } else { t=1; h=S.reqInn.length?1:0; } }
-  else if(id==='manejo'){ if(conStack()){ t=N_ACT_STACK(); h=PASOS.reduce((s,p)=>s+p.a.filter(a=>manejoDe(p.n).resp[a[0]]).length,0); }
+  else if(id==='manejo'){ if(conStack()){ const pa=pasosActivos(); t=pa.reduce((s,p)=>s+p.a.length,0); h=pa.reduce((s,p)=>s+p.a.filter(a=>manejoDe(p.n).resp[a[0]]).length,0); }
     else { t=1; h=actividades().length?1:0; } }
   else if(id==='regeneracion'){ t=REGEN_IND.length; h=Object.keys(S.regen||{}).filter(k=>S.regen[k]!==''&&S.regen[k]!=null).length; }
   else if(id==='riesgos'){ t=RIESGOS.length; const U=S.riesgo||{}; h=RIESGOS.filter(d=>{ const u=U[d.id]||{}; return u.off===true||u.ok===true||(u.p!=null&&u.i!=null); }).length; }
   else if(id==='elementos'){ t=1; h=(S.revisado||{}).elementos?1:0; }
   else if(id==='precios'){ const ids=Object.keys(participacion()); t=ids.length; h=ids.filter(k=>{ const v=S.valor[k]||{}, p=S.precio[k]||{}; return ['eco','uso','cul','eia'].some(d=>v[d]!==''&&v[d]!=null) || (p.p!==''&&p.p!=null); }).length;
-    if(!t) nota=T('primero responde el Bloque 4','first answer Block 4'); }
+    if(!t) nota=T('primero responde el Bloque 3','first answer Block 3'); }
   else return null;
   const f=t?h/t:0, estado=!h?'pend':h>=t?'ok':'proc';
   return {h, t, f, estado, nota, txt:{pend:T('Pendiente','Pending'), proc:T('En proceso','In progress'), ok:T('Completo','Complete')}[estado]}; }
@@ -49,9 +48,9 @@ document.addEventListener('click',ev=>{ if(ev.target.closest('[data-entrar-ej]')
 /* ---------- Bloques de resultados sin datos ---------- */
 function renderVacio(el, id){
   el.innerHTML=`${cabecera(id,'')}<div class="card vacio-res"><h2>${T('Todavía no hay datos tuyos para calcular este bloque','There are no data of yours to compute this block yet')}</h2>
-   <p>${T('Los resultados se calculan solo con lo que tú llenas. Para empezar, responde en el Bloque 4 qué actividades practicas o agrega las tuyas.','Results are computed only from what you fill in. To start, answer in Block 4 which activities you practise or add your own.')}</p>
+   <p>${T('Los resultados se calculan solo con lo que tú llenas. Para empezar, responde en el Bloque 3 qué actividades practicas o agrega las tuyas.','Results are computed only from what you fill in. To start, answer in Block 3 which activities you practise or add your own.')}</p>
    <div class="vacio-lista">${BLOQUES_LLENAR.map(k=>{ const a=avance(k), b=B(k); return `<button class="vacio-item est-${a.estado}" data-ir="${k}"><span class="n">${b.n}</span><b>${esc(tx(b.corto))}</b><small>${a.h} / ${a.t} · ${a.txt}</small></button>`; }).join('')}</div>
-   <div class="row" style="gap:10px;flex-wrap:wrap;margin-top:14px"><button class="btn" data-ir="manejo">${T('Ir al Bloque 4 · Manejo','Go to Block 4 · Management')} →</button><button class="btn ghost" data-entrar-ej>${T('Ver cómo se ve con el ejemplo publicado','See how it looks with the published example')}</button></div></div>${siguiente(id)}`; }
+   <div class="row" style="gap:10px;flex-wrap:wrap;margin-top:14px"><button class="btn" data-ir="manejo">${T('Ir al Bloque 3 · Manejo','Go to Block 3 · Management')} →</button><button class="btn ghost" data-entrar-ej>${T('Ver cómo se ve con el ejemplo publicado','See how it looks with the published example')}</button></div></div>${siguiente(id)}`; }
 
 /* ---------- Bloque sin campos propios: «ya lo revisé» ---------- */
 function ponerRevisado(id, el){ if(id!=='elementos'||EJ) return; const ok=(S.revisado||{}).elementos, nx=$('.next',el);

@@ -9,17 +9,16 @@ const BLOQUES = [
   {id:'inicio',      n:'⌂', ill:null,       corto:E('Inicio','Home'),                 titulo:E('Inicio','Home'), render:()=>renderInicio},
   {id:'cultivo',     n:'1', ill:'cult',     corto:E('Cultivo','Crop'),                titulo:E('Cultivo o especie y sistema','Crop or species and system'), render:()=>renderCultivo},
   {id:'region',      n:'2', ill:'i-mapa',   corto:E('Región','Region'),               titulo:E('Región, municipio y localidad','Region, municipality and locality'), render:()=>renderRegion},
-  {id:'requerimientos',n:'3',ill:'i-req',   corto:E('Requerimientos','Requirements'), titulo:E('Requerimientos técnicos tradicionales e innovados','Traditional and innovated technical requirements'), render:()=>renderReq},
-  {id:'manejo',      n:'4', ill:'i-manejo', corto:E('Manejo','Management'),           titulo:E('Manejo: pasos y actividades','Management: steps and activities'), render:()=>renderManejo},
-  {id:'regeneracion', n:'5', ill:'i-regen', corto:E('Regeneración','Regeneration'), titulo:E('Regeneración del sistema productivo','Regeneration of the production system'), render:()=>renderRegeneracion},
-  {id:'riesgos',     n:'6', ill:'i-riesgo', corto:E('Riesgos','Risks'), titulo:E('Riesgos del sistema','System risks'), render:()=>renderRiesgos},
-  {id:'elementos',   n:'7', ill:'i-red',    corto:E('Elementos','Elements'),          titulo:E('Elementos que interactúan en el sistema','Elements interacting in the system'), render:()=>renderElementos},
-  {id:'precios',     n:'8', ill:'i-valor',  corto:E('Precio y valor','Price and value'),titulo:E('Precio y valor de los elementos','Price and value of the elements'), render:()=>renderPrecios},
-  {id:'formulacion', n:'9', ill:'i-telar',  corto:E('Formulación','Formulation'),     titulo:E('Formulación del sistema complejo adaptativo','Complex adaptive system formulation'), render:()=>renderFormulacion},
-  {id:'tablero',     n:'10', ill:'i-panel2', corto:E('Tablero','Dashboard'),           titulo:E('Tablero de resultados','Results dashboard'), render:()=>renderTablero},
-  {id:'sostenible',  n:'11', ill:'i-tierra', corto:E('Sostenibilidad','Sustainability'),titulo:E('Sostenibilidad, ODS y huella','Sustainability, SDGs and footprint'), render:()=>renderSostenible},
-  {id:'prospectiva', n:'12', ill:'i-panel2', corto:E('Prospectiva','Outlook'),       titulo:E('Prospectiva a 2, 5 y 10 años','Outlook at 2, 5 and 10 years'), render:()=>renderProspectiva},
-  {id:'informe',     n:'13',ill:'i-report', corto:E('Informe','Report'),             titulo:E('Informe general y exportación','General report and export'), render:()=>renderInforme},
+  {id:'manejo',      n:'3', ill:'i-manejo', corto:E('Manejo','Management'),           titulo:E('Manejo: pasos y actividades','Management: steps and activities'), render:()=>renderManejo},
+  {id:'regeneracion', n:'4', ill:'i-regen', corto:E('Regeneración','Regeneration'), titulo:E('Regeneración del sistema productivo','Regeneration of the production system'), render:()=>renderRegeneracion},
+  {id:'riesgos',     n:'5', ill:'i-riesgo', corto:E('Riesgos','Risks'), titulo:E('Riesgos del sistema','System risks'), render:()=>renderRiesgos},
+  {id:'elementos',   n:'6', ill:'i-red',    corto:E('Elementos','Elements'),          titulo:E('Elementos que interactúan en el sistema','Elements interacting in the system'), render:()=>renderElementos},
+  {id:'precios',     n:'7', ill:'i-valor',  corto:E('Precio y valor','Price and value'),titulo:E('Precio y valor de los elementos','Price and value of the elements'), render:()=>renderPrecios},
+  {id:'formulacion', n:'8', ill:'i-telar',  corto:E('Formulación','Formulation'),     titulo:E('Formulación del sistema complejo adaptativo','Complex adaptive system formulation'), render:()=>renderFormulacion},
+  {id:'tablero',     n:'9', ill:'i-panel2', corto:E('Tablero','Dashboard'),           titulo:E('Tablero de resultados','Results dashboard'), render:()=>renderTablero},
+  {id:'sostenible',  n:'10', ill:'i-tierra', corto:E('Sostenibilidad','Sustainability'),titulo:E('Sostenibilidad, ODS y huella','Sustainability, SDGs and footprint'), render:()=>renderSostenible},
+  {id:'prospectiva', n:'11', ill:'i-panel2', corto:E('Prospectiva','Outlook'),       titulo:E('Prospectiva a 2, 5 y 10 años','Outlook at 2, 5 and 10 years'), render:()=>renderProspectiva},
+  {id:'informe',     n:'12',ill:'i-report', corto:E('Informe','Report'),             titulo:E('Informe general y exportación','General report and export'), render:()=>renderInforme},
   {id:'validacion',  n:'✓', ill:'i-check',  corto:E('Validación','Validation'),       titulo:E('Validación','Validation'), render:()=>renderValidacion},
   {id:'teoria',      n:'§', ill:'i-book',   corto:E('Teoría','Theory'),               titulo:E('Marco teórico','Theoretical framework'), render:()=>renderTeoria}
 ];
@@ -61,7 +60,6 @@ function renderInicio(el){
   const nl=Object.values(TERR.localidades).reduce((s,l)=>s+l.length,0), nm=Object.values(TERR.municipios).reduce((s,l)=>s+l.length,0);
   const pasos=[['cultivo',T('Cultivo o especie','Crop or species'),T(`Elige entre ${CATALOGO.filter(c=>c.tipo==='cultivo').length} cultivos (la uva primero), ${CATALOGO.filter(c=>c.tipo==='especie'&&!c.especial).length} especies y la granja de traspatio; y el sistema: viñedo, milpa, MIAF, traspatio…`,`Choose among ${CATALOGO.filter(c=>c.tipo==='cultivo').length} crops (grape first), ${CATALOGO.filter(c=>c.tipo==='especie'&&!c.especial).length} species and the backyard farm; and the system: vineyard, milpa, MIAF, backyard…`)],
     ['region',T('Región','Region'),T(`Del país a la localidad: ${fmt(nm,0)} municipios y ${fmt(nl,0)} localidades del INEGI, con altitud y ubicación en el mapa.`,`From country to locality: ${fmt(nm,0)} municipalities and ${fmt(nl,0)} INEGI localities with altitude and map position.`)],
-    ['requerimientos',T('Requerimientos','Requirements'),T('Las 5B del saber local y los requerimientos que la localidad ha innovado.','The 5B of local knowledge and the requirements the locality has innovated.')],
     ['manejo',T('Manejo','Management'),T('38 pasos y sus actividades tradicionales; agrega las innovadoras de tu localidad.','38 steps and their traditional activities; add your locality’s innovations.')],
     ['regeneracion',T('Regeneración','Regeneration'),T('Ocho perillas de 0 a 4 miden si el sistema se regenera: labranza, cobertura, diversidad, raíces vivas, animales, insumos, materia orgánica y saber local.','Eight 0–4 knobs measure whether the system regenerates: tillage, cover, diversity, living roots, animals, inputs, organic matter and local knowledge.')],
     ['riesgos',T('Riesgos','Risks'),T('Diecinueve riesgos climáticos, biológicos, de mercado, sociales, institucionales y de recursos en una matriz de probabilidad por impacto.','Nineteen climatic, biological, market, social, institutional and resource risks in a likelihood-by-impact matrix.')],
@@ -157,7 +155,7 @@ function renderCultivo(el){ const tipo=renderCultivo.tipo||cultivoSel().tipo; co
     <label class="f"><span>${T('Nombre del proyecto o de la parcela','Project or plot name')}</span><input id="pNom" value="${esc(S.proyecto.nombre)}" placeholder="${T('p. ej., Parcela El Llano','e.g., El Llano plot')}"></label>
     <label class="f"><span>${T('Productor o productora','Farmer')}</span><input id="pProd" value="${esc(S.proyecto.productor)}"></label>
     <div class="kpis" style="margin-top:10px"><div class="kpi"><div class="l">${T('Seleccionado','Selected')}</div><div class="v" style="font-size:20px">${esc(tx(c.n))}</div><div class="s"><i>${esc(tx(c.sci))}</i></div></div>
-    <div class="kpi"><div class="l">${T('Pasos de manejo','Management steps')}</div><div class="v">${c.doc==='stack'?38:Object.keys(S.manejo).length}</div><div class="s">${c.doc==='stack'?T('83 actividades publicadas','83 published activities'):T('captúralos en el Bloque 4','enter them in Block 4')}</div></div></div></div></div>
+    <div class="kpi"><div class="l">${T('Pasos de manejo','Management steps')}</div><div class="v">${c.doc==='stack'?38:Object.keys(S.manejo).length}</div><div class="s">${c.doc==='stack'?T('83 actividades publicadas','83 published activities'):T('captúralos en el Bloque 3','enter them in Block 3')}</div></div></div></div></div>
   ${siguiente('cultivo')}`;
   $$('[data-tipo]',el).forEach(b=>b.onclick=()=>{ renderCultivo.tipo=b.dataset.tipo; render(); });
   $$('[data-cult]',el).forEach(c=>c.onclick=()=>{ S.cultivo=c.dataset.cult; S.formulado=false; if(S.cultivo==='granja') S.sistema='traspatio'; if(S.cultivo==='uva'&&S.sistema==='milpa') S.sistema='vinedo'; if(S.cultivo==='abeja'){ S.sistema='apiario'; S.tipoUP=TIPOS_UP.length-1; } if(S.cultivo==='bovino'){ S.sistema=REG_SIS[bovSisSel().reg]; S.tipoUP=3; } guardar(); render(); toast(tx(cultivoSel().n)); });
@@ -241,30 +239,3 @@ function renderRegionVacia(el){
   enlazarRegion(el); }
 
 /* ================= BLOQUE 3 · REQUERIMIENTOS ================= */
-const REQ_TRAD = [
-  {b:'tierra', t:E('Terreno preparado en tiempo y forma, con la humedad captada y conservada','Land prepared on time, with moisture captured and conserved'), pasos:[1,2,3,4,5,32]},
-  {b:'semilla', t:E('Semilla criolla seleccionada, tratada y conservada, adaptada a periodos largos sin agua','Selected, treated and stored landrace seed adapted to long dry spells'), pasos:[6,7,8,35]},
-  {b:'siembra', t:E('Siembra con densidad y arreglo topológico según la morfología del criollo y el propósito (grano o doble propósito), en la fecha que marcan el clima y la luna','Sowing with density and layout matched to landrace morphology and purpose (grain or dual), on the date set by weather and moon'), pasos:[9,10,11,12,17,18]},
-  {b:'alimentacion', t:E('Nutrición granular y foliar en los momentos clave, guiada por el análisis de suelo','Granular and foliar nutrition at key moments, guided by soil analysis'), pasos:[13,14,15,16,23,29]},
-  {b:'vigilancia', t:E('Vigilancia periódica de germinación, nutrición, plagas, enfermedades, malezas y humedad','Periodic monitoring of germination, nutrition, pests, diseases, weeds and moisture'), pasos:[19,20,21,22,24,25,26,27,28,30]},
-  {b:'cosecha', t:E('Cosecha, poscosecha, selección de semilla y balance económico del ciclo','Harvest, post-harvest, seed selection and economic balance of the cycle'), pasos:[31,33,34,36,37,38]}
-];
-function renderReq(el){ S.reqEst=S.reqEst||{};
-  el.innerHTML = `${cabecera('requerimientos',T('Lo que el saber local exige para que el cultivo prospere. Los requerimientos tradicionales salen de las cinco reglas básicas (las 5B) del Stack; abajo puedes registrar los que tu localidad ha innovado.','What local knowledge demands for the crop to thrive. Traditional requirements come from the Stack’s five basic rules (the 5B); below you can record those your locality has innovated.'))}
-  ${conStack()?`<div class="card"><div class="row between"><h3 style="margin:0">${T('Requerimientos técnicos tradicionales','Traditional technical requirements')}${ayuda('req')}</h3>${marcaDato()}</div>
-   <p class="nota">${T('Evalúa si tu parcela cumple cada requerimiento. Los números son los pasos del Stack que lo atienden.','Rate whether your plot meets each requirement. Numbers are the Stack steps addressing it.')}</p>
-   <div class="reqs">${REQ_TRAD.map((r,i)=>{ const b=B5.find(x=>x.id===r.b), v=S.reqEst[i]||'';
-     return `<div class="req aparece" style="--rc:${b.col};animation-delay:${i*60}ms"><div class="rb">${i<5?'B'+(i+1):'+'}</div><div><h4>${esc(tx(b))}${b.interp?' '+marcaInterp():''}</h4><div>${esc(tx(r.t))}</div><div class="nota">${esc(T(b.d[0],b.d[1]))}</div><div class="pasosr">${r.pasos.map(n=>`<span title="${esc(tx(E(PASOS[n-1].es,PASOS[n-1].en)))}">${n}</span>`).join('')}</div></div>
-       <div class="semaf" role="group">${[['ok',T('Sí','Yes')],['warn',T('Parcial','Partly')],['bad',T('No','No')]].map(([k,t])=>`<button class="${k} ${v===k?'on':''}" data-req="${i}" data-v="${k}">${t}</button>`).join('')}</div></div>`; }).join('')}</div>${fuenteArt()}</div>`
-   :`<div class="alert info"><p>${T('Este cultivo o especie aún no tiene un Stack documentado. Registra sus requerimientos abajo; el ejemplo del maíz criollo muestra cómo se organizan en cinco reglas.','This crop or species has no documented Stack yet. Record its requirements below; the landrace-maize example shows how they are organised in five rules.')}</p></div>`}
-  <div class="card"><h3>${T('Requerimientos innovados en la localidad','Requirements innovated in the locality')}${ayuda('reqInn')}</h3>
-   ${S.reqInn.length?`<div class="tbl-c"><table class="tbl"><thead><tr><th>${T('Requerimiento','Requirement')}</th><th>${T('Regla','Rule')}</th><th>${T('Fuente','Source')}</th><th></th></tr></thead><tbody>${S.reqInn.map((r,i)=>`<tr><td>${esc(r.t)}${r.d?`<div class="nota">${esc(r.d)}</div>`:''}</td><td>${esc(tx(B5.find(b=>b.id===r.b)||{es:'—'}))}</td><td>${esc(r.fuente||'—')}</td><td><button class="btn sm ghost" data-qreq="${i}">×</button></td></tr>`).join('')}</tbody></table></div>`:`<p class="sindato">${T('Aún no hay requerimientos innovados registrados.','No innovated requirements recorded yet.')}</p>`}
-   <div class="nueva"><div class="grid g2"><label class="f"><span>${T('Requerimiento innovado','Innovated requirement')}</span><input id="rT" placeholder="${T('p. ej., Cobertura con abono verde antes de la siembra','e.g., Green-manure cover before sowing')}"></label>
-     <label class="f"><span>${T('Regla a la que pertenece','Rule it belongs to')}</span><select id="rB">${B5.map(b=>`<option value="${b.id}">${esc(tx(b))}</option>`).join('')}</select></label>
-     <label class="f"><span>${T('Descripción o justificación','Description or rationale')}</span><input id="rD"></label>
-     <label class="f"><span>${T('Fuente (productor, asesor, investigación, programa)','Source (farmer, adviser, research, programme)')}</span><input id="rF"></label></div>
-     <button class="btn sm" id="rAdd">+ ${T('Agregar requerimiento','Add requirement')}</button></div></div>
-  ${siguiente('requerimientos')}`;
-  $$('[data-req]',el).forEach(b=>b.onclick=()=>{ S.reqEst[b.dataset.req]= S.reqEst[b.dataset.req]===b.dataset.v?'':b.dataset.v; guardar(); render(); });
-  $('#rAdd',el).onclick=()=>{ const t=$('#rT',el).value.trim(); if(!t) return toast(T('Escribe el requerimiento','Write the requirement')); S.reqInn.push({t, b:$('#rB',el).value, d:$('#rD',el).value.trim(), fuente:$('#rF',el).value.trim()}); guardar(); render(); };
-  $$('[data-qreq]',el).forEach(b=>b.onclick=()=>{ S.reqInn.splice(+b.dataset.qreq,1); guardar(); render(); }); }

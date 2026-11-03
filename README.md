@@ -10,7 +10,7 @@
 
 Ratio Telar teje en un solo tablero el territorio, los pasos y actividades del cultivo, los actores que sostienen el conocimiento, los recursos naturales y la sostenibilidad. Está hecha para productores y para científicos, en español y en inglés.
 
-## Qué contiene (versión 0.6.0)
+## Qué contiene (versión 0.7.0)
 
 Trece bloques que se alimentan con los datos de la localidad, como en RatioBos:
 
@@ -18,19 +18,26 @@ Trece bloques que se alimentan con los datos de la localidad, como en RatioBos:
 |---|---|
 | 1 · Cultivo | Catálogo ilustrado: 18 cultivos (uva primero, maíz con sus 64 razas de CONABIO, chayote, jamaica, maracuyá, guanábana, mango…), 9 especies (bovino por propósito, sistema y raza; abeja con su apiario; conejo, gallos de pelea, chinicuil…) y la granja de traspatio. Variedades, tipos o razas para cada uno. Se pueden agregar cultivos, especies y sistemas de producción propios |
 | 2 · Región | Mapa real de México; estado, municipio y localidad (2,478 municipios y 54,357 localidades del INEGI con altitud y coordenadas) |
-| 3 · Requerimientos | Requerimientos técnicos tradicionales (las 5B) y los innovados en la localidad |
-| 4 · Manejo | 38 pasos con sus actividades tradicionales, impacto editable, actividades innovadoras y fechas de las actividades principales |
-| 5 · Regeneración | Ocho perillas 0–4 (labranza mínima, suelo cubierto, diversidad, raíces vivas, integración animal, menos insumos de síntesis, materia orgánica, saber local) con valores sugeridos a partir del manejo; índice de regeneración, perfil, línea base y materia orgánica del suelo |
-| 6 · Riesgos | 19 amenazas climáticas, biológicas, de mercado, sociales, institucionales y de recursos; probabilidad, impacto y control con perillas; matriz 5 × 5, capacidad adaptativa e índice de riesgo |
-| 7 · Elementos | 63 elementos en 10 categorías: actores, instituciones, insumos, equipo, recursos naturales y financieros, conocimientos, políticas, perturbaciones y productos |
-| 8 · Precio y valor | Precio por unidad y por hectárea; valor económico, de uso, cultural y ecológico con pesos ajustables |
-| 9 · Formulación | Modelo del sistema complejo adaptativo, propiedades emergentes y formulación matemática |
-| 10 · Tablero | Red ponderada interactiva, nodos y vínculos clave, comunidades (Louvain), distribución de grados, correlaciones φ (matriz y por elemento), matriz entre categorías, calendario circular y **cladograma del vecino más cercano** |
-| 11 · Sostenibilidad | Suma y resta por compartimento (suelo, agua, atmósfera, vegetación, fauna), índice por paso, índice de Sarandón (2002), 17 ODS y huella de carbono (IPCC) |
-| 12 · Prospectiva | Tres escenarios (deseable, tendencial y no deseado) a 2, 5 y 10 años: rendimiento, precio, costo, ingreso ÷ costo, mano de obra, adopción de innovaciones y sostenibilidad; supuestos editables |
-| 13 · Informe | Resumen redactado, calendario, cladograma, prospectiva, tablas, CSV, impresión o PDF y proyecto completo |
+| 3 · Manejo | 38 pasos que se ordenan, se marcan «no aplica» y se amplían con pasos propios; actividades tradicionales, impacto editable, actividades agregadas (con quién las propone y desde cuándo) y fechas de las actividades principales |
+| 4 · Regeneración | Ocho perillas 0–4 (labranza mínima, suelo cubierto, diversidad, raíces vivas, integración animal, menos insumos de síntesis, materia orgánica, saber local) con valores sugeridos a partir del manejo; índice de regeneración, perfil, línea base y materia orgánica del suelo |
+| 5 · Riesgos | 19 amenazas climáticas, biológicas, de mercado, sociales, institucionales y de recursos; probabilidad, impacto y control con perillas; matriz 5 × 5, capacidad adaptativa e índice de riesgo |
+| 6 · Elementos | 63 elementos en 10 categorías: actores, instituciones, insumos, equipo, recursos naturales y financieros, conocimientos, políticas, perturbaciones y productos |
+| 7 · Precio y valor | Precio por unidad y por hectárea; valor económico, de uso, cultural y ecológico con pesos ajustables |
+| 8 · Formulación | Modelo del sistema complejo adaptativo, propiedades emergentes y formulación matemática |
+| 9 · Tablero | Red ponderada interactiva, nodos y vínculos clave, comunidades (Louvain), distribución de grados, correlaciones φ (matriz y por elemento), matriz entre categorías, calendario circular y **cladograma del vecino más cercano** |
+| 10 · Sostenibilidad | Suma y resta por compartimento (suelo, agua, atmósfera, vegetación, fauna), índice por paso, índice de Sarandón (2002), 17 ODS y huella de carbono (IPCC) |
+| 11 · Prospectiva | Tres escenarios (deseable, tendencial y no deseado) a 2, 5 y 10 años: rendimiento, precio, costo, ingreso ÷ costo, mano de obra, adopción de innovaciones y sostenibilidad; supuestos editables |
+| 12 · Informe | Resumen redactado, calendario, cladograma, prospectiva, tablas, CSV, impresión o PDF y proyecto completo |
 
 Además: **Validación** (caso publicado, motor de redes frente a NetworkX, cladograma frente a SciPy, cálculo de control de la huella), **Teoría** y, en cada bloque, la ventana **«Así se hizo con el maíz criollo de Calpan»** para los cultivos aún por documentar.
+
+## Novedades de la versión 0.7.0
+
+- **Manejo flexible.** Los pasos se mueven sosteniéndolos desde la agarradera ⠿ (con el ratón o el dedo) o con ↑ ↓; se cambian de regla; se marcan «No aplica en mi localidad» (se pliegan en gris y sus actividades salen de la red, los índices y el avance); y se agregan pasos propios en el lugar del ciclo que elijas.
+- **Más actividades por paso.** Cada paso acepta todas las actividades que necesites, tradicionales o innovadas, con **quién la propone** (un actor o institución de la red, que queda elegido como elemento) y **desde cuándo** (año). Desde la actividad se crea un elemento nuevo con un botón visible antes de la lista. Las actividades se arrastran dentro del paso o a otro paso y conservan su respuesta y sus impactos.
+- **Sin el bloque de Requerimientos.** Los bloques se renumeran del 1 al 12: Manejo es el 3 y Formulación el 8. Las innovaciones de la localidad quedan en el Manejo, como actividades propias.
+- El grupo de cosecha, poscosecha y balance se llama ahora **Buena cosecha y balance**.
+- Instructivos actualizados con las secciones del Manejo flexible y capturas nuevas.
 
 ## Novedades de la versión 0.6.0
 

@@ -37,6 +37,8 @@ const PREP = {   // código que se ejecuta dentro de la app (S, LANG y las funci
   innova: "S.manejo[6]=S.manejo[6]||{}; S.manejo[6].inn=[{t:LANG==='en'?'Mass selection for drought tolerance':'Selección masal por tolerancia a sequía', el:['PM','SEM','KTEC','KTAC'], imp:[1,1,0,1,1]}];",
   reqinn: "S.reqInn=[{t:LANG==='en'?'Soil test before sowing':'Análisis de suelo antes de sembrar', b:'tierra', d:'', fuente:LANG==='en'?'Technical adviser, 2025':'Asesor técnico, 2025'}];",
   paso: "renderManejo.abierto=18;",
+  noaplica: "S.pasoNoAplica={5:true};",
+  actnueva: "renderManejo.abierto=18; manejoDe(18).inn=[{id:'ilus1', t:LANG==='en'?'Sowing on contour furrows':'Siembra en surcos a curva de nivel', tipo:'inn', prop:'AT', desde:2019, el:['AT','PM'], imp:null}]; window.__abrir=['.pacc[open] details.nueva','.pacc[open] details.nuevo-el'];",
   regenbase: "S.regenBase={fecha:'2025-10-10', IR:0.38, ind:[{id:'labranza',s:0},{id:'cobertura',s:1},{id:'diversidad',s:2},{id:'raices',s:2},{id:'animales',s:2},{id:'insumos',s:0},{id:'mo',s:3},{id:'saber',s:2}]}; S.regenMO={b:'1.8',a:'2.1'};",
   formulado: "S.formulado=true;",
   ejemplo: "window.__dialogo='ejemplo';",

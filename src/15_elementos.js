@@ -1,6 +1,6 @@
 "use strict";
 /* =====================================================================
-   1e. ELEMENTOS DEL SISTEMA COMPLEJO ADAPTATIVO (Bloque 7)
+   1e. ELEMENTOS DEL SISTEMA COMPLEJO ADAPTATIVO (Bloque 6)
    Elementos del caso maíz criollo de Calpan, tomados del texto del artículo
    (Díaz-José et al., 2026): actores (pp. 7–9), instituciones (pp. 7–8), insumos,
    equipo y productos (Figura 4), conocimientos (pp. 1–5, Fig. 4), perturbaciones
@@ -127,7 +127,7 @@ const LAZOS = [
   ['SEMS','SEM'],['RAST','SUELO'],['INGR','COSTOS']
 ];
 /* Perfil de impacto de cada elemento sobre cinco compartimentos [suelo, agua, atmósfera, vegetación, fauna], escala −2…+2.
-   Lectura de Ratio Telar con su justificación; editable por actividad en el Bloque 4. */
+   Lectura de Ratio Telar con su justificación; editable por actividad en el Bloque 3. */
 const COMP = [E('Suelo','Soil'),E('Agua','Water'),E('Atmósfera','Atmosphere'),E('Vegetación','Vegetation'),E('Fauna','Fauna')];
 const COMP_COL = ['#9a6a3a','#2d78b0','#8a8f86','#5f8f3e','#7a4f9a'];
 const IMPACTO = {
@@ -143,5 +143,5 @@ const IMPACTO = {
   LAB:{v:[1,1,0,0,0], r:E('Fertilizar según el análisis de suelo evita excesos.','Fertilising by soil analysis avoids excess.')},
   FORR:{v:[-1,0,0,0,0], r:E('Retirar el rastrojo como forraje deja menos cobertura al suelo.','Removing stover as fodder leaves less soil cover.')}
 };
-/* Relación compartimento / indicador → ODS para el Bloque 11 (relación propuesta por Ratio Telar). */
+/* Relación compartimento / indicador → ODS para el Bloque 10 (relación propuesta por Ratio Telar). */
 const ODS_COMP = {2:[0,3], 6:[1], 13:[2], 15:[0,3,4]};

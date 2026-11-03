@@ -1,17 +1,17 @@
 """Arma los instructivos de Ratio Telar (productor y científico, español e inglés en un mismo HTML).
 Uso:  python armar.py          → ../../instructivo-productor.html y ../../instructivo-cientifico.html
-Las capturas se toman con capturar.py (Edge sin interfaz) y se guardan en ../img/<id>-<idioma>.jpg.
+Las capturas se toman con capturar.py (Chrome sin interfaz) y se guardan en ../img/<id>-<idioma>.jpg.
 Los PDF se imprimen con pdf.py."""
 import json, os, re, subprocess, sys
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.abspath(os.path.join(AQUI, '..', '..'))
 sys.path.insert(0, AQUI)
-VERSION_APP = '0.6.0'
+VERSION_APP = '0.7.0'
 EDICION = ('2.ª edición', '2nd edition')
-FECHA = ('octubre de 2026', 'October 2026')
+FECHA = ('noviembre de 2026', 'November 2026')
 DOI_APP = '10.5281/zenodo.23290103'
-DOI_GUIA = {'productor': '10.5281/zenodo.23642445', 'cientifico': '10.5281/zenodo.23642446'}        # ← DOI propio de cada instructivo cuando Zenodo lo asigne
+DOI_GUIA = {'productor': '10.5281/zenodo.23904212', 'cientifico': '10.5281/zenodo.23904213'}        # ← DOI propio de cada instructivo cuando Zenodo lo asigne
 ISBN = {'productor': ('', ''), 'cientifico': ('', '')}  # ← (ISBN impreso o PDF ES, ISBN PDF EN) cuando el INDAUTOR los asigne
 CITA_AUT = ('Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. Á., y Velázquez-Vázquez, G.', 'Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. Á., &amp; Velázquez-Vázquez, G.')
 AUTORES = 'Héctor Tecumshé Mojica-Zárate · Óscar Díaz-José · Luis Ángel Barrera-Guzmán · Guadalupe Velázquez-Vázquez'
@@ -22,20 +22,19 @@ leer = lambda n: open(os.path.join(AQUI, n), encoding='utf-8').read()
 BLOQUES = [  # id, es, en, minutos, resumen es, resumen en, frase rápida es, frase rápida en
  ('b1', 'Cultivo', 'Crop', '3 min', 'Cultivo, variedad y sistema', 'Crop, variety and system', 'Elige el cultivo o la especie, su variedad o raza y el sistema de producción.', 'Choose the crop or species, its variety or breed and the production system.'),
  ('b2', 'Región', 'Region', '2 min', 'Estado, municipio, localidad', 'State, municipality, locality', 'Ubica tu parcela hasta la localidad del INEGI.', 'Locate your plot down to the INEGI locality.'),
- ('b3', 'Requerimientos', 'Requirements', '3 min', 'Las reglas del saber local', 'The rules of local knowledge', 'Revisa las 5B y agrega lo que tu localidad ha innovado.', 'Review the 5B and add what your locality has innovated.'),
- ('b4', 'Manejo', 'Management', '10 min', 'Pasos, actividades y fechas', 'Steps, activities and dates', 'Marca lo que practicas, agrega innovaciones y pon fechas.', 'Tick what you practise, add innovations and set dates.'),
- ('b5', 'Regeneración', 'Regeneration', '4 min', '¿Se regenera o se desgasta?', 'Regenerating or wearing out?', 'Ajusta las ocho perillas y guarda una línea base.', 'Adjust the eight knobs and save a baseline.'),
- ('b6', 'Riesgos', 'Risks', '6 min', 'Probabilidad × impacto', 'Likelihood × impact', 'Mueve probabilidad, impacto y control de cada riesgo.', 'Move likelihood, impact and control for each risk.'),
- ('b7', 'Elementos', 'Elements', '4 min', 'Quiénes y qué participan', 'Who and what takes part', 'Revisa actores, insumos y recursos; agrega los que falten.', 'Review actors, inputs and resources; add the missing ones.'),
- ('b8', 'Precio y valor', 'Price and value', '6 min', 'Lo que cuesta y lo que vale', 'What it costs and what it is worth', 'Anota precios por hectárea y califica el valor de 0 a 5.', 'Enter prices per hectare and rate value from 0 to 5.'),
- ('b9', 'Formulación', 'Formulation', '1 min', 'Tejer el sistema', 'Weave the system', '⚙ Formular: la app teje la red del sistema.', '⚙ Formulate: the app weaves the system network.'),
- ('b10', 'Tablero', 'Dashboard', '5 min', 'Red, cladograma, calendario', 'Network, cladogram, calendar', 'Lee quién sostiene el sistema y quién está cerca de quién.', 'Read who holds the system together and who is close to whom.'),
- ('b11', 'Sostenibilidad', 'Sustainability', '4 min', 'Suelo, agua, ODS, huella', 'Soil, water, SDGs, footprint', 'Revisa qué suma, qué resta y el índice de Sarandón.', 'See what adds, what subtracts and Sarandón’s index.'),
- ('b12', 'Prospectiva', 'Outlook', '5 min', 'A 2, 5 y 10 años', 'At 2, 5 and 10 years', 'Compara los tres futuros y ajusta los supuestos.', 'Compare the three futures and adjust the assumptions.'),
- ('b13', 'Informe', 'Report', '2 min', 'PDF, CSV y proyecto', 'PDF, CSV and project', 'Imprime, exporta y guarda el proyecto.', 'Print, export and save the project.'),
+ ('b3', 'Manejo', 'Management', '10 min', 'Pasos, actividades y fechas', 'Steps, activities and dates', 'Marca lo que practicas, ordena tus pasos, agrega los propios y pon fechas.', 'Tick what you practise, order your steps, add your own and set dates.'),
+ ('b4', 'Regeneración', 'Regeneration', '4 min', '¿Se regenera o se desgasta?', 'Regenerating or wearing out?', 'Ajusta las ocho perillas y guarda una línea base.', 'Adjust the eight knobs and save a baseline.'),
+ ('b5', 'Riesgos', 'Risks', '6 min', 'Probabilidad × impacto', 'Likelihood × impact', 'Mueve probabilidad, impacto y control de cada riesgo.', 'Move likelihood, impact and control for each risk.'),
+ ('b6', 'Elementos', 'Elements', '4 min', 'Quiénes y qué participan', 'Who and what takes part', 'Revisa actores, insumos y recursos; agrega los que falten.', 'Review actors, inputs and resources; add the missing ones.'),
+ ('b7', 'Precio y valor', 'Price and value', '6 min', 'Lo que cuesta y lo que vale', 'What it costs and what it is worth', 'Anota precios por hectárea y califica el valor de 0 a 5.', 'Enter prices per hectare and rate value from 0 to 5.'),
+ ('b8', 'Formulación', 'Formulation', '1 min', 'Tejer el sistema', 'Weave the system', '⚙ Formular: la app teje la red del sistema.', '⚙ Formulate: the app weaves the system network.'),
+ ('b9', 'Tablero', 'Dashboard', '5 min', 'Red, cladograma, calendario', 'Network, cladogram, calendar', 'Lee quién sostiene el sistema y quién está cerca de quién.', 'Read who holds the system together and who is close to whom.'),
+ ('b10', 'Sostenibilidad', 'Sustainability', '4 min', 'Suelo, agua, ODS, huella', 'Soil, water, SDGs, footprint', 'Revisa qué suma, qué resta y el índice de Sarandón.', 'See what adds, what subtracts and Sarandón’s index.'),
+ ('b11', 'Prospectiva', 'Outlook', '5 min', 'A 2, 5 y 10 años', 'At 2, 5 and 10 years', 'Compara los tres futuros y ajusta los supuestos.', 'Compare the three futures and adjust the assumptions.'),
+ ('b12', 'Informe', 'Report', '2 min', 'PDF, CSV y proyecto', 'PDF, CSV and project', 'Imprime, exporta y guarda el proyecto.', 'Print, export and save the project.'),
 ]
-CLARO = ['#2f5d50', '#4f7d3a', '#a7801c', '#7a5c99', '#2f8f6a', '#b8562e', '#39718a', '#8a6d1f', '#4a5d6b', '#3f6fb0', '#2f7d4a', '#8a3f5a', '#5a4a3a']
-OSCURO = ['#8fc2ad', '#a9cf7e', '#e3c063', '#bba3d6', '#86d1a2', '#ec9a72', '#86c3dc', '#e0c06e', '#9fb4c2', '#9dbbe8', '#86d1a2', '#e08aa8', '#c9b6a3']
+CLARO = ['#2f5d50', '#4f7d3a', '#7a5c99', '#2f8f6a', '#b8562e', '#39718a', '#8a6d1f', '#4a5d6b', '#3f6fb0', '#2f7d4a', '#8a3f5a', '#5a4a3a']
+OSCURO = ['#8fc2ad', '#a9cf7e', '#bba3d6', '#86d1a2', '#ec9a72', '#86c3dc', '#e0c06e', '#9fb4c2', '#9dbbe8', '#86d1a2', '#e08aa8', '#c9b6a3']
 
 
 def css(cien=False):
@@ -235,7 +234,7 @@ def productor():
     for k, v in rep.items():
         cuerpo = cuerpo.replace('{{' + k + '}}', v)
     html = pagina('productor', cuerpo, t_es, t_en, 'Instructivo del Productor', 'Producer Guide', 'RatioTelar-Instructivo-Productor.pdf', 'RatioTelar-Producer-Guide.pdf',
-                  {'leer': ['Para empezar', 'Getting started'], 'b1': ['Los trece bloques', 'The thirteen blocks'], 'documentar': ['Consulta', 'Reference']}, tp.GLOS,
+                  {'leer': ['Para empezar', 'Getting started'], 'b1': ['Los doce bloques', 'The twelve blocks'], 'documentar': ['Consulta', 'Reference']}, tp.GLOS,
                   'Instructivo del Productor de Ratio Telar: teje paso a paso tu milpa, parcela o unidad de producción como sistema complejo adaptativo. · Ratio Telar Producer Guide.')
     open(os.path.join(RAIZ, 'instructivo-productor.html'), 'w', encoding='utf-8', newline='\n').write(html)
     print('instructivo-productor.html', round(len(html.encode('utf-8')) / 1024), 'KB')

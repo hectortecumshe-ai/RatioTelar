@@ -64,6 +64,8 @@
   <h3 id="d-actividades" data-n="1.1"><span lang="es">Actividades e incidencia</span><span lang="en">Activities and incidence</span></h3>
   <p lang="es">Cada actividad <i>a</i> pertenece a un paso <i>p</i> y, cuando hay Stack, a una regla 5B. Tiene un tipo (tradicional o innovada) y un conjunto de elementos <i>E<sub>a</sub></i>. La matriz de incidencia <i>X</i> (elementos × actividades) vale 1 si el elemento participa. Las actividades del Stack son preguntas: solo entran al cálculo las que el usuario responde «sí»; las respondidas «no» y las no respondidas quedan fuera (nada se precarga). En el caso de Calpan la app activa 85 actividades.</p>
   <p lang="en">Each activity <i>a</i> belongs to a step <i>p</i> and, when there is a Stack, to a 5B rule. It has a type (traditional or innovated) and an element set <i>E<sub>a</sub></i>. The incidence matrix <i>X</i> (elements × activities) is 1 if the element takes part. Stack activities are questions: only those the user answers “yes” enter the computation; those answered “no” and unanswered ones stay out (nothing is preloaded). In the Calpan case the app activates 85 activities.</p>
+  <p lang="es">Los pasos no están fijos. El usuario puede reordenarlos, cambiarlos de regla, marcarlos «no aplica» (sus actividades salen de <i>X</i>, de los índices y del avance) y agregar pasos propios. Cada actividad agregada lleva su tipo (tradicional de la localidad o innovada), quién la propone (un actor o una institución, que entra como elemento de la actividad) y desde qué año; en el informe, las actividades agregadas se reportan como propias de la localidad. Mover una actividad a otro paso cambia su paso y su regla, no sus elementos ni sus impactos. La regla «Buena cosecha y balance», que reúne cosecha, poscosecha y balance económico, es una lectura de Ratio Telar.</p>
+  <p lang="en">Steps are not fixed. Users can reorder them, change their rule, mark them “not applicable” (their activities leave <i>X</i>, the indices and the progress) and add their own steps. Each added activity carries its type (local traditional or innovated), who proposes it (an actor or institution, which enters as an element of the activity) and since which year; in the report, added activities are listed as the locality’s own. Moving an activity to another step changes its step and rule, not its elements or impacts. The “Good harvest and balance” rule, which gathers harvest, post-harvest and economic balance, is a Ratio Telar reading.</p>
   <h3 id="d-valor" data-n="1.2"><span lang="es">Valor de un elemento</span><span lang="en">Element value</span></h3>
   <p lang="es">El usuario califica cada elemento en cuatro dimensiones <i>k</i> ∈ {económica, de uso, cultural, ecológica}, de 0 a 5, con pesos <i>ω<sub>k</sub></i> ∈ [0, 3]. Si no hay calificación se usa el valor estructural, la participación relativa:</p>
   <p lang="en">The user rates each element on four dimensions <i>k</i> ∈ {economic, use, cultural, ecological}, from 0 to 5, with weights <i>ω<sub>k</sub></i> ∈ [0, 3]. Without a rating the structural value, relative participation, is used:</p>
@@ -153,7 +155,7 @@
 </section>
 
 <!-- ============================ 4 · SOSTENIBILIDAD ============================ -->
-<section class="chap" id="sost" data-toc="4" style="--c:var(--b11)">
+<section class="chap" id="sost" data-toc="4" style="--c:var(--b10)">
   <div class="chap-head"><span class="big">4</span>
     <div class="eyebrow" lang="es">Método</div><div class="eyebrow" lang="en">Method</div>
     <h2 lang="es">Sostenibilidad, ODS y huella de carbono</h2><h2 lang="en">Sustainability, SDGs and carbon footprint</h2>
@@ -186,7 +188,7 @@
 </section>
 
 <!-- ============================ 5 · REGENERACIÓN ============================ -->
-<section class="chap" id="regen" data-toc="5" style="--c:var(--b5)">
+<section class="chap" id="regen" data-toc="5" style="--c:var(--b4)">
   <div class="chap-head"><span class="big">5</span>
     <div class="eyebrow" lang="es">Método</div><div class="eyebrow" lang="en">Method</div>
     <h2 lang="es">Índice de regeneración</h2><h2 lang="en">Regeneration index</h2>
@@ -214,7 +216,7 @@
 </section>
 
 <!-- ============================ 6 · RIESGO ============================ -->
-<section class="chap" id="riesgo" data-toc="6" style="--c:var(--b6)">
+<section class="chap" id="riesgo" data-toc="6" style="--c:var(--b5)">
   <div class="chap-head"><span class="big">6</span>
     <div class="eyebrow" lang="es">Método</div><div class="eyebrow" lang="en">Method</div>
     <h2 lang="es">Riesgo y capacidad adaptativa</h2><h2 lang="en">Risk and adaptive capacity</h2>
@@ -259,7 +261,7 @@
 </section>
 
 <!-- ============================ 7 · PROSPECTIVA ============================ -->
-<section class="chap" id="prosp" data-toc="7" style="--c:var(--b12)">
+<section class="chap" id="prosp" data-toc="7" style="--c:var(--b11)">
   <div class="chap-head"><span class="big">7</span>
     <div class="eyebrow" lang="es">Método</div><div class="eyebrow" lang="en">Method</div>
     <h2 lang="es">Modelo de escenarios</h2><h2 lang="en">Scenario model</h2>
@@ -276,8 +278,8 @@
   <div class="eq"><span><i>Pr</i>(<i>t</i>) = 100 (1 + <i>g<sub>P</sub></i>)<sup><i>t</i></sup> ; &nbsp; <i>C</i>(<i>t</i>) = 100 (1 + <i>g<sub>C</sub></i>)<sup><i>t</i></sup> (1 − <i>s<sub>C</sub></i> Δ<i>A</i>) ; &nbsp; rel = 100 (<i>Pr</i> · <i>Y</i>⁄100) ⁄ <i>C</i></span><span class="no">(16)</span></div>
   <div class="eq"><span><i>L<sub>d</sub></i>(<i>t</i>) = (1 + <i>g<sub>L</sub></i>)<sup><i>t</i></sup> ; &nbsp; <i>L<sub>n</sub></i>(<i>t</i>) = 1 − <i>r<sub>L</sub></i> Δ<i>A</i> ; &nbsp; déficit = max(0, <i>L<sub>n</sub></i> − <i>L<sub>d</sub></i>) ⁄ <i>L<sub>n</sub></i></span><span class="no">(17)</span></div>
   <div class="eq"><span>IS(<i>t</i>) = IS<sub>trad</sub> (1 − <i>A</i>) + IS<sub>inn</sub> <i>A</i></span><span class="no">(18)</span></div>
-  <p class="where" lang="es">Δ<i>A</i> = <i>A</i>(<i>t</i>) − <i>a</i><sub>0</sub>, y es 0 cuando no hay actividades innovadas. Si el usuario capturó ingreso <i>I</i><sub>0</sub> y costo <i>C</i><sub>0</sub> por hectárea (Bloque 8), el ingreso neto es <i>I</i><sub>0</sub> (<i>Pr</i> · <i>Y</i>⁄100)⁄100 − <i>C</i><sub>0</sub> <i>C</i>⁄100.</p>
-  <p class="where" lang="en">Δ<i>A</i> = <i>A</i>(<i>t</i>) − <i>a</i><sub>0</sub>, and it is 0 when there are no innovated activities. If the user entered income <i>I</i><sub>0</sub> and cost <i>C</i><sub>0</sub> per hectare (Block 8), net income is <i>I</i><sub>0</sub> (<i>Pr</i> · <i>Y</i>⁄100)⁄100 − <i>C</i><sub>0</sub> <i>C</i>⁄100.</p>
+  <p class="where" lang="es">Δ<i>A</i> = <i>A</i>(<i>t</i>) − <i>a</i><sub>0</sub>, y es 0 cuando no hay actividades innovadas. Si el usuario capturó ingreso <i>I</i><sub>0</sub> y costo <i>C</i><sub>0</sub> por hectárea (Bloque 7), el ingreso neto es <i>I</i><sub>0</sub> (<i>Pr</i> · <i>Y</i>⁄100)⁄100 − <i>C</i><sub>0</sub> <i>C</i>⁄100.</p>
+  <p class="where" lang="en">Δ<i>A</i> = <i>A</i>(<i>t</i>) − <i>a</i><sub>0</sub>, and it is 0 when there are no innovated activities. If the user entered income <i>I</i><sub>0</sub> and cost <i>C</i><sub>0</sub> per hectare (Block 7), net income is <i>I</i><sub>0</sub> (<i>Pr</i> · <i>Y</i>⁄100)⁄100 − <i>C</i><sub>0</sub> <i>C</i>⁄100.</p>
   <h3 id="e-param" data-n="7.2"><span lang="es">Parámetros por omisión</span><span lang="en">Default parameters</span></h3>
   <div class="tbl"><table>
     <thead><tr><th lang="es">Parámetro</th><th lang="en">Parameter</th><th class="r" lang="es">Deseable</th><th class="r" lang="en">Desirable</th><th class="r" lang="es">Tendencial</th><th class="r" lang="en">Trend</th><th class="r" lang="es">No deseado</th><th class="r" lang="en">Undesired</th><th lang="es">Base</th><th lang="en">Basis</th></tr></thead>
@@ -290,8 +292,8 @@
       <tr><td lang="es"><i>A</i><sub>máx</sub> adopción máxima</td><td lang="en"><i>A</i><sub>max</sub> maximum adoption</td><td class="r">0.9</td><td class="r">0.5</td><td class="r">0.15</td><td lang="es">supuesto</td><td lang="en">assumption</td></tr>
       <tr><td lang="es"><i>t</i><sub>50</sub> año de media adopción</td><td lang="en"><i>t</i><sub>50</sub> half-adoption year</td><td class="r">4</td><td class="r">6</td><td class="r">9</td><td>Rogers (2003)</td></tr>
     </tbody></table></div>
-  <p class="where" lang="es">Comunes a los tres escenarios: <i>p</i><sub>0</sub> = 0.10; <i>L</i><sub>ext</sub> = 30 % de pérdida en un año extremo; efecto de la adopción en el rendimiento <i>e<sub>Y</sub></i> = 10 %, en el costo <i>s<sub>C</sub></i> = 5 % y en la mano de obra requerida <i>r<sub>L</sub></i> = 15 %. Todos son supuestos editables en la tabla de supuestos del Bloque 12.</p>
-  <p class="where" lang="en">Common to the three scenarios: <i>p</i><sub>0</sub> = 0.10; <i>L</i><sub>ext</sub> = 30 % loss in an extreme year; adoption effect on yield <i>e<sub>Y</sub></i> = 10 %, on cost <i>s<sub>C</sub></i> = 5 % and on required labour <i>r<sub>L</sub></i> = 15 %. All are editable assumptions in the Block 12 assumptions table.</p>
+  <p class="where" lang="es">Comunes a los tres escenarios: <i>p</i><sub>0</sub> = 0.10; <i>L</i><sub>ext</sub> = 30 % de pérdida en un año extremo; efecto de la adopción en el rendimiento <i>e<sub>Y</sub></i> = 10 %, en el costo <i>s<sub>C</sub></i> = 5 % y en la mano de obra requerida <i>r<sub>L</sub></i> = 15 %. Todos son supuestos editables en la tabla de supuestos del Bloque 11.</p>
+  <p class="where" lang="en">Common to the three scenarios: <i>p</i><sub>0</sub> = 0.10; <i>L</i><sub>ext</sub> = 30 % loss in an extreme year; adoption effect on yield <i>e<sub>Y</sub></i> = 10 %, on cost <i>s<sub>C</sub></i> = 5 % and on required labour <i>r<sub>L</sub></i> = 15 %. All are editable assumptions in the Block 11 assumptions table.</p>
   <figure data-fig="supuestos"><figcaption><span class="fn"></span><span lang="es"><b>Tabla de supuestos</b> con su base: IPCC, Rogers o supuesto.</span><span lang="en"><b>Assumptions table</b> with its basis: IPCC, Rogers or assumption.</span></figcaption></figure>
   <div class="tbl"><table>
     <thead><tr><th lang="es">Calpan, t = 10 (hoy = 100)</th><th lang="en">Calpan, t = 10 (today = 100)</th><th class="r" lang="es">Deseable</th><th class="r" lang="en">Desirable</th><th class="r" lang="es">Tendencial</th><th class="r" lang="en">Trend</th><th class="r" lang="es">No deseado</th><th class="r" lang="en">Undesired</th></tr></thead>
@@ -317,7 +319,7 @@
 </section>
 
 <!-- ============================ 9 · VALIDACIÓN ============================ -->
-<section class="chap" id="validacion" data-toc="9" style="--c:var(--b10)">
+<section class="chap" id="validacion" data-toc="9" style="--c:var(--b9)">
   <div class="chap-head"><span class="big">9</span>
     <div class="eyebrow" lang="es">Evidencia y uso</div><div class="eyebrow" lang="en">Evidence and use</div>
     <h2 lang="es">Validación</h2><h2 lang="en">Validation</h2>
@@ -343,7 +345,7 @@
 </section>
 
 <!-- ============================ 10 · REPRODUCIBILIDAD ============================ -->
-<section class="chap" id="reproducir" data-toc="10" style="--c:var(--b9)">
+<section class="chap" id="reproducir" data-toc="10" style="--c:var(--b8)">
   <div class="chap-head"><span class="big">10</span>
     <div class="eyebrow" lang="es">Evidencia y uso</div><div class="eyebrow" lang="en">Evidence and use</div>
     <h2 lang="es">Reproducibilidad y exportación</h2><h2 lang="en">Reproducibility and export</h2>
@@ -356,8 +358,8 @@ python armar.py                     # arma index.html desde src/
 python pruebas/verificar_red.py     # red frente a NetworkX
 python pruebas/verificar_clado.py   # cladograma frente a SciPy</pre></div>
   <h3 id="x-exportar" data-n="10.2"><span lang="es">Datos para análisis</span><span lang="en">Data for analysis</span></h3>
-  <p lang="es">Desde el Bloque 13 se exportan en CSV las actividades (con sus cinco impactos e IS), los nodos (valor, participación, vecinos, grado ponderado, intermediación, cercanía, vector propio, agrupamiento, comunidad), los vínculos (peso y número de actividades), el calendario, los ODS y el cladograma (uniones y vecinos más cercanos). <span class="ui">Guardar proyecto</span> produce un JSON con el estado completo, que permite reproducir cualquier resultado.</p>
-  <p lang="en">Block 13 exports to CSV the activities (with their five impacts and IS), nodes (value, participation, neighbours, weighted degree, betweenness, closeness, eigenvector, clustering, community), links (weight and number of activities), calendar, SDGs and cladogram (merges and nearest neighbours). <span class="ui">Save project</span> produces a JSON with the full state, which reproduces any result.</p>
+  <p lang="es">Desde el Bloque 12 se exportan en CSV las actividades (con sus cinco impactos e IS), los nodos (valor, participación, vecinos, grado ponderado, intermediación, cercanía, vector propio, agrupamiento, comunidad), los vínculos (peso y número de actividades), el calendario, los ODS y el cladograma (uniones y vecinos más cercanos). <span class="ui">Guardar proyecto</span> produce un JSON con el estado completo, que permite reproducir cualquier resultado.</p>
+  <p lang="en">Block 12 exports to CSV the activities (with their five impacts and IS), nodes (value, participation, neighbours, weighted degree, betweenness, closeness, eigenvector, clustering, community), links (weight and number of activities), calendar, SDGs and cladogram (merges and nearest neighbours). <span class="ui">Save project</span> produces a JSON with the full state, which reproduces any result.</p>
   <h3 id="x-enlaces" data-n="10.3"><span lang="es">Enlaces directos</span><span lang="en">Deep links</span></h3>
   <p lang="es">La dirección acepta <code>#bloque/vista/idioma</code>, por ejemplo <code>…/RatioTelar/#tablero/cien/en</code>. Las capturas de este instructivo se tomaron así, de forma automática.</p>
   <p lang="en">The address accepts <code>#block/view/language</code>, for example <code>…/RatioTelar/#tablero/cien/en</code>. This guide’s screenshots were taken this way, automatically.</p>
@@ -375,7 +377,7 @@ python pruebas/verificar_clado.py   # cladograma frente a SciPy</pre></div>
 </section>
 
 <!-- ============================ 11 · EJEMPLO RESUELTO ============================ -->
-<section class="chap" id="ejemplo" data-toc="11" style="--c:var(--b6)">
+<section class="chap" id="ejemplo" data-toc="11" style="--c:var(--b5)">
   <div class="chap-head"><span class="big">11</span>
     <div class="eyebrow" lang="es">Evidencia y uso</div><div class="eyebrow" lang="en">Evidence and use</div>
     <h2 lang="es">Ejemplo resuelto: Calpan a mano</h2><h2 lang="en">Worked example: Calpan by hand</h2>

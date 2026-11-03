@@ -1,6 +1,6 @@
 "use strict";
 /* =====================================================================
-   A. CORRELACIONES POR ELEMENTO (Bloque 10)
+   A. CORRELACIONES POR ELEMENTO (Bloque 9)
    φ = correlación de Pearson entre los vectores de incidencia (0/1) de dos
    elementos en las actividades del sistema (la misma de la matriz del Tablero).
    ===================================================================== */
@@ -35,7 +35,7 @@ function tarjetaCorrElemento(R, st){
    Todo lo demás (precios, costos, mano de obra, eventos extremos, efectos de las
    innovaciones) es supuesto de Ratio Telar, marcado y editable.
    El efecto de las innovaciones sobre la sostenibilidad sale de los datos del usuario:
-   IS medio de sus actividades innovadas frente al de las tradicionales (Bloque 4).
+   IS medio de sus actividades innovadas frente al de las tradicionales (Bloque 3).
    ===================================================================== */
 const BETA_ZHAO = {maiz:-7.4, trigo:-6.0};
 const ESCENARIOS = [
@@ -78,15 +78,15 @@ const IND_PROSP = [
   {k:'Pr', n:E('Precio real del producto','Real product price'), u:E('índice','index'), d:0},
   {k:'C', n:E('Costo de producción por ha','Production cost per ha'), u:E('índice','index'), d:0},
   {k:'rel', n:E('Ingreso bruto ÷ costo','Gross income ÷ cost'), u:E('índice, año 0 = 100','index, year 0 = 100'), d:0},
-  {k:'neto', n:E('Ingreso neto por ha','Net income per ha'), u:E('$ / ha (Bloque 8)','$ / ha (Block 8)'), d:0},
+  {k:'neto', n:E('Ingreso neto por ha','Net income per ha'), u:E('$ / ha (Bloque 7)','$ / ha (Block 7)'), d:0},
   {k:'Ld', n:E('Mano de obra familiar disponible','Available family labour'), u:E('índice; la línea punteada es la requerida','index; dotted line is the labour required'), d:0},
   {k:'A', n:E('Adopción de innovaciones','Innovation adoption'), u:E('% de las actividades','% of activities'), d:0},
   {k:'IS', n:E('Índice de sostenibilidad','Sustainability index'), u:E('0–1','0–1'), d:2},
-  {k:'IR', n:E('Índice de regeneración','Regeneration index'), u:E('0–100 (Bloque 5)','0–100 (Block 5)'), d:0},
-  {k:'RG', n:E('Índice de riesgo','Risk index'), u:E('0–100 (Bloque 6)','0–100 (Block 6)'), d:0}
+  {k:'IR', n:E('Índice de regeneración','Regeneration index'), u:E('0–100 (Bloque 4)','0–100 (Block 4)'), d:0},
+  {k:'RG', n:E('Índice de riesgo','Risk index'), u:E('0–100 (Bloque 5)','0–100 (Block 5)'), d:0}
 ];
 function graficaProsp(sim, k){ const W=420, H=250, L=54, B=36, R=14, Tp=14, ser=sim.res.map(r=>r.serie.map(x=>x[k]));
-  if(ser[0][0]==null) return `<p class="sindato">${T('Captura el ingreso y el costo por hectárea en el Bloque 8 (Recursos financieros) para ver el ingreso neto en pesos.','Enter income and cost per hectare in Block 8 (Financial resources) to see net income in pesos.')}</p>`;
+  if(ser[0][0]==null) return `<p class="sindato">${T('Captura el ingreso y el costo por hectárea en el Bloque 7 (Recursos financieros) para ver el ingreso neto en pesos.','Enter income and cost per hectare in Block 7 (Financial resources) to see net income in pesos.')}</p>`;
   const extra=k==='Ld'?sim.res.map(r=>r.serie.map(x=>x.Ln)):[]; const all=[...ser.flat(),...extra.flat()];
   let mn=Math.min(...all), mx=Math.max(...all); if(k==='IS'){ mn=0; mx=1; } else if(k==='A'||k==='IR'||k==='RG'){ mn=0; mx=100; } else { if(mx-mn<1e-9){ mn-=Math.abs(mn)*.05||1; mx+=Math.abs(mx)*.05||1; } const pad=(mx-mn)*.08; mn-=pad; mx+=pad; }
   const X=t=>L+(W-L-R)*t/10, Yp=v=>Tp+(H-Tp-B)*(1-(v-mn)/(mx-mn));
@@ -107,7 +107,7 @@ function lecturaProsp(sim){ const ult=k=>sim.res.map(r=>r.serie[10][k]), [d,t,n]
   const pot=[], rie=[];
   pot.push(T(`Con el escenario deseable, a 10 años el rendimiento cambia ${pc(Y[d])} y la relación ingreso ÷ costo ${pc(rel[d])}.`,`In the desirable scenario, by year 10 yield changes ${pc(Y[d])} and the income ÷ cost ratio ${pc(rel[d])}.`));
   if(sim.hayInn) pot.push(T(`${sim.nI===1?'Tu actividad innovada tiene':'Tus '+sim.nI+' actividades innovadas tienen'} un IS medio de ${fmt(sim.ISi,2)} frente a ${fmt(sim.ISt,2)} de las tradicionales: difundirlas ${sim.ISi>=sim.ISt?'eleva':'reduce'} la sostenibilidad del sistema.`,`${sim.nI===1?'Your innovated activity has':'Your '+sim.nI+' innovated activities have'} a mean IS of ${fmt(sim.ISi,2)} versus ${fmt(sim.ISt,2)} for traditional ones: spreading them ${sim.ISi>=sim.ISt?'raises':'lowers'} system sustainability.`));
-  else pot.push(T('Aún no hay actividades innovadas en el Bloque 4: la adopción no cambia los resultados. Agrégalas para ver su potencial.','There are no innovated activities in Block 4 yet: adoption does not change results. Add them to see their potential.'));
+  else pot.push(T('Aún no hay actividades innovadas en el Bloque 3: la adopción no cambia los resultados. Agrégalas para ver su potencial.','There are no innovated activities in Block 3 yet: adoption does not change results. Add them to see their potential.'));
   rie.push(T(`En el escenario no deseado, a 10 años el rendimiento cambia ${pc(Y[n])} y la relación ingreso ÷ costo ${pc(rel[n])}.`,`In the undesired scenario, by year 10 yield changes ${pc(Y[n])} and income ÷ cost ${pc(rel[n])}.`));
   rie.push(T(`La mano de obra familiar disponible baja a ${fmt(L[n],0)} (tendencial: ${fmt(L[t],0)}); ${def[n]>0.5?`el déficit llega a ${fmt(def[n],0)} % de la requerida`:'sin déficit frente a la requerida'}.`,`Available family labour drops to ${fmt(L[n],0)} (trend: ${fmt(L[t],0)}); ${def[n]>0.5?`the shortfall reaches ${fmt(def[n],0)} % of what is needed`:'no shortfall against what is needed'}.`));
   rie.push(T(`Con ${fmt(sim.res[n].p.dT,1)} °C por década y ${fmt(sim.P.beta,1)} % de rendimiento por °C, el clima por sí solo resta ${fmt(-sim.P.beta*sim.res[n].p.dT,1)} % en 10 años, más las pérdidas de los años extremos.`,`With ${fmt(sim.res[n].p.dT,1)} °C per decade and ${fmt(sim.P.beta,1)} % yield per °C, climate alone removes ${fmt(-sim.P.beta*sim.res[n].p.dT,1)} % in 10 years, plus losses in extreme years.`));
@@ -147,7 +147,7 @@ function renderProspectiva(el){ const sim=simularProspectiva(), P=sim.P, lec=lec
    P(t) = 100·(1+g<sub>P</sub>)<sup>t</sup> ; C(t) = 100·(1+g<sub>C</sub>)<sup>t</sup>·[1 − s<sub>C</sub>·(A − a₀)] ; ${T('ingreso ÷ costo','income ÷ cost')} = 100·(P·Y/100)/C<br>
    L<sub>disp</sub>(t) = (1+g<sub>L</sub>)<sup>t</sup> ; L<sub>req</sub>(t) = 1 − r<sub>L</sub>·(A − a₀) ; ${T('déficit','shortfall')} = max(0, L<sub>req</sub> − L<sub>disp</sub>)/L<sub>req</sub><br>
    IR(t) = IR₀ + 0.5·(1 − IR₀)·(A − a₀) ; L<sub>ext,ef</sub> = L<sub>ext</sub>·(1 − 0.5·IR₀) ; ${T('riesgo','risk')}(t): P<sub>clima</sub> + 5·(p(t) − p₀) ${T('y CA con IR(t)','and CA with IR(t)')}<br>
-   IS(t) = IS<sub>trad</sub>·(1 − A) + IS<sub>inn</sub>·A ${T('(medias de tus actividades, Bloque 11)','(means of your activities, Block 11)')}</div>
+   IS(t) = IS<sub>trad</sub>·(1 − A) + IS<sub>inn</sub>·A ${T('(medias de tus actividades, Bloque 10)','(means of your activities, Block 10)')}</div>
    <p class="nota">a₀ = ${fmt(sim.a0,3)} · IS<sub>trad</sub> = ${fmt(sim.ISt,3)} · IS<sub>inn</sub> = ${sim.ISi==null?'—':fmt(sim.ISi,3)} · β = ${fmt(P.beta,1)} %/°C. ${T('La elasticidad 0.5 del rendimiento al déficit de mano de obra, el amortiguamiento 0.5 de las pérdidas por la regeneración y la ganancia 0.5 de regeneración por adopción son supuestos.','The 0.5 elasticity of yield to labour shortfall, the 0.5 damping of losses by regeneration and the 0.5 regeneration gain from adoption are assumptions.')} IR₀ = ${fmt(sim.IR0,2)}.</p>
    <p class="fuente">${T('Fuentes','Sources')}: IPCC (2018), SR1.5, SPM A.1 · Zhao C, et al. (2017) PNAS 114(35): 9326–9331 · Rogers EM (2003) · Godet M, Durance P (2007).</p></div>
   ${siguiente('prospectiva')}`;

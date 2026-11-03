@@ -4,7 +4,7 @@ from armar import bi, fig, BLOQUES
 GLOS = [
   ['5B', '5B', 'Las cinco reglas básicas del saber local del maíz en Calpan: buena tierra, buena semilla, buena siembra, buena alimentación y buena vigilancia.', 'The five basic rules of local maize knowledge in Calpan: good soil, good seed, good sowing, good nutrition and good watchfulness.'],
   ['Actividad', 'Activity', 'Lo que se hace dentro de un paso de manejo (por ejemplo, «trabajo con arado reversible»). Cada actividad liga a los elementos que participan en ella.', 'What is done within a management step (for example, “reversible plough work”). Each activity links the elements taking part in it.'],
-  ['Actividad innovadora', 'Innovative activity', 'Una práctica nueva que la localidad agregó al manejo tradicional; en la app se agrega con «+ Actividad innovadora».', 'A new practice the locality added to traditional management; in the app it is added with “+ Innovative activity”.'],
+  ['Actividad innovadora', 'Innovative activity', 'Una práctica nueva que la localidad agregó al manejo tradicional; en la app se agrega con «+ Actividad en este paso», con quién la propone y desde cuándo.', 'A new practice the locality added to traditional management; in the app it is added with “+ Activity in this step”, with who proposes it and since when.'],
   ['Capacidad adaptativa', 'Adaptive capacity', 'Qué tanto puede el sistema absorber un golpe y reorganizarse. Ratio Telar la mide con la regeneración, la diversificación, el conocimiento técnico y las instituciones.', 'How well the system can absorb a shock and reorganise. Ratio Telar measures it with regeneration, diversification, technical knowledge and institutions.'],
   ['Cladograma', 'Cladogram', 'Árbol que agrupa a los elementos según qué tan cerca están en la red: las ramas cortas son vecinos muy ligados.', 'Tree that groups elements by how close they are in the network: short branches are tightly linked neighbours.'],
   ['Comunidad', 'Community', 'Grupo de elementos que se relacionan más entre sí que con el resto de la red.', 'Group of elements more related to each other than to the rest of the network.'],
@@ -37,9 +37,9 @@ GLOS = [
 
 def fig_telar():
     W, H = 780, 300
-    fases = [(0, 4, 'Tus datos', 'Your data', '#4f7d3a'), (4, 8, 'Evaluar', 'Assess', '#b8562e'), (8, 11, 'Tejer y leer', 'Weave and read', '#3f6fb0'), (11, 13, 'Futuro e informe', 'Future and report', '#8a3f5a')]
+    fases = [(0, 3, 'Tus datos', 'Your data', '#4f7d3a'), (3, 7, 'Evaluar', 'Assess', '#b8562e'), (7, 10, 'Tejer y leer', 'Weave and read', '#3f6fb0'), (10, 12, 'Futuro e informe', 'Future and report', '#8a3f5a')]
     s = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="Ratio Telar">']
-    cw = (W - 40) / 13
+    cw = (W - 40) / 12
     for a, b, es, en, col in fases:
         x0, x1 = 20 + a * cw, 20 + b * cw
         s.append(f'<rect x="{x0+3:.1f}" y="18" width="{x1-x0-6:.1f}" height="30" rx="8" fill="{col}" opacity=".14"/>')
@@ -48,7 +48,7 @@ def fig_telar():
         cx = 20 + i * cw + cw / 2
         s.append(f'<circle cx="{cx:.1f}" cy="120" r="22" fill="var(--b{i+1})"/><text x="{cx:.1f}" y="126" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">{i+1}</text>')
         s.append(f'<g transform="translate({cx:.1f} 156) rotate(40)">' + bi(bl[1], bl[2], x='0', y='0', font_size='12.5') + '</g>')
-        if i < 12:
+        if i < 11:
             s.append(f'<line x1="{cx+23:.1f}" y1="120" x2="{cx+cw-23:.1f}" y2="120" stroke="var(--line2)" stroke-width="2"/>')
     # flechas de retroalimentación
     def arco(i, j, es, en, y):
@@ -56,11 +56,11 @@ def fig_telar():
         return (f'<path d="M{xi:.1f},96 C{xi:.1f},{y} {xj:.1f},{y} {xj:.1f},96" fill="none" stroke="var(--acc)" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#fl)"/>'
                 + bi(es, en, x=f'{(xi+xj)/2:.1f}', y=str(y + 12), text_anchor='middle', font_size='11.5', class_='mu'))
     s.append('<defs><marker id="fl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--acc)"/></marker></defs>')
-    s.append(arco(3, 4, 'actividades', 'activities', 64))
-    s.append(arco(5, 11, 'riesgo → escenarios', 'risk → scenarios', 58))
+    s.append(arco(2, 3, 'actividades', 'activities', 64))
+    s.append(arco(4, 10, 'riesgo → escenarios', 'risk → scenarios', 58))
     s.append('</svg>')
-    return fig(''.join(s), '<b>Los trece bloques.</b> Los bloques 1 a 4 describen tu unidad; del 5 al 8 la evalúas; en el 9 se teje la red, que lees en el 10 y el 11; el 12 mira al futuro y el 13 lo resume todo. Las flechas punteadas son ejemplos de cómo un bloque alimenta a otro.',
-               '<b>The thirteen blocks.</b> Blocks 1–4 describe your farm; 5–8 assess it; block 9 weaves the network, which you read in 10 and 11; 12 looks ahead and 13 sums it all up. Dashed arrows are examples of one block feeding another.')
+    return fig(''.join(s), '<b>Los doce bloques.</b> Los bloques 1 a 3 describen tu unidad; del 4 al 7 la evalúas; en el 8 se teje la red, que lees en el 9 y el 10; el 11 mira al futuro y el 12 lo resume todo. Las flechas punteadas son ejemplos de cómo un bloque alimenta a otro.',
+               '<b>The twelve blocks.</b> Blocks 1–3 describe your farm; 4–7 assess it; block 8 weaves the network, which you read in 9 and 10; 11 looks ahead and 12 sums it all up. Dashed arrows are examples of one block feeding another.')
 
 
 def fig_perilla():

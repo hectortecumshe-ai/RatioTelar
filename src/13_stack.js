@@ -31,9 +31,9 @@ const B5 = [
   {id:'vigilancia', es:'Buena vigilancia', en:'Good watchfulness', col:'#7a4f9a',
    d:['Seguimiento y monitoreo periódico: efectos visibles de la nutrición, plagas, enfermedades, malezas y humedad adecuada para el paso de arado.',
       'Periodic monitoring: visible nutrition effects, pests, diseases, weeds and adequate moisture for tillage.']},
-  {id:'cosecha', es:'Cosecha, poscosecha y balance', en:'Harvest, post-harvest and balance', col:'#8a8f86', interp:true,
-   d:['Pasos 31 a 38 de la Figura 4. El artículo no los asigna a una de las 5B; Ratio Telar los agrupa aparte.',
-      'Steps 31–38 of Figure 4. The paper does not assign them to one of the 5B; Ratio Telar groups them separately.']}
+  {id:'cosecha', es:'Buena cosecha y balance', en:'Good harvest and balance', col:'#c0772b', interp:true,
+   d:['Cosecha, poscosecha (grano, forraje y semilla), comercialización y balance de resultados: pasos 31 a 38 de la Figura 4. El artículo define cinco reglas (5B) y no asigna estos pasos a ninguna; esta sexta regla es una lectura de Ratio Telar.',
+      'Harvest, post-harvest (grain, fodder and seed), selling and results balance: steps 31–38 of Figure 4. The paper defines five rules (5B) and assigns none of them to these steps; this sixth rule is a Ratio Telar reading.']}
 ];
 
 // Los 38 pasos y sus actividades (Figura 4, p. 11), transcritos.

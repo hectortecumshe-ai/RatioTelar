@@ -1,7 +1,7 @@
 "use strict";
 /* =====================================================================
-   Bloque 5 · REGENERACIÓN DEL SISTEMA PRODUCTIVO
-   Bloque 6 · RIESGOS DEL SISTEMA
+   Bloque 4 · REGENERACIÓN DEL SISTEMA PRODUCTIVO
+   Bloque 5 · RIESGOS DEL SISTEMA
    ---------------------------------------------------------------------
    Regeneración: ocho indicadores en escala 0–4, agrupados en los principios
    de salud del suelo del USDA-NRCS (mínima perturbación, suelo cubierto,
@@ -9,7 +9,7 @@
    regenerativa añade (integración animal, menos insumos de síntesis,
    materia orgánica; Newton et al., 2020; Schreefel et al., 2020) y el saber
    local del Stack. Cada indicador tiene un valor sugerido a partir de las
-   actividades que se practican (Bloque 4) que el usuario puede ajustar con
+   actividades que se practican (Bloque 3) que el usuario puede ajustar con
    su perilla. Índice de regeneración IR = Σ s / (4·n), 0–1.
    La lectura de los valores sugeridos y los cortes de clase son «Lectura de
    Ratio Telar».
@@ -23,7 +23,7 @@
 const NIVEL04 = [E('Nulo','None'),E('Bajo','Low'),E('Medio','Medium'),E('Alto','High'),E('Muy alto','Very high')];
 const NIVEL15 = [null,E('Muy bajo','Very low'),E('Bajo','Low'),E('Medio','Medium'),E('Alto','High'),E('Muy alto','Very high')];
 const _tiene = (a, ids)=> a.el.some(id=>ids.includes(id));
-const SIN_SUG = (m)=>({s:null, m:m||T('sin datos todavía: responde el Bloque 4 o mueve la perilla','no data yet: answer Block 4 or move the knob')});
+const SIN_SUG = (m)=>({s:null, m:m||T('sin datos todavía: responde el Bloque 3 o mueve la perilla','no data yet: answer Block 3 or move the knob')});
 const DIV_SIS = {milpa:3, miaf:4, vinedo:1, mono:1, agrofor:4, traspatio:5, pastoreo:1, apiario:1, cinegetico:3, confinado:1};
 const REGEN_IND = [
   {id:'labranza', pr:E('Mínima perturbación','Minimal disturbance'), n:E('Labranza mínima','Minimal tillage'), col:'#9a6a3a',
@@ -131,7 +131,7 @@ function medidorIR(v, clase, etq){ if(v==null) return `<svg class="chart medidor
     <line x1="${C}" y1="130" x2="${x}" y2="${y}" stroke="var(--text)" stroke-width="3.5" stroke-linecap="round"/><circle cx="${C}" cy="130" r="7" fill="var(--text)"/>
     <text x="${C}" y="166" text-anchor="middle" font-size="28" font-weight="700">${fmt(100*v,0)}</text><text x="${C}" y="182" text-anchor="middle" font-size="11.5" class="m">${esc(etq)}</text><text x="22" y="148" text-anchor="middle" font-size="11" class="m">0</text><text x="238" y="148" text-anchor="middle" font-size="11" class="m">100</text></svg>`; }
 
-/* ---------------- Bloque 5 · Regeneración ---------------- */
+/* ---------------- Bloque 4 · Regeneración ---------------- */
 function renderRegeneracion(el){ const rg=regeneracion();
   const perilla=(x)=>`<div class="perilla ${x.conf?'confirmada':'sin-confirmar'} ${x.ajustado?'ajustada':''}" style="--pc:${x.col}"><div class="row between"><b>${esc(tx(x.n))}</b><span class="pv">${x.s==null?'—':x.s+' · '+esc(tx(NIVEL04[x.s]))}</span></div>
     <span class="estado-p">${x.conf?'✓ '+T('Confirmado por ti','Confirmed by you'):x.s==null?T('Sin dato: mueve la perilla','No data: move the knob'):T('Sugerido, sin confirmar','Suggested, not confirmed')}</span>
@@ -155,7 +155,7 @@ function renderRegeneracion(el){ const rg=regeneracion();
      <div class="grid g2"><label class="f"><span>${T('% MO en la línea base','% SOM at baseline')}</span><input type="number" step="0.1" min="0" id="moB" value="${rg.mo.b??''}"></label><label class="f"><span>${T('% MO actual','Current % SOM')}</span><input type="number" step="0.1" min="0" id="moA" value="${rg.mo.a??''}"></label></div>
      ${rg.mo.b!=null&&rg.mo.a!=null&&rg.mo.b!==''&&rg.mo.a!==''?`<p>${T('Cambio','Change')}: <b style="color:var(--${(+rg.mo.a)>=(+rg.mo.b)?'ok':'bad'}-text)">${(+rg.mo.a)-(+rg.mo.b)>=0?'+':''}${fmt((+rg.mo.a)-(+rg.mo.b),2)}</b> ${T('puntos de MO','SOM points')} (${fmt(100*((+rg.mo.a)-(+rg.mo.b))/(+rg.mo.b||1),0)} %)</p>`:`<p class="nota">${T('Con dos análisis de suelo (antes y ahora) ves si la materia orgánica sube: es la prueba más directa de regeneración.','With two soil tests (before and now) you see whether organic matter rises: the most direct proof of regeneration.')}</p>`}</div>
    <div class="card"><h3>${T('Actividades que regeneran y que desgastan','Activities that regenerate and wear out')}</h3>
-     <p class="nota">${T('Suma del impacto en suelo, agua, vegetación y fauna (Bloque 4).','Sum of impact on soil, water, vegetation and fauna (Block 4).')}</p>
+     <p class="nota">${T('Suma del impacto en suelo, agua, vegetación y fauna (Bloque 3).','Sum of impact on soil, water, vegetation and fauna (Block 3).')}</p>
      <div class="grid g2"><div><b style="color:var(--ok-text)">${T('Regeneran','Regenerate')}</b><ul>${rg.sube.map(x=>`<li>${esc(tx(x.a.n))} <span class="muted">(+${x.r})</span></li>`).join('')||`<li class="muted">—</li>`}</ul></div>
      <div><b style="color:var(--bad-text)">${T('Desgastan','Wear out')}</b><ul>${rg.baja.map(x=>`<li>${esc(tx(x.a.n))} <span class="muted">(${x.r})</span></li>`).join('')||`<li class="muted">—</li>`}</ul></div></div></div></div>
   ${siguiente('regeneracion')}`;
@@ -168,7 +168,7 @@ function renderRegeneracion(el){ const rg=regeneracion();
   ['moB','moA'].forEach(k=>$('#'+k,el).onchange=e=>{ S.regenMO=S.regenMO||{}; S.regenMO[k==='moB'?'b':'a']=e.target.value; guardar(); render(); });
   enlazarTips(el); }
 
-/* ---------------- Bloque 6 · Riesgos ---------------- */
+/* ---------------- Bloque 5 · Riesgos ---------------- */
 function renderRiesgos(el){ const rs=riesgos(), cls=CLASE_RG(rs.idx), filtro=renderRiesgos.cat||'todos';
   const fila=x=>`<tr class="${x.off?'r-off':''} ${x.conf?'r-conf':'r-sinconf'}"><td><input type="checkbox" data-roff="${x.id}" ${x.off?'':'checked'} aria-label="${T('Aplica','Applies')}"></td>
     <td><span class="punto" style="background:${CAT_R[x.cat].col}"></span>${esc(tx(x.n))} ${x.off?'':x.conf?`<span class="estado-p ok">✓ ${T('confirmado','confirmed')}</span>`:`<span class="estado-p">${T('sugerido, sin confirmar','suggested, not confirmed')}</span> <button type="button" class="btn sm" data-rok="${x.id}">✓ ${T('Aceptar','Accept')}</button>`}<br><small class="muted">${T('Sugerido','Suggested')}: P ${x.sug.p} · I ${x.sug.i} — ${esc(x.sug.m)}</small></td>
@@ -206,13 +206,13 @@ function renderRiesgos(el){ const rs=riesgos(), cls=CLASE_RG(rs.idx), filtro=ren
 
 /* ---------------- Tarjetas para los bloques siguientes ---------------- */
 function tarjetaRegenRiesgo(id){ const rg=regeneracion(), rs=riesgos({rg}), crg=CLASE_RG(rs.idx);
-  const k2=`<div class="kpis" style="margin:8px 0"><div class="kpi"><div class="l">${T('Regeneración (Bloque 5)','Regeneration (Block 5)')}</div><div class="v">${fmt(100*rg.IR,0)}</div><div class="s"><span class="badge ${rg.clase.c}">${esc(tx(rg.clase.n))}</span></div></div>
-     <div class="kpi"><div class="l">${T('Riesgo (Bloque 6)','Risk (Block 6)')}</div><div class="v">${fmt(100*rs.idx,0)}</div><div class="s"><span class="badge ${crg.c}">${esc(tx(crg.n))}</span></div></div>
+  const k2=`<div class="kpis" style="margin:8px 0"><div class="kpi"><div class="l">${T('Regeneración (Bloque 4)','Regeneration (Block 4)')}</div><div class="v">${fmt(100*rg.IR,0)}</div><div class="s"><span class="badge ${rg.clase.c}">${esc(tx(rg.clase.n))}</span></div></div>
+     <div class="kpi"><div class="l">${T('Riesgo (Bloque 5)','Risk (Block 5)')}</div><div class="v">${fmt(100*rs.idx,0)}</div><div class="s"><span class="badge ${crg.c}">${esc(tx(crg.n))}</span></div></div>
      <div class="kpi"><div class="l">${T('Capacidad adaptativa','Adaptive capacity')}</div><div class="v">${fmt(100*rs.CA,0)}</div><div class="s">0–100</div></div></div>`;
   if(id==='elementos'){ const exp={}; rs.act.forEach(x=>x.el.forEach(e=>{ exp[e]=Math.max(exp[e]||0,x.r); }));
     const l=Object.entries(exp).filter(([e])=>elemPorId(e)).sort((a,b)=>b[1]-a[1]).slice(0,10);
     return `<div class="card rr-card"><h3>${T('Regeneración y riesgo en los elementos','Regeneration and risk in the elements')}</h3>${k2}
-      <p class="nota">${T('Elementos más expuestos: el riesgo mayor de las amenazas que los afectan (Bloque 6).','Most exposed elements: the highest risk among the hazards that affect them (Block 6).')}</p>
+      <p class="nota">${T('Elementos más expuestos: el riesgo mayor de las amenazas que los afectan (Bloque 5).','Most exposed elements: the highest risk among the hazards that affect them (Block 5).')}</p>
       ${barrasH(l.map(([e,r])=>{ const d=elemPorId(e); return {l:tx(d.n), v:r, c:CATS[d.cat].col, vl:fmt(r,1)}; }),{max:25, izq:240})}</div>`; }
   if(id==='formulacion') return `<div class="card rr-card"><h3>${T('Regeneración y riesgo en el modelo','Regeneration and risk in the model')}</h3>${k2}
       <div class="formula">IR = Σ<sub>k</sub> s<sub>k</sub> / (4·8) ; CA = media(IR, ${T('diversificación','diversification')}, ${T('conocimiento técnico','technical knowledge')}, ${T('integración institucional','institutional integration')})<br>r<sub>h</sub> = P<sub>h</sub>·I<sub>h</sub>·(1 − 0.4·CA)·(1 − 0.15·c<sub>h</sub>) ; ${T('índice de riesgo','risk index')} = Σ r<sub>h</sub> / (25·H)</div>

@@ -1,4 +1,4 @@
-"""Toma las capturas de los instructivos de Ratio Telar con Edge sin interfaz.
+"""Toma las capturas de los instructivos de Ratio Telar con Chrome sin interfaz.
 Requiere el servidor local de la app (python -m http.server 8773 --directory D:/CLAUDE/RatioTelar).
 Uso:  python capturar.py              (todas, en español e inglés)
       python capturar.py inicio tablero   (solo esas)
@@ -7,14 +7,14 @@ import os, subprocess, sys, time, urllib.parse
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 PNG = os.path.join(AQUI, '..', 'img', 'png'); os.makedirs(PNG, exist_ok=True)
-EDGE = r'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'
+EDGE = r'C:\Program Files\Google\Chrome\Application\chrome.exe'   # Chrome sin interfaz
 PERFIL = os.path.join(os.environ.get('TEMP', AQUI), 'telar_capturas_perfil')
 BASE = 'http://localhost:8773/instructivo/fuente/captura.html?'
 
 # id: parámetros de captura.html (b, v, h, sel, off, m, prep, js, q)
 CAPTURAS = {
   'inicio':        dict(b='inicio', prep='vacio', m='.langsw:not(.modesw)|#modesw|#btnTema|#btnAyuda|#nav|#pill'),
-  'ayuda':         dict(b='requerimientos', prep='ayuda', h=760),
+  'ayuda':         dict(b='regeneracion', prep='ayuda', h=760),
   'vistas':        dict(b='tablero', v='cien', sel='.tablero .t12.sci', h=760),
   'catalogo':      dict(b='cultivo', prep='vacio', sel='.cat-grid', m='[data-cult="maiz"]|.tipo-tabs'),
   'variedad':      dict(b='cultivo', prep='vacio,mango', sel='#varIn', off=220, m='#varIn|.razas'),
@@ -26,10 +26,12 @@ CAPTURAS = {
   'sistema':       dict(b='cultivo', sel='input[name=sis]', off=200, m='label.opt.sel|#tUP'),
   'region':        dict(b='region', m='.mapa,svg.mapa'),
   'localidad':     dict(b='region', sel='select', off=180),
-  'req':           dict(b='requerimientos', sel='.card', off=150),
-  'reqinn':        dict(b='requerimientos', prep='reqinn', sel='#reqT,#rT,[id^=req]', off=320),
   'manejo':        dict(b='manejo', m='#rSiem|.filtro5b'),
   'paso':          dict(b='manejo', prep='paso', sel='.pacc[open],details[open]', off=150),
+  'pasoctl':       dict(b='manejo', prep='paso', sel='.pacc[open]', off=150, h=640, m='.pacc[open] .arrastre|.pacc[open] [data-pmov]|.pacc[open] [data-pgrp]|.pacc[open] [data-pna]'),
+  'noaplica':      dict(b='manejo', prep='noaplica', sel='details.pacc:has([data-pna="4"])', off=150, h=560, m='details.pacc:has([data-pna="5"]) > summary'),
+  'pasopropio':    dict(b='manejo', sel='.card.nuevo-paso', off=150, h=560, m='#ppB|#ppD|#ppAdd'),
+  'actnueva':      dict(b='manejo', prep='actnueva', sel='.pacc[open] .actrow.inn', off=150, h=900, m='.pacc[open] .actrow.inn|.pacc[open] details.nueva .grid.g2|[data-ntipo="18"]|.pacc[open] details.nuevo-el'),
   'ejemplo':       dict(b='manejo', prep='vacio,uva,ejemplo', h=860),
   'regen':         dict(b='regeneracion', sel='svg.medidor', off=230, m='svg.medidor|#rgBase'),
   'perillas':      dict(b='regeneracion', sel='.perillas', off=180, m='.perilla'),

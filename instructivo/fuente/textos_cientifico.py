@@ -21,12 +21,12 @@ GLOS = [
 
 def fig_tubo():
     W, H = 780, 250
-    pasos = [('Bloques 1–4', 'Blocks 1–4', 'actividades a', 'activities a', '#4f7d3a'),
-             ('Bloque 8', 'Block 8', 'valores vᵢ', 'values vᵢ', '#8a6d1f'),
-             ('Bloque 9', 'Block 9', 'red G = (V, E, w)', 'network G = (V, E, w)', '#4a5d6b'),
-             ('Bloque 10', 'Block 10', 'centralidades, Q, φ, árbol', 'centralities, Q, φ, tree', '#3f6fb0'),
-             ('Bloques 5, 6, 11', 'Blocks 5, 6, 11', 'IR, riesgo, IS, ISGen', 'IR, risk, IS, ISGen', '#2f8f6a'),
-             ('Bloque 12', 'Block 12', 'escenarios t = 0…10', 'scenarios t = 0…10', '#8a3f5a')]
+    pasos = [('Bloques 1–3', 'Blocks 1–3', 'actividades a', 'activities a', '#4f7d3a'),
+             ('Bloque 7', 'Block 7', 'valores vᵢ', 'values vᵢ', '#8a6d1f'),
+             ('Bloque 8', 'Block 8', 'red G = (V, E, w)', 'network G = (V, E, w)', '#4a5d6b'),
+             ('Bloque 9', 'Block 9', 'centralidades, Q, φ, árbol', 'centralities, Q, φ, tree', '#3f6fb0'),
+             ('Bloques 4, 5, 10', 'Blocks 4, 5, 10', 'IR, riesgo, IS, ISGen', 'IR, risk, IS, ISGen', '#2f8f6a'),
+             ('Bloque 11', 'Block 11', 'escenarios t = 0…10', 'scenarios t = 0…10', '#8a3f5a')]
     s = [f'<svg viewBox="0 0 {W} {H}" role="img">', '<defs><marker id="ft" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--muted)"/></marker></defs>']
     bw, gap = 116, 16
     for i, (a, ae, b, be, col) in enumerate(pasos):

@@ -664,7 +664,7 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
 #dlgEjemplo{max-width:760px}
 @media (max-width:560px){.ejemplo-calpan{flex-direction:column;align-items:flex-start}}
 
-/* Cladograma del vecino más cercano (Bloque 8) */
+/* Cladograma del vecino más cercano (Bloque 7) */
 .clado-c{overflow-x:auto}
 .clado{width:100%;min-width:560px;height:auto;font-family:var(--font)}
 .clado .rama{stroke-dasharray:3000;stroke-dashoffset:3000;animation:tejer 1.2s cubic-bezier(.2,.7,.2,1) forwards}
@@ -729,7 +729,7 @@ svg.calendario .aguja{animation:fluir 1.6s linear infinite}
 .cat-nuevo{margin-top:14px}
 @media print{.cat-nuevo{display:none!important}}
 
-/* Bloques 5 y 6: perillas de regeneración y de riesgo */
+/* Bloques 4 y 5: perillas de regeneración y de riesgo */
 .perillas{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
 .perilla{border:1px solid var(--border);border-left:5px solid var(--pc);border-radius:var(--r-md);padding:10px 12px;background:var(--bg)}
 .perilla.ajustada{background:color-mix(in srgb,var(--pc) 8%,var(--bg))}
@@ -782,7 +782,7 @@ input[type=range].fantasma{opacity:.4;filter:grayscale(1)}
 .riesgos-t tr.r-sinconf td{background:repeating-linear-gradient(135deg,transparent,transparent 8px,var(--bg-soft) 8px,var(--bg-soft) 16px)}
 .riesgos-t tr.r-sinconf input[type=range]{filter:grayscale(1);opacity:.5}
 .riesgos-t tr.r-sinconf .btn.sm{padding:1px 8px;font-size:12px}
-/* Bloque 4: respuesta Sí / No por actividad */
+/* Bloque 3: respuesta Sí / No por actividad */
 .resp-sn{display:flex;flex-direction:column;gap:4px;flex:0 0 auto}
 .resp-sn button{font:inherit;font-size:12px;padding:3px 9px;border-radius:var(--r-pill);border:1px dashed var(--field);background:var(--card);color:var(--muted);cursor:pointer;white-space:nowrap}
 .resp-sn button.si.on{background:var(--ok);border:1px solid var(--ok);color:#fff;font-weight:700}
@@ -829,7 +829,7 @@ html.modo-ejemplo main{outline:4px solid rgba(224,128,42,.55);outline-offset:-4p
 .qr-app .qr-img svg{width:100%;height:100%;display:block}
 .qr-app b{color:var(--text, inherit);overflow-wrap:anywhere}
 
-/* Modelo 3D del sistema complejo adaptativo (Bloque 9) */
+/* Modelo 3D del sistema complejo adaptativo (Bloque 8) */
 .m3d-barra{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin:10px 0 6px}
 .m3d-ctl{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);white-space:nowrap}
 .m3d-ctl select{font:inherit;font-size:13px;max-width:280px}
@@ -850,6 +850,36 @@ svg.m3d .m3d-val{fill:var(--text);paint-order:stroke;stroke:var(--card);stroke-w
 .seg-m3d{display:inline-flex;gap:6px}
 @media (max-width:640px){ .m3d-rank li{grid-template-columns:1.6fr 1fr 30px;font-size:13px} .m3d-rank .nm{white-space:normal} }
 @media print{ .m3d-barra,.m3d-ayuda,.seg-m3d{display:none!important} }
+
+/* Bloque 3 · Manejo: pasos flexibles (orden, regla, «no aplica», pasos propios) */
+.paso-ctl{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;padding:8px 10px;margin:-4px 0 10px;border-radius:var(--r-sm,8px);background:var(--bg-soft);border:1px dashed var(--border)}
+.paso-ctl .btn{min-width:0}
+.paso-ctl select{font:inherit;font-size:13px}
+details.pacc.noaplica{opacity:.62;filter:grayscale(.7)}
+details.pacc.noaplica[open]{opacity:.9}
+details.pacc.noaplica .cuerpo > :not(.paso-ctl):not(.na-nota){display:none!important}
+details.pacc.propio > summary .num{background:var(--accent);color:#fff}
+.actrow.inn.trad > span{color:var(--primary)}
+.tipo-act{font-size:12px;color:var(--muted);font-weight:400}
+details.nuevo-el{margin:10px 0 10px}
+details.nuevo-el > summary{display:inline-flex;align-items:center;gap:6px;cursor:pointer;list-style:none;background:var(--primary);color:#fff;border-color:var(--primary)}
+details.nuevo-el > summary::-webkit-details-marker{display:none}
+details.nuevo-el[open]{padding:8px 12px 10px;border:1px dashed var(--border);border-radius:var(--r-sm,8px)}
+details.nuevo-el[open] > summary{margin-bottom:8px}
+.card.nuevo-paso{border-style:dashed}
+
+/* Bloque 3 · arrastrar pasos y actividades con agarradera */
+.arrastre{display:inline-grid;place-items:center;width:22px;height:26px;border-radius:6px;color:var(--muted);cursor:grab;touch-action:none;user-select:none;font-size:17px;line-height:1;flex:none}
+.arrastre:hover{background:var(--bg-soft);color:var(--text)}
+details.pacc > summary{position:relative;padding-left:34px!important}
+details.pacc > summary > .arrastre{position:absolute;left:6px;top:50%;transform:translateY(-50%)}
+.actrow[data-actkey]{position:relative;padding-left:30px!important}
+.actrow[data-actkey] > .arrastre{position:absolute;left:4px;top:8px}
+body.arrastrando-manejo, body.arrastrando-manejo *{cursor:grabbing!important;user-select:none}
+.arrastrando{opacity:.45;outline:2px dashed var(--primary);outline-offset:2px}
+.drop-antes{box-shadow:0 -4px 0 0 var(--accent)!important}
+.drop-despues{box-shadow:0 4px 0 0 var(--accent)!important}
+details.pacc.drop-dentro{outline:3px solid var(--accent);outline-offset:2px}
 
 </style>
 </head>
@@ -1282,7 +1312,7 @@ html[lang="en"] .familia-ratio .fr-es,html:not([lang="en"]) .familia-ratio .fr-e
    Ratio Telar — Ratio Complexus («lo que está tejido junto»)
    ===================================================================== */
 const CONFIG = {
-  app:'Ratio Telar', version:'0.6.0', anio:2026, doi:'10.5281/zenodo.23290103',
+  app:'Ratio Telar', version:'0.7.0', anio:2026, doi:'10.5281/zenodo.23290103',
   repo:'https://github.com/hectortecumshe-ai/RatioTelar',
   autores:'Héctor Tecumshé Mojica-Zárate · Óscar Díaz-José · Luis Ángel Barrera-Guzmán · Guadalupe Velázquez-Vázquez',
   citaAutores:{es:'Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. Á., y Velázquez-Vázquez, G.',en:'Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. Á., & Velázquez-Vázquez, G.'},
@@ -1405,6 +1435,12 @@ function estadoInicial(){ return {
   riesgo:{},                       // riesgo -> {p, i, c, off}
   prosp:null,                      // supuestos editados de la prospectiva (null = valores iniciales)
   reqInn:[],                       // [{t, b, d, fuente}]
+  pasoOrden:[],                    // orden de los pasos en el ciclo (claves n); vacío = orden publicado
+  pasoGrupo:{},                    // n paso -> B elegida por el usuario (si la cambió)
+  pasoNoAplica:{},                 // n paso -> true si no aplica en la localidad
+  pasosPropios:[],                 // pasos agregados por el usuario {n (≥ 101), es, en, b}
+  actPaso:{},                      // código de actividad publicada -> paso al que el usuario la movió
+  actOrden:{},                     // n paso -> orden de sus actividades (códigos publicados e 'i:<id>' de las agregadas)
   manejo:{},                       // n paso -> {resp:{codigo:'si'|'no'}, inn:[{t, el:[ids], imp:[5], nota}], imp:{codigo:[5]}}; sin respuesta no cuenta
   elemExtra:[],                    // elementos agregados por el usuario {id,cat,n}
   precio:{},                       // id -> {p:precio unitario, u:unidad, q:cantidad por ha}
@@ -1488,9 +1524,9 @@ const B5 = [
   {id:'vigilancia', es:'Buena vigilancia', en:'Good watchfulness', col:'#7a4f9a',
    d:['Seguimiento y monitoreo periódico: efectos visibles de la nutrición, plagas, enfermedades, malezas y humedad adecuada para el paso de arado.',
       'Periodic monitoring: visible nutrition effects, pests, diseases, weeds and adequate moisture for tillage.']},
-  {id:'cosecha', es:'Cosecha, poscosecha y balance', en:'Harvest, post-harvest and balance', col:'#8a8f86', interp:true,
-   d:['Pasos 31 a 38 de la Figura 4. El artículo no los asigna a una de las 5B; Ratio Telar los agrupa aparte.',
-      'Steps 31–38 of Figure 4. The paper does not assign them to one of the 5B; Ratio Telar groups them separately.']}
+  {id:'cosecha', es:'Buena cosecha y balance', en:'Good harvest and balance', col:'#c0772b', interp:true,
+   d:['Cosecha, poscosecha (grano, forraje y semilla), comercialización y balance de resultados: pasos 31 a 38 de la Figura 4. El artículo define cinco reglas (5B) y no asigna estos pasos a ninguna; esta sexta regla es una lectura de Ratio Telar.',
+      'Harvest, post-harvest (grain, fodder and seed), selling and results balance: steps 31–38 of Figure 4. The paper defines five rules (5B) and assigns none of them to these steps; this sixth rule is a Ratio Telar reading.']}
 ];
 
 // Los 38 pasos y sus actividades (Figura 4, p. 11), transcritos.
@@ -1753,7 +1789,7 @@ const TEORIA = [
 <script>
 "use strict";
 /* =====================================================================
-   1e. ELEMENTOS DEL SISTEMA COMPLEJO ADAPTATIVO (Bloque 7)
+   1e. ELEMENTOS DEL SISTEMA COMPLEJO ADAPTATIVO (Bloque 6)
    Elementos del caso maíz criollo de Calpan, tomados del texto del artículo
    (Díaz-José et al., 2026): actores (pp. 7–9), instituciones (pp. 7–8), insumos,
    equipo y productos (Figura 4), conocimientos (pp. 1–5, Fig. 4), perturbaciones
@@ -1880,7 +1916,7 @@ const LAZOS = [
   ['SEMS','SEM'],['RAST','SUELO'],['INGR','COSTOS']
 ];
 /* Perfil de impacto de cada elemento sobre cinco compartimentos [suelo, agua, atmósfera, vegetación, fauna], escala −2…+2.
-   Lectura de Ratio Telar con su justificación; editable por actividad en el Bloque 4. */
+   Lectura de Ratio Telar con su justificación; editable por actividad en el Bloque 3. */
 const COMP = [E('Suelo','Soil'),E('Agua','Water'),E('Atmósfera','Atmosphere'),E('Vegetación','Vegetation'),E('Fauna','Fauna')];
 const COMP_COL = ['#9a6a3a','#2d78b0','#8a8f86','#5f8f3e','#7a4f9a'];
 const IMPACTO = {
@@ -1896,7 +1932,7 @@ const IMPACTO = {
   LAB:{v:[1,1,0,0,0], r:E('Fertilizar según el análisis de suelo evita excesos.','Fertilising by soil analysis avoids excess.')},
   FORR:{v:[-1,0,0,0,0], r:E('Retirar el rastrojo como forraje deja menos cobertura al suelo.','Removing stover as fodder leaves less soil cover.')}
 };
-/* Relación compartimento / indicador → ODS para el Bloque 11 (relación propuesta por Ratio Telar). */
+/* Relación compartimento / indicador → ODS para el Bloque 10 (relación propuesta por Ratio Telar). */
 const ODS_COMP = {2:[0,3], 6:[1], 13:[2], 15:[0,3,4]};
 
 </script>
@@ -1939,16 +1975,17 @@ const isoDeDia = (d)=>{ const t=new Date(Date.UTC(2026,0,1+Math.round(((d%365)+3
 const diaDeIso = (s)=>{ const t=new Date(s+'T00:00:00Z'); return Math.round((t-Date.UTC(t.getUTCFullYear(),0,1))/864e5); };
 /* Ventana por omisión de un paso del maíz */
 function ventanaPaso(p){ const s=S.siembraDia;
+  if(!p.dds && p.n!==18 && !(p.v||[]).length) return {ini:null, fin:null, origen:'sin'};   // paso propio: sin ventana publicada
   if((p.dds||p.n===18) && s==null) return {ini:null, fin:null, origen:'sin'};
   if(p.dds){ const a=s+p.dds[0], b=s+p.dds[p.dds.length-1]+(p.dds.length>1?0:6); return {ini:a%365, fin:b%365, origen:'dds'}; }
   if(p.n===18) return {ini:s, fin:(s+6)%365, origen:'siembra'};
   const v=p.v; return {ini:MES_DIA[v[0]-1], fin:(v[v.length-1]===12?364:MES_DIA[v[v.length-1]]-1), origen:'fig4'}; }
 /* Fechas efectivas de todos los pasos (con las ediciones del usuario) */
 function calendarioPasos(){ const out=[];
-  if(conStack()) PASOS.forEach(p=>{ const f=S.fechas[p.n]||{}, w=ventanaPaso(p), m=manejoDe(p.n);
+  if(conStack()) pasosActivos().forEach(p=>{ const f=S.fechas[p.n]||{}, w=ventanaPaso(p), m=manejoDe(p.n);
     if(!p.a.some(a=>m.resp[a[0]]==='si') && !(m.inn||[]).length) return;           // paso sin actividades practicadas
     if(f.ini==null && (w.ini==null || (w.origen==='fig4' && !EJ))) return;           // sin fecha propia (la ventana de Calpan solo en el ejemplo)
-    out.push({n:p.n, nombre:E(p.es,p.en), b:p.b, ev:f.ev||EV_PASO[p.n]||'otro', ini:f.ini!=null?f.ini:w.ini, fin:f.fin!=null?f.fin:w.fin, origen:f.ini!=null?'usuario':w.origen,
+    out.push({n:p.num, nombre:E(p.es,p.en), b:p.b, ev:f.ev||EV_PASO[p.n]||'otro', ini:f.ini!=null?f.ini:w.ini, fin:f.fin!=null?f.fin:w.fin, origen:f.ini!=null?'usuario':w.origen,
       inn:(manejoDe(p.n).inn||[]).length}); });
   else Object.entries(S.manejo).forEach(([n,m])=>{ const f=S.fechas[n]||{}; if(f.ini==null) return; out.push({n:+n, nombre:E(m.nombre||'',m.nombre||''), b:'', ev:f.ev||'otro', ini:f.ini, fin:f.fin!=null?f.fin:f.ini, origen:'usuario', inn:(m.inn||[]).length}); });
   return out; }
@@ -2124,15 +2161,6 @@ const EJEMPLO = {
       T('Elige el municipio y luego la localidad: verás su altitud y su punto en el mapa.','Choose the municipality, then the locality: you will see its altitude and map point.'),
       T('Si tu localidad no aparece, elige la más cercana y anótalo en las notas del proyecto.','If your locality is missing, pick the nearest one and note it in the project notes.')
     ])}),
-  requerimientos: ()=>({
-    corto: T('Los productores resumieron su saber en cinco reglas básicas, las 5B: buena tierra, buena semilla, buena siembra, buena alimentación y buena vigilancia.','Farmers summed up their knowledge in five basic rules, the 5B: good soil, seed, sowing, nutrition and watchfulness.'),
-    hecho: _li(B5.filter(b=>!b.interp).map(b=>`<b style="color:${b.col}">${esc(tx(b))}</b>: ${esc(T(b.d[0],b.d[1]))}`))
-      + `<p class="nota">${T(`Se obtuvieron de ${ART.informantes} informantes entre ${ART.periodo}.`,`Drawn from ${ART.informantes} informants in ${ART.periodo}.`)}</p>`,
-    pasos: _ol([
-      T('Pregunta a los productores: «¿qué se necesita para que este cultivo salga bien?». Agrupa las respuestas en pocas reglas, como las 5B.','Ask farmers: “what does this crop need to do well?”. Group the answers into a few rules, like the 5B.'),
-      T('Escribe cada requerimiento tradicional con una descripción corta y su fuente (quién lo dijo o dónde se publicó).','Write each traditional requirement with a short description and its source (who said it or where it was published).'),
-      T('Agrega aparte los requerimientos <b>innovados</b>: lo que la localidad ha incorporado (análisis de suelo, bioinsumos, nuevas variedades…).','Add the <b>innovated</b> requirements separately: what the locality has adopted (soil tests, bio-inputs, new varieties…).')
-    ])}),
   manejo: ()=>({
     corto: T(`Se documentaron ${ART.pasos} pasos y ${ART.actividades} actividades, del trabajo del suelo en diciembre a la cosecha y el balance económico.`,`${ART.pasos} steps and ${ART.actividades} activities were documented, from tillage in December to harvest and economic balance.`),
     hecho: `<p>${T('Los primeros pasos, tal como aparecen en la Figura 4 del artículo:','The first steps, as in Figure 4 of the paper:')}</p>`
@@ -2142,7 +2170,9 @@ const EJEMPLO = {
       T('Lista los pasos en el orden en que se hacen durante el ciclo (preparar el suelo, sembrar, cuidar, cosechar, vender).','List the steps in the order they happen in the season (prepare soil, sow, tend, harvest, sell).'),
       T('Dentro de cada paso, anota sus actividades concretas y quiénes intervienen.','Within each step, note its concrete activities and who takes part.'),
       T('Pon las fechas de las actividades principales (siembra, deshierbe, poda, corte): alimentan el calendario circular del Tablero y del Informe.','Enter the dates of the main activities (sowing, weeding, pruning, harvest): they feed the circular calendar in the Dashboard and Report.'),
-      T('Marca cuáles son tradicionales y cuáles innovadas.','Mark which are traditional and which are innovated.')
+      T('Marca cuáles son tradicionales y cuáles innovadas.','Mark which are traditional and which are innovated.'),
+      T('En la app, ordena los pasos como se hacen en tu localidad (↑ ↓), cámbialos de regla si hace falta, marca «No aplica en mi localidad» los que no se practican y agrega abajo los pasos propios de tu región.','In the app, order the steps as they are done in your locality (↑ ↓), change their rule if needed, mark “Not applicable in my locality” for those not practised, and add your region’s own steps below.'),
+      T('Si un elemento no está en la lista, créalo desde la misma actividad con «+ Elemento que no está en la lista».','If an element is not in the list, create it from the activity itself with “+ Element not in the list”.')
     ])}),
   regeneracion: ()=>({
     corto: T('El artículo de Calpan no mide la regeneración, pero su Stack permite leerla: tres pasos de labranza, rastrojo devuelto al suelo, selección de semilla criolla y análisis de suelo.','The Calpan paper does not measure regeneration, but its Stack lets us read it: three tillage passes, stubble returned to the soil, landrace seed selection and soil testing.'),
@@ -2191,12 +2221,12 @@ const EJEMPLO = {
   formulacion: ()=>({
     corto: T(`Con los ${ART.pasos} pasos, sus actividades y los elementos ligados, Ratio Telar tejió la red del sistema del maíz de Calpan.`,`From the ${ART.pasos} steps, their activities and linked elements, Ratio Telar wove the Calpan maize network.`),
     hecho: _li([
-      T(`Nodos: los elementos del Bloque 7; aristas: compartir una actividad (${LAZOS.length} lazos adicionales entre actores e instituciones descritos en el artículo).`,`Nodes: the Block 7 elements; edges: sharing an activity (${LAZOS.length} extra ties among actors and institutions described in the paper).`),
-      T('Peso de cada vínculo: la raíz del producto de los valores de los dos elementos (Bloque 8).','Each tie’s weight: the square root of the product of the two elements’ values (Block 8).'),
+      T(`Nodos: los elementos del Bloque 6; aristas: compartir una actividad (${LAZOS.length} lazos adicionales entre actores e instituciones descritos en el artículo).`,`Nodes: the Block 6 elements; edges: sharing an activity (${LAZOS.length} extra ties among actors and institutions described in the paper).`),
+      T('Peso de cada vínculo: la raíz del producto de los valores de los dos elementos (Bloque 7).','Each tie’s weight: the square root of the product of the two elements’ values (Block 7).'),
       T('Seguimiento en tres ciclos: ','Monitoring over three cycles: ')+CUADRO1.map(c=>c.ciclo).join(', ')+'.'
     ]),
     pasos: _ol([
-      T('Revisa que los bloques 3 a 8 tengan datos: sin pasos ni elementos no hay red.','Check that Blocks 3–8 have data: without steps or elements there is no network.'),
+      T('Revisa que los bloques 3 a 7 tengan datos: sin pasos ni elementos no hay red.','Check that Blocks 3–7 have data: without steps or elements there is no network.'),
       T('Formula el sistema: la app calcula la red y sus indicadores.','Formulate the system: the app computes the network and its indicators.'),
       T('Si algo se ve raro, vuelve al bloque correspondiente y corrige.','If something looks odd, go back to the relevant block and fix it.')
     ])}),
@@ -2224,12 +2254,12 @@ const EJEMPLO = {
     pasos: _ol([
       T('Revisa el efecto de cada actividad sobre suelo, agua, atmósfera, vegetación y fauna.','Review each activity’s effect on soil, water, atmosphere, vegetation and fauna.'),
       T('Captura litros de diésel, kg de nitrógeno y de urea, y el rendimiento: con eso se calcula la huella.','Enter litres of diesel, kg of nitrogen and urea, and yield: the footprint is computed from them.'),
-      T('Completa precios y valores del Bloque 8: el índice de Sarandón necesita la dimensión económica.','Complete the Block 8 prices and values: Sarandón’s index needs the economic dimension.')
+      T('Completa precios y valores del Bloque 7: el índice de Sarandón necesita la dimensión económica.','Complete the Block 7 prices and values: Sarandón’s index needs the economic dimension.')
     ])}),
   prospectiva: ()=>({
     corto: T('El artículo de Calpan no hace prospectiva: este bloque es una herramienta de Ratio Telar para mirar el futuro de cualquier unidad a partir de su propio Stack.','The Calpan paper does no foresight: this block is a Ratio Telar tool to look at any farm’s future from its own Stack.'),
     hecho: _li([T('Con el maíz de Calpan, el cambio de rendimiento por °C es el publicado para maíz (−7.4 %; Zhao et al., 2017) y la adopción parte de las actividades innovadas que captures.','For Calpan maize, the yield change per °C is the published maize value (−7.4 %; Zhao et al., 2017) and adoption starts from the innovated activities you enter.')+' '+marcaInterp()]),
-    pasos: _ol([T('Captura antes tus actividades innovadas (Bloque 4) y, si puedes, ingreso y costo por hectárea (Bloque 8).','First enter your innovated activities (Block 4) and, if you can, income and cost per hectare (Block 8).'),T('Revisa los supuestos de cada escenario y ajústalos a tu región.','Review each scenario’s assumptions and adjust them to your region.'),T('Compara los tres futuros a 2, 5 y 10 años y anota qué decisiones de hoy acercan el deseable.','Compare the three futures at 2, 5 and 10 years and note which decisions today bring the desirable one closer.')])}),
+    pasos: _ol([T('Captura antes tus actividades innovadas (Bloque 3) y, si puedes, ingreso y costo por hectárea (Bloque 7).','First enter your innovated activities (Block 3) and, if you can, income and cost per hectare (Block 7).'),T('Revisa los supuestos de cada escenario y ajústalos a tu región.','Review each scenario’s assumptions and adjust them to your region.'),T('Compara los tres futuros a 2, 5 y 10 años y anota qué decisiones de hoy acercan el deseable.','Compare the three futures at 2, 5 and 10 years and note which decisions today bring the desirable one closer.')])}),
   informe: ()=>({
     corto: T('El caso de Calpan se presenta como informe con calendario, red, sostenibilidad y fuentes; tu cultivo genera el mismo informe con tus datos.','The Calpan case is presented as a report with calendar, network, sustainability and sources; your crop produces the same report with your data.'),
     hecho: _li([
@@ -2273,19 +2303,18 @@ function ponerEjemplo(id, el){ const h=ejemploCalpan(id); if(!h) return; const c
    - Los bloques de resultados sin actividades muestran qué falta en vez de
      resultados vacíos.
    ===================================================================== */
-const BLOQUES_LLENAR = ['cultivo','region','requerimientos','manejo','regeneracion','riesgos','elementos','precios'];
+const BLOQUES_LLENAR = ['cultivo','region','manejo','regeneracion','riesgos','elementos','precios'];
 const BLOQUES_RESULTADO = ['formulacion','tablero','sostenible','prospectiva','informe'];
 function avance(id){ let h=0, t=0, nota='';
   if(id==='cultivo'){ const c=[!!S.cultivo, !!S.sistema, S.tipoUP!==''&&S.tipoUP!=null, +S.superficie>0]; t=c.length; h=c.filter(Boolean).length; }
   else if(id==='region'){ const c=[!!S.edo, !!S.mun, !!S.loc]; t=3; h=c.filter(Boolean).length; }
-  else if(id==='requerimientos'){ if(conStack()){ t=REQ_TRAD.length; h=REQ_TRAD.filter((r,i)=>(S.reqEst||{})[i]).length; } else { t=1; h=S.reqInn.length?1:0; } }
-  else if(id==='manejo'){ if(conStack()){ t=N_ACT_STACK(); h=PASOS.reduce((s,p)=>s+p.a.filter(a=>manejoDe(p.n).resp[a[0]]).length,0); }
+  else if(id==='manejo'){ if(conStack()){ const pa=pasosActivos(); t=pa.reduce((s,p)=>s+p.a.length,0); h=pa.reduce((s,p)=>s+p.a.filter(a=>manejoDe(p.n).resp[a[0]]).length,0); }
     else { t=1; h=actividades().length?1:0; } }
   else if(id==='regeneracion'){ t=REGEN_IND.length; h=Object.keys(S.regen||{}).filter(k=>S.regen[k]!==''&&S.regen[k]!=null).length; }
   else if(id==='riesgos'){ t=RIESGOS.length; const U=S.riesgo||{}; h=RIESGOS.filter(d=>{ const u=U[d.id]||{}; return u.off===true||u.ok===true||(u.p!=null&&u.i!=null); }).length; }
   else if(id==='elementos'){ t=1; h=(S.revisado||{}).elementos?1:0; }
   else if(id==='precios'){ const ids=Object.keys(participacion()); t=ids.length; h=ids.filter(k=>{ const v=S.valor[k]||{}, p=S.precio[k]||{}; return ['eco','uso','cul','eia'].some(d=>v[d]!==''&&v[d]!=null) || (p.p!==''&&p.p!=null); }).length;
-    if(!t) nota=T('primero responde el Bloque 4','first answer Block 4'); }
+    if(!t) nota=T('primero responde el Bloque 3','first answer Block 3'); }
   else return null;
   const f=t?h/t:0, estado=!h?'pend':h>=t?'ok':'proc';
   return {h, t, f, estado, nota, txt:{pend:T('Pendiente','Pending'), proc:T('En proceso','In progress'), ok:T('Completo','Complete')}[estado]}; }
@@ -2313,9 +2342,9 @@ document.addEventListener('click',ev=>{ if(ev.target.closest('[data-entrar-ej]')
 /* ---------- Bloques de resultados sin datos ---------- */
 function renderVacio(el, id){
   el.innerHTML=`${cabecera(id,'')}<div class="card vacio-res"><h2>${T('Todavía no hay datos tuyos para calcular este bloque','There are no data of yours to compute this block yet')}</h2>
-   <p>${T('Los resultados se calculan solo con lo que tú llenas. Para empezar, responde en el Bloque 4 qué actividades practicas o agrega las tuyas.','Results are computed only from what you fill in. To start, answer in Block 4 which activities you practise or add your own.')}</p>
+   <p>${T('Los resultados se calculan solo con lo que tú llenas. Para empezar, responde en el Bloque 3 qué actividades practicas o agrega las tuyas.','Results are computed only from what you fill in. To start, answer in Block 3 which activities you practise or add your own.')}</p>
    <div class="vacio-lista">${BLOQUES_LLENAR.map(k=>{ const a=avance(k), b=B(k); return `<button class="vacio-item est-${a.estado}" data-ir="${k}"><span class="n">${b.n}</span><b>${esc(tx(b.corto))}</b><small>${a.h} / ${a.t} · ${a.txt}</small></button>`; }).join('')}</div>
-   <div class="row" style="gap:10px;flex-wrap:wrap;margin-top:14px"><button class="btn" data-ir="manejo">${T('Ir al Bloque 4 · Manejo','Go to Block 4 · Management')} →</button><button class="btn ghost" data-entrar-ej>${T('Ver cómo se ve con el ejemplo publicado','See how it looks with the published example')}</button></div></div>${siguiente(id)}`; }
+   <div class="row" style="gap:10px;flex-wrap:wrap;margin-top:14px"><button class="btn" data-ir="manejo">${T('Ir al Bloque 3 · Manejo','Go to Block 3 · Management')} →</button><button class="btn ghost" data-entrar-ej>${T('Ver cómo se ve con el ejemplo publicado','See how it looks with the published example')}</button></div></div>${siguiente(id)}`; }
 
 /* ---------- Bloque sin campos propios: «ya lo revisé» ---------- */
 function ponerRevisado(id, el){ if(id!=='elementos'||EJ) return; const ok=(S.revisado||{}).elementos, nx=$('.next',el);
@@ -2348,10 +2377,6 @@ const AYUDA = {
     s:[['info',E('En México, cerca de 72 % de las unidades son menores de 5 ha (INEGI, 2020, citado en el artículo).','In Mexico about 72 % of farms are under 5 ha (INEGI, 2020, cited in the paper).')]]},
   localidad:{c:E('La localidad del INEGI más cercana a la parcela. Aporta altitud, población y coordenadas.','The INEGI locality nearest the plot. Provides altitude, population and coordinates.'),
     s:[['info',E('Se incluyen las localidades de 100 habitantes o más y todas las cabeceras municipales.','Localities of 100+ people and all municipal seats are included.')]]},
-  req:{c:E('Requerimiento técnico tradicional: condición que el saber local exige para que el cultivo prospere, tal como la definen las 5B.','Traditional technical requirement: a condition local knowledge demands for the crop to thrive, as the 5B define it.'),
-    s:[['ok',E('Cumplido en la parcela.','Met on the plot.')],['warn',E('Parcial: revisa los pasos asociados.','Partly met: review the linked steps.')],['bad',E('No cumplido: el sistema pierde capacidad de adaptación.','Not met: the system loses adaptive capacity.')]]},
-  reqInn:{c:E('Requerimiento innovado: una condición nueva que la localidad adoptó o adaptó (por investigación, extensión o experiencia propia).','Innovated requirement: a new condition the locality adopted or adapted (through research, extension or its own experience).'),
-    s:[['info',E('Anota la fuente: productor, asesor, investigación o programa.','Record the source: farmer, adviser, research or programme.')]]},
   practica:{c:E('Marca si la actividad tradicional se practica en tu unidad. Las que no se practican salen de la red y de la sostenibilidad.','Tick whether the traditional activity is done on your farm. Those not done leave the network and sustainability.'),
     s:[['ok',E('Se practica: entra al sistema.','Done: enters the system.')],['info',E('No se practica: queda registrada pero no pesa.','Not done: recorded but carries no weight.')]]},
   innov:{c:E('Actividad innovadora: una práctica nueva o modificada en un paso. Elige los elementos que intervienen y cómo impacta a suelo, agua, atmósfera, vegetación y fauna.','Innovative activity: a new or modified practice in a step. Choose the elements involved and its impact on soil, water, air, vegetation and fauna.'),
@@ -2548,20 +2573,34 @@ function diaPaso(p, siembraDia){ if(p.dds){ const m = p.dds.length>1 ? (p.dds[0]
 const todosElem = ()=> ELEM.concat(S.elemExtra||[]);
 const elemPorId = (id)=> todosElem().find(e=>e.id===id);
 const nombreEl = (id)=> { const e=elemPorId(id); return e ? tx(e.n) : id; };
-const manejoDe = (n)=>{ const m = S.manejo[n] = S.manejo[n] || {resp:{}, inn:[], imp:{}}; m.resp=m.resp||{}; m.inn=m.inn||[]; m.imp=m.imp||{}; return m; };
+const nuevoId = ()=> 'a'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const manejoDe = (n)=>{ const m = S.manejo[n] = S.manejo[n] || {resp:{}, inn:[], imp:{}}; m.resp=m.resp||{}; m.inn=m.inn||[]; m.imp=m.imp||{}; m.inn.forEach(x=>{ if(!x.id) x.id=nuevoId(); }); return m; };
+/* Paso publicado de cada actividad del Stack (su «casa») */
+const CASA_ACT = {}; PASOS.forEach(p=>p.a.forEach(a=>{ CASA_ACT[a[0]]=p.n; }));
 const N_ACT_STACK = ()=> PASOS.reduce((s,p)=>s+p.a.length,0);
+/* Pasos del proyecto: los del Stack publicado con el orden, la B y la marca «no aplica» que elige el usuario,
+   más los pasos propios de su localidad. num = posición en el ciclo (lo que ve el usuario); n = clave interna. */
+function pasosProyecto(){ if(!conStack()) return [];
+  const prop=(S.pasosPropios||[]).map(p=>({n:p.n, es:p.es, en:p.en||p.es, b:p.b, a:[], v:[], c:0, propio:true}));
+  const mapa=new Map(PASOS.map(p=>[p.n,p]).concat(prop.map(p=>[p.n,p])));
+  const mov=S.actPaso||{}, pub={}; PASOS.forEach(p=>p.a.forEach(a=>{ const t=mapa.has(mov[a[0]])?mov[a[0]]:p.n; (pub[t]=pub[t]||[]).push(a); }));   // actividades movidas de paso
+  const orden=[...new Set((S.pasoOrden||[]).filter(n=>mapa.has(n)))]; mapa.forEach((p,n)=>{ if(!orden.includes(n)) orden.push(n); });
+  const ordAct=(n,l)=>{ const o=(S.actOrden||{})[n]||[], k=a=>{ const j=o.indexOf(a[0]); return j<0?1e6:j; }; return l.map((a,i)=>[a,i]).sort((u,v)=>k(u[0])-k(v[0])||u[1]-v[1]).map(x=>x[0]); };
+  return orden.map((n,i)=>{ const p=mapa.get(n); return Object.assign({}, p, {a:ordAct(n,pub[n]||[]), num:i+1, b:(S.pasoGrupo||{})[n]||p.b, propio:!!p.propio, noAplica:!!(S.pasoNoAplica||{})[n]}); }); }
+const pasosActivos = ()=> pasosProyecto().filter(p=>!p.noAplica);
+const numPaso = (n)=>{ const p=pasosProyecto().find(x=>x.n===n); return p ? p.num : n; };
 
 /* Actividades del sistema: las tradicionales del Stack publicado SOLO si el usuario respondió «sí, la practico»
    (sin respuesta no cuentan: nada se precarga) + las innovadoras o propias que agregó */
 function actividades(){
   const out=[];
-  if(conStack()) PASOS.forEach(p=>{ const m=manejoDe(p.n);
+  if(conStack()) pasosActivos().forEach(p=>{ const m=manejoDe(p.n);      // los pasos que no aplican quedan fuera
     p.a.forEach(a=>{ if(m.resp[a[0]]!=='si') return; out.push({paso:p.n, b:p.b, cod:a[0], n:E(a[1],a[2]), tipo:'trad', el:(ACT_EL[a[0]]||'').split(' ').filter(Boolean), imp:m.imp[a[0]]||null}); });
-    (m.inn||[]).forEach((x,i)=> out.push({paso:p.n, b:p.b, cod:'N'+p.n+'.'+(i+1), n:E(x.t,x.t), tipo:'inn', el:x.el||[], imp:x.imp||null})); });
+    (m.inn||[]).forEach((x,i)=> out.push({paso:p.n, b:p.b, cod:'N'+p.n+'.'+(i+1), n:E(x.t,x.t), tipo:x.tipo==='trad'?'trad':'inn', propia:true, el:x.el||[], imp:x.imp||null})); });
   else Object.entries(S.manejo).forEach(([n,m])=> (m.inn||[]).forEach((x,i)=> out.push({paso:+n, b:'', cod:'N'+n+'.'+(i+1), n:E(x.t,x.t), tipo:'inn', el:x.el||[], imp:x.imp||null})));
   return out;
 }
-/* Valor de un elemento (Bloque 8): media ponderada de cuatro dimensiones 0–5, normalizada 0–1.
+/* Valor de un elemento (Bloque 7): media ponderada de cuatro dimensiones 0–5, normalizada 0–1.
    Si no se ha valorado, se usa su valor estructural: participación relativa en las actividades. */
 function participacion(){ const c={}; actividades().forEach(a=>a.el.forEach(id=>c[id]=(c[id]||0)+1)); return c; }
 function valorEl(id, part){ const v=S.valor[id], w=S.pesosValor;
@@ -2627,7 +2666,7 @@ function correlaciones(R, ids){ const acts=R.acts, N=acts.length; const inc=ids.
 function matrizCategorias(R){ const ks=Object.keys(CATS), cat=Object.fromEntries(R.nodos.map(d=>[d.id,d.cat])); const M=ks.map(()=>ks.map(()=>0));
   R.aristas.forEach(e=>{ const i=ks.indexOf(cat[e.a]), j=ks.indexOf(cat[e.b]); M[i][j]+=e.w; if(i!==j) M[j][i]+=e.w; }); return {ks, M}; }
 
-/* ---------- Sostenibilidad (Bloque 11) ----------
+/* ---------- Sostenibilidad (Bloque 10) ----------
    Impacto de una actividad en el compartimento c: s_c = recorte a [−2, 2] de Σ perfiles de sus elementos (o el valor editado).
    Índice de sostenibilidad de la actividad: IS = (1/5) Σ_c (s_c + 2)/4  ∈ [0, 1]   (0.5 = neutra). */
 function impactoAct(a){ if(a.imp) return a.imp.slice(); const v=[0,0,0,0,0]; a.el.forEach(id=>{ const p=IMPACTO[id]; if(p) p.v.forEach((x,c)=>v[c]+=x); }); return v.map(x=>Math.max(-2,Math.min(2,x))); }
@@ -2635,7 +2674,7 @@ const IS = (v)=> v.reduce((s,x)=>s+(x+2)/4,0)/v.length;
 function sostenibilidad(){ const acts=actividades().map(a=>({...a, v:impactoAct(a)})); acts.forEach(a=>a.is=IS(a.v));
   const media=(l)=> l.length ? l.reduce((a,b)=>a+b,0)/l.length : null;
   const comp=COMP.map((_,c)=>({suma:acts.reduce((s,a)=>s+a.v[c],0), pos:acts.reduce((s,a)=>s+Math.max(0,a.v[c]),0), neg:acts.reduce((s,a)=>s+Math.min(0,a.v[c]),0)}));
-  const porPaso=PASOS.map(p=>{ const l=acts.filter(a=>a.paso===p.n); return {n:p.n, trad:media(l.filter(a=>a.tipo==='trad').map(a=>a.is)), inn:media(l.filter(a=>a.tipo==='inn').map(a=>a.is)), todos:media(l.map(a=>a.is))}; });
+  const porPaso=pasosActivos().map(p=>{ const l=acts.filter(a=>a.paso===p.n); return {n:p.num, b:p.b, trad:media(l.filter(a=>a.tipo==='trad').map(a=>a.is)), inn:media(l.filter(a=>a.tipo==='inn').map(a=>a.is)), todos:media(l.map(a=>a.is))}; });
   return {acts, comp, porPaso, global:media(acts.map(a=>a.is)), trad:media(acts.filter(a=>a.tipo==='trad').map(a=>a.is)), inn:media(acts.filter(a=>a.tipo==='inn').map(a=>a.is))}; }
 /* Cumplimiento de cada ODS (0–100 %). Fuentes de evidencia:
    (a) ambientales: media de (s_c+2)/4 de los compartimentos ligados al ODS en todas las actividades;
@@ -2890,7 +2929,7 @@ function histograma(vals, opt={}){ const W=opt.w||460, H=230, L=40, B=34; if(!va
     `<text x="${L+i*bw+bw/2}" y="${H-B+14}" text-anchor="middle" font-size="10.5" class="m">${f0(i*ancho)}</text>${v?`<text x="${L+i*bw+bw/2}" y="${H-B-h-4}" text-anchor="middle" font-size="10.5">${v}</text>`:''}`; });
   return s+`<text x="${(L+W)/2}" y="${H-4}" text-anchor="middle" font-size="12" class="m">${T('vecinos por elemento','neighbours per element')}</text></svg>`; }
 
-/* Modelo esquemático del sistema complejo adaptativo (Bloque 9) */
+/* Modelo esquemático del sistema complejo adaptativo (Bloque 8) */
 function modeloSCA(R){ const W=980, H=560; const cnt=(c)=>R.nodos.filter(d=>d.cat===c).length;
   const caja=(x,y,w,h,col,tit,sub,cl='')=>`<g class="caja ${cl}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="14" fill="${col}" fill-opacity=".13" stroke="${col}" stroke-width="2"/><text x="${x+w/2}" y="${y+24}" text-anchor="middle" font-size="15" font-weight="700" style="fill:${col}">${esc(tit)}</text><text x="${x+w/2}" y="${y+44}" text-anchor="middle" font-size="12" class="m">${esc(sub)}</text></g>`;
   const fl=(d,col='var(--border-strong)',das='',cl='flujo')=>`<path d="${d}" fill="none" stroke="${col}" stroke-width="2.6" ${das?`stroke-dasharray="${das}"`:''} marker-end="url(#fl)" class="${cl}"/>`;
@@ -2936,7 +2975,7 @@ function sumaResta(comp){ const W=620, fila=44, L=120, H=COMP.length*fila+40, mx
 /* Barras por paso: índice de sostenibilidad tradicional e innovado */
 function barrasPasos(pp){ const W=980, H=280, L=40, B=40, n=pp.length, bw=(W-L-10)/n; const Y=(v)=>H-B-(H-B-14)*v;
   let s=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img">`; [0,.4,.5,.6,1].forEach(t=>{ s+=`<line class="grid" x1="${L}" y1="${Y(t)}" x2="${W-6}" y2="${Y(t)}" ${t===.5?'stroke-dasharray="4 4"':''}/><text x="${L-6}" y="${Y(t)+4}" text-anchor="end" font-size="10.5" class="m">${f1(t,1)}</text>`; });
-  pp.forEach((p,i)=>{ const x=L+i*bw; const b=PASOS[i]?colB(PASOS[i].b):'var(--primary)';
+  pp.forEach((p,i)=>{ const x=L+i*bw; const b=p.b?colB(p.b):'var(--primary)';
     if(p.trad!=null) s+=`<rect class="creceV" x="${x+2}" y="${Y(p.trad)}" width="${p.inn!=null?bw/2-3:bw-4}" height="${H-B-Y(p.trad)}" rx="2" fill="${b}" style="animation-delay:${i*12}ms" data-tip="${esc('<b>'+T('Paso','Step')+' '+p.n+'</b><br>'+T('Tradicional','Traditional')+': IS '+f1(p.trad,2)+(p.inn!=null?'<br>'+T('Innovado','Innovated')+': IS '+f1(p.inn,2):''))}"/>`;
     if(p.inn!=null) s+=`<rect class="creceV" x="${x+bw/2}" y="${Y(p.inn)}" width="${bw/2-3}" height="${H-B-Y(p.inn)}" rx="2" fill="var(--accent)" style="animation-delay:${i*12}ms"/>`;
     s+=`<text x="${x+bw/2}" y="${H-B+14}" text-anchor="middle" font-size="9.5" class="m">${p.n}</text>`; });
@@ -2945,7 +2984,7 @@ function barrasPasos(pp){ const W=980, H=280, L=40, B=40, n=pp.length, bw=(W-L-1
 </script>
 <script>
 // =====================================================================
-// 46b_modelo3d.js — modelo 3D del sistema complejo adaptativo (Bloque 9)
+// 46b_modelo3d.js — modelo 3D del sistema complejo adaptativo (Bloque 8)
 // Capas apiladas de abajo arriba: entorno → entradas → agentes y conocimiento
 // → manejo (5B) → salidas, con el halo de la emergencia encima. Los nodos y
 // vínculos son los de la red real del proyecto; las líneas punteadas son las
@@ -3112,7 +3151,7 @@ function modelo3D(cont, opt={}){
 <script>
 "use strict";
 /* =====================================================================
-   Cladograma del vecino más cercano (Bloque 10).
+   Cladograma del vecino más cercano (Bloque 9).
    Distancia entre dos elementos = camino más corto en la red ponderada,
    con longitud de cada vínculo = 1/peso (la misma que usan cercanía e
    intermediación; Brandes, 2001). Agrupamiento jerárquico aglomerativo por
@@ -3186,10 +3225,10 @@ function tarjetaCladograma(R){
       <div class="tbl-c" style="max-height:420px"><table class="tbl"><thead><tr><th>${T('Elemento','Element')}</th><th>${T('Vecino más cercano','Nearest neighbour')}</th><th class="r">${T('Distancia','Distance')}</th></tr></thead><tbody>
       ${vn.map(v=>{ const a=C.nodos[v.i], b=C.nodos[v.j]; return `<tr><td><span style="color:${a.col}">${CATS[a.cat].sym}</span> ${esc(a.nombre)}</td><td><span style="color:${b.col}">${CATS[b.cat].sym}</span> ${esc(b.nombre)}${v.mutuo?` <span class="badge ok" title="${T('vecinos mutuos: cada uno es el más cercano del otro','mutual neighbours: each is the other’s nearest')}">↔</span>`:''}</td><td class="r">${fmt(v.d,3)}</td></tr>`; }).join('')}
       </tbody></table></div>
-      <p class="nota">↔ ${T('vecinos mutuos: cada uno es el más cercano del otro.','mutual neighbours: each is the other’s nearest.')}${C.U.some(u=>u[2]>=19.99)?' '+T('Las uniones a distancia 20 son elementos que no participan en ninguna actividad capturada ni tienen valor asignado en el Bloque 8: los liga solo un vínculo estructural, con el peso mínimo (0.05).','Joins at distance 20 are elements that take part in no recorded activity and have no value set in Block 8: only a structural tie with the minimum weight (0.05) links them.'):''}${C.desconectados?' '+T('Hay elementos sin camino entre sí; se les asignó una distancia de '+fmt(C.tope,2)+' (115 % de la mayor observada).','Some elements have no path between them; they were given a distance of '+fmt(C.tope,2)+' (115 % of the largest observed).'):''}</p>
+      <p class="nota">↔ ${T('vecinos mutuos: cada uno es el más cercano del otro.','mutual neighbours: each is the other’s nearest.')}${C.U.some(u=>u[2]>=19.99)?' '+T('Las uniones a distancia 20 son elementos que no participan en ninguna actividad capturada ni tienen valor asignado en el Bloque 7: los liga solo un vínculo estructural, con el peso mínimo (0.05).','Joins at distance 20 are elements that take part in no recorded activity and have no value set in Block 7: only a structural tie with the minimum weight (0.05) links them.'):''}${C.desconectados?' '+T('Hay elementos sin camino entre sí; se les asignó una distancia de '+fmt(C.tope,2)+' (115 % de la mayor observada).','Some elements have no path between them; they were given a distance of '+fmt(C.tope,2)+' (115 % of the largest observed).'):''}</p>
       <p class="nota sci">${T('Enlace simple sobre distancias de camino más corto (1/peso). Correlación cofenética','Single linkage on shortest-path distances (1/weight). Cophenetic correlation')}: <b>${C.r==null?'—':fmt(C.r,3)}</b> (Sokal y Rohlf, 1962) · n = ${C.nodos.length}.</p></div></div></div>`; }
 
-/* Versión para el Informe (Bloque 13): cladograma, vecinos más cercanos y CSV de uniones; se imprime completo. */
+/* Versión para el Informe (Bloque 12): cladograma, vecinos más cercanos y CSV de uniones; se imprime completo. */
 function informeCladograma(R){
   const sub=renderInforme.clado||renderTablero.clado||'actinst', C=datosCladograma(R, sub);
   const opc={actores:T('Actores','Actors'), actinst:T('Actores e instituciones','Actors and institutions'), todos:T('Todos los elementos','All elements')};
@@ -3211,7 +3250,7 @@ function csvCladograma(R){ const sub=renderInforme.clado||renderTablero.clado||'
 <script>
 "use strict";
 /* =====================================================================
-   A. CORRELACIONES POR ELEMENTO (Bloque 10)
+   A. CORRELACIONES POR ELEMENTO (Bloque 9)
    φ = correlación de Pearson entre los vectores de incidencia (0/1) de dos
    elementos en las actividades del sistema (la misma de la matriz del Tablero).
    ===================================================================== */
@@ -3246,7 +3285,7 @@ function tarjetaCorrElemento(R, st){
    Todo lo demás (precios, costos, mano de obra, eventos extremos, efectos de las
    innovaciones) es supuesto de Ratio Telar, marcado y editable.
    El efecto de las innovaciones sobre la sostenibilidad sale de los datos del usuario:
-   IS medio de sus actividades innovadas frente al de las tradicionales (Bloque 4).
+   IS medio de sus actividades innovadas frente al de las tradicionales (Bloque 3).
    ===================================================================== */
 const BETA_ZHAO = {maiz:-7.4, trigo:-6.0};
 const ESCENARIOS = [
@@ -3289,15 +3328,15 @@ const IND_PROSP = [
   {k:'Pr', n:E('Precio real del producto','Real product price'), u:E('índice','index'), d:0},
   {k:'C', n:E('Costo de producción por ha','Production cost per ha'), u:E('índice','index'), d:0},
   {k:'rel', n:E('Ingreso bruto ÷ costo','Gross income ÷ cost'), u:E('índice, año 0 = 100','index, year 0 = 100'), d:0},
-  {k:'neto', n:E('Ingreso neto por ha','Net income per ha'), u:E('$ / ha (Bloque 8)','$ / ha (Block 8)'), d:0},
+  {k:'neto', n:E('Ingreso neto por ha','Net income per ha'), u:E('$ / ha (Bloque 7)','$ / ha (Block 7)'), d:0},
   {k:'Ld', n:E('Mano de obra familiar disponible','Available family labour'), u:E('índice; la línea punteada es la requerida','index; dotted line is the labour required'), d:0},
   {k:'A', n:E('Adopción de innovaciones','Innovation adoption'), u:E('% de las actividades','% of activities'), d:0},
   {k:'IS', n:E('Índice de sostenibilidad','Sustainability index'), u:E('0–1','0–1'), d:2},
-  {k:'IR', n:E('Índice de regeneración','Regeneration index'), u:E('0–100 (Bloque 5)','0–100 (Block 5)'), d:0},
-  {k:'RG', n:E('Índice de riesgo','Risk index'), u:E('0–100 (Bloque 6)','0–100 (Block 6)'), d:0}
+  {k:'IR', n:E('Índice de regeneración','Regeneration index'), u:E('0–100 (Bloque 4)','0–100 (Block 4)'), d:0},
+  {k:'RG', n:E('Índice de riesgo','Risk index'), u:E('0–100 (Bloque 5)','0–100 (Block 5)'), d:0}
 ];
 function graficaProsp(sim, k){ const W=420, H=250, L=54, B=36, R=14, Tp=14, ser=sim.res.map(r=>r.serie.map(x=>x[k]));
-  if(ser[0][0]==null) return `<p class="sindato">${T('Captura el ingreso y el costo por hectárea en el Bloque 8 (Recursos financieros) para ver el ingreso neto en pesos.','Enter income and cost per hectare in Block 8 (Financial resources) to see net income in pesos.')}</p>`;
+  if(ser[0][0]==null) return `<p class="sindato">${T('Captura el ingreso y el costo por hectárea en el Bloque 7 (Recursos financieros) para ver el ingreso neto en pesos.','Enter income and cost per hectare in Block 7 (Financial resources) to see net income in pesos.')}</p>`;
   const extra=k==='Ld'?sim.res.map(r=>r.serie.map(x=>x.Ln)):[]; const all=[...ser.flat(),...extra.flat()];
   let mn=Math.min(...all), mx=Math.max(...all); if(k==='IS'){ mn=0; mx=1; } else if(k==='A'||k==='IR'||k==='RG'){ mn=0; mx=100; } else { if(mx-mn<1e-9){ mn-=Math.abs(mn)*.05||1; mx+=Math.abs(mx)*.05||1; } const pad=(mx-mn)*.08; mn-=pad; mx+=pad; }
   const X=t=>L+(W-L-R)*t/10, Yp=v=>Tp+(H-Tp-B)*(1-(v-mn)/(mx-mn));
@@ -3318,7 +3357,7 @@ function lecturaProsp(sim){ const ult=k=>sim.res.map(r=>r.serie[10][k]), [d,t,n]
   const pot=[], rie=[];
   pot.push(T(`Con el escenario deseable, a 10 años el rendimiento cambia ${pc(Y[d])} y la relación ingreso ÷ costo ${pc(rel[d])}.`,`In the desirable scenario, by year 10 yield changes ${pc(Y[d])} and the income ÷ cost ratio ${pc(rel[d])}.`));
   if(sim.hayInn) pot.push(T(`${sim.nI===1?'Tu actividad innovada tiene':'Tus '+sim.nI+' actividades innovadas tienen'} un IS medio de ${fmt(sim.ISi,2)} frente a ${fmt(sim.ISt,2)} de las tradicionales: difundirlas ${sim.ISi>=sim.ISt?'eleva':'reduce'} la sostenibilidad del sistema.`,`${sim.nI===1?'Your innovated activity has':'Your '+sim.nI+' innovated activities have'} a mean IS of ${fmt(sim.ISi,2)} versus ${fmt(sim.ISt,2)} for traditional ones: spreading them ${sim.ISi>=sim.ISt?'raises':'lowers'} system sustainability.`));
-  else pot.push(T('Aún no hay actividades innovadas en el Bloque 4: la adopción no cambia los resultados. Agrégalas para ver su potencial.','There are no innovated activities in Block 4 yet: adoption does not change results. Add them to see their potential.'));
+  else pot.push(T('Aún no hay actividades innovadas en el Bloque 3: la adopción no cambia los resultados. Agrégalas para ver su potencial.','There are no innovated activities in Block 3 yet: adoption does not change results. Add them to see their potential.'));
   rie.push(T(`En el escenario no deseado, a 10 años el rendimiento cambia ${pc(Y[n])} y la relación ingreso ÷ costo ${pc(rel[n])}.`,`In the undesired scenario, by year 10 yield changes ${pc(Y[n])} and income ÷ cost ${pc(rel[n])}.`));
   rie.push(T(`La mano de obra familiar disponible baja a ${fmt(L[n],0)} (tendencial: ${fmt(L[t],0)}); ${def[n]>0.5?`el déficit llega a ${fmt(def[n],0)} % de la requerida`:'sin déficit frente a la requerida'}.`,`Available family labour drops to ${fmt(L[n],0)} (trend: ${fmt(L[t],0)}); ${def[n]>0.5?`the shortfall reaches ${fmt(def[n],0)} % of what is needed`:'no shortfall against what is needed'}.`));
   rie.push(T(`Con ${fmt(sim.res[n].p.dT,1)} °C por década y ${fmt(sim.P.beta,1)} % de rendimiento por °C, el clima por sí solo resta ${fmt(-sim.P.beta*sim.res[n].p.dT,1)} % en 10 años, más las pérdidas de los años extremos.`,`With ${fmt(sim.res[n].p.dT,1)} °C per decade and ${fmt(sim.P.beta,1)} % yield per °C, climate alone removes ${fmt(-sim.P.beta*sim.res[n].p.dT,1)} % in 10 years, plus losses in extreme years.`));
@@ -3358,7 +3397,7 @@ function renderProspectiva(el){ const sim=simularProspectiva(), P=sim.P, lec=lec
    P(t) = 100·(1+g<sub>P</sub>)<sup>t</sup> ; C(t) = 100·(1+g<sub>C</sub>)<sup>t</sup>·[1 − s<sub>C</sub>·(A − a₀)] ; ${T('ingreso ÷ costo','income ÷ cost')} = 100·(P·Y/100)/C<br>
    L<sub>disp</sub>(t) = (1+g<sub>L</sub>)<sup>t</sup> ; L<sub>req</sub>(t) = 1 − r<sub>L</sub>·(A − a₀) ; ${T('déficit','shortfall')} = max(0, L<sub>req</sub> − L<sub>disp</sub>)/L<sub>req</sub><br>
    IR(t) = IR₀ + 0.5·(1 − IR₀)·(A − a₀) ; L<sub>ext,ef</sub> = L<sub>ext</sub>·(1 − 0.5·IR₀) ; ${T('riesgo','risk')}(t): P<sub>clima</sub> + 5·(p(t) − p₀) ${T('y CA con IR(t)','and CA with IR(t)')}<br>
-   IS(t) = IS<sub>trad</sub>·(1 − A) + IS<sub>inn</sub>·A ${T('(medias de tus actividades, Bloque 11)','(means of your activities, Block 11)')}</div>
+   IS(t) = IS<sub>trad</sub>·(1 − A) + IS<sub>inn</sub>·A ${T('(medias de tus actividades, Bloque 10)','(means of your activities, Block 10)')}</div>
    <p class="nota">a₀ = ${fmt(sim.a0,3)} · IS<sub>trad</sub> = ${fmt(sim.ISt,3)} · IS<sub>inn</sub> = ${sim.ISi==null?'—':fmt(sim.ISi,3)} · β = ${fmt(P.beta,1)} %/°C. ${T('La elasticidad 0.5 del rendimiento al déficit de mano de obra, el amortiguamiento 0.5 de las pérdidas por la regeneración y la ganancia 0.5 de regeneración por adopción son supuestos.','The 0.5 elasticity of yield to labour shortfall, the 0.5 damping of losses by regeneration and the 0.5 regeneration gain from adoption are assumptions.')} IR₀ = ${fmt(sim.IR0,2)}.</p>
    <p class="fuente">${T('Fuentes','Sources')}: IPCC (2018), SR1.5, SPM A.1 · Zhao C, et al. (2017) PNAS 114(35): 9326–9331 · Rogers EM (2003) · Godet M, Durance P (2007).</p></div>
   ${siguiente('prospectiva')}`;
@@ -3379,8 +3418,8 @@ function informeProspectiva(){ const sim=simularProspectiva(), lec=lecturaProsp(
 <script>
 "use strict";
 /* =====================================================================
-   Bloque 5 · REGENERACIÓN DEL SISTEMA PRODUCTIVO
-   Bloque 6 · RIESGOS DEL SISTEMA
+   Bloque 4 · REGENERACIÓN DEL SISTEMA PRODUCTIVO
+   Bloque 5 · RIESGOS DEL SISTEMA
    ---------------------------------------------------------------------
    Regeneración: ocho indicadores en escala 0–4, agrupados en los principios
    de salud del suelo del USDA-NRCS (mínima perturbación, suelo cubierto,
@@ -3388,7 +3427,7 @@ function informeProspectiva(){ const sim=simularProspectiva(), lec=lecturaProsp(
    regenerativa añade (integración animal, menos insumos de síntesis,
    materia orgánica; Newton et al., 2020; Schreefel et al., 2020) y el saber
    local del Stack. Cada indicador tiene un valor sugerido a partir de las
-   actividades que se practican (Bloque 4) que el usuario puede ajustar con
+   actividades que se practican (Bloque 3) que el usuario puede ajustar con
    su perilla. Índice de regeneración IR = Σ s / (4·n), 0–1.
    La lectura de los valores sugeridos y los cortes de clase son «Lectura de
    Ratio Telar».
@@ -3402,7 +3441,7 @@ function informeProspectiva(){ const sim=simularProspectiva(), lec=lecturaProsp(
 const NIVEL04 = [E('Nulo','None'),E('Bajo','Low'),E('Medio','Medium'),E('Alto','High'),E('Muy alto','Very high')];
 const NIVEL15 = [null,E('Muy bajo','Very low'),E('Bajo','Low'),E('Medio','Medium'),E('Alto','High'),E('Muy alto','Very high')];
 const _tiene = (a, ids)=> a.el.some(id=>ids.includes(id));
-const SIN_SUG = (m)=>({s:null, m:m||T('sin datos todavía: responde el Bloque 4 o mueve la perilla','no data yet: answer Block 4 or move the knob')});
+const SIN_SUG = (m)=>({s:null, m:m||T('sin datos todavía: responde el Bloque 3 o mueve la perilla','no data yet: answer Block 3 or move the knob')});
 const DIV_SIS = {milpa:3, miaf:4, vinedo:1, mono:1, agrofor:4, traspatio:5, pastoreo:1, apiario:1, cinegetico:3, confinado:1};
 const REGEN_IND = [
   {id:'labranza', pr:E('Mínima perturbación','Minimal disturbance'), n:E('Labranza mínima','Minimal tillage'), col:'#9a6a3a',
@@ -3510,7 +3549,7 @@ function medidorIR(v, clase, etq){ if(v==null) return `<svg class="chart medidor
     <line x1="${C}" y1="130" x2="${x}" y2="${y}" stroke="var(--text)" stroke-width="3.5" stroke-linecap="round"/><circle cx="${C}" cy="130" r="7" fill="var(--text)"/>
     <text x="${C}" y="166" text-anchor="middle" font-size="28" font-weight="700">${fmt(100*v,0)}</text><text x="${C}" y="182" text-anchor="middle" font-size="11.5" class="m">${esc(etq)}</text><text x="22" y="148" text-anchor="middle" font-size="11" class="m">0</text><text x="238" y="148" text-anchor="middle" font-size="11" class="m">100</text></svg>`; }
 
-/* ---------------- Bloque 5 · Regeneración ---------------- */
+/* ---------------- Bloque 4 · Regeneración ---------------- */
 function renderRegeneracion(el){ const rg=regeneracion();
   const perilla=(x)=>`<div class="perilla ${x.conf?'confirmada':'sin-confirmar'} ${x.ajustado?'ajustada':''}" style="--pc:${x.col}"><div class="row between"><b>${esc(tx(x.n))}</b><span class="pv">${x.s==null?'—':x.s+' · '+esc(tx(NIVEL04[x.s]))}</span></div>
     <span class="estado-p">${x.conf?'✓ '+T('Confirmado por ti','Confirmed by you'):x.s==null?T('Sin dato: mueve la perilla','No data: move the knob'):T('Sugerido, sin confirmar','Suggested, not confirmed')}</span>
@@ -3534,7 +3573,7 @@ function renderRegeneracion(el){ const rg=regeneracion();
      <div class="grid g2"><label class="f"><span>${T('% MO en la línea base','% SOM at baseline')}</span><input type="number" step="0.1" min="0" id="moB" value="${rg.mo.b??''}"></label><label class="f"><span>${T('% MO actual','Current % SOM')}</span><input type="number" step="0.1" min="0" id="moA" value="${rg.mo.a??''}"></label></div>
      ${rg.mo.b!=null&&rg.mo.a!=null&&rg.mo.b!==''&&rg.mo.a!==''?`<p>${T('Cambio','Change')}: <b style="color:var(--${(+rg.mo.a)>=(+rg.mo.b)?'ok':'bad'}-text)">${(+rg.mo.a)-(+rg.mo.b)>=0?'+':''}${fmt((+rg.mo.a)-(+rg.mo.b),2)}</b> ${T('puntos de MO','SOM points')} (${fmt(100*((+rg.mo.a)-(+rg.mo.b))/(+rg.mo.b||1),0)} %)</p>`:`<p class="nota">${T('Con dos análisis de suelo (antes y ahora) ves si la materia orgánica sube: es la prueba más directa de regeneración.','With two soil tests (before and now) you see whether organic matter rises: the most direct proof of regeneration.')}</p>`}</div>
    <div class="card"><h3>${T('Actividades que regeneran y que desgastan','Activities that regenerate and wear out')}</h3>
-     <p class="nota">${T('Suma del impacto en suelo, agua, vegetación y fauna (Bloque 4).','Sum of impact on soil, water, vegetation and fauna (Block 4).')}</p>
+     <p class="nota">${T('Suma del impacto en suelo, agua, vegetación y fauna (Bloque 3).','Sum of impact on soil, water, vegetation and fauna (Block 3).')}</p>
      <div class="grid g2"><div><b style="color:var(--ok-text)">${T('Regeneran','Regenerate')}</b><ul>${rg.sube.map(x=>`<li>${esc(tx(x.a.n))} <span class="muted">(+${x.r})</span></li>`).join('')||`<li class="muted">—</li>`}</ul></div>
      <div><b style="color:var(--bad-text)">${T('Desgastan','Wear out')}</b><ul>${rg.baja.map(x=>`<li>${esc(tx(x.a.n))} <span class="muted">(${x.r})</span></li>`).join('')||`<li class="muted">—</li>`}</ul></div></div></div></div>
   ${siguiente('regeneracion')}`;
@@ -3547,7 +3586,7 @@ function renderRegeneracion(el){ const rg=regeneracion();
   ['moB','moA'].forEach(k=>$('#'+k,el).onchange=e=>{ S.regenMO=S.regenMO||{}; S.regenMO[k==='moB'?'b':'a']=e.target.value; guardar(); render(); });
   enlazarTips(el); }
 
-/* ---------------- Bloque 6 · Riesgos ---------------- */
+/* ---------------- Bloque 5 · Riesgos ---------------- */
 function renderRiesgos(el){ const rs=riesgos(), cls=CLASE_RG(rs.idx), filtro=renderRiesgos.cat||'todos';
   const fila=x=>`<tr class="${x.off?'r-off':''} ${x.conf?'r-conf':'r-sinconf'}"><td><input type="checkbox" data-roff="${x.id}" ${x.off?'':'checked'} aria-label="${T('Aplica','Applies')}"></td>
     <td><span class="punto" style="background:${CAT_R[x.cat].col}"></span>${esc(tx(x.n))} ${x.off?'':x.conf?`<span class="estado-p ok">✓ ${T('confirmado','confirmed')}</span>`:`<span class="estado-p">${T('sugerido, sin confirmar','suggested, not confirmed')}</span> <button type="button" class="btn sm" data-rok="${x.id}">✓ ${T('Aceptar','Accept')}</button>`}<br><small class="muted">${T('Sugerido','Suggested')}: P ${x.sug.p} · I ${x.sug.i} — ${esc(x.sug.m)}</small></td>
@@ -3585,13 +3624,13 @@ function renderRiesgos(el){ const rs=riesgos(), cls=CLASE_RG(rs.idx), filtro=ren
 
 /* ---------------- Tarjetas para los bloques siguientes ---------------- */
 function tarjetaRegenRiesgo(id){ const rg=regeneracion(), rs=riesgos({rg}), crg=CLASE_RG(rs.idx);
-  const k2=`<div class="kpis" style="margin:8px 0"><div class="kpi"><div class="l">${T('Regeneración (Bloque 5)','Regeneration (Block 5)')}</div><div class="v">${fmt(100*rg.IR,0)}</div><div class="s"><span class="badge ${rg.clase.c}">${esc(tx(rg.clase.n))}</span></div></div>
-     <div class="kpi"><div class="l">${T('Riesgo (Bloque 6)','Risk (Block 6)')}</div><div class="v">${fmt(100*rs.idx,0)}</div><div class="s"><span class="badge ${crg.c}">${esc(tx(crg.n))}</span></div></div>
+  const k2=`<div class="kpis" style="margin:8px 0"><div class="kpi"><div class="l">${T('Regeneración (Bloque 4)','Regeneration (Block 4)')}</div><div class="v">${fmt(100*rg.IR,0)}</div><div class="s"><span class="badge ${rg.clase.c}">${esc(tx(rg.clase.n))}</span></div></div>
+     <div class="kpi"><div class="l">${T('Riesgo (Bloque 5)','Risk (Block 5)')}</div><div class="v">${fmt(100*rs.idx,0)}</div><div class="s"><span class="badge ${crg.c}">${esc(tx(crg.n))}</span></div></div>
      <div class="kpi"><div class="l">${T('Capacidad adaptativa','Adaptive capacity')}</div><div class="v">${fmt(100*rs.CA,0)}</div><div class="s">0–100</div></div></div>`;
   if(id==='elementos'){ const exp={}; rs.act.forEach(x=>x.el.forEach(e=>{ exp[e]=Math.max(exp[e]||0,x.r); }));
     const l=Object.entries(exp).filter(([e])=>elemPorId(e)).sort((a,b)=>b[1]-a[1]).slice(0,10);
     return `<div class="card rr-card"><h3>${T('Regeneración y riesgo en los elementos','Regeneration and risk in the elements')}</h3>${k2}
-      <p class="nota">${T('Elementos más expuestos: el riesgo mayor de las amenazas que los afectan (Bloque 6).','Most exposed elements: the highest risk among the hazards that affect them (Block 6).')}</p>
+      <p class="nota">${T('Elementos más expuestos: el riesgo mayor de las amenazas que los afectan (Bloque 5).','Most exposed elements: the highest risk among the hazards that affect them (Block 5).')}</p>
       ${barrasH(l.map(([e,r])=>{ const d=elemPorId(e); return {l:tx(d.n), v:r, c:CATS[d.cat].col, vl:fmt(r,1)}; }),{max:25, izq:240})}</div>`; }
   if(id==='formulacion') return `<div class="card rr-card"><h3>${T('Regeneración y riesgo en el modelo','Regeneration and risk in the model')}</h3>${k2}
       <div class="formula">IR = Σ<sub>k</sub> s<sub>k</sub> / (4·8) ; CA = media(IR, ${T('diversificación','diversification')}, ${T('conocimiento técnico','technical knowledge')}, ${T('integración institucional','institutional integration')})<br>r<sub>h</sub> = P<sub>h</sub>·I<sub>h</sub>·(1 − 0.4·CA)·(1 − 0.15·c<sub>h</sub>) ; ${T('índice de riesgo','risk index')} = Σ r<sub>h</sub> / (25·H)</div>
@@ -3626,17 +3665,16 @@ const BLOQUES = [
   {id:'inicio',      n:'⌂', ill:null,       corto:E('Inicio','Home'),                 titulo:E('Inicio','Home'), render:()=>renderInicio},
   {id:'cultivo',     n:'1', ill:'cult',     corto:E('Cultivo','Crop'),                titulo:E('Cultivo o especie y sistema','Crop or species and system'), render:()=>renderCultivo},
   {id:'region',      n:'2', ill:'i-mapa',   corto:E('Región','Region'),               titulo:E('Región, municipio y localidad','Region, municipality and locality'), render:()=>renderRegion},
-  {id:'requerimientos',n:'3',ill:'i-req',   corto:E('Requerimientos','Requirements'), titulo:E('Requerimientos técnicos tradicionales e innovados','Traditional and innovated technical requirements'), render:()=>renderReq},
-  {id:'manejo',      n:'4', ill:'i-manejo', corto:E('Manejo','Management'),           titulo:E('Manejo: pasos y actividades','Management: steps and activities'), render:()=>renderManejo},
-  {id:'regeneracion', n:'5', ill:'i-regen', corto:E('Regeneración','Regeneration'), titulo:E('Regeneración del sistema productivo','Regeneration of the production system'), render:()=>renderRegeneracion},
-  {id:'riesgos',     n:'6', ill:'i-riesgo', corto:E('Riesgos','Risks'), titulo:E('Riesgos del sistema','System risks'), render:()=>renderRiesgos},
-  {id:'elementos',   n:'7', ill:'i-red',    corto:E('Elementos','Elements'),          titulo:E('Elementos que interactúan en el sistema','Elements interacting in the system'), render:()=>renderElementos},
-  {id:'precios',     n:'8', ill:'i-valor',  corto:E('Precio y valor','Price and value'),titulo:E('Precio y valor de los elementos','Price and value of the elements'), render:()=>renderPrecios},
-  {id:'formulacion', n:'9', ill:'i-telar',  corto:E('Formulación','Formulation'),     titulo:E('Formulación del sistema complejo adaptativo','Complex adaptive system formulation'), render:()=>renderFormulacion},
-  {id:'tablero',     n:'10', ill:'i-panel2', corto:E('Tablero','Dashboard'),           titulo:E('Tablero de resultados','Results dashboard'), render:()=>renderTablero},
-  {id:'sostenible',  n:'11', ill:'i-tierra', corto:E('Sostenibilidad','Sustainability'),titulo:E('Sostenibilidad, ODS y huella','Sustainability, SDGs and footprint'), render:()=>renderSostenible},
-  {id:'prospectiva', n:'12', ill:'i-panel2', corto:E('Prospectiva','Outlook'),       titulo:E('Prospectiva a 2, 5 y 10 años','Outlook at 2, 5 and 10 years'), render:()=>renderProspectiva},
-  {id:'informe',     n:'13',ill:'i-report', corto:E('Informe','Report'),             titulo:E('Informe general y exportación','General report and export'), render:()=>renderInforme},
+  {id:'manejo',      n:'3', ill:'i-manejo', corto:E('Manejo','Management'),           titulo:E('Manejo: pasos y actividades','Management: steps and activities'), render:()=>renderManejo},
+  {id:'regeneracion', n:'4', ill:'i-regen', corto:E('Regeneración','Regeneration'), titulo:E('Regeneración del sistema productivo','Regeneration of the production system'), render:()=>renderRegeneracion},
+  {id:'riesgos',     n:'5', ill:'i-riesgo', corto:E('Riesgos','Risks'), titulo:E('Riesgos del sistema','System risks'), render:()=>renderRiesgos},
+  {id:'elementos',   n:'6', ill:'i-red',    corto:E('Elementos','Elements'),          titulo:E('Elementos que interactúan en el sistema','Elements interacting in the system'), render:()=>renderElementos},
+  {id:'precios',     n:'7', ill:'i-valor',  corto:E('Precio y valor','Price and value'),titulo:E('Precio y valor de los elementos','Price and value of the elements'), render:()=>renderPrecios},
+  {id:'formulacion', n:'8', ill:'i-telar',  corto:E('Formulación','Formulation'),     titulo:E('Formulación del sistema complejo adaptativo','Complex adaptive system formulation'), render:()=>renderFormulacion},
+  {id:'tablero',     n:'9', ill:'i-panel2', corto:E('Tablero','Dashboard'),           titulo:E('Tablero de resultados','Results dashboard'), render:()=>renderTablero},
+  {id:'sostenible',  n:'10', ill:'i-tierra', corto:E('Sostenibilidad','Sustainability'),titulo:E('Sostenibilidad, ODS y huella','Sustainability, SDGs and footprint'), render:()=>renderSostenible},
+  {id:'prospectiva', n:'11', ill:'i-panel2', corto:E('Prospectiva','Outlook'),       titulo:E('Prospectiva a 2, 5 y 10 años','Outlook at 2, 5 and 10 years'), render:()=>renderProspectiva},
+  {id:'informe',     n:'12',ill:'i-report', corto:E('Informe','Report'),             titulo:E('Informe general y exportación','General report and export'), render:()=>renderInforme},
   {id:'validacion',  n:'✓', ill:'i-check',  corto:E('Validación','Validation'),       titulo:E('Validación','Validation'), render:()=>renderValidacion},
   {id:'teoria',      n:'§', ill:'i-book',   corto:E('Teoría','Theory'),               titulo:E('Marco teórico','Theoretical framework'), render:()=>renderTeoria}
 ];
@@ -3678,7 +3716,6 @@ function renderInicio(el){
   const nl=Object.values(TERR.localidades).reduce((s,l)=>s+l.length,0), nm=Object.values(TERR.municipios).reduce((s,l)=>s+l.length,0);
   const pasos=[['cultivo',T('Cultivo o especie','Crop or species'),T(`Elige entre ${CATALOGO.filter(c=>c.tipo==='cultivo').length} cultivos (la uva primero), ${CATALOGO.filter(c=>c.tipo==='especie'&&!c.especial).length} especies y la granja de traspatio; y el sistema: viñedo, milpa, MIAF, traspatio…`,`Choose among ${CATALOGO.filter(c=>c.tipo==='cultivo').length} crops (grape first), ${CATALOGO.filter(c=>c.tipo==='especie'&&!c.especial).length} species and the backyard farm; and the system: vineyard, milpa, MIAF, backyard…`)],
     ['region',T('Región','Region'),T(`Del país a la localidad: ${fmt(nm,0)} municipios y ${fmt(nl,0)} localidades del INEGI, con altitud y ubicación en el mapa.`,`From country to locality: ${fmt(nm,0)} municipalities and ${fmt(nl,0)} INEGI localities with altitude and map position.`)],
-    ['requerimientos',T('Requerimientos','Requirements'),T('Las 5B del saber local y los requerimientos que la localidad ha innovado.','The 5B of local knowledge and the requirements the locality has innovated.')],
     ['manejo',T('Manejo','Management'),T('38 pasos y sus actividades tradicionales; agrega las innovadoras de tu localidad.','38 steps and their traditional activities; add your locality’s innovations.')],
     ['regeneracion',T('Regeneración','Regeneration'),T('Ocho perillas de 0 a 4 miden si el sistema se regenera: labranza, cobertura, diversidad, raíces vivas, animales, insumos, materia orgánica y saber local.','Eight 0–4 knobs measure whether the system regenerates: tillage, cover, diversity, living roots, animals, inputs, organic matter and local knowledge.')],
     ['riesgos',T('Riesgos','Risks'),T('Diecinueve riesgos climáticos, biológicos, de mercado, sociales, institucionales y de recursos en una matriz de probabilidad por impacto.','Nineteen climatic, biological, market, social, institutional and resource risks in a likelihood-by-impact matrix.')],
@@ -3774,7 +3811,7 @@ function renderCultivo(el){ const tipo=renderCultivo.tipo||cultivoSel().tipo; co
     <label class="f"><span>${T('Nombre del proyecto o de la parcela','Project or plot name')}</span><input id="pNom" value="${esc(S.proyecto.nombre)}" placeholder="${T('p. ej., Parcela El Llano','e.g., El Llano plot')}"></label>
     <label class="f"><span>${T('Productor o productora','Farmer')}</span><input id="pProd" value="${esc(S.proyecto.productor)}"></label>
     <div class="kpis" style="margin-top:10px"><div class="kpi"><div class="l">${T('Seleccionado','Selected')}</div><div class="v" style="font-size:20px">${esc(tx(c.n))}</div><div class="s"><i>${esc(tx(c.sci))}</i></div></div>
-    <div class="kpi"><div class="l">${T('Pasos de manejo','Management steps')}</div><div class="v">${c.doc==='stack'?38:Object.keys(S.manejo).length}</div><div class="s">${c.doc==='stack'?T('83 actividades publicadas','83 published activities'):T('captúralos en el Bloque 4','enter them in Block 4')}</div></div></div></div></div>
+    <div class="kpi"><div class="l">${T('Pasos de manejo','Management steps')}</div><div class="v">${c.doc==='stack'?38:Object.keys(S.manejo).length}</div><div class="s">${c.doc==='stack'?T('83 actividades publicadas','83 published activities'):T('captúralos en el Bloque 3','enter them in Block 3')}</div></div></div></div></div>
   ${siguiente('cultivo')}`;
   $$('[data-tipo]',el).forEach(b=>b.onclick=()=>{ renderCultivo.tipo=b.dataset.tipo; render(); });
   $$('[data-cult]',el).forEach(c=>c.onclick=()=>{ S.cultivo=c.dataset.cult; S.formulado=false; if(S.cultivo==='granja') S.sistema='traspatio'; if(S.cultivo==='uva'&&S.sistema==='milpa') S.sistema='vinedo'; if(S.cultivo==='abeja'){ S.sistema='apiario'; S.tipoUP=TIPOS_UP.length-1; } if(S.cultivo==='bovino'){ S.sistema=REG_SIS[bovSisSel().reg]; S.tipoUP=3; } guardar(); render(); toast(tx(cultivoSel().n)); });
@@ -3858,33 +3895,6 @@ function renderRegionVacia(el){
   enlazarRegion(el); }
 
 /* ================= BLOQUE 3 · REQUERIMIENTOS ================= */
-const REQ_TRAD = [
-  {b:'tierra', t:E('Terreno preparado en tiempo y forma, con la humedad captada y conservada','Land prepared on time, with moisture captured and conserved'), pasos:[1,2,3,4,5,32]},
-  {b:'semilla', t:E('Semilla criolla seleccionada, tratada y conservada, adaptada a periodos largos sin agua','Selected, treated and stored landrace seed adapted to long dry spells'), pasos:[6,7,8,35]},
-  {b:'siembra', t:E('Siembra con densidad y arreglo topológico según la morfología del criollo y el propósito (grano o doble propósito), en la fecha que marcan el clima y la luna','Sowing with density and layout matched to landrace morphology and purpose (grain or dual), on the date set by weather and moon'), pasos:[9,10,11,12,17,18]},
-  {b:'alimentacion', t:E('Nutrición granular y foliar en los momentos clave, guiada por el análisis de suelo','Granular and foliar nutrition at key moments, guided by soil analysis'), pasos:[13,14,15,16,23,29]},
-  {b:'vigilancia', t:E('Vigilancia periódica de germinación, nutrición, plagas, enfermedades, malezas y humedad','Periodic monitoring of germination, nutrition, pests, diseases, weeds and moisture'), pasos:[19,20,21,22,24,25,26,27,28,30]},
-  {b:'cosecha', t:E('Cosecha, poscosecha, selección de semilla y balance económico del ciclo','Harvest, post-harvest, seed selection and economic balance of the cycle'), pasos:[31,33,34,36,37,38]}
-];
-function renderReq(el){ S.reqEst=S.reqEst||{};
-  el.innerHTML = `${cabecera('requerimientos',T('Lo que el saber local exige para que el cultivo prospere. Los requerimientos tradicionales salen de las cinco reglas básicas (las 5B) del Stack; abajo puedes registrar los que tu localidad ha innovado.','What local knowledge demands for the crop to thrive. Traditional requirements come from the Stack’s five basic rules (the 5B); below you can record those your locality has innovated.'))}
-  ${conStack()?`<div class="card"><div class="row between"><h3 style="margin:0">${T('Requerimientos técnicos tradicionales','Traditional technical requirements')}${ayuda('req')}</h3>${marcaDato()}</div>
-   <p class="nota">${T('Evalúa si tu parcela cumple cada requerimiento. Los números son los pasos del Stack que lo atienden.','Rate whether your plot meets each requirement. Numbers are the Stack steps addressing it.')}</p>
-   <div class="reqs">${REQ_TRAD.map((r,i)=>{ const b=B5.find(x=>x.id===r.b), v=S.reqEst[i]||'';
-     return `<div class="req aparece" style="--rc:${b.col};animation-delay:${i*60}ms"><div class="rb">${i<5?'B'+(i+1):'+'}</div><div><h4>${esc(tx(b))}${b.interp?' '+marcaInterp():''}</h4><div>${esc(tx(r.t))}</div><div class="nota">${esc(T(b.d[0],b.d[1]))}</div><div class="pasosr">${r.pasos.map(n=>`<span title="${esc(tx(E(PASOS[n-1].es,PASOS[n-1].en)))}">${n}</span>`).join('')}</div></div>
-       <div class="semaf" role="group">${[['ok',T('Sí','Yes')],['warn',T('Parcial','Partly')],['bad',T('No','No')]].map(([k,t])=>`<button class="${k} ${v===k?'on':''}" data-req="${i}" data-v="${k}">${t}</button>`).join('')}</div></div>`; }).join('')}</div>${fuenteArt()}</div>`
-   :`<div class="alert info"><p>${T('Este cultivo o especie aún no tiene un Stack documentado. Registra sus requerimientos abajo; el ejemplo del maíz criollo muestra cómo se organizan en cinco reglas.','This crop or species has no documented Stack yet. Record its requirements below; the landrace-maize example shows how they are organised in five rules.')}</p></div>`}
-  <div class="card"><h3>${T('Requerimientos innovados en la localidad','Requirements innovated in the locality')}${ayuda('reqInn')}</h3>
-   ${S.reqInn.length?`<div class="tbl-c"><table class="tbl"><thead><tr><th>${T('Requerimiento','Requirement')}</th><th>${T('Regla','Rule')}</th><th>${T('Fuente','Source')}</th><th></th></tr></thead><tbody>${S.reqInn.map((r,i)=>`<tr><td>${esc(r.t)}${r.d?`<div class="nota">${esc(r.d)}</div>`:''}</td><td>${esc(tx(B5.find(b=>b.id===r.b)||{es:'—'}))}</td><td>${esc(r.fuente||'—')}</td><td><button class="btn sm ghost" data-qreq="${i}">×</button></td></tr>`).join('')}</tbody></table></div>`:`<p class="sindato">${T('Aún no hay requerimientos innovados registrados.','No innovated requirements recorded yet.')}</p>`}
-   <div class="nueva"><div class="grid g2"><label class="f"><span>${T('Requerimiento innovado','Innovated requirement')}</span><input id="rT" placeholder="${T('p. ej., Cobertura con abono verde antes de la siembra','e.g., Green-manure cover before sowing')}"></label>
-     <label class="f"><span>${T('Regla a la que pertenece','Rule it belongs to')}</span><select id="rB">${B5.map(b=>`<option value="${b.id}">${esc(tx(b))}</option>`).join('')}</select></label>
-     <label class="f"><span>${T('Descripción o justificación','Description or rationale')}</span><input id="rD"></label>
-     <label class="f"><span>${T('Fuente (productor, asesor, investigación, programa)','Source (farmer, adviser, research, programme)')}</span><input id="rF"></label></div>
-     <button class="btn sm" id="rAdd">+ ${T('Agregar requerimiento','Add requirement')}</button></div></div>
-  ${siguiente('requerimientos')}`;
-  $$('[data-req]',el).forEach(b=>b.onclick=()=>{ S.reqEst[b.dataset.req]= S.reqEst[b.dataset.req]===b.dataset.v?'':b.dataset.v; guardar(); render(); });
-  $('#rAdd',el).onclick=()=>{ const t=$('#rT',el).value.trim(); if(!t) return toast(T('Escribe el requerimiento','Write the requirement')); S.reqInn.push({t, b:$('#rB',el).value, d:$('#rD',el).value.trim(), fuente:$('#rF',el).value.trim()}); guardar(); render(); };
-  $$('[data-qreq]',el).forEach(b=>b.onclick=()=>{ S.reqInn.splice(+b.dataset.qreq,1); guardar(); render(); }); }
 
 </script>
 <script>
@@ -3899,10 +3909,10 @@ const clsImp = v=> v<=-2?'n2':v<0?'n1':v===0?'z':v>=2?'p2':'p1';
 function impCeldas(v, data){ return `<div class="imps">${COMP.map((c,i)=>`<div><div class="ic">${esc(tx(c)).slice(0,4)}</div><div class="iv ${clsImp(v[i])}" ${data?`data-imp="${data}" data-c="${i}"`:''} title="${esc(tx(c))}: ${v[i]>0?'+':''}${v[i]} · ${T('clic para cambiar','click to change')}">${v[i]>0?'+':''}${v[i]}</div></div>`).join('')}</div>`; }
 
 /* ================= BLOQUE 4 · MANEJO ================= */
-function renderManejo(el){ const fb=renderManejo.fb||null; const pasos = conStack()?PASOS.filter(p=>!fb||p.b===fb):[];
-  const nInn=Object.values(S.manejo).reduce((s,m)=>s+(m.inn||[]).length,0), resps=conStack()?PASOS.flatMap(p=>p.a.map(a=>manejoDe(p.n).resp[a[0]])):[], nSi=resps.filter(r=>r==='si').length, nNo=resps.filter(r=>r==='no').length, nTot=resps.length;
+function renderManejo(el){ const fb=renderManejo.fb||null; const pasos = conStack()?pasosProyecto().filter(p=>!fb||p.b===fb):[];
+  const nInn=Object.values(S.manejo).reduce((s,m)=>s+(m.inn||[]).length,0), resps=conStack()?pasosActivos().flatMap(p=>p.a.map(a=>manejoDe(p.n).resp[a[0]])):[], nSi=resps.filter(r=>r==='si').length, nNo=resps.filter(r=>r==='no').length, nTot=resps.length;
   el.innerHTML = `${cabecera('manejo',T('Cada paso del ciclo tiene actividades. Si tu cultivo tiene un Stack publicado, aquí aparecen sus actividades como preguntas: responde para cada una si la practicas o no; las que no respondas no cuentan. Después agrega las actividades innovadoras o propias de tu localidad: son los hilos nuevos del telar.','Each step of the cycle has activities. If your crop has a published Stack, its activities appear here as questions: answer for each whether you practise it or not; unanswered ones do not count. Then add your locality’s innovative or own activities: they are the loom’s new threads.'))}
-  ${consejo(T('Abre un paso y contesta «Sí la practico» o «No» en cada actividad; con «Todas sí» o «Todas no» vas más rápido. Usa «+ Actividad innovadora» para lo que haces diferente. Los cuadros de colores muestran si la actividad suma (verde) o resta (rojo) al suelo, el agua, la atmósfera, la vegetación y la fauna.','Open a step and answer “Yes, I practise it” or “No” for each activity; “All yes” or “All no” is faster. Use “+ Innovative activity” for what you do differently. Coloured boxes show whether the activity adds (green) or subtracts (red) for soil, water, air, vegetation and fauna.'),T('El impacto por omisión es la suma, recortada a ±2, de los perfiles de los elementos que intervienen (Bloque 7); es una lectura editable, no una medición. Solo las actividades respondidas «sí» entran a la red.','Default impact is the sum, clipped to ±2, of the profiles of the elements involved (Block 7); an editable reading, not a measurement. Only activities answered “yes” enter the network.'))}
+  ${consejo(T('Abre un paso y contesta «Sí la practico» o «No» en cada actividad; con «Todas sí» o «Todas no» vas más rápido. Usa «+ Actividad en este paso» para lo que haces diferente o es propio de tu localidad. Cada región tiene sus pasos: ordénalos con ↑ ↓, marca «No aplica en mi localidad» los que no practicas y agrega los tuyos al final de la lista. Los cuadros de colores muestran si la actividad suma (verde) o resta (rojo) al suelo, el agua, la atmósfera, la vegetación y la fauna.','Open a step and answer “Yes, I practise it” or “No” for each activity; “All yes” or “All no” is faster. Use “+ Activity in this step” for what you do differently or is your locality’s own. Each region has its own steps: order them with ↑ ↓, mark “Not applicable in my locality” for those you do not practise and add yours at the end of the list. Coloured boxes show whether the activity adds (green) or subtracts (red) for soil, water, air, vegetation and fauna.'),T('El impacto por omisión es la suma, recortada a ±2, de los perfiles de los elementos que intervienen (Bloque 6); es una lectura editable, no una medición. Solo las actividades respondidas «sí» entran a la red.','Default impact is the sum, clipped to ±2, of the profiles of the elements involved (Block 6); an editable reading, not a measurement. Only activities answered “yes” enter the network.'))}
   <div class="kpis">${conStack()?`<div class="kpi"><div class="l">${T('Respondidas por ti','Answered by you')}</div><div class="v">${nSi+nNo} <small style="font-size:15px;color:var(--muted)">/ ${nTot}</small></div><div class="s">${T('actividades del Stack publicado','activities of the published Stack')}</div></div>`:''}
    <div class="kpi"><div class="l">${T('Practicadas (entran a la red)','Practised (enter the network)')}</div><div class="v">${actividades().length}</div><div class="s">${conStack()?nSi+' '+T('del Stack','from the Stack')+' · ':''}${nInn} ${T('innovadas o propias','innovated or own')}</div></div>
    ${conStack()?`<div class="kpi"><div class="l">${T('No practicadas','Not practised')}</div><div class="v">${nNo}</div><div class="s">${T('quedan fuera de la red','stay out of the network')}</div></div>`:''}</div>
@@ -3912,24 +3922,23 @@ function renderManejo(el){ const fb=renderManejo.fb||null; const pasos = conStac
   ${conStack()?`<div class="filtro5b">${B5.map(b=>`<button style="--fc:${b.col}" class="${fb===b.id?'on':''}" data-fb="${b.id}">${esc(tx(b))}</button>`).join('')}${fb?`<button style="--fc:var(--muted)" data-fb="">${T('Todos','All')}</button>`:''}</div>
    <p class="nota">${marcaInterp()} ${T('La asignación de cada paso a una regla es una lectura de Ratio Telar; el artículo define las 5B pero no las asigna paso por paso.','Assigning each step to a rule is a Ratio Telar reading; the paper defines the 5B but not step by step.')}</p>`:''}
   ${pasos.map(p=>{ const m=manejoDe(p.n), b=B5.find(x=>x.id===p.b), nR=p.a.filter(a=>m.resp[a[0]]).length, nS=p.a.filter(a=>m.resp[a[0]]==='si').length;
-    return `<details class="pacc" style="--pc:${b.col}" ${renderManejo.abierto===p.n?'open':''} data-paso="${p.n}"><summary><span class="num">${p.n}</span><div><h4>${esc(T(p.es,p.en))}</h4><small>${esc(tx(b))} · ${p.a.length} ${p.a.length===1?T('actividad publicada','published activity'):T('actividades publicadas','published activities')} ·<span class="${nR===p.a.length?'resp-ok':nR?'resp-parcial':'resp-no'}">${nR===p.a.length?'✓ ':''}${nR} ${T('de','of')} ${p.a.length} ${T('respondidas','answered')}</span>${nS?' · '+nS+' '+T('sí','yes'):''}${m.inn.length?' · <b style="color:var(--accent-text)">'+m.inn.length+' '+T('innovadas','innovated')+'</b>':''}</small></div>${p.iic?`<span class="badge pri">IIC ${fmt(p.iic,1)}${ayuda('iic')}</span>`:'<span></span>'}</summary>
-    <div class="cuerpo"><div class="resp-todas"><span class="nota">${T('Responder todo el paso:','Answer the whole step:')}</span><button class="btn sm ghost" data-rtodas="${p.n}|si">✓ ${T('Todas sí','All yes')}</button><button class="btn sm ghost" data-rtodas="${p.n}|no">✕ ${T('Todas no','All no')}</button>${nR?`<button class="btn sm ghost" data-rtodas="${p.n}|">${T('Borrar respuestas','Clear answers')}</button>`:''}</div>
+    return `<details class="pacc${p.noAplica?' noaplica':''}${p.propio?' propio':''}" style="--pc:${b.col}" ${renderManejo.abierto===p.n?'open':''} data-paso="${p.n}"><summary><span class="arrastre" data-arr-paso="${p.n}" title="${T('Arrastra para mover el paso','Drag to move the step')}" aria-label="${T('Mover paso','Move step')}">⠿</span><span class="num">${p.num}</span><div><h4>${esc(T(p.es,p.en))}${p.propio?` <span class="badge">${T('paso propio','own step')}</span>`:''}</h4><small>${p.noAplica?`<b>${T('No aplica en tu localidad','Not applicable in your locality')}</b> · `:''}${esc(tx(b))} · ${p.a.length?`${p.a.length} ${p.a.length===1?T('actividad publicada','published activity'):T('actividades publicadas','published activities')} ·<span class="${nR===p.a.length?'resp-ok':nR?'resp-parcial':'resp-no'}">${nR===p.a.length?'✓ ':''}${nR} ${T('de','of')} ${p.a.length} ${T('respondidas','answered')}</span>${nS?' · '+nS+' '+T('sí','yes'):''}`:T('paso propio de tu localidad','own step of your locality')}${m.inn.length?' · <b style="color:var(--accent-text)">'+m.inn.length+' '+(m.inn.length===1?T('agregada','added'):T('agregadas','added'))+'</b>':''}</small></div>${p.iic?`<span class="badge pri">IIC ${fmt(p.iic,1)}${ayuda('iic')}</span>`:'<span></span>'}</summary>
+    <div class="cuerpo">${ctlPaso(p)}<div class="resp-todas" ${p.a.length?'':'hidden'}><span class="nota">${T('Responder todo el paso:','Answer the whole step:')}</span><button class="btn sm ghost" data-rtodas="${p.n}|si">✓ ${T('Todas sí','All yes')}</button><button class="btn sm ghost" data-rtodas="${p.n}|no">✕ ${T('Todas no','All no')}</button>${nR?`<button class="btn sm ghost" data-rtodas="${p.n}|">${T('Borrar respuestas','Clear answers')}</button>`:''}</div>
       ${(()=>{ const f=S.fechas[p.n]||{}, w=ventanaPaso(p), ev=f.ev||EV_PASO[p.n];
       const pub=p.dds?p.dds.join('–')+' '+T('días después de la siembra','days after sowing'):p.v.map(x=>MESES()[x-1]).filter((x,i,a)=>i===0||i===a.length-1).join('–');
       return `<div class="fechas-paso"><label><span>${T('Actividad principal','Main activity')}</span><select data-fev="${p.n}">${Object.entries(EVENTOS).map(([k,e])=>`<option value="${k}" ${k===ev?'selected':''}>${esc(tx(e.n))}${EV_PRINCIPALES.includes(k)?' ★':''}</option>`).join('')}</select></label>
        <label><span>${T('Desde','From')}</span><input type="date" data-fini="${p.n}" value="${f.ini!=null?isoDeDia(f.ini):''}"></label><label><span>${T('Hasta','To')}</span><input type="date" data-ffin="${p.n}" value="${f.fin!=null?isoDeDia(f.fin):''}"></label>
-       <span class="nota">${f.ini!=null?`<button class="btn sm ghost" data-frst="${p.n}">${T('Borrar fechas','Clear dates')}</button>`:(w.origen==='dds'||w.origen==='siembra')?T('Sin fecha propia: se calcula con tu fecha de siembra','No own date: computed from your sowing date')+` (${diaFecha(w.ini)}–${diaFecha(w.fin)})`:`<span class="ej-pista">${T('Ejemplo publicado (Calpan)','Published example (Calpan)')}: ${esc(pub)} · ${T('no es tu fecha','not your date')}</span>`}</span></div>`; })()}
-      ${p.a.map(a=>{ const r=m.resp[a[0]]||'', v=m.imp[a[0]]||impactoAct({el:(ACT_EL[a[0]]||'').split(' '), imp:null});
-      return `<div class="actrow resp-${r||'vacia'}"><div class="resp-sn" role="group" aria-label="${T('¿La practicas?','Do you practise it?')}"><button type="button" class="si ${r==='si'?'on':''}" data-act="${p.n}|${a[0]}|si">${T('Sí la practico','Yes, I do')}</button><button type="button" class="no ${r==='no'?'on':''}" data-act="${p.n}|${a[0]}|no">${T('No','No')}</button></div><div><code>${a[0]}</code>${esc(T(a[1],a[2]))}${m.imp[a[0]]?' <span class="badge acc">'+T('impacto editado','edited impact')+'</span>':''}${r?'':` <span class="sin-llenar">${T('sin responder','not answered')}</span>`}
-        <div class="elchips">${(ACT_EL[a[0]]||'').split(' ').filter(Boolean).map(id=>chipEl(id)).join('')}</div></div>${impCeldas(v, p.n+'|'+a[0])}</div>`; }).join('')}
-      ${m.inn.map((x,i)=>`<div class="actrow inn"><span title="${T('Innovada','Innovated')}">✦</span><div><b>${esc(x.t)}</b>${x.nota?`<div class="nota">${esc(x.nota)}</div>`:''}<div class="elchips">${(x.el||[]).map(id=>chipEl(id)).join('')}</div>
-        <button class="btn sm ghost" data-qinn="${p.n}|${i}" style="margin-top:4px">${T('Quitar','Remove')}</button></div>${impCeldas(x.imp||impactoAct({el:x.el||[],imp:null}), p.n+'|N'+i)}</div>`).join('')}
-      <details class="nueva"><summary><b>+ ${T('Actividad innovadora en este paso','Innovative activity in this step')}</b>${ayuda('innov')}</summary>
+       <span class="nota">${f.ini!=null?`<button class="btn sm ghost" data-frst="${p.n}">${T('Borrar fechas','Clear dates')}</button>`:(w.origen==='dds'||w.origen==='siembra')?T('Sin fecha propia: se calcula con tu fecha de siembra','No own date: computed from your sowing date')+` (${diaFecha(w.ini)}–${diaFecha(w.fin)})`:p.propio?T('Sin fecha todavía: captúrala para que el paso aparezca en el calendario.','No date yet: enter it so the step shows on the calendar.'):`<span class="ej-pista">${T('Ejemplo publicado (Calpan)','Published example (Calpan)')}: ${esc(pub)} · ${T('no es tu fecha','not your date')}</span>`}</span></div>`; })()}
+      ${filasActividades(p,m)}
+      <details class="nueva"><summary><b>+ ${T('Actividad en este paso','Activity in this step')}</b>${ayuda('innov')}</summary>
         <label class="f"><span>${T('Actividad','Activity')}</span><input data-nt="${p.n}" placeholder="${T('p. ej., Aplicación de biofertilizante de lombricomposta','e.g., Vermicompost biofertiliser application')}"></label>
-        <label class="f"><span>${T('Nota (quién la propone, desde cuándo)','Note (who proposes it, since when)')}</span><input data-nn="${p.n}"></label>
+        <div class="grid g2"><label class="f"><span>${T('¿Quién la propone? (opcional)','Who proposes it? (optional)')}</span><select data-nprop="${p.n}"><option value="">—</option>${optProponentes()}</select></label><label class="f"><span>${T('Desde cuándo (año, opcional)','Since when (year, optional)')}</span><input type="number" data-ndesde="${p.n}" min="1900" max="2100" step="1" placeholder="${T('p. ej., 2019','e.g., 2019')}"></label></div>
+        <label class="f"><span>${T('Tipo de actividad','Activity type')}</span><select data-ntipo="${p.n}"><option value="inn" ${p.propio?'':'selected'}>${T('Innovada: nueva en la localidad','Innovated: new in the locality')}</option><option value="trad" ${p.propio?'selected':''}>${T('Tradicional de la localidad','Local traditional')}</option></select></label>
+        <details class="nuevo-el"><summary class="btn sm">＋ ${T('Crear un elemento que no está en la lista','Create an element not in the list')}</summary><div class="row" style="gap:8px;flex-wrap:wrap;align-items:flex-end"><label class="f" style="flex:2;min-width:180px"><span>${T('Nombre','Name')}</span><input data-eln="${p.n}" placeholder="${T('p. ej., Comité de agua de la comunidad','e.g., Community water committee')}"></label><label class="f" style="flex:1;min-width:160px"><span>${T('Categoría','Category')}</span><select data-elc="${p.n}">${Object.entries(CATS).map(([k,c])=>`<option value="${k}">${esc(tx(c.n))}</option>`).join('')}</select></label><button type="button" class="btn sm ghost" data-eladd="${p.n}">${T('Crear y elegir','Create and select')}</button></div><p class="nota">${T('Queda en el Bloque 6 (Elementos), donde también puedes darle valor.','It goes to Block 6 (Elements), where you can also rate it.')}</p></details>
         <div class="nota">${T('Elementos que intervienen (clic para elegir):','Elements involved (click to choose):')}</div>
         <div class="elchips" data-nel="${p.n}"></div>
         <button class="btn sm" data-addinn="${p.n}" style="margin-top:8px">${T('Agregar actividad','Add activity')}</button></details></div></details>`; }).join('')}
+  ${conStack()?formPasoPropio():''}
   ${!conStack()?`<div class="card"><h3>${T('Pasos de tu sistema','Your system steps')}</h3><p>${T('Agrega los pasos de manejo de','Add the management steps for')} <b>${esc(tx(cultivoSel().n))}</b>${T(' y sus actividades.','and their activities.')}</p>
     ${Object.entries(S.manejo).map(([n,m])=>`<div class="pacc" style="--pc:var(--primary)"><div class="cuerpo"><b>${T('Paso','Step')} ${n}${m.nombre?': '+esc(m.nombre):''}</b>${(m.inn||[]).map((x,i)=>`<div class="actrow inn"><span>✦</span><div>${esc(x.t)}<div class="elchips">${(x.el||[]).map(id=>chipEl(id)).join('')}</div></div>${impCeldas(x.imp||impactoAct({el:x.el||[],imp:null}), n+'|N'+i)}</div>`).join('')}</div></div>`).join('')||`<p class="sindato">${T('Aún no hay pasos.','No steps yet.')}</p>`}
     <div class="nueva"><div class="grid g3"><label class="f"><span>${T('Nombre del paso','Step name')}</span><input id="npN"></label><label class="f"><span>${T('Primera actividad','First activity')}</span><input id="npA"></label><label class="f"><span>${T('Actividad principal','Main activity')}</span><select id="npE">${Object.entries(EVENTOS).map(([k,e])=>`<option value="${k}">${esc(tx(e.n))}</option>`).join('')}</select></label><label class="f"><span>${T('Desde','From')}</span><input type="date" id="npI"></label><label class="f"><span>${T('Hasta','To')}</span><input type="date" id="npF"></label></div><button class="btn sm" id="npAdd">+ ${T('Agregar paso','Add step')}</button></div></div>`:''}
@@ -3944,7 +3953,7 @@ function renderManejo(el){ const fb=renderManejo.fb||null; const pasos = conStac
   $$('[data-frst]',el).forEach(b=>b.onclick=()=>{ const n=b.dataset.frst; const ev=(S.fechas[n]||{}).ev; S.fechas[n]=ev?{ev}:{}; guardar(); renderManejo.abierto=+n; render(); });
   $$('details.pacc',el).forEach(d=>d.addEventListener('toggle',()=>{ if(d.open) renderManejo.abierto=+d.dataset.paso; }));
   $$('[data-act]',el).forEach(c=>c.onclick=()=>{ const [n,cod,v]=c.dataset.act.split('|'), m=manejoDe(+n); if(m.resp[cod]===v) delete m.resp[cod]; else m.resp[cod]=v; S.formulado=false; guardar(); renderManejo.abierto=+n; render(); });
-  $$('[data-rtodas]',el).forEach(c=>c.onclick=()=>{ const [n,v]=c.dataset.rtodas.split('|'), m=manejoDe(+n), p=PASOS[+n-1]; p.a.forEach(a=>{ if(v) m.resp[a[0]]=v; else delete m.resp[a[0]]; }); S.formulado=false; guardar(); renderManejo.abierto=+n; render(); });
+  $$('[data-rtodas]',el).forEach(c=>c.onclick=()=>{ const [n,v]=c.dataset.rtodas.split('|'), m=manejoDe(+n), p=pasosProyecto().find(x=>x.n===+n); p.a.forEach(a=>{ if(v) m.resp[a[0]]=v; else delete m.resp[a[0]]; }); S.formulado=false; guardar(); renderManejo.abierto=+n; render(); });
   $$('[data-imp]',el).forEach(c=>c.onclick=()=>{ const [n,cod]=c.dataset.imp.split('|'), k=+c.dataset.c, m=manejoDe(+n);
     if(cod.startsWith('N')){ const x=m.inn[+cod.slice(1)]; x.imp=x.imp||impactoAct({el:x.el||[],imp:null}); x.imp[k]=x.imp[k]>=2?-2:x.imp[k]+1; }
     else { m.imp[cod]=m.imp[cod]||impactoAct({el:(ACT_EL[cod]||'').split(' '),imp:null}); m.imp[cod][k]=m.imp[cod][k]>=2?-2:m.imp[cod][k]+1; }
@@ -3952,14 +3961,115 @@ function renderManejo(el){ const fb=renderManejo.fb||null; const pasos = conStac
   $$('details.nueva',el).forEach(d=>d.addEventListener('toggle',()=>{ const c=d.querySelector('[data-nel]'); if(!c||!d.open||c.childElementCount) return;
     c.innerHTML=todosElem().map(e=>chipEl(e.id,true,false)).join(''); $$('.elchip',c).forEach(b=>b.onclick=()=>b.classList.toggle('on')); }));
   $$('[data-addinn]',el).forEach(b=>b.onclick=()=>{ const n=+b.dataset.addinn, t=$(`[data-nt="${n}"]`,el).value.trim(); if(!t) return toast(T('Escribe la actividad','Write the activity'));
-    const els=$$(`[data-nel="${n}"] .elchip.on`,el).map(x=>x.dataset.chip); manejoDe(n).inn.push({t, el:els, nota:$(`[data-nn="${n}"]`,el).value.trim()}); S.formulado=false; guardar(); renderManejo.abierto=n; render(); toast(T('Actividad innovadora agregada','Innovative activity added')); });
+    const els=$$(`[data-nel="${n}"] .elchip.on`,el).map(x=>x.dataset.chip), tipo=($(`[data-ntipo="${n}"]`,el)||{}).value||'inn';
+    const prop=$(`[data-nprop="${n}"]`,el).value, desde=$(`[data-ndesde="${n}"]`,el).value.trim();
+    manejoDe(n).inn.push({id:nuevoId(), t, el:els, tipo, prop, desde}); S.formulado=false; guardar(); renderManejo.abierto=n; render(); toast(tipo==='trad'?T('Actividad tradicional agregada','Traditional activity added'):T('Actividad innovadora agregada','Innovative activity added')); });
+  manejadoresPasos(el);
   $$('[data-qinn]',el).forEach(b=>b.onclick=()=>{ const [n,i]=b.dataset.qinn.split('|').map(Number); manejoDe(n).inn.splice(i,1); guardar(); renderManejo.abierto=n; render(); });
   const np=$('#npAdd',el); if(np) np.onclick=()=>{ const nom=$('#npN',el).value.trim(), a=$('#npA',el).value.trim(); if(!nom) return; const n=Object.keys(S.manejo).length+1; S.manejo[n]={resp:{}, imp:{}, nombre:nom, inn:a?[{t:a, el:[]}]:[]}; const fi=$('#npI',el).value, ff=$('#npF',el).value; if(fi) S.fechas[n]={ev:$('#npE',el).value, ini:diaDeIso(fi), fin:ff?diaDeIso(ff):diaDeIso(fi)}; guardar(); render(); }; }
+
+/* Actividades de un paso en el orden del usuario: publicadas (también las que trajo de otro paso) y agregadas */
+function itemsPaso(p, m){ const o=(S.actOrden||{})[p.n]||[], pos=k=>{ const j=o.indexOf(k); return j<0?1e6:j; };
+  return p.a.map((a,k)=>({key:a[0], a, k})).concat(m.inn.map((x,i)=>({key:'i:'+x.id, x, i, k:1000+i}))).sort((u,v)=>pos(u.key)-pos(v.key)||u.k-v.k); }
+const agarradera = (n, key)=> `<span class="arrastre" data-arr-act="${n}|${esc(key)}" title="${T('Arrastra para mover la actividad (también a otro paso)','Drag to move the activity (also to another step)')}" aria-label="${T('Mover actividad','Move activity')}">⠿</span>`;
+function filasActividades(p, m){ return itemsPaso(p,m).map(it=>{
+  if(it.a){ const a=it.a, r=m.resp[a[0]]||'', v=m.imp[a[0]]||impactoAct({el:(ACT_EL[a[0]]||'').split(' '), imp:null}), casa=CASA_ACT[a[0]];
+    return `<div class="actrow resp-${r||'vacia'}" data-actkey="${p.n}|${a[0]}">${agarradera(p.n,a[0])}<div class="resp-sn" role="group" aria-label="${T('¿La practicas?','Do you practise it?')}"><button type="button" class="si ${r==='si'?'on':''}" data-act="${p.n}|${a[0]}|si">${T('Sí la practico','Yes, I do')}</button><button type="button" class="no ${r==='no'?'on':''}" data-act="${p.n}|${a[0]}|no">${T('No','No')}</button></div><div><code>${a[0]}</code>${esc(T(a[1],a[2]))}${casa!==p.n?` <small class="tipo-act">${T('viene del paso','from step')} ${numPaso(casa)}</small>`:''}${m.imp[a[0]]?' <span class="badge acc">'+T('impacto editado','edited impact')+'</span>':''}${r?'':` <span class="sin-llenar">${T('sin responder','not answered')}</span>`}
+      <div class="elchips">${(ACT_EL[a[0]]||'').split(' ').filter(Boolean).map(id=>chipEl(id)).join('')}</div></div>${impCeldas(v, p.n+'|'+a[0])}</div>`; }
+  const x=it.x, i=it.i, pe=x.prop&&elemPorId(x.prop), info=[pe?T('Propuesta por','Proposed by')+' '+esc(tx(pe.n)):'', x.desde?T('desde','since')+' '+esc(String(x.desde)):'', x.nota?esc(x.nota):''].filter(Boolean).join(' · ');
+  return `<div class="actrow inn${x.tipo==='trad'?' trad':''}" data-actkey="${p.n}|i:${x.id}">${agarradera(p.n,'i:'+x.id)}<span title="${x.tipo==='trad'?T('Tradicional de la localidad','Local traditional'):T('Innovada','Innovated')}">${x.tipo==='trad'?'●':'✦'}</span><div><b>${esc(x.t)}</b> <small class="tipo-act">${x.tipo==='trad'?T('tradicional de la localidad','local traditional'):T('innovada','innovated')}</small>${info?`<div class="nota">${info}</div>`:''}<div class="elchips">${(x.el||[]).map(id=>chipEl(id)).join('')}</div>
+    <button class="btn sm ghost" data-qinn="${p.n}|${i}" style="margin-top:4px">${T('Quitar','Remove')}</button></div>${impCeldas(x.imp||impactoAct({el:x.el||[],imp:null}), p.n+'|N'+i)}</div>`; }).join(''); }
+
+/* Opciones de «quién la propone»: actores e instituciones (del catálogo y los creados por el usuario) */
+function optProponentes(){ return ['actores','instituciones'].map(c=>`<optgroup label="${esc(tx(CATS[c].n))}">${todosElem().filter(e=>e.cat===c).map(e=>`<option value="${esc(e.id)}">${esc(tx(e.n))}</option>`).join('')}</optgroup>`).join(''); }
+
+/* Mover un paso antes o después de otro */
+function moverPaso(n, dest, antes){ const o=pasosProyecto().map(x=>x.n).filter(x=>x!==n), j=o.indexOf(dest); if(j<0) return; o.splice(antes?j:j+1, 0, n); S.pasoOrden=o; guardar(); renderManejo.abierto=null; render(); }
+
+/* Mover una actividad dentro de su paso o a otro paso; conserva su respuesta y sus impactos */
+function moverAct(val, dest){ const [n0s, ...resto]=val.split('|'), n0=+n0s, k=resto.join('|'), n1=dest.paso; if(!n1) return;
+  const m0=manejoDe(n0), m1=manejoDe(n1);
+  if(n1!==n0){
+    if(k.startsWith('i:')){ const j=m0.inn.findIndex(x=>'i:'+x.id===k); if(j<0) return; m1.inn.push(m0.inn.splice(j,1)[0]); }
+    else { if(k in m0.resp){ m1.resp[k]=m0.resp[k]; delete m0.resp[k]; } if(k in m0.imp){ m1.imp[k]=m0.imp[k]; delete m0.imp[k]; }
+      S.actPaso=S.actPaso||{}; if(n1===CASA_ACT[k]) delete S.actPaso[k]; else S.actPaso[k]=n1; }
+    S.actOrden=S.actOrden||{}; if(S.actOrden[n0]) S.actOrden[n0]=S.actOrden[n0].filter(x=>x!==k); }
+  const p1=pasosProyecto().find(x=>x.n===n1); if(!p1) return;
+  const lista=itemsPaso(p1, m1).map(it=>it.key).filter(x=>x!==k);
+  let j=dest.key ? lista.indexOf(dest.key) : -1; if(j<0) j=lista.length; else if(!dest.antes) j++;
+  lista.splice(j, 0, k); S.actOrden=S.actOrden||{}; S.actOrden[n1]=lista;
+  S.formulado=false; guardar(); renderManejo.abierto=n1; render(); if(n1!==n0) toast(T('Actividad movida al paso','Activity moved to step')+' '+p1.num); }
+
+/* Arrastrar con agarradera (⠿): ratón, lápiz o dedo */
+function arrastreManejo(el){ if(el.__arrastre) return; el.__arrastre=true;   // una sola vez por contenedor
+  let dr=null;
+  const limpiar=()=>$$('.drop-antes,.drop-despues,.drop-dentro',el).forEach(x=>x.classList.remove('drop-antes','drop-despues','drop-dentro'));
+  el.addEventListener('click',e=>{ if(e.target.closest('[data-arr-paso],[data-arr-act]')){ e.preventDefault(); e.stopPropagation(); } }, true);
+  el.addEventListener('pointerdown',e=>{ const h=e.target.closest('[data-arr-paso],[data-arr-act]'); if(!h) return; e.preventDefault(); e.stopPropagation();
+    const paso=!!h.dataset.arrPaso; dr={paso, val:paso?h.dataset.arrPaso:h.dataset.arrAct, fuente:h.closest(paso?'details.pacc':'.actrow'), dest:null};
+    dr.fuente.classList.add('arrastrando'); document.body.classList.add('arrastrando-manejo'); try{ h.setPointerCapture(e.pointerId); }catch(_){} });
+  el.addEventListener('pointermove',e=>{ if(!dr) return; e.preventDefault(); limpiar(); dr.dest=null;
+    if(e.clientY<70) scrollBy(0,-14); else if(e.clientY>innerHeight-70) scrollBy(0,14);
+    const t=document.elementFromPoint(e.clientX,e.clientY); if(!t) return;
+    if(dr.paso){ const d=t.closest('details.pacc'); if(!d||d===dr.fuente) return; const r=d.querySelector('summary').getBoundingClientRect(), antes=e.clientY<r.top+r.height/2 || (d.open && e.clientY<r.bottom);
+      d.classList.add(antes?'drop-antes':'drop-despues'); dr.dest={n:+d.dataset.paso, antes}; return; }
+    const row=t.closest('.actrow[data-actkey]');
+    if(row && row!==dr.fuente){ const r=row.getBoundingClientRect(), antes=e.clientY<r.top+r.height/2, [ps,...kk]=row.dataset.actkey.split('|');
+      row.classList.add(antes?'drop-antes':'drop-despues'); dr.dest={paso:+ps, key:kk.join('|'), antes}; return; }
+    const d=t.closest('details.pacc'); if(d && !d.classList.contains('noaplica')){ d.classList.add('drop-dentro'); dr.dest={paso:+d.dataset.paso}; } });
+  const fin=()=>{ if(!dr) return; limpiar(); dr.fuente.classList.remove('arrastrando'); document.body.classList.remove('arrastrando-manejo'); const x=dr; dr=null; if(!x.dest) return;
+    if(x.paso) moverPaso(+x.val, x.dest.n, x.dest.antes); else moverAct(x.val, x.dest); };
+  el.addEventListener('pointerup',fin); el.addEventListener('pointercancel',()=>{ if(dr){ limpiar(); dr.fuente.classList.remove('arrastrando'); document.body.classList.remove('arrastrando-manejo'); dr=null; } });
+}
+
+/* Barra de control de un paso: orden en el ciclo, B, «no aplica» y, si es propio, quitarlo */
+function ctlPaso(p){ return `<div class="paso-ctl">
+  <button type="button" class="btn sm ghost" data-pmov="${p.n}|-1" title="${T('Subir en el ciclo','Move up in the cycle')}">↑</button><button type="button" class="btn sm ghost" data-pmov="${p.n}|1" title="${T('Bajar en el ciclo','Move down in the cycle')}">↓</button>
+  <label class="m3d-ctl">${T('Regla','Rule')} <select data-pgrp="${p.n}">${B5.map(b=>`<option value="${b.id}" ${b.id===p.b?'selected':''}>${esc(tx(b))}</option>`).join('')}</select></label>
+  <button type="button" class="btn sm ${p.noAplica?'':'ghost'}" data-pna="${p.n}">${p.noAplica?'↺ '+T('Sí aplica en mi localidad','It does apply in my locality'):T('No aplica en mi localidad','Not applicable in my locality')}</button>
+  ${p.propio?`<button type="button" class="btn sm ghost" data-pdel="${p.n}">${T('Quitar este paso','Remove this step')}</button>`:''}</div>
+  ${p.noAplica?`<p class="nota na-nota">${T('Este paso no se practica en tu localidad: sus actividades quedan fuera de la red, de los índices y del avance. Puedes reactivarlo cuando quieras.','This step is not practised in your locality: its activities stay out of the network, the indices and the progress. You can re-enable it at any time.')}</p>`:''}`; }
+
+/* Tarjeta para agregar un paso propio de la localidad, en el lugar del ciclo que elija el usuario */
+function formPasoPropio(){ const l=pasosProyecto(), cambiado=(S.pasoOrden||[]).length||Object.keys(S.pasoGrupo||{}).length;
+  return `<div class="card nuevo-paso"><h3>+ ${T('Paso propio de tu localidad','Own step of your locality')}</h3>
+   <p class="nota">${T('Cada región tiene pasos propios. Agrega los que no estén en la lista; después le pones sus actividades, sus elementos y sus fechas como a cualquier otro paso.','Each region has its own steps. Add those missing from the list; then give it activities, elements and dates like any other step.')}</p>
+   <div class="grid g3"><label class="f"><span>${T('Nombre del paso','Step name')}</span><input id="ppN" placeholder="${T('p. ej., Encalado de la parcela','e.g., Liming the plot')}"></label>
+    <label class="f"><span>${T('Regla','Rule')}</span><select id="ppB">${B5.map(b=>`<option value="${b.id}">${esc(tx(b))}</option>`).join('')}</select></label>
+    <label class="f"><span>${T('Lugar en el ciclo','Place in the cycle')}</span><select id="ppD"><option value="">${T('Al final','At the end')}</option><option value="0">${T('Al principio','At the beginning')}</option>${l.map(p=>`<option value="${p.n}">${T('Después del paso','After step')} ${p.num}. ${esc(T(p.es,p.en)).slice(0,48)}</option>`).join('')}</select></label></div>
+   <div class="row" style="gap:8px;flex-wrap:wrap;margin-top:8px"><button class="btn sm" id="ppAdd">${T('Agregar paso','Add step')}</button>
+    ${cambiado?`<button class="btn sm ghost" id="ppReset">${T('Volver al orden y a las reglas publicadas','Restore the published order and rules')}</button>`:''}</div></div>`; }
+
+function manejadoresPasos(el){
+  const orden=()=>pasosProyecto().map(x=>x.n), fb=renderManejo.fb||null, visibles=()=>pasosProyecto().filter(p=>!fb||p.b===fb).map(x=>x.n);
+  $$('[data-pmov]',el).forEach(b=>b.onclick=()=>{ const [n,d]=b.dataset.pmov.split('|').map(Number), v=visibles(), k=v.indexOf(n), vec=v[k+d]; if(vec==null) return;
+    const o=orden().filter(x=>x!==n), j=o.indexOf(vec); o.splice(d<0?j:j+1, 0, n); S.pasoOrden=o; guardar(); renderManejo.abierto=n; render(); });
+  $$('[data-pgrp]',el).forEach(s=>s.onchange=()=>{ const n=+s.dataset.pgrp, base=(PASOS.find(x=>x.n===n)||(S.pasosPropios||[]).find(x=>x.n===n)||{}).b;
+    S.pasoGrupo=S.pasoGrupo||{}; if(s.value===base) delete S.pasoGrupo[n]; else S.pasoGrupo[n]=s.value; S.formulado=false; guardar(); renderManejo.abierto=n; render(); });
+  $$('[data-pna]',el).forEach(b=>b.onclick=()=>{ const n=+b.dataset.pna; S.pasoNoAplica=S.pasoNoAplica||{}; if(S.pasoNoAplica[n]) delete S.pasoNoAplica[n]; else S.pasoNoAplica[n]=true;
+    S.formulado=false; guardar(); renderManejo.abierto=S.pasoNoAplica[n]?null:n; render(); });
+  $$('[data-pdel]',el).forEach(b=>b.onclick=()=>{ if(b.dataset.ok!=='1'){ b.dataset.ok='1'; b.textContent=T('¿Seguro? Toca otra vez para quitarlo','Sure? Tap again to remove it'); return; }
+    const n=+b.dataset.pdel; S.pasosPropios=(S.pasosPropios||[]).filter(x=>x.n!==n); S.pasoOrden=(S.pasoOrden||[]).filter(x=>x!==n);
+    delete S.manejo[n]; delete S.fechas[n]; if(S.pasoGrupo) delete S.pasoGrupo[n]; if(S.pasoNoAplica) delete S.pasoNoAplica[n]; S.formulado=false; guardar(); render(); toast(T('Paso quitado','Step removed')); });
+  $$('[data-nprop]',el).forEach(s=>s.onchange=()=>{ if(!s.value) return; const c=$(`[data-nel="${s.dataset.nprop}"]`,el); if(!c) return;
+    let ch=c.querySelector(`[data-chip="${s.value}"]`); if(!ch){ c.insertAdjacentHTML('beforeend', chipEl(s.value,true,true)); ch=c.lastElementChild; ch.onclick=()=>ch.classList.toggle('on'); } ch.classList.add('on'); });
+  arrastreManejo(el);
+  $$('[data-eladd]',el).forEach(b=>b.onclick=()=>{ const n=b.dataset.eladd, nom=$(`[data-eln="${n}"]`,el).value.trim(); if(!nom) return toast(T('Escribe el nombre del elemento','Write the element name'));
+    const e={id:'U'+Date.now().toString(36), cat:$(`[data-elc="${n}"]`,el).value, n:E(nom,nom), usuario:true}; S.elemExtra=S.elemExtra||[]; S.elemExtra.push(e); guardar();
+    const c=$(`[data-nel="${n}"]`,el); if(c){ c.insertAdjacentHTML('beforeend', chipEl(e.id,true,true)); const ch=c.lastElementChild; ch.onclick=()=>ch.classList.toggle('on'); }
+    if(['actores','instituciones'].includes(e.cat)){ const sp=$(`[data-nprop="${n}"] optgroup[label="${tx(CATS[e.cat].n)}"]`,el); if(sp) sp.insertAdjacentHTML('beforeend', `<option value="${e.id}">${esc(nom)}</option>`); }
+    $(`[data-eln="${n}"]`,el).value=''; toast(T('Elemento creado y elegido','Element created and selected')); });
+  const add=$('#ppAdd',el); if(add) add.onclick=()=>{ const nom=$('#ppN',el).value.trim(); if(!nom) return toast(T('Escribe el nombre del paso','Write the step name'));
+    const n=Math.max(100,...(S.pasosPropios||[]).map(x=>x.n))+1; S.pasosPropios=(S.pasosPropios||[]).concat([{n, es:nom, en:nom, b:$('#ppB',el).value}]);
+    const o=orden().filter(x=>x!==n), d=$('#ppD',el).value; if(d==='') o.push(n); else if(d==='0') o.unshift(n); else o.splice(o.indexOf(+d)+1, 0, n);
+    S.pasoOrden=o; manejoDe(n); renderManejo.fb=null; renderManejo.abierto=n; guardar(); render(); toast(T('Paso agregado: ponle sus actividades','Step added: give it its activities')); };
+  const rs=$('#ppReset',el); if(rs) rs.onclick=()=>{ S.pasoOrden=(S.pasosPropios||[]).length?PASOS.map(p=>p.n).concat(S.pasosPropios.map(x=>x.n)):[]; S.pasoGrupo={}; guardar(); render(); };
+}
 
 /* ================= BLOQUE 5 · ELEMENTOS ================= */
 function renderElementos(el){ const part=participacion(); const mx=Math.max(1,...Object.values(part));
   el.innerHTML = `${cabecera('elementos',T('Un sistema complejo adaptativo es la suma de sus elementos y, sobre todo, de sus interacciones. Aquí están todos los hilos del telar, por categoría, con el número de actividades en que participa cada uno.','A complex adaptive system is the sum of its elements and, above all, of their interactions. Here are all the loom’s threads by category, with how many activities each takes part in.'))}
-  ${consejo(T('Si en tu localidad hay un actor, insumo o institución que no aparece, agrégalo abajo; luego lo podrás elegir en las actividades innovadoras del Bloque 4.','If your locality has an actor, input or institution not listed, add it below; you can then choose it in Block 4 innovative activities.'),T('Los elementos marcados con ◆ se infieren del texto de la actividad (p. ej., combustible de la maquinaria); los demás están nombrados en el artículo.','Elements marked ◆ are inferred from the activity text (e.g., machinery fuel); the others are named in the paper.'))}
+  ${consejo(T('Si en tu localidad hay un actor, insumo o institución que no aparece, agrégalo abajo; luego lo podrás elegir en las actividades innovadoras del Bloque 3.','If your locality has an actor, input or institution not listed, add it below; you can then choose it in Block 3 innovative activities.'),T('Los elementos marcados con ◆ se infieren del texto de la actividad (p. ej., combustible de la maquinaria); los demás están nombrados en el artículo.','Elements marked ◆ are inferred from the activity text (e.g., machinery fuel); the others are named in the paper.'))}
   <div class="catgrid">${Object.entries(CATS).map(([k,c],q)=>{ const l=todosElem().filter(e=>e.cat===k);
     return `<div class="catbox aparece" style="--ec:${c.col};animation-delay:${q*50}ms"><h3><span class="sym">${c.sym}</span>${esc(tx(c.n))}<small class="muted" style="margin-left:auto;font-weight:400">${l.length}</small></h3><ul>${l.map(e=>`<li><span>${esc(tx(e.n))}${e.i?' <span title="'+T('inferido de la actividad','inferred from the activity')+'">◆</span>':''}${e.usuario?' <span class="badge acc">'+T('tuyo','yours')+'</span>':''}<div class="mini-bar"><i style="width:${100*(part[e.id]||0)/mx}%"></i></div></span><span class="p" title="${T('actividades en que participa','activities it takes part in')}">${part[e.id]||0}</span></li>`).join('')}</ul></div>`; }).join('')}</div>
   <p class="nota">${T('Número a la derecha: actividades activas en que participa el elemento','Number on the right: active activities the element takes part in')}${ayuda('elemento')}. ${T('Las perturbaciones y las políticas no siempre aparecen en actividades: entran a la red por sus vínculos documentados.','Disturbances and policies do not always appear in activities: they enter the network through documented links.')}</p>
@@ -3992,7 +4102,7 @@ function renderPrecios(el){ const filtro=renderPrecios.cat||'insumos'; const par
       <label class="f"><span>${T('Precio unitario ($)','Unit price ($)')}</span><input type="number" step="any" min="0" id="nqP"></label>
       <label class="f"><span>${T('Cantidad por ha','Quantity per ha')}</span><input type="number" step="any" min="0" id="nqQ"></label>
       <div style="align-self:end"><button class="btn" id="nqAdd">+ ${T('Agregar al catálogo','Add to catalogue')}</button></div></div>
-     <p class="nota">${T('Para que un elemento nuevo entre a la red y a la sostenibilidad, elígelo en una actividad (Bloque 4, «+ Actividad innovadora»).','For a new element to enter the network and sustainability, choose it in an activity (Block 4, “+ Innovative activity”).')}</p></div>
+     <p class="nota">${T('Para que un elemento nuevo entre a la red y a la sostenibilidad, elígelo en una actividad (Bloque 3, «+ Actividad innovadora»).','For a new element to enter the network and sustainability, choose it in an activity (Block 3, “+ Innovative activity”).')}</p></div>
    <p class="nota">${T('No hay precios regionales publicados para estos elementos en las fuentes de Ratio Telar: la base se alimenta con tus cotizaciones y se guarda en tu navegador.','There are no published regional prices for these elements in Ratio Telar sources: the database is fed with your quotes and saved in your browser.')}</p></div>
   <div class="card"><div class="row between"><h3 style="margin:0">${T('Mi catálogo','My catalogue')}</h3>
     <div class="row" style="gap:6px;flex-wrap:wrap"><button class="btn sm ghost" id="catBaj">⤓ ${T('Descargar catálogo (CSV)','Download catalogue (CSV)')}</button><button class="btn sm ghost" id="catCar">⤒ ${T('Cargar catálogo (CSV)','Load catalogue (CSV)')}</button><input type="file" id="catF" accept=".csv,text/csv" hidden></div></div>
@@ -4044,7 +4154,7 @@ function propiedadesSCA(R, st){ const nInn=R.acts.filter(a=>a.tipo==='inn').leng
    [T('No linealidad','Nonlinearity'), T('Pocos pasos concentran la mayor intensidad de conocimiento (siembra, IIC 100) y pequeños cambios en ellos repercuten en todo el ciclo.','A few steps concentrate the greatest knowledge intensity (sowing, IIC 100) and small changes there ripple through the cycle.')],
    [T('Retroalimentación','Feedback'), T('Semilla seleccionada → nueva siembra (pasos 35 → 6); rastrojo incorporado → suelo (32 → 1); balance de resultados → decisiones (38 → 10, 14).','Selected seed → new sowing (steps 35 → 6); incorporated stover → soil (32 → 1); results balance → decisions (38 → 10, 14).')],
    [T('Memoria','Memory'), T('La semilla criolla y el conocimiento tácito y cultural guardan la experiencia de generaciones.','Landrace seed and tacit and cultural knowledge store generations of experience.')],
-   [T('Adaptación','Adaptation'), nInn ? `${nInn} ${T('actividades innovadas por la localidad.','activities innovated by the locality.')}` : T('Aún no registras innovaciones: agrégalas en el Bloque 4.','No innovations recorded yet: add them in Block 4.')],
+   [T('Adaptación','Adaptation'), nInn ? `${nInn} ${T('actividades innovadas por la localidad.','activities innovated by the locality.')}` : T('Aún no registras innovaciones: agrégalas en el Bloque 3.','No innovations recorded yet: add them in Block 3.')],
    [T('Autoorganización','Self-organisation'), `${st.com.length} ${T('comunidades emergen sin que nadie las diseñe (modularidad Q =','communities emerge undesigned (modularity Q =')} ${fmt(st.Q,2)}).`],
    [T('Perturbaciones','Disturbances'), T('El Niño y La Niña, ciclones, Madden-Julian y Oscilación Ártica mueven la fecha de siembra: el sistema responde con dos posibles fechas.','El Niño/La Niña, hurricanes, Madden-Julian and Arctic Oscillation shift the sowing date: the system responds with two possible dates.')]]; }
 function renderFormulacion(el){ const R=construirRed(), st=estadisticaRed(R);
@@ -4079,7 +4189,7 @@ function renderTablero(el){ const R=construirRed(renderTablero.sinPM), st=estadi
   const Mk=kp.map(a=>kp.map(b=>mc.M[mc.ks.indexOf(a)][mc.ks.indexOf(b)]));
   const sos=sostenibilidad(); const met={grado:T('Grado ponderado','Weighted degree'), inter:T('Intermediación','Betweenness'), eig:T('Vector propio','Eigenvector'), cerc:T('Cercanía','Closeness')};
   el.innerHTML = `${cabecera('tablero',T('El sistema completo en una vista: quién está más relacionado, qué hilos pesan más, qué grupos se forman y qué elementos se mueven juntos. Pasa el cursor sobre nodos y vínculos; haz clic en un nodo para ver solo sus relaciones.','The whole system at a glance: who is most related, which threads weigh most, which groups form and which elements move together. Hover nodes and links; click a node to see only its relations.'))}
-  ${!S.formulado?`<div class="alert warn"><p>${T('Aún no tejes el sistema en el Bloque 9; el tablero muestra el estado actual de tus datos.','You have not woven the system in Block 9 yet; the dashboard shows the current state of your data.')}</p><button class="btn sm" data-ir="formulacion">${T('Ir a formular','Go to formulation')}</button></div>`:''}
+  ${!S.formulado?`<div class="alert warn"><p>${T('Aún no tejes el sistema en el Bloque 8; el tablero muestra el estado actual de tus datos.','You have not woven the system in Block 8 yet; the dashboard shows the current state of your data.')}</p><button class="btn sm" data-ir="formulacion">${T('Ir a formular','Go to formulation')}</button></div>`:''}
   <div class="kpis">
    <div class="kpi"><div class="l">${T('Nodos · vínculos','Nodes · links')}</div><div class="v">${st.n} · ${st.m}</div><div class="s">${R.acts.length} ${T('actividades','activities')}</div></div>
    <div class="kpi"><div class="l">${T('Densidad','Density')}${ayuda('densidad')}</div><div class="v">${fmt(st.densidad,3)}</div><div class="s">${T('grado medio','mean degree')} ${fmt(st.gradoMedio,1)}</div></div>
@@ -4108,7 +4218,7 @@ function renderTablero(el){ const R=construirRed(renderTablero.sinPM), st=estadi
      <p class="nota">${T('φ = correlación de Pearson entre los vectores de incidencia de dos elementos en las','φ = Pearson correlation between two elements’ incidence vectors across the')} ${R.acts.length} ${T('actividades.','activities.')}</p></div></div></div>
    <div class="card t12 sci"><h3>${T('Estadística completa por nodo','Full node statistics')}</h3><div class="tbl-c"><table class="tbl"><thead><tr><th>${T('Elemento','Element')}</th><th>${T('Categoría','Category')}</th><th class="r">${T('Valor','Value')}</th><th class="r">${T('Particip.','Partic.')}</th><th class="r">${T('Vecinos','Neighbours')}</th><th class="r">${T('Grado pond.','W. degree')}</th><th class="r">${T('Interm.','Betw.')}</th><th class="r">${T('Cercanía','Closeness')}</th><th class="r">${T('Vector propio','Eigenvector')}</th><th class="r">${T('Agrup.','Clust.')}</th><th class="r">C</th></tr></thead><tbody>
      ${ord('grado').map(d=>`<tr><td>${esc(d.nombre)}</td><td><span style="color:${d.col}">${CATS[d.cat].sym}</span> ${esc(tx(CATS[d.cat].n))}</td><td class="r">${fmt(d.val,2)}</td><td class="r">${d.part}</td><td class="r">${d.vecinos}</td><td class="r">${fmt(d.grado,2)}</td><td class="r">${fmt(d.inter,1)}</td><td class="r">${fmt(d.cerc,3)}</td><td class="r">${fmt(d.eig,3)}</td><td class="r">${fmt(d.clus,2)}</td><td class="r">C${d.com+1}</td></tr>`).join('')}</tbody></table></div></div>
-   <div class="card t7"><h3>${T('Calendario circular de actividades','Circular activity calendar')}</h3>${calendarioPasos().length?calendarioCircular({filtro:renderTablero.ev})+leyendaEventos(renderTablero.ev):`<p class="sindato">${T('Captura las fechas de los pasos en el Bloque 4.','Enter step dates in Block 4.')}</p>`}
+   <div class="card t7"><h3>${T('Calendario circular de actividades','Circular activity calendar')}</h3>${calendarioPasos().length?calendarioCircular({filtro:renderTablero.ev})+leyendaEventos(renderTablero.ev):`<p class="sindato">${T('Captura las fechas de los pasos en el Bloque 3.','Enter step dates in Block 3.')}</p>`}
      <p class="nota">${T('Cada anillo es un tipo de actividad; ★ actividades principales. La aguja marca hoy y el centro anuncia la siguiente actividad. Haz clic en un arco para abrir su paso; en la leyenda, para filtrar.','Each ring is an activity type; ★ main activities. The needle marks today and the centre announces the next activity. Click an arc to open its step; the legend to filter.')}</p></div>
    <div class="card t5"><h3>${T('Fechas de las actividades principales','Main-activity dates')}</h3>${tablaFechas()}</div>
    <div class="card t6"><h3>${T('Intensidad de conocimiento publicada','Published knowledge intensity')}${ayuda('iic')}</h3>${conStack()?barrasH(PASOS.filter(p=>p.iic).sort((a,b)=>b.iic-a.iic).map(p=>({l:p.n+'. '+T(p.es,p.en).slice(0,30), v:p.iic, c:colB(p.b), vl:fmt(p.iic,1)})),{max:100,izq:250,w:600,fila:24})+fuenteArt():`<p class="sindato">—</p>`}</div>
@@ -4140,11 +4250,11 @@ function renderSostenible(el){ const R=construirRed(), sos=sostenibilidad(), cum
   const c=S.carbono, rendPub = esCalpan()&&S.cultivo==='maiz';
   const filaAct=a=>`<tr><td><code>${esc(a.cod)}</code> ${esc(tx(a.n))}${a.tipo==='inn'?' <span class="badge acc">'+T('innovada','innovated')+'</span>':''}</td><td class="r">${a.paso}</td><td>${impCeldas(a.v)}</td><td class="r"><b style="color:var(--${a.is>0.6?'ok':a.is<0.4?'bad':'warn'}-text)">${fmt(a.is,2)}</b></td></tr>`;
   el.innerHTML = `${cabecera('sostenible',T('Cada actividad deja una marca en el suelo, el agua, la atmósfera, la vegetación y la fauna de la comunidad. Aquí ves cuáles suman y cuáles restan, el grado de cumplimiento de los 17 Objetivos de Desarrollo Sostenible y la huella de carbono de la hectárea.','Each activity leaves a mark on the community’s soil, water, air, vegetation and fauna. Here you see which add and which subtract, the degree of compliance with the 17 Sustainable Development Goals and the carbon footprint per hectare.'))}
-  ${consejo(T('Mira primero las actividades que más restan: ahí están las mejores oportunidades de innovación. Si cambias su impacto en el Bloque 4 o agregas una alternativa, todo se recalcula.','Look first at the activities that subtract most: they hold the best innovation opportunities. Change their impact in Block 4 or add an alternative and everything recalculates.'),T('IS = (1/5) Σ_c (s_c + 2)/4. Los perfiles de impacto son lecturas editables basadas en la función de cada elemento; la huella de carbono usa factores por defecto del IPCC.','IS = (1/5) Σ_c (s_c + 2)/4. Impact profiles are editable readings based on each element’s role; the carbon footprint uses IPCC default factors.'))}
+  ${consejo(T('Mira primero las actividades que más restan: ahí están las mejores oportunidades de innovación. Si cambias su impacto en el Bloque 3 o agregas una alternativa, todo se recalcula.','Look first at the activities that subtract most: they hold the best innovation opportunities. Change their impact in Block 3 or add an alternative and everything recalculates.'),T('IS = (1/5) Σ_c (s_c + 2)/4. Los perfiles de impacto son lecturas editables basadas en la función de cada elemento; la huella de carbono usa factores por defecto del IPCC.','IS = (1/5) Σ_c (s_c + 2)/4. Impact profiles are editable readings based on each element’s role; the carbon footprint uses IPCC default factors.'))}
   <div class="kpis">
    <div class="kpi"><div class="l">${T('Índice de sostenibilidad','Sustainability index')}${ayuda('IS')}</div><div class="v" style="color:var(--${sos.global>0.6?'ok':sos.global<0.4?'bad':'warn'}-text)">${fmt(sos.global,2)}</div><div class="s">${sos.acts.length} ${T('actividades','activities')}</div></div>
    <div class="kpi"><div class="l">${T('Tradicionales','Traditional')}</div><div class="v">${fmt(sos.trad,2)}</div><div class="s">${T('índice medio','mean index')}</div></div>
-   <div class="kpi"><div class="l">${T('Innovadas','Innovated')}</div><div class="v" style="color:var(--accent-text)">${sos.inn!=null?fmt(sos.inn,2):'—'}</div><div class="s">${sos.inn!=null&&sos.trad!=null?(sos.inn>=sos.trad?'▲ ':'▼ ')+fmt(sos.inn-sos.trad,2)+' '+T('frente a lo tradicional','vs traditional'):T('agrega innovaciones en el Bloque 4','add innovations in Block 4')}</div></div>
+   <div class="kpi"><div class="l">${T('Innovadas','Innovated')}</div><div class="v" style="color:var(--accent-text)">${sos.inn!=null?fmt(sos.inn,2):'—'}</div><div class="s">${sos.inn!=null&&sos.trad!=null?(sos.inn>=sos.trad?'▲ ':'▼ ')+fmt(sos.inn-sos.trad,2)+' '+T('frente a lo tradicional','vs traditional'):T('agrega innovaciones en el Bloque 3','add innovations in Block 3')}</div></div>
    <div class="kpi"><div class="l">${T('Huella de carbono','Carbon footprint')}${ayuda('huella')}</div><div class="v">${hc?fmt(hc.tot,0):'—'}</div><div class="s">kg CO₂e/ha${hc&&hc.porT?' · '+fmt(hc.porT,0)+' kg/t':''}</div></div></div>
   ${sar?`<div class="card"><div class="row between"><h3 style="margin:0">${T('Índice general de sostenibilidad','General sustainability index')} (Sarandón, 2002)${ayuda('sarandon')}</h3>
      <span class="badge ${sar.ISGen==null?'info':sar.sostenible?'ok':'bad'}" style="font-size:14px">${sar.ISGen==null?T('faltan datos económicos','economic data missing'):sar.sostenible?T('Sostenible','Sustainable'):T('No sostenible aún','Not yet sustainable')}</span></div>
@@ -4152,14 +4262,14 @@ function renderSostenible(el){ const R=construirRed(), sos=sostenibilidad(), cum
     <div class="formula">ISGen = (IK + IE + ISC) / 3 ; ${T('sostenible si','sustainable if')} ISGen &gt; 2 ${T('y ninguna dimensión','and no dimension')} &lt; 2 ${T('(escala 0–4)','(0–4 scale)')}</div>
     <div class="grid g2"><table class="tbl"><thead><tr><th colspan="3">IK · ${T('subindicadores económicos','economic sub-indicators')}</th></tr></thead><tbody>${sar.IKs.map(x=>`<tr><td>${x.k}. ${esc(tx(x.n))}<div class="tiny muted">${esc(x.f)}</div></td><td class="r"><b>${x.v!=null?fmt(x.v,2):'—'}</b></td></tr>`).join('')}</tbody></table>
      <table class="tbl"><thead><tr><th colspan="3">ISC · ${T('subindicadores socioculturales','socio-cultural sub-indicators')}</th></tr></thead><tbody>${sar.ISCs.map(x=>`<tr><td>${x.k}. ${esc(tx(x.n))}<div class="tiny muted">${esc(x.f)}</div></td><td class="r"><b>${x.v!=null?fmt(x.v,2):'—'}</b></td></tr>`).join('')}</tbody></table></div>
-    <p class="nota">IE = ${T('media de (impacto + 2) en las actividades y los cinco compartimentos','mean of (impact + 2) across activities and the five compartments')}. ${T('El margen (IK·A) requiere el ingreso y el costo por hectárea del Bloque 8 (elementos «Ingresos netos» y «Costos de producción»).','The margin (IK·A) needs income and cost per hectare from Block 8 (“Net income” and “Production costs” elements).')} ${marcaInterp(T('Traducción de los datos a subindicadores 0–4','Translation of the data into 0–4 sub-indicators'))}</p></div>`:''}
+    <p class="nota">IE = ${T('media de (impacto + 2) en las actividades y los cinco compartimentos','mean of (impact + 2) across activities and the five compartments')}. ${T('El margen (IK·A) requiere el ingreso y el costo por hectárea del Bloque 7 (elementos «Ingresos netos» y «Costos de producción»).','The margin (IK·A) needs income and cost per hectare from Block 7 (“Net income” and “Production costs” elements).')} ${marcaInterp(T('Traducción de los datos a subindicadores 0–4','Translation of the data into 0–4 sub-indicators'))}</p></div>`:''}
   <div class="tablero">
    <div class="card t6"><h3>${T('Lo que suma y lo que resta','What adds and what subtracts')}</h3>${sumaResta(sos.comp)}<p class="nota">${T('Suma de los impactos de todas las actividades activas en cada compartimento.','Sum of the impacts of all active activities in each compartment.')} ${marcaInterp()}</p></div>
    <div class="card t6"><h3>${T('Los 17 ODS en tu sistema','The 17 SDGs in your system')}${ayuda('ods')}</h3>${ruedaODS(cum)}</div>
    <div class="card t12"><h3>${T('Sostenibilidad por paso','Sustainability by step')}</h3>${conStack()?barrasPasos(sos.porPaso):`<p class="sindato">—</p>`}</div>
    <div class="card t12"><h3>${T('Grado de cumplimiento de cada ODS','Degree of compliance with each SDG')}</h3>
     <div class="ods-grid">${ODS.map(([o,es,en,col])=>{ const x=cum[o]; return `<div class="ods-c ${x.v==null?'sd':''} aparece" style="background:${col}" title="${esc(x.fuentes.join(', '))}"><b>${o}</b>${esc(LANG==='en'?en:es)}<span class="pc">${x.v!=null?fmt(x.v,0)+' %':T('sin dato','no data')}</span></div>`; }).join('')}</div>
-    <p class="nota">${T('Evidencias: ambientales (ODS 2, 6, 12, 13, 15, de los compartimentos), estructurales (ODS 4: actividades con conocimiento técnico o asesoría; ODS 17: instituciones vinculadas; ODS 1 y 8: margen de ingresos sobre costos del Bloque 8)  La relación entre compartimentos y ODS es una propuesta de Ratio Telar.','Evidence: environmental (SDGs 2, 6, 12, 13, 15, from compartments), structural (SDG 4: activities with technical knowledge or advice; SDG 17: linked institutions; SDGs 1 and 8: income-over-cost margin from Block 8)  The compartment–SDG mapping is a Ratio Telar proposal.')} ${marcaInterp()}</p></div>
+    <p class="nota">${T('Evidencias: ambientales (ODS 2, 6, 12, 13, 15, de los compartimentos), estructurales (ODS 4: actividades con conocimiento técnico o asesoría; ODS 17: instituciones vinculadas; ODS 1 y 8: margen de ingresos sobre costos del Bloque 7)  La relación entre compartimentos y ODS es una propuesta de Ratio Telar.','Evidence: environmental (SDGs 2, 6, 12, 13, 15, from compartments), structural (SDG 4: activities with technical knowledge or advice; SDG 17: linked institutions; SDGs 1 and 8: income-over-cost margin from Block 7)  The compartment–SDG mapping is a Ratio Telar proposal.')} ${marcaInterp()}</p></div>
    <div class="card t6"><h3>${T('Actividades que más restan','Activities that subtract most')}</h3><div class="tbl-c"><table class="tbl"><thead><tr><th>${T('Actividad','Activity')}</th><th class="r">${T('Paso','Step')}</th><th>${T('Impacto','Impact')}</th><th class="r">IS</th></tr></thead><tbody>${peores.map(filaAct).join('')}</tbody></table></div></div>
    <div class="card t6"><h3>${T('Actividades que más suman','Activities that add most')}</h3><div class="tbl-c"><table class="tbl"><thead><tr><th>${T('Actividad','Activity')}</th><th class="r">${T('Paso','Step')}</th><th>${T('Impacto','Impact')}</th><th class="r">IS</th></tr></thead><tbody>${mejores.map(filaAct).join('')}</tbody></table></div></div>
    <div class="card t12"><h3>${T('Huella de carbono de la hectárea','Carbon footprint per hectare')}${ayuda('huella')}</h3>
@@ -4210,9 +4320,8 @@ function renderInforme(el){ const R=construirRed(), st=estadisticaRed(R), sos=so
   ${informeCladograma(R)}
   ${informeRegenRiesgo()}
   ${informeProspectiva()}
-  <div class="card"><h3>${T('Requerimientos e innovaciones de la localidad','Locality requirements and innovations')}</h3>
-   ${S.reqInn.length?`<ul>${S.reqInn.map(r=>`<li><b>${esc(r.t)}</b>${r.fuente?' · '+esc(r.fuente):''}</li>`).join('')}</ul>`:`<p class="sindato">${T('Sin requerimientos innovados registrados.','No innovated requirements recorded.')}</p>`}
-   ${R.acts.filter(a=>a.tipo==='inn').length?`<ul>${R.acts.filter(a=>a.tipo==='inn').map(a=>`<li>${T('Paso','Step')} ${a.paso}: ${esc(tx(a.n))} · IS ${fmt(IS(impactoAct(a)),2)}</li>`).join('')}</ul>`:`<p class="sindato">${T('Sin actividades innovadas registradas.','No innovated activities recorded.')}</p>`}</div>
+  <div class="card"><h3>${T('Innovaciones y prácticas propias de la localidad','Locality innovations and own practices')}</h3>
+   ${R.acts.filter(a=>a.propia).length?`<ul>${R.acts.filter(a=>a.propia).map(a=>`<li>${T('Paso','Step')} ${numPaso(a.paso)}: ${esc(tx(a.n))}${a.tipo==='trad'?' · '+T('tradicional de la localidad','local traditional'):''} · IS ${fmt(IS(impactoAct(a)),2)}</li>`).join('')}</ul>`:`<p class="sindato">${T('Sin actividades innovadas ni propias registradas.','No innovated or own activities recorded.')}</p>`}</div>
   <div class="card sci"><h3>${T('Estadística de la red','Network statistics')}</h3><table class="tbl"><tbody>
    <tr><td>${T('Densidad','Density')}</td><td class="r">${fmt(st.densidad,4)}</td></tr><tr><td>${T('Grado medio','Mean degree')}</td><td class="r">${fmt(st.gradoMedio,2)}</td></tr><tr><td>${T('Agrupamiento medio','Mean clustering')}</td><td class="r">${fmt(st.clusMedio,3)}</td></tr>
    <tr><td>${T('Camino medio · diámetro','Mean path · diameter')}</td><td class="r">${fmt(st.caminoMedio,3)} · ${st.diametro}</td></tr><tr><td>${T('Modularidad Q · comunidades','Modularity Q · communities')}</td><td class="r">${fmt(st.Q,4)} · ${st.com.length}</td></tr></tbody></table></div>
@@ -4343,7 +4452,7 @@ function renderNav(){ $('#nav').innerHTML = BLOQUES.map(b=>{ const a=EJ?null:ava
   $('#progTxt').textContent=T(`Llenado por ti: ${Math.round(100*f)} % · ${hechos} de ${BLOQUES_LLENAR.length} bloques completos`,`Filled in by you: ${Math.round(100*f)} % · ${hechos} of ${BLOQUES_LLENAR.length} blocks complete`); $('#progFill').style.width=(100*f)+'%'; }
 function actualizarPill(){ const l=locSel(); $('#pillTxt').textContent=EJ?T('EJEMPLO · Maíz criollo · Calpan','EXAMPLE · Landrace maize · Calpan'):!S.cultivo&&!l?T('Proyecto nuevo · sin datos aún','New project · no data yet'):`${tx(cultivoSel().n)}${S.cultivo==='maiz'&&(S.maizTipo==='nativo'?S.maizRaza:S.maizVar)?' '+(S.maizTipo==='nativo'?S.maizRaza:S.maizVar):''}${S.cultivo==='bovino'?' '+(S.bovRaza||tx(bovSisSel().n)):''}${variedadTexto()?' '+variedadTexto():''}${S.cultivo==='granja'&&S.granja.length?' ('+S.granja.length+')':''}${l?' · '+l[1]:''}`; }
 function renderAyuda(){ $('#dlgAyuda').innerHTML=`<div class="dh"><h2>${T('Cómo usar Ratio Telar','How to use Ratio Telar')}</h2><button class="ibtn round" onclick="this.closest('dialog').close()" aria-label="×">✕</button></div>
-  <div class="db"><ol><li>${T('<b>Avanza en orden</b>: cultivo, región, requerimientos, manejo, elementos y precio-valor.','<b>Move in order</b>: crop, region, requirements, management, elements and price-value.')}</li>
+  <div class="db"><ol><li>${T('<b>Avanza en orden</b>: cultivo, región, manejo, elementos y precio-valor.','<b>Move in order</b>: crop, region, requirements, management, elements and price-value.')}</li>
   <li>${T('En <b>Formulación</b> presiona <i>Tejer el sistema</i>; en <b>Tablero</b> ves la red y su estadística; en <b>Sostenibilidad</b>, los ODS y la huella.','In <b>Formulation</b> press <i>Weave the system</i>; <b>Dashboard</b> shows the network and its statistics; <b>Sustainability</b> shows SDGs and footprint.')}</li>
   <li>${T('Los signos <b>?</b> explican cada concepto y su escala de decisión.','The <b>?</b> signs explain each concept and its decision scale.')}</li>
   <li>${T('<b>Productor / Científico</b> cambia la vista; <b>ES / EN</b> el idioma; ☀/☾ el tema.','<b>Producer / Scientist</b> switches view; <b>ES / EN</b> language; ☀/☾ theme.')}</li>
