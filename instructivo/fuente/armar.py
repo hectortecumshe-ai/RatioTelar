@@ -3,6 +3,8 @@ Uso:  python armar.py          → ../../instructivo-productor.html y ../../inst
 Las capturas se toman con capturar.py (Chrome sin interfaz) y se guardan en ../img/<id>-<idioma>.jpg.
 Los PDF se imprimen con pdf.py."""
 import json, os, re, subprocess, sys
+from enlaces_web import web   # enlaces públicos (no localhost) en el HTML y en los PDF
+APP_WEB = 'https://hectortecumshe-ai.github.io/RatioTelar/'
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.abspath(os.path.join(AQUI, '..', '..'))
@@ -11,7 +13,7 @@ VERSION_APP = '0.7.0'
 EDICION = ('2.ª edición', '2nd edition')
 FECHA = ('noviembre de 2026', 'November 2026')
 DOI_APP = '10.5281/zenodo.23290103'
-DOI_GUIA = {'productor': '10.5281/zenodo.23904212', 'cientifico': '10.5281/zenodo.23904213'}        # ← DOI propio de cada instructivo cuando Zenodo lo asigne
+DOI_GUIA = {'productor': '10.5281/zenodo.24048798', 'cientifico': '10.5281/zenodo.24048801'}        # ← DOI propio de cada instructivo cuando Zenodo lo asigne
 ISBN = {'productor': ('', ''), 'cientifico': ('', '')}  # ← (ISBN impreso o PDF ES, ISBN PDF EN) cuando el INDAUTOR los asigne
 CITA_AUT = ('Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. Á., y Velázquez-Vázquez, G.', 'Mojica-Zárate, H. T., Díaz-José, O., Barrera-Guzmán, L. Á., &amp; Velázquez-Vázquez, G.')
 AUTORES = 'Héctor Tecumshé Mojica-Zárate · Óscar Díaz-José · Luis Ángel Barrera-Guzmán · Guadalupe Velázquez-Vázquez'
@@ -236,7 +238,7 @@ def productor():
     html = pagina('productor', cuerpo, t_es, t_en, 'Instructivo del Productor', 'Producer Guide', 'RatioTelar-Instructivo-Productor.pdf', 'RatioTelar-Producer-Guide.pdf',
                   {'leer': ['Para empezar', 'Getting started'], 'b1': ['Los doce bloques', 'The twelve blocks'], 'documentar': ['Consulta', 'Reference']}, tp.GLOS,
                   'Instructivo del Productor de Ratio Telar: teje paso a paso tu milpa, parcela o unidad de producción como sistema complejo adaptativo. · Ratio Telar Producer Guide.')
-    open(os.path.join(RAIZ, 'instructivo-productor.html'), 'w', encoding='utf-8', newline='\n').write(html)
+    open(os.path.join(RAIZ, 'instructivo-productor.html'), 'w', encoding='utf-8', newline='\n').write(web(html, APP_WEB))
     print('instructivo-productor.html', round(len(html.encode('utf-8')) / 1024), 'KB')
 
 
@@ -250,7 +252,7 @@ def cientifico():
     html = pagina('cientifico', cuerpo, t_es, t_en, 'Instructivo del Científico', 'Scientist Guide', 'RatioTelar-Instructivo-Cientifico.pdf', 'RatioTelar-Scientist-Guide.pdf',
                   {'leer': ['Preliminares', 'Front matter'], 'datos': ['Método', 'Method'], 'validacion': ['Evidencia y uso', 'Evidence and use']}, tc.GLOS,
                   'Instructivo del Científico de Ratio Telar: modelo, ecuaciones, validación y reproducibilidad. · Ratio Telar Scientist Guide.')
-    open(os.path.join(RAIZ, 'instructivo-cientifico.html'), 'w', encoding='utf-8', newline='\n').write(html)
+    open(os.path.join(RAIZ, 'instructivo-cientifico.html'), 'w', encoding='utf-8', newline='\n').write(web(html, APP_WEB))
     print('instructivo-cientifico.html', round(len(html.encode('utf-8')) / 1024), 'KB')
 
 
