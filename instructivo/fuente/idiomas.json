@@ -1,0 +1,46 @@
+{
+ "productor": {
+  "es": {
+   "title": "Ratio Telar: Instructivo del Productor (2.ª edición, versión 0.7.0)",
+   "description": "Instructivo en español para productores y técnicos de Ratio Telar 0.7.0, aplicación libre que representa una milpa, parcela o unidad de producción como sistema complejo adaptativo. Recorre los 12 bloques con el caso resuelto del maíz criollo de Calpan, Puebla (Díaz-José et al., 2026), con manejo flexible, modelo 3D e importancia de los nodos; explica cómo distinguir lo que llena el usuario de lo sugerido y del ejemplo publicado, e incluye guía de entrevista, hojas de campo imprimibles, problemas frecuentes y glosario. 2.ª edición, noviembre de 2026. La versión en inglés (Producer Guide) es un registro aparte con su propio DOI."
+  },
+  "en": {
+   "title": "Ratio Telar: Producer Guide (2nd edition, version 0.7.0)",
+   "description": "English guide for farmers and technicians using Ratio Telar 0.7.0, a free app that represents a milpa, plot or production unit as a complex adaptive system. It walks through the 12 blocks with the worked case of landrace maize in Calpan, Puebla (Díaz-José et al., 2026), with flexible management, the 3D model and node importance; it explains how to tell what the user enters from what is suggested and from the published example, and includes an interview guide, printable field sheets, troubleshooting and a glossary. 2nd edition, November 2026. The Spanish version (Instructivo del Productor) is a separate record with its own DOI.",
+   "keywords": [
+    "Ratio Telar",
+    "user guide",
+    "maize",
+    "milpa",
+    "local agricultural knowledge",
+    "complex adaptive systems",
+    "network analysis",
+    "sustainability",
+    "Puebla",
+    "Mexico"
+   ]
+  }
+ },
+ "cientifico": {
+  "es": {
+   "title": "Ratio Telar: Instructivo del Científico (2.ª edición, versión 0.7.0)",
+   "description": "Instructivo en español para investigación y docencia de Ratio Telar 0.7.0: modelo de datos, red ponderada y su estadística, cladograma del vecino más cercano, modelo 3D e importancia de los nodos, índices de sostenibilidad (Sarandón, ODS, huella de carbono IPCC), regeneración y riesgo, modelo de escenarios, validación frente a NetworkX y SciPy, reproducibilidad y un ejemplo resuelto a mano. 2.ª edición, noviembre de 2026. La versión en inglés (Scientist Guide) es un registro aparte con su propio DOI."
+  },
+  "en": {
+   "title": "Ratio Telar: Scientist Guide (2nd edition, version 0.7.0)",
+   "description": "English guide for research and teaching with Ratio Telar 0.7.0: data model, weighted network and its statistics, nearest-neighbour cladogram, 3D model and node importance, sustainability indices (Sarandón, SDGs, IPCC carbon footprint), regeneration and risk, scenario model, validation against NetworkX and SciPy, reproducibility and a worked example by hand. 2nd edition, November 2026. The Spanish version (Instructivo del Científico) is a separate record with its own DOI.",
+   "keywords": [
+    "Ratio Telar",
+    "scientist guide",
+    "maize",
+    "network analysis",
+    "cladogram",
+    "complex adaptive systems",
+    "sustainability indices",
+    "validation",
+    "reproducibility",
+    "Mexico"
+   ]
+  }
+ }
+}
