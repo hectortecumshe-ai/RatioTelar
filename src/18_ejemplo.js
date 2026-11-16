@@ -99,12 +99,12 @@ const EJEMPLO = {
   formulacion: ()=>({
     corto: T(`Con los ${ART.pasos} pasos, sus actividades y los elementos ligados, Ratio Telar tejió la red del sistema del maíz de Calpan.`,`From the ${ART.pasos} steps, their activities and linked elements, Ratio Telar wove the Calpan maize network.`),
     hecho: _li([
-      T(`Nodos: los elementos del Bloque 6; aristas: compartir una actividad (${LAZOS.length} lazos adicionales entre actores e instituciones descritos en el artículo).`,`Nodes: the Block 6 elements; edges: sharing an activity (${LAZOS.length} extra ties among actors and institutions described in the paper).`),
-      T('Peso de cada vínculo: la raíz del producto de los valores de los dos elementos (Bloque 7).','Each tie’s weight: the square root of the product of the two elements’ values (Block 7).'),
+      T(`Nodos: los elementos del Bloque 7; aristas: compartir una actividad (${LAZOS.length} lazos adicionales entre actores e instituciones descritos en el artículo).`,`Nodes: the Block 7 elements; edges: sharing an activity (${LAZOS.length} extra ties among actors and institutions described in the paper).`),
+      T('Peso de cada vínculo: la raíz del producto de los valores de los dos elementos (Bloque 8).','Each tie’s weight: the square root of the product of the two elements’ values (Block 8).'),
       T('Seguimiento en tres ciclos: ','Monitoring over three cycles: ')+CUADRO1.map(c=>c.ciclo).join(', ')+'.'
     ]),
     pasos: _ol([
-      T('Revisa que los bloques 3 a 7 tengan datos: sin pasos ni elementos no hay red.','Check that Blocks 3–7 have data: without steps or elements there is no network.'),
+      T('Revisa que los bloques 3 a 8 tengan datos: sin pasos ni elementos no hay red.','Check that Blocks 3–7 have data: without steps or elements there is no network.'),
       T('Formula el sistema: la app calcula la red y sus indicadores.','Formulate the system: the app computes the network and its indicators.'),
       T('Si algo se ve raro, vuelve al bloque correspondiente y corrige.','If something looks odd, go back to the relevant block and fix it.')
     ])}),
@@ -132,12 +132,12 @@ const EJEMPLO = {
     pasos: _ol([
       T('Revisa el efecto de cada actividad sobre suelo, agua, atmósfera, vegetación y fauna.','Review each activity’s effect on soil, water, atmosphere, vegetation and fauna.'),
       T('Captura litros de diésel, kg de nitrógeno y de urea, y el rendimiento: con eso se calcula la huella.','Enter litres of diesel, kg of nitrogen and urea, and yield: the footprint is computed from them.'),
-      T('Completa precios y valores del Bloque 7: el índice de Sarandón necesita la dimensión económica.','Complete the Block 7 prices and values: Sarandón’s index needs the economic dimension.')
+      T('Completa precios y valores del Bloque 8: el índice de Sarandón necesita la dimensión económica.','Complete the Block 8 prices and values: Sarandón’s index needs the economic dimension.')
     ])}),
   prospectiva: ()=>({
     corto: T('El artículo de Calpan no hace prospectiva: este bloque es una herramienta de Ratio Telar para mirar el futuro de cualquier unidad a partir de su propio Stack.','The Calpan paper does no foresight: this block is a Ratio Telar tool to look at any farm’s future from its own Stack.'),
     hecho: _li([T('Con el maíz de Calpan, el cambio de rendimiento por °C es el publicado para maíz (−7.4 %; Zhao et al., 2017) y la adopción parte de las actividades innovadas que captures.','For Calpan maize, the yield change per °C is the published maize value (−7.4 %; Zhao et al., 2017) and adoption starts from the innovated activities you enter.')+' '+marcaInterp()]),
-    pasos: _ol([T('Captura antes tus actividades innovadas (Bloque 3) y, si puedes, ingreso y costo por hectárea (Bloque 7).','First enter your innovated activities (Block 3) and, if you can, income and cost per hectare (Block 7).'),T('Revisa los supuestos de cada escenario y ajústalos a tu región.','Review each scenario’s assumptions and adjust them to your region.'),T('Compara los tres futuros a 2, 5 y 10 años y anota qué decisiones de hoy acercan el deseable.','Compare the three futures at 2, 5 and 10 years and note which decisions today bring the desirable one closer.')])}),
+    pasos: _ol([T('Captura antes tus actividades innovadas (Bloque 3) y, si puedes, ingreso y costo por hectárea (Bloque 8).','First enter your innovated activities (Block 3) and, if you can, income and cost per hectare (Block 8).'),T('Revisa los supuestos de cada escenario y ajústalos a tu región.','Review each scenario’s assumptions and adjust them to your region.'),T('Compara los tres futuros a 2, 5 y 10 años y anota qué decisiones de hoy acercan el deseable.','Compare the three futures at 2, 5 and 10 years and note which decisions today bring the desirable one closer.')])}),
   informe: ()=>({
     corto: T('El caso de Calpan se presenta como informe con calendario, red, sostenibilidad y fuentes; tu cultivo genera el mismo informe con tus datos.','The Calpan case is presented as a report with calendar, network, sustainability and sources; your crop produces the same report with your data.'),
     hecho: _li([
