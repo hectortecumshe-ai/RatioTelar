@@ -10,7 +10,7 @@
 
 Ratio Telar teje en un solo tablero el territorio, los pasos y actividades del cultivo, los actores que sostienen el conocimiento, los recursos naturales y la sostenibilidad. Está hecha para productores y para científicos, en español y en inglés.
 
-## Qué contiene (versión 0.7.0)
+## Qué contiene (versión 0.8.0)
 
 Trece bloques que se alimentan con los datos de la localidad, como en RatioBos:
 
@@ -30,6 +30,12 @@ Trece bloques que se alimentan con los datos de la localidad, como en RatioBos:
 | 12 · Informe | Resumen redactado, calendario, cladograma, prospectiva, tablas, CSV, impresión o PDF y proyecto completo |
 
 Además: **Validación** (caso publicado, motor de redes frente a NetworkX, cladograma frente a SciPy, cálculo de control de la huella), **Teoría** y, en cada bloque, la ventana **«Así se hizo con el maíz criollo de Calpan»** para los cultivos aún por documentar.
+
+## Novedades de la versión 0.8.0
+
+- **Nuevo bloque 6 · Resiliencia.** Los 13 indicadores de comportamiento de la resiliencia del agroecosistema (Cabell y Oelofse, 2012) en perillas 0–4 y el riesgo frente a un evento climático, Riesgo = Vulnerabilidad × Amenaza / Capacidad de respuesta (Nicholls y Altieri, 2013, en Altieri et al., 2015). Los bloques siguientes se renumeran.
+- **Mis entrevistas y Enviar al administrador.** Cada encuestador guarda en su teléfono todas las entrevistas que haga, aunque no haya internet; una entrevista nueva no borra las anteriores. Cada una lleva encuestador, código del entrevistado y consentimiento informado. Con «Enviar al administrador» las elegidas salen en un solo archivo por WhatsApp o correo (menú de compartir del teléfono); lo no enviado queda pendiente y la app lo recuerda. El administrador recibe los archivos, descarga una tabla consolidada (CSV) para su análisis colectivo.
+- **Funciona sin conexión.** Después de abrirla una vez con internet, la app se abre en el teléfono sin señal.
 
 ## Novedades de la versión 0.7.0
 
