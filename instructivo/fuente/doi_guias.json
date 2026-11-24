@@ -29,13 +29,21 @@
     "doi": "10.5281/zenodo.24049520",
     "bucket": "https://zenodo.org/api/files/e42a0517-5d53-4d19-a643-9ea2f8d0c8c5",
     "concepto": "10.5281/zenodo.23433184",
-    "concepto_registro": "10.5281/zenodo.23433184"
+    "concepto_registro": "10.5281/zenodo.23433184",
+    "ultima": {
+     "id": 24510718,
+     "doi": "10.5281/zenodo.24510718"
+    }
    },
    "en": {
     "id": 24049522,
     "doi": "10.5281/zenodo.24049522",
     "bucket": "https://zenodo.org/api/files/40ec622e-b56c-4368-b351-4d49e735cc68",
-    "concepto_registro": "10.5281/zenodo.24049521"
+    "concepto_registro": "10.5281/zenodo.24049521",
+    "ultima": {
+     "id": 24510721,
+     "doi": "10.5281/zenodo.24510721"
+    }
    }
   }
  },
@@ -69,13 +77,21 @@
     "doi": "10.5281/zenodo.24049523",
     "bucket": "https://zenodo.org/api/files/6dd9941c-8bb5-4c7a-b16c-d5288a2d3586",
     "concepto": "10.5281/zenodo.23433186",
-    "concepto_registro": "10.5281/zenodo.23433186"
+    "concepto_registro": "10.5281/zenodo.23433186",
+    "ultima": {
+     "id": 24510723,
+     "doi": "10.5281/zenodo.24510723"
+    }
    },
    "en": {
     "id": 24049525,
     "doi": "10.5281/zenodo.24049525",
     "bucket": "https://zenodo.org/api/files/1efe4a73-1ec3-4d1b-8531-4c4f934b9030",
-    "concepto_registro": "10.5281/zenodo.24049524"
+    "concepto_registro": "10.5281/zenodo.24049524",
+    "ultima": {
+     "id": 24510726,
+     "doi": "10.5281/zenodo.24510726"
+    }
    }
   }
  }

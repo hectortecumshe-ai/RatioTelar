@@ -32,14 +32,19 @@ GLOS = [
   ['Sostenibilidad', 'Sustainability', 'Producir hoy sin comprometer la capacidad de producir mañana, en lo ambiental, lo económico y lo social.', 'Producing today without compromising the capacity to produce tomorrow, environmentally, economically and socially.'],
   ['Stack de conocimiento local', 'Local knowledge stack', 'Organización en capas del saber de una localidad sobre un cultivo: reglas, pasos y actividades (Díaz-José et al., 2026).', 'Layered organisation of a locality’s knowledge of a crop: rules, steps and activities (Díaz-José et al., 2026).'],
   ['Valor', 'Value', 'Importancia de un elemento para el sistema en cuatro dimensiones: económica, de uso, cultural y ecológica. No es lo mismo que el precio.', 'An element’s importance to the system in four dimensions: economic, use, cultural and ecological. Not the same as price.'],
+  ["Resiliencia", "Resilience", "Capacidad del sistema de aguantar un golpe, reorganizarse y seguir. La app la mide con los trece rasgos de Cabell y Oelofse (2012).", "The system’s capacity to absorb a blow, reorganise and carry on. The app measures it with Cabell and Oelofse’s (2012) thirteen traits."],
+  ["Vulnerabilidad", "Vulnerability", "Qué tan expuesto está el sistema a un evento del clima por su pendiente, su paisaje y su suelo (Altieri et al., 2015).", "How exposed the system is to a climatic event because of its slope, landscape and soil (Altieri et al., 2015)."],
+  ["Capacidad de respuesta", "Response capacity", "Lo que el sistema y la familia tienen para resistir un evento y recuperarse: conservación de suelo, manejo del agua, diversidad y autosuficiencia.", "What the system and the family have to withstand an event and recover: soil conservation, water management, diversity and self-sufficiency."],
+  ["Mis entrevistas", "My interviews", "Lista de las entrevistas guardadas en el teléfono, enviadas o pendientes. Se abre con el botón de la hoja, arriba.", "List of the interviews saved on the phone, sent or pending. It opens with the sheet button at the top."],
+  ["Administrador", "Administrator", "Quien recibe las entrevistas de los encuestadores y las analiza juntas con la tabla consolidada.", "Whoever receives the interviewers’ files and analyses them together with the consolidated table."]
 ]
 
 
 def fig_telar():
     W, H = 780, 300
-    fases = [(0, 3, 'Tus datos', 'Your data', '#4f7d3a'), (3, 7, 'Evaluar', 'Assess', '#b8562e'), (7, 10, 'Tejer y leer', 'Weave and read', '#3f6fb0'), (10, 12, 'Futuro e informe', 'Future and report', '#8a3f5a')]
+    fases = [(0, 3, 'Tus datos', 'Your data', '#4f7d3a'), (3, 8, 'Evaluar', 'Assess', '#b8562e'), (8, 11, 'Tejer y leer', 'Weave and read', '#3f6fb0'), (11, 13, 'Futuro e informe', 'Future and report', '#8a3f5a')]
     s = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="Ratio Telar">']
-    cw = (W - 40) / 12
+    cw = (W - 40) / len(BLOQUES)
     for a, b, es, en, col in fases:
         x0, x1 = 20 + a * cw, 20 + b * cw
         s.append(f'<rect x="{x0+3:.1f}" y="18" width="{x1-x0-6:.1f}" height="30" rx="8" fill="{col}" opacity=".14"/>')
@@ -48,7 +53,7 @@ def fig_telar():
         cx = 20 + i * cw + cw / 2
         s.append(f'<circle cx="{cx:.1f}" cy="120" r="22" fill="var(--b{i+1})"/><text x="{cx:.1f}" y="126" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">{i+1}</text>')
         s.append(f'<g transform="translate({cx:.1f} 156) rotate(40)">' + bi(bl[1], bl[2], x='0', y='0', font_size='12.5') + '</g>')
-        if i < 11:
+        if i < len(BLOQUES) - 1:
             s.append(f'<line x1="{cx+23:.1f}" y1="120" x2="{cx+cw-23:.1f}" y2="120" stroke="var(--line2)" stroke-width="2"/>')
     # flechas de retroalimentación
     def arco(i, j, es, en, y):
@@ -57,10 +62,10 @@ def fig_telar():
                 + bi(es, en, x=f'{(xi+xj)/2:.1f}', y=str(y + 12), text_anchor='middle', font_size='11.5', class_='mu'))
     s.append('<defs><marker id="fl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--acc)"/></marker></defs>')
     s.append(arco(2, 3, 'actividades', 'activities', 64))
-    s.append(arco(4, 10, 'riesgo → escenarios', 'risk → scenarios', 58))
+    s.append(arco(4, 11, 'riesgo → escenarios', 'risk → scenarios', 58))
     s.append('</svg>')
-    return fig(''.join(s), '<b>Los doce bloques.</b> Los bloques 1 a 3 describen tu unidad; del 4 al 7 la evalúas; en el 8 se teje la red, que lees en el 9 y el 10; el 11 mira al futuro y el 12 lo resume todo. Las flechas punteadas son ejemplos de cómo un bloque alimenta a otro.',
-               '<b>The twelve blocks.</b> Blocks 1–3 describe your farm; 4–7 assess it; block 8 weaves the network, which you read in 9 and 10; 11 looks ahead and 12 sums it all up. Dashed arrows are examples of one block feeding another.')
+    return fig(''.join(s), '<b>Los trece bloques.</b> Los bloques 1 a 3 describen tu unidad; del 4 al 8 la evalúas (regeneración, riesgos, resiliencia, elementos y su valor); en el 9 se teje la red, que lees en el 10 y el 11; el 12 mira al futuro y el 13 lo resume todo. Las flechas punteadas son ejemplos de cómo un bloque alimenta a otro.',
+               '<b>The thirteen blocks.</b> Blocks 1–3 describe your farm; 4–8 assess it (regeneration, risks, resilience, elements and their value); block 9 weaves the network, which you read in 10 and 11; 12 looks ahead and 13 sums it all up. Dashed arrows are examples of one block feeding another.')
 
 
 def fig_perilla():
